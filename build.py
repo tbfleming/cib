@@ -66,7 +66,8 @@ def llvmBrowser():
     run('cd ' + llvmBrowserBuild + ' && time -p ninja -j36 clang-format')
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-a', '--all', action='store_true', help="Do everything")
+parser.add_argument('-B', '--bash', action='store_true', help="Run bash with path set up")
+parser.add_argument('-a', '--all', action='store_true', help="Do everything below")
 parser.add_argument('-c', '--clone', action='store_true', help="Clone repos. Doesn't touch ones which already exist.")
 parser.add_argument('-l', '--llvm', action='store_true', help="Build llvm toolchain if not already built")
 parser.add_argument('-e', '--emscripten', action='store_true', help="Prepare emscripten by compiling say-hello.cpp")
@@ -80,6 +81,8 @@ for k,v in vars(args).items():
 if not haveArg:
     print('Use -h to get help')
 
+if args.bash:
+    run('bash')
 if args.clone or args.all:
     clone()
 if args.llvm or args.all:
