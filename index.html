@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>clang-format</title>
+    <style>
+        body {
+            font-family: arial;
+            margin: 0;
+            padding: none;
+        }
+
+        #main {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #input,
+        #output {
+            background-color: black;
+            flex-grow: 4;
+        }
+
+        #status {
+            height: 20px;
+            background-color: grey;
+        }
+
+        #input,
+        #output,
+        #status {
+            resize: None;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 10px;
+            border-left: 0px;
+            border-right: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            display: block;
+            color: white;
+            font-family: 'Lucida Console', Monaco, monospace;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='main'>
+        Source:
+        <textarea id="input" spellcheck="false">
+// Edit this code or paste in your own.
+// This runs clang-format directly in the browser (wasm).
+// Style = LLVM.
+
+void   aFunction(   bool&amp; b  , double  x)
+    {
+f(b); y(x);
+callSomeFunction(    sdfkjskdjfueroiwuerwerdsfs,    eureiou47sdfxjhsier34r234,    a*b/2+4, dfjkuiwer);
+    }
+    </textarea> clang-format result:
+        <textarea id="output" readonly></textarea>
+        <textarea id="status"></textarea>
+    </div>
+
+    <script type='text/javascript'>
+        let inputElement = document.getElementById('input');
+        let outputElement = document.getElementById('output');
+        let statusElement = document.getElementById('status');
+        let ready = false;
+
+        function format() {
+            if (ready)
+                outputElement.value = Module.formatCode(inputElement.value);
+        }
+        inputElement.addEventListener('input', format);
+
+        var Module = {
+            noExitRuntime: true,
+
+            print(text) {
+                console.log(text);
+            },
+
+            printErr(text) {
+                console.error(text);
+            },
+
+            setStatus(text) {
+                if (!text) {
+                    text = 'Ready';
+                    if (!ready) {
+                        ready = true;
+                        format();
+                    }
+                }
+                text = 'status: ' + text + "\n";
+                console.log(text)
+                statusElement.value = text;
+            },
+
+            totalDependencies: 0,
+            monitorRunDependencies(left) {
+                this.totalDependencies = Math.max(this.totalDependencies, left);
+                Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies - left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+            }
+        };
+
+        Module.setStatus('Downloading...');
+
+        window.onerror = function (event) {
+            Module.setStatus('Exception thrown, see JavaScript console');
+            Module.setStatus = function (text) {
+                if (text) Module.printErr('[post-exception status] ' + text);
+            };
+        };
+    </script>
+    <script>
+        let script = document.createElement('script');
+        script.src = "clang-format.js";
+        document.body.appendChild(script);
+    </script>
+
+</body>
+
+</html>
