@@ -2,24 +2,36 @@
 
 import argparse, os, subprocess, sys
 
+llvmBuildType = 'Release'
+
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
-llvmBuild = root + 'build/llvm/'
-llvmInstall = root + 'install/llvm/'
+llvmBuild = root + 'build/llvm-' + llvmBuildType + '/'
+llvmInstall = root + 'install/llvm-' + llvmBuildType + '/'
 llvmBrowserBuild = root + 'build/llvm-browser/'
 llvmBrowserInstall = root + 'install/llvm-browser/'
 
 llvmBrowserTargets = [
+    'clangAnalysis',
     'clangAST',
     'clangBasic',
-    'clangBasic',
+    'clangCodeGen',
+    'clangDriver',
+    'clangEdit',
     'clangFormat',
+    'clangFrontend',
     'clangLex',
+    'clangParse',
     'clangRewrite',
-    'clangRewrite',
+    'clangSema',
+    'clangSerialization',
     'clangToolingCore',
     'LLVMBinaryFormat',
+    'LLVMBitReader',
     'LLVMCore',
     'LLVMMC',
+    'LLVMMCParser',
+    'LLVMOption',
+    'LLVMProfileData',
     'LLVMSupport',
 ]
 
@@ -58,7 +70,7 @@ def llvm():
         run('mkdir -p ' + llvmBuild)
         run('cd ' + llvmBuild + ' && time -p cmake -G "Ninja"' +
             ' -DCMAKE_INSTALL_PREFIX=' + llvmInstall +
-            ' -DCMAKE_BUILD_TYPE=Release' +
+            ' -DCMAKE_BUILD_TYPE=' + llvmBuildType +
             ' -DLLVM_TARGETS_TO_BUILD=X86' +
             ' -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly' +
             ' ' + root + 'repos/llvm')
@@ -93,36 +105,20 @@ def llvmBrowser():
     run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + parallel + ' ' + ' '.join(llvmBrowserTargets))
 
 def appClangFormat():
-    if not os.path.isdir('build/clang-format'):
-        run('mkdir -p build/clang-format')
-    run('cd build/clang-format && ' +
-        'em++ ../../src/clang-format.cpp -o clang-format.js'
-        ' -std=c++17' +
-        ' -O3' +
-        ' -DNDEBUG' +
-        ' -fno-exceptions' +
-        ' --bind' +
-        ' -s ALLOW_MEMORY_GROWTH=1' +
-        ' -I' + root + 'repos/llvm/include' +
-        ' -I' + root + 'repos/llvm/tools/clang/include' +
-        ' -I' + llvmBrowserBuild + 'include' +
-        ' -I' + llvmBrowserBuild + 'tools/clang/include' +
-        ' -L' + llvmBrowserBuild + 'lib' +
-        ' -lclangBasic' +
-        ' -lclangFormat' +
-        ' -lclangRewrite' +
-        ' -lclangRewrite' +
-        ' -lclangToolingCore' +
-        ' -lclangAST' +
-        ' -lclangLex' +
-        ' -lclangBasic' +
-        ' -lLLVMCore' +
-        ' -lLLVMBinaryFormat' +
-        ' -lLLVMMC' +
-        ' -lLLVMSupport')
+    if not os.path.isdir('build/apps-browser'):
+        run('mkdir -p build/apps-browser')
+        run('cd build/apps-browser &&' +
+            ' CXX=' + llvmInstall + 'bin/clang++' +
+            ' CXXFLAGS=--bind' +
+            ' LDFLAGS=--bind' +
+            ' emcmake cmake -G "Ninja"' +
+            ' -DCMAKE_BUILD_TYPE=Release' +
+            ' -DLLVM_BUILD=' + llvmBrowserBuild +
+            ' ../../src')
+    run('cd build/apps-browser && time -p ninja -v ' + parallel)
     if not os.path.isdir('dist'):
         run('mkdir -p dist')
-    run('cp -au build/clang-format/clang-format.js build/clang-format/clang-format.wasm dist')
+    run('cp -au build/apps-browser/clang-format.js build/apps-browser/clang-format.wasm dist')
     run('cp -au src/clang-format.html dist/index.html')
 
 parser = argparse.ArgumentParser()
