@@ -1,4 +1,6 @@
-repos
+.vscode
 build
+dist
 dummy
 install
+repos
