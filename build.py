@@ -102,6 +102,7 @@ def appClangFormat():
         ' -DNDEBUG' +
         ' -fno-exceptions' +
         ' --bind' +
+        ' -s ALLOW_MEMORY_GROWTH=1' +
         ' -I' + root + 'repos/llvm/include' +
         ' -I' + root + 'repos/llvm/tools/clang/include' +
         ' -I' + llvmBrowserBuild + 'include' +
