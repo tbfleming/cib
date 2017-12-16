@@ -3,12 +3,16 @@
 import argparse, os, subprocess, sys
 
 llvmBuildType = 'Release'
+llvmNo86BuildType = 'Debug'
+llvmBrowserBuildType = 'Release'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
 llvmBuild = root + 'build/llvm-' + llvmBuildType + '/'
 llvmInstall = root + 'install/llvm-' + llvmBuildType + '/'
-llvmBrowserBuild = root + 'build/llvm-browser/'
-llvmBrowserInstall = root + 'install/llvm-browser/'
+llvmNo86Build = root + 'build/llvm-no86-' + llvmNo86BuildType + '/'
+llvmNo86Install = root + 'install/llvm-no86-' + llvmNo86BuildType + '/'
+llvmBrowserBuild = root + 'build/llvm-browser-' + llvmBrowserBuildType + '/'
+llvmBrowserInstall = root + 'install/llvm-browser-' + llvmBrowserBuildType + '/'
 
 llvmBrowserTargets = [
     'clangAnalysis',
@@ -25,14 +29,42 @@ llvmBrowserTargets = [
     'clangSema',
     'clangSerialization',
     'clangToolingCore',
+    'LLVMAnalysis',
+    'LLVMAsmParser',
+    'LLVMAsmPrinter',
     'LLVMBinaryFormat',
     'LLVMBitReader',
+    'LLVMBitWriter',
+    'LLVMCodeGen',
     'LLVMCore',
+    'LLVMCoroutines',
+    'LLVMCoverage',
+    'LLVMDebugInfoCodeView',
+    'LLVMGlobalISel',
+    'LLVMInstCombine',
+    'LLVMInstrumentation',
+    'LLVMipo',
+    'LLVMIRReader',
+    'LLVMLinker',
+    'LLVMLTO',
     'LLVMMC',
+    'LLVMMCDisassembler',
     'LLVMMCParser',
+    'LLVMObjCARCOpts',
+    'LLVMObject',
     'LLVMOption',
+    'LLVMPasses',
     'LLVMProfileData',
+    'LLVMScalarOpts',
+    'LLVMSelectionDAG',
     'LLVMSupport',
+    'LLVMTarget',
+    'LLVMTransformUtils',
+    'LLVMVectorize',
+    'LLVMWebAssemblyAsmPrinter',
+    'LLVMWebAssemblyCodeGen',
+    'LLVMWebAssemblyDesc',
+    'LLVMWebAssemblyInfo',
 ]
 
 parallel = '-j ' + subprocess.check_output("grep 'processor' /proc/cpuinfo | wc -l", shell=True).decode('utf-8').strip()
@@ -74,17 +106,31 @@ def llvm():
             ' -DLLVM_TARGETS_TO_BUILD=X86' +
             ' -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly' +
             ' ' + root + 'repos/llvm')
+    run('cd ' + llvmBuild + ' && time -p ninja')
     if not os.path.isdir(llvmInstall):
-        run('cd ' + llvmBuild + ' && time -p ninja ' + parallel)
         run('mkdir -p ' + llvmInstall)
         run('cd ' + llvmBuild + ' && time -p ninja ' + parallel + ' install')
+
+def llvmNo86():
+    if not os.path.isdir(llvmNo86Build):
+        run('mkdir -p ' + llvmNo86Build)
+        run('cd ' + llvmNo86Build + ' && time -p cmake -G "Ninja"' +
+            ' -DCMAKE_INSTALL_PREFIX=' + llvmNo86Install +
+            ' -DCMAKE_BUILD_TYPE=' + llvmNo86BuildType +
+            ' -DLLVM_TARGETS_TO_BUILD=' +
+            ' -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly' +
+            ' ' + root + 'repos/llvm')
+    run('cd ' + llvmNo86Build + ' && time -p ninja')
+    if not os.path.isdir(llvmNo86Install):
+        run('mkdir -p ' + llvmNo86Install)
+        run('cd ' + llvmNo86Build + ' && time -p ninja ' + parallel + ' install')
 
 def emscripten():
     if not os.path.exists(os.path.expanduser('~') + '/.emscripten'):
         run('em++')
     if not os.path.exists(os.path.expanduser('~') + '/.emscripten_ports/binaryen'):
-        run('mkdir -p dummy/emscripten')
-        run('cd dummy/emscripten && em++ ../../src/say-hello.cpp -o say-hello.html')
+        run('mkdir -p build/dummy')
+        run('cd build/dummy && em++ ../../src/say-hello.cpp -o say-hello.html')
 
 def llvmBrowser():
     if not os.path.isdir(llvmBrowserBuild):
@@ -92,7 +138,7 @@ def llvmBrowser():
         run('cd ' + llvmBrowserBuild + ' && ' +
             'time -p emcmake cmake -G "Ninja"' +
             ' -DCMAKE_INSTALL_PREFIX=' + llvmBrowserInstall + '' +
-            ' -DCMAKE_BUILD_TYPE=Release' +
+            ' -DCMAKE_BUILD_TYPE=' + llvmBrowserBuildType +
             ' -DLLVM_TARGETS_TO_BUILD=' +
             ' -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly' +
             ' -DLLVM_BUILD_TOOLS=OFF' +
@@ -104,7 +150,7 @@ def llvmBrowser():
             ' ' + root + 'repos/llvm')
     run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + parallel + ' ' + ' '.join(llvmBrowserTargets))
 
-def appClangFormat():
+def app(name):
     if not os.path.isdir('build/apps-browser'):
         run('mkdir -p build/apps-browser')
         run('cd build/apps-browser &&' +
@@ -115,20 +161,44 @@ def appClangFormat():
             ' -DCMAKE_BUILD_TYPE=Release' +
             ' -DLLVM_BUILD=' + llvmBrowserBuild +
             ' ../../src')
-    run('cd build/apps-browser && time -p ninja -v ' + parallel)
+    run('cd build/apps-browser && time -p ninja ' + name)
     if not os.path.isdir('dist'):
         run('mkdir -p dist')
+
+def appClangFormat():
+    app('clang-format')
     run('cp -au build/apps-browser/clang-format.js build/apps-browser/clang-format.wasm dist')
     run('cp -au src/clang-format.html dist/index.html')
 
+def appClang():
+    app('clang')
+
+def appClangNative():
+    if not os.path.isdir('build/apps-native'):
+        run('mkdir -p build/apps-native')
+        run('cd build/apps-native &&' +
+            ' CXX=' + root + 'install/llvm-Release/' + 'bin/clang++' +
+            ' cmake -G "Ninja"' +
+            ' -DCMAKE_BUILD_TYPE=Debug' +
+            ' -DLLVM_BUILD=' + llvmNo86Build +
+            ' -DCMAKE_CXX_STANDARD_LIBRARIES="-lpthread /lib/x86_64-linux-gnu/libncurses.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5"' +
+            ' ../../src')
+    run('cd build/apps-native && time -p ninja -v clang')
+    run('cd build/apps-native && ./clang')
+    #run('cd build/apps-native && gdb -q -ex run --args ./clang')
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-B', '--bash', action='store_true', help="Run bash with path set up")
-parser.add_argument('-a', '--all', action='store_true', help="Do everything below")
-parser.add_argument('-c', '--clone', action='store_true', help="Clone repos. Doesn't touch ones which already exist.")
-parser.add_argument('-l', '--llvm', action='store_true', help="Build llvm toolchain if not already built")
-parser.add_argument('-e', '--emscripten', action='store_true', help="Prepare emscripten by compiling say-hello.cpp")
-parser.add_argument('-b', '--llvm-browser', action='store_true', help="Build llvm in-browser components")
-parser.add_argument('-1', '--app-1', action='store_true', help="Build app 1: clang-format")
+parser.add_argument('-f', '--format', action='store_true', help="Format sources")
+parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
+parser.add_argument('-c', '--clone', action='store_true', help="(*) Clone repos. Doesn't touch ones which already exist.")
+parser.add_argument('-l', '--llvm', action='store_true', help="(*) Build llvm toolchain if not already built")
+parser.add_argument('-L', '--no86', action='store_true', help="Build llvm toolchain without X86 if not already built")
+parser.add_argument('-e', '--emscripten', action='store_true', help="(*) Prepare emscripten by compiling say-hello.cpp")
+parser.add_argument('-b', '--llvm-browser', action='store_true', help="(*) Build llvm in-browser components")
+parser.add_argument('-1', '--app-1', action='store_true', help="(*) Build app 1: clang-format")
+parser.add_argument('-2', '--app-2', action='store_true', help="    Build app 2: clang")
+parser.add_argument('-n', '--app-n', action='store_true', help="    Build app 2: clang, native")
 args = parser.parse_args()
 
 haveArg = False
@@ -140,13 +210,21 @@ if not haveArg:
 
 if args.bash:
     run('bash')
+if args.format:
+    run('clang-format -i src/*.cpp')
 if args.clone or args.all:
     clone()
 if args.llvm or args.all:
     llvm()
+if args.no86:
+    llvmNo86()
 if args.emscripten or args.all:
     emscripten()
 if args.llvm_browser or args.all:
     llvmBrowser()
 if args.app_1 or args.all:
     appClangFormat()
+if args.app_2:
+    appClang()
+if args.app_n:
+    appClangNative()

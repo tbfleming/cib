@@ -30,6 +30,34 @@ link_libraries(
     clangAST
     clangLex
     clangBasic
+    LLVMWebAssemblyCodeGen
+    LLVMWebAssemblyDesc
+    LLVMWebAssemblyInfo
+    LLVMGlobalISel
+    LLVMWebAssemblyAsmPrinter
+    LLVMAsmPrinter
+    LLVMDebugInfoCodeView
+    LLVMSelectionDAG
+    LLVMMCDisassembler
+    LLVMCoroutines
+    LLVMCoverage
+    LLVMLTO
+    LLVMObjCARCOpts
+    LLVMPasses
+    LLVMCodeGen
+    LLVMTarget
+    LLVMipo
+    LLVMBitWriter
+    LLVMIRReader
+    LLVMAsmParser
+    LLVMLinker
+    LLVMInstrumentation
+    LLVMScalarOpts
+    LLVMInstCombine
+    LLVMVectorize
+    LLVMTransformUtils
+    LLVMAnalysis
+    LLVMObject
     LLVMOption
     LLVMProfileData
     LLVMMCParser
@@ -43,3 +71,4 @@ link_libraries(
 add_compile_options(-std=c++17)
 
 add_executable (clang-format clang-format.cpp)
+add_executable (clang clang.cpp)
