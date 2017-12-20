@@ -9,11 +9,15 @@
 using namespace llvm;
 using namespace clang;
 
+#define STRX(s) STR(s)
+#define STR(s) #s
+
 template <typename T, typename... A> IntrusiveRefCntPtr<T> make_intr(A&&... a) {
     return {new T{std::forward<A>(a)...}};
 }
 
-void foo(const char* code) {
+#ifndef FAKE_COMPILE
+extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
     llvm::InitializeAllTargets();
     llvm::InitializeAllTargetMCs();
     llvm::InitializeAllAsmPrinters();
@@ -22,39 +26,62 @@ void foo(const char* code) {
     auto compiler = std::make_unique<CompilerInstance>();
     compiler->createDiagnostics();
 
-    auto fs = make_intr<vfs::InMemoryFileSystem>();
-    fs->addFile("top.cpp", 0, llvm::MemoryBuffer::getMemBuffer(code));
-    auto fileMgr = make_intr<FileManager>(compiler->getFileSystemOpts(), fs);
-    compiler->setFileManager(&*fileMgr);
-
     compiler->getFrontendOpts().Inputs.push_back(FrontendInputFile{
-        "top.cpp", InputKind{InputKind::CXX, InputKind::Source}});
-    compiler->getFrontendOpts().OutputFile = "-";
+        inputFilename, InputKind{InputKind::CXX, InputKind::Source}});
+    compiler->getFrontendOpts().OutputFile = outputFilename;
+
+    auto& sOpts = compiler->getHeaderSearchOpts();
+    sOpts.UseBuiltinIncludes = false;
+    sOpts.UseStandardSystemIncludes = false;
+    sOpts.UseStandardCXXIncludes = false;
+    sOpts.AddPath(STRX(LIB_PREFIX) "include", frontend::System, false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "include/libcxx", frontend::System, false,
+                  true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "include/compat", frontend::System, false,
+                  true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "include/SSE", frontend::System, false,
+                  true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "include/libc", frontend::System, false,
+                  true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "lib/libcxxabi/include", frontend::System,
+                  false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "lib/libc/musl/arch/emscripten",
+                  frontend::System, false, true);
+
+    puts(STRX(LIB_PREFIX) "include");
 
     compiler->getCodeGenOpts().CodeModel = "default";
     compiler->getCodeGenOpts().RelocationModel = "pic";
     compiler->getCodeGenOpts().ThreadModel = "single";
+    compiler->getCodeGenOpts().OptimizationLevel = 2; // -Os
+    compiler->getCodeGenOpts().OptimizeSize = 1;      // -Os
 
     compiler->getTargetOpts().Triple = "wasm32-unknown-unknown-wasm";
     compiler->getTargetOpts().HostTriple = "wasm32-unknown-unknown-wasm";
 
-    auto act = std::make_unique<EmitAssemblyAction>();
-    auto ok = compiler->ExecuteAction(*act);
-
-    printf("ok = %d\n", ok);
+    auto act = std::make_unique<EmitObjAction>();
+    return compiler->ExecuteAction(*act);
 }
+#endif
 
-auto code = R".(
-    void g(int);
+#ifdef FAKE_COMPILE
+extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
+    printf("in:  %s\n", inputFilename);
+    printf("out: %s\n", outputFilename);
+    auto f = fopen(inputFilename, "r");
+    printf("file: %p\n", f);
+    if (f)
+        fclose(f);
+    return true;
+}
+#endif
 
-    void f() {
-        for (int i = 0; i < 10; ++i)
-            g(i);
+int main(int argc, const char* argv[]) {
+    if (argc == 3)
+        return !compile(argv[1], argv[2]);
+    if (argc > 1) {
+        fprintf(stderr, "Usage: input_file.cpp output_file.wasm\n");
+        return 1;
     }
-).";
-
-int main() {
-    printf("<<<\n");
-    foo(code);
-    printf(">>>\n");
+    return 0;
 }

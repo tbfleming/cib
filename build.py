@@ -3,8 +3,10 @@
 import argparse, os, subprocess, sys
 
 llvmBuildType = 'Release'
-llvmNo86BuildType = 'Debug'
+llvmNo86BuildType = 'Release'
 llvmBrowserBuildType = 'Release'
+binaryenBuildType = 'Release'
+appBuildType = 'Debug'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
 llvmBuild = root + 'build/llvm-' + llvmBuildType + '/'
@@ -13,6 +15,9 @@ llvmNo86Build = root + 'build/llvm-no86-' + llvmNo86BuildType + '/'
 llvmNo86Install = root + 'install/llvm-no86-' + llvmNo86BuildType + '/'
 llvmBrowserBuild = root + 'build/llvm-browser-' + llvmBrowserBuildType + '/'
 llvmBrowserInstall = root + 'install/llvm-browser-' + llvmBrowserBuildType + '/'
+binaryenBuild = root + 'build/binaryen-' + binaryenBuildType + '/'
+binaryenInstall = root + 'install/binaryen-' + binaryenBuildType + '/'
+wabtInstall = root + 'repos/wabt/bin/'
 
 llvmBrowserTargets = [
     'clangAnalysis',
@@ -72,6 +77,8 @@ parallel = '-j ' + subprocess.check_output("grep 'processor' /proc/cpuinfo | wc 
 os.environ["PATH"] = os.pathsep.join([
     root + 'repos/emscripten',
     llvmInstall + 'bin',
+    wabtInstall,
+    binaryenInstall + 'bin',
     os.environ["PATH"],
 ])
 
@@ -86,6 +93,8 @@ repos = [
     ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git'),
     ('repos/llvm/tools/lld', 'git@github.com:tbfleming/cib-lld.git'),
     ('repos/emscripten', 'git@github.com:tbfleming/cib-emscripten.git'),
+    ('repos/wabt', 'git@github.com:WebAssembly/wabt.git'),
+    ('repos/binaryen', 'git@github.com:tbfleming/cib-binaryen.git'),
 ]
 
 def clone():
@@ -125,6 +134,22 @@ def llvmNo86():
         run('mkdir -p ' + llvmNo86Install)
         run('cd ' + llvmNo86Build + ' && time -p ninja ' + parallel + ' install')
 
+def wabt():
+    if not os.path.isdir(wabtInstall):
+        run('cd repos/wabt && time make clang-release-no-tests ' + parallel)
+
+def binaryen():
+    if not os.path.isdir(binaryenBuild):
+        run('mkdir -p ' + binaryenBuild)
+        run('cd ' + binaryenBuild + ' && time -p cmake -G "Ninja"' +
+            ' -DCMAKE_INSTALL_PREFIX=' + binaryenInstall +
+            ' -DCMAKE_BUILD_TYPE=' + binaryenBuildType +
+            ' ' + root + 'repos/binaryen')
+    run('cd ' + binaryenBuild + ' && time -p ninja')
+    if not os.path.isdir(binaryenInstall):
+        run('mkdir -p ' + binaryenInstall)
+        run('cd ' + binaryenBuild + ' && time -p ninja ' + parallel + ' install')
+
 def emscripten():
     if not os.path.exists(os.path.expanduser('~') + '/.emscripten'):
         run('em++')
@@ -150,7 +175,7 @@ def llvmBrowser():
             ' ' + root + 'repos/llvm')
     run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + parallel + ' ' + ' '.join(llvmBrowserTargets))
 
-def app(name):
+def app(name, prepDir=None):
     if not os.path.isdir('build/apps-browser'):
         run('mkdir -p build/apps-browser')
         run('cd build/apps-browser &&' +
@@ -158,9 +183,12 @@ def app(name):
             ' CXXFLAGS=--bind' +
             ' LDFLAGS=--bind' +
             ' emcmake cmake -G "Ninja"' +
-            ' -DCMAKE_BUILD_TYPE=Release' +
+            ' -DCMAKE_BUILD_TYPE=' + appBuildType +
             ' -DLLVM_BUILD=' + llvmBrowserBuild +
+            ' -DEMSCRIPTEN=on'
             ' ../../src')
+    if prepDir:
+        prepDir()
     run('cd build/apps-browser && time -p ninja ' + name)
     if not os.path.isdir('dist'):
         run('mkdir -p dist')
@@ -171,20 +199,26 @@ def appClangFormat():
     run('cp -au src/clang-format.html dist/index.html')
 
 def appClang():
-    app('clang')
+    def prepDir():
+        run('mkdir -p build/apps-browser/usr/lib/libcxxabi build/apps-browser/usr/lib/libc/musl/arch/emscripten')
+        run('cp -auv repos/emscripten/system/include build/apps-browser/usr')
+        run('cp -auv repos/emscripten/system/lib/libcxxabi/include build/apps-browser/usr/lib/libcxxabi')
+        run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten build/apps-browser/usr/lib/libc/musl/arch')
+    app('clang', prepDir)
 
 def appClangNative():
     if not os.path.isdir('build/apps-native'):
         run('mkdir -p build/apps-native')
         run('cd build/apps-native &&' +
             ' CXX=' + root + 'install/llvm-Release/' + 'bin/clang++' +
+            ' CXXFLAGS=-DLIB_PREFIX=' + root + 'repos/emscripten/system/' +
             ' cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=Debug' +
             ' -DLLVM_BUILD=' + llvmNo86Build +
-            ' -DCMAKE_CXX_STANDARD_LIBRARIES="-lpthread /lib/x86_64-linux-gnu/libncurses.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5"' +
+            ' -DCMAKE_CXX_STANDARD_LIBRARIES="-lpthread -lncurses -ltinfo -lz"' +
             ' ../../src')
     run('cd build/apps-native && time -p ninja -v clang')
-    run('cd build/apps-native && ./clang')
+    #run('cd build/apps-native && ./clang')
     #run('cd build/apps-native && gdb -q -ex run --args ./clang')
 
 parser = argparse.ArgumentParser()
@@ -194,6 +228,8 @@ parser.add_argument('-a', '--all', action='store_true', help="Do everything mark
 parser.add_argument('-c', '--clone', action='store_true', help="(*) Clone repos. Doesn't touch ones which already exist.")
 parser.add_argument('-l', '--llvm', action='store_true', help="(*) Build llvm toolchain if not already built")
 parser.add_argument('-L', '--no86', action='store_true', help="Build llvm toolchain without X86 if not already built")
+parser.add_argument('-w', '--wabt', action='store_true', help="Build wabt if not already built")
+parser.add_argument('-y', '--binaryen', action='store_true', help="Build binaryen if not already built")
 parser.add_argument('-e', '--emscripten', action='store_true', help="(*) Prepare emscripten by compiling say-hello.cpp")
 parser.add_argument('-b', '--llvm-browser', action='store_true', help="(*) Build llvm in-browser components")
 parser.add_argument('-1', '--app-1', action='store_true', help="(*) Build app 1: clang-format")
@@ -218,6 +254,10 @@ if args.llvm or args.all:
     llvm()
 if args.no86:
     llvmNo86()
+if args.wabt:
+    wabt()
+if args.binaryen:
+    binaryen()
 if args.emscripten or args.all:
     emscripten()
 if args.llvm_browser or args.all:

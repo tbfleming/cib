@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.5.1)
 
-include_directories(BEFORE
+include_directories(
     ../repos/llvm/include
     ../repos/llvm/tools/clang/include
     ../repos/llvm/tools/clang/lib
@@ -11,7 +11,7 @@ include_directories(BEFORE
     ${LLVM_BUILD}lib
 )
 
-link_directories(BEFORE
+link_directories(
     ${LLVM_BUILD}lib
 )
 
@@ -72,3 +72,18 @@ add_compile_options(-std=c++17)
 
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp)
+
+IF(EMSCRIPTEN)
+    target_compile_options(clang PRIVATE
+        -DLIB_PREFIX=/usr/
+        -DxFAKE_COMPILE
+    )
+    target_link_libraries(clang PRIVATE
+        "--preload-file usr"
+        "--no-heap-copy"
+        "-s MODULARIZE=1"
+        "-s ALLOW_MEMORY_GROWTH=1"
+        "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\"]'"
+        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
+    )
+ENDIF(EMSCRIPTEN)
