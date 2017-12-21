@@ -48,8 +48,6 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
     sOpts.AddPath(STRX(LIB_PREFIX) "lib/libc/musl/arch/emscripten",
                   frontend::System, false, true);
 
-    puts(STRX(LIB_PREFIX) "include");
-
     compiler->getCodeGenOpts().CodeModel = "default";
     compiler->getCodeGenOpts().RelocationModel = "pic";
     compiler->getCodeGenOpts().ThreadModel = "single";
@@ -66,12 +64,22 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
 
 #ifdef FAKE_COMPILE
 extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
+    puts(STRX(LIB_PREFIX) "include");
     printf("in:  %s\n", inputFilename);
     printf("out: %s\n", outputFilename);
     auto f = fopen(inputFilename, "r");
     printf("file: %p\n", f);
-    if (f)
+    if (f) {
+        fseek(f, 0, SEEK_END);
+        auto size = ftell(f);
+        fseek(f, 0, SEEK_SET);
+        auto content = std::make_unique<char[]>(size + 1);
+        fread(&content[0], 1, size, f);
+        content[size] = 0;
+        puts(&content[0]);
+        puts("\n");
         fclose(f);
+    }
     return true;
 }
 #endif

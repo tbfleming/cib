@@ -80,6 +80,6 @@ p.workerReady = () => {
     console.log('aabbcc');
     p.worker.postMessage({
         function: 'compile',
-        code: '#include <stdio.h>\n\nint main() {printf("example\\n");}\n',
+        code: 'int puts(const char*);\n\nint main() {puts("example\\n");}\n',
     });
 };

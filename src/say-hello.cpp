@@ -1,3 +1,7 @@
+#include <iostream>
 #include <stdio.h>
 
-int main() { printf("hello\n"); }
+int main() {
+    puts("hello puts\n");
+    std::cout << "hello cout\n";
+}

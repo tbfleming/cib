@@ -77,12 +77,15 @@ IF(EMSCRIPTEN)
     target_compile_options(clang PRIVATE
         -DLIB_PREFIX=/usr/
         -DxFAKE_COMPILE
+        -s DEMANGLE_SUPPORT=1
     )
     target_link_libraries(clang PRIVATE
         "--preload-file usr"
         "--no-heap-copy"
         "-s MODULARIZE=1"
         "-s ALLOW_MEMORY_GROWTH=1"
+        "-s DEMANGLE_SUPPORT=1"
+        "-s NO_EXIT_RUNTIME=1"
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
     )

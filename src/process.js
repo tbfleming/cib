@@ -8,7 +8,7 @@ function setStatus(status) {
 function terminate() { postMessage({ function: 'terminate' }); }
 
 let emModule = {
-    noExitRuntime: true,
+    noInitialRun: true,
     downloadingFilesystem: false,
     instanciated: false,
     arguments: [],
@@ -56,7 +56,11 @@ let emModule = {
         return {};
     },
 
-    postRun() { postMessage({ function: 'workerReady' }); },
+    postRun() {
+        emModule.FS.quit = null; // Stop FS shutdown after main()
+        emModule.callMain();
+        postMessage({ function: 'workerReady' });
+    },
 };
 
 let commands = {
