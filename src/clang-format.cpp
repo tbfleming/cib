@@ -26,9 +26,6 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/Signals.h"
 
-#include <emscripten/bind.h>
-
-using namespace emscripten;
 using namespace clang;
 using namespace format;
 using namespace llvm;
@@ -61,7 +58,9 @@ static void fillRanges(MemoryBuffer* Code,
     Ranges.push_back(tooling::Range(Offset, Length));
 }
 
-std::string formatCode(const std::string& str) {
+std::string result;
+
+extern "C" const char* formatCode(const char* str) {
     std::unique_ptr<llvm::MemoryBuffer> Code =
         llvm::MemoryBuffer::getMemBuffer(str);
 
@@ -73,8 +72,10 @@ std::string formatCode(const std::string& str) {
 
     llvm::Expected<FormatStyle> FormatStyle =
         getStyle("file", AssumedFileName, "llvm", Code->getBuffer());
-    if (!FormatStyle)
-        return llvm::toString(FormatStyle.takeError());
+    if (!FormatStyle) {
+        result = llvm::toString(FormatStyle.takeError());
+        return result.c_str();
+    }
 
     unsigned CursorPosition = 0;
     Replacements Replaces =
@@ -82,8 +83,10 @@ std::string formatCode(const std::string& str) {
                      &CursorPosition);
     auto ChangedCode =
         tooling::applyAllReplacements(Code->getBuffer(), Replaces);
-    if (!ChangedCode)
-        return llvm::toString(ChangedCode.takeError());
+    if (!ChangedCode) {
+        result = llvm::toString(ChangedCode.takeError());
+        return result.c_str();
+    }
     // Get new affected ranges after sorting `#includes`.
     Ranges = tooling::calculateRangesAfterReplacements(Replaces, Ranges);
     FormattingAttemptStatus Status;
@@ -103,9 +106,8 @@ std::string formatCode(const std::string& str) {
     tooling::applyAllReplacements(Replaces, Rewrite);
 
     auto& buf = Rewrite.getEditBuffer(ID);
-    return std::string(buf.begin(), buf.end());
+    result = std::string(buf.begin(), buf.end());
+    return result.c_str();
 }
 
-int main() { printf("main\n"); }
-
-EMSCRIPTEN_BINDINGS(my_module) { function("formatCode", formatCode); }
+int main() {}

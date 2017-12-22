@@ -40,7 +40,7 @@ function checkCache(name, hash) {
     });
 }
 
-class Process {
+class ProcessManager {
     constructor(name, moduleName) {
         this.name = name;
         this.moduleName = moduleName;
@@ -59,7 +59,7 @@ class Process {
         if (e.currentTarget !== this.worker)
             return;
         console.log(this.name, 'error:', e);
-        this.setStatus('error', 'Uncaught error');
+        this.setStatus('error', 'Uncaught error; see log');
         this.terminate();
     }
 
@@ -75,7 +75,7 @@ class Process {
         let worker;
         try {
             this.terminate();
-            this.worker = worker = new Worker('process.js', { name: this.name });
+            this.worker = worker = new Worker('process-' + this.name + '.js', { name: this.name });
             this.worker.onerror = this.onWorkerError;
             this.worker.onmessage = this.onWorkerMessage;
 
@@ -85,7 +85,7 @@ class Process {
                 if (worker != this.worker)
                     return;
                 if (!response.ok) {
-                    this.setStatus('error', 'Error downloading');
+                    this.setStatus('error', 'Error downloading ' + this.moduleName + '.wasm');
                     return;
                 }
                 let wasmBinary = await response.arrayBuffer();
@@ -137,4 +137,4 @@ class Process {
         this.worker.terminate();
         this.worker = null;
     }
-} // class Process
+} // class ProcessManager

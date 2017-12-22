@@ -24,6 +24,10 @@
             flex-direction: column;
         }
 
+        #clang-format-result {
+            flex-grow: 5;
+        }
+
         .io {
             overflow: auto;
             margin: 0;
@@ -35,6 +39,11 @@
 
         .controls {
             margin: 4px;
+        }
+
+        .controls-border {
+            padding-bottom: 2px;
+            border-bottom: 1px solid black;
         }
 
         .reboot {
@@ -79,8 +88,13 @@
     <div class="main">
         <div id="pane-top" class="split split-vertical">
             <div id="pane-source" class="split split-horizontal"></div>
-            <div id="pane-status" class="split split-horizontal">
-                <p>#pane-status</p>
+            <div id="pane-clang-format" class="process split split-horizontal">
+                <div class="controls controls-border">
+                    clang-format:
+                    <span id="clang-format-status"></span>
+                    <button id="clang-format-reboot" class="reboot" onclick="rebootClangFormat()">Reboot</button>
+                </div>
+                <div id="clang-format-result"></div>
             </div>
         </div>
         <div id="pane-bottom" class="split split-vertical">
@@ -93,7 +107,7 @@
                 </div>
                 <pre id="clang-io" class="io"></pre>
             </div>
-            <div id="pane-io" class="process split split-horizontal">
+            <div id="pane-runtime" class="process split split-horizontal">
                 <div class="controls">
                     <button id="runtime-run" onclick="run()">Run</button>
                     Status:
@@ -121,10 +135,14 @@ int main()
 `
 
         Split(['#pane-top', '#pane-bottom'], { direction: 'vertical' });
-        Split(['#pane-source', '#pane-status']);
-        Split(['#pane-clang', '#pane-io']);
+        Split(['#pane-source', '#pane-clang-format']);
+        Split(['#pane-clang', '#pane-runtime']);
 
         let editor;
+        let formatEditor;
+        let editorContent = exampleCode;
+        let prevEditorContent = '';
+
         require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function () {
             editor = monaco.editor.create(document.getElementById('pane-source'), {
@@ -132,6 +150,24 @@ int main()
                 language: 'cpp',
                 automaticLayout: true,
             });
+            formatEditor = monaco.editor.create(document.getElementById('clang-format-result'), {
+                language: 'cpp',
+                automaticLayout: true,
+                readOnly: true,
+            });
+
+            let changeTimer = -1;
+            function codeChanged() {
+                changeTimer = -1;
+                editorContent = editor.getValue();
+                updateUI();
+            }
+            editor.onDidChangeModelContent(e => {
+                if (changeTimer !== -1)
+                    clearTimeout(changeTimer);
+                changeTimer = setTimeout(codeChanged, 100);
+            });
+
             updateUI();
         });
 
@@ -144,7 +180,7 @@ int main()
                 this.state = '';
                 this.wasReady = false;
 
-                this.process = new Process(name, name)
+                this.process = new ProcessManager(name, name)
                 this.process.setStatus = this.setStatus.bind(this);
                 this.process.print = this.print.bind(this);
                 this.process.printErr = this.printErr.bind(this);
@@ -152,7 +188,8 @@ int main()
 
             reboot() {
                 this.process.terminate();
-                this.ioElem.textContent = '';
+                if (this.ioElem)
+                    this.ioElem.textContent = '';
                 this.process.start();
             }
 
@@ -170,17 +207,29 @@ int main()
             };
 
             print({ text }) {
-                this.ioElem.textContent += text + '\n';
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stdout:', text);
             };
 
             printErr({ text }) {
-                this.ioElem.textContent += text + '\n';
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stderr:', text);
             };
         } // class ProcessUI
 
+        let clangFormat = new ProcessUI('clang-format');
         let clang = new ProcessUI('clang');
         let runtime = new ProcessUI('runtime');
         let clangOutput = null;
+
+        clangFormat.process.workerFormatDone = args => {
+            clangFormat.process.setStatus('ready', 'Ready');
+            formatEditor.setValue(args.result);
+        };
 
         clang.process.print({ text: 'Preparing clang...\n\n' });
         clang.process.workerCompileDone = args => {
@@ -192,8 +241,16 @@ int main()
 
         runtime.process.print({ text: 'Preparing runtime...\n\n' });
 
+        clangFormat.process.start();
         clang.process.start();
         runtime.process.start();
+
+        function rebootClangFormat() {
+            prevEditorContent = '';
+            if (formatEditor)
+                formatEditor.setValue('');
+            clangFormat.reboot();
+        }
 
         function compile() {
             if (clang.state !== 'ready')
@@ -219,6 +276,15 @@ int main()
             if (runtimeReady && !runtime.wasReady) {
                 runtime.wasReady = true;
                 runtime.ioElem.textContent = 'Click the compile button then the run button\n\n';
+            }
+
+            if (clangFormat.state === 'ready' && editorContent !== prevEditorContent && editor && formatEditor) {
+                prevEditorContent = editorContent;
+                clangFormat.process.setStatus('busy', 'Running');
+                clangFormat.process.worker.postMessage({
+                    function: 'format',
+                    code: editor.getValue(),
+                });
             }
         }
 

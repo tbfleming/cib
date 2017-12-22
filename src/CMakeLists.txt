@@ -75,6 +75,14 @@ add_executable (clang clang.cpp)
 add_executable (runtime runtime.cpp)
 
 IF(EMSCRIPTEN)
+    target_link_libraries(clang-format PRIVATE
+        "-s MODULARIZE=1"
+        "-s ALLOW_MEMORY_GROWTH=1"
+        "-s DEMANGLE_SUPPORT=1"
+        "-s NO_EXIT_RUNTIME=1"
+        "-s EXPORTED_FUNCTIONS='[\"_main\", \"_formatCode\"]'"
+        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
+    )
     target_compile_options(clang PRIVATE
         -DLIB_PREFIX=/usr/
         -DxFAKE_COMPILE
@@ -95,5 +103,6 @@ IF(EMSCRIPTEN)
         "-s ALLOW_MEMORY_GROWTH=1"
         "-s DEMANGLE_SUPPORT=1"
         "-s NO_EXIT_RUNTIME=1"
+        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"FS\"]'"
     )
 ENDIF(EMSCRIPTEN)

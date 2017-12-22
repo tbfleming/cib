@@ -7,7 +7,7 @@ llvmNo86BuildType = 'Release'
 llvmBrowserBuildType = 'Release'
 fastcompBuildType = 'Release'
 binaryenBuildType = 'Release'
-appBuildType = 'Debug'
+appBuildType = 'Release'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
 llvmBuild = root + 'build/llvm-' + llvmBuildType + '/'
@@ -212,7 +212,6 @@ def app(name, prepBuildDir=None):
 def appClangFormat():
     app('clang-format')
     run('cp -au build/apps-browser/clang-format.js build/apps-browser/clang-format.wasm dist')
-    run('cp -au src/clang-format.html dist/index.html')
 
 def appClang():
     def prepBuildDir():
