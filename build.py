@@ -194,7 +194,7 @@ def llvmBrowser():
             ' ' + root + 'repos/llvm')
     run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + parallel + ' ' + ' '.join(llvmBrowserTargets))
 
-def app(name, prepDir=None):
+def app(name, prepBuildDir=None):
     if not os.path.isdir('build/apps-browser'):
         run('mkdir -p build/apps-browser')
         run('cd build/apps-browser &&' +
@@ -203,8 +203,8 @@ def app(name, prepDir=None):
             ' -DLLVM_BUILD=' + llvmBrowserBuild +
             ' -DEMSCRIPTEN=on'
             ' ../../src')
-    if prepDir:
-        prepDir()
+    if prepBuildDir:
+        prepBuildDir()
     run('cd build/apps-browser && time -p ninja ' + name)
     if not os.path.isdir('dist'):
         run('mkdir -p dist')
@@ -215,12 +215,36 @@ def appClangFormat():
     run('cp -au src/clang-format.html dist/index.html')
 
 def appClang():
-    def prepDir():
+    def prepBuildDir():
         run('mkdir -p build/apps-browser/usr/lib/libcxxabi build/apps-browser/usr/lib/libc/musl/arch/emscripten')
         run('cp -auv repos/emscripten/system/include build/apps-browser/usr')
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include build/apps-browser/usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten build/apps-browser/usr/lib/libc/musl/arch')
-    app('clang', prepDir)
+    if not os.path.exists('download/monaco-editor-0.10.1.tgz'):
+        run('mkdir -p download')
+        run('cd download && wget https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.10.1.tgz')
+    if not os.path.exists('download/monaco-editor-0.10.1'):
+        run('mkdir -p download/monaco-editor-0.10.1')
+        run('cd download/monaco-editor-0.10.1 && tar -xf ../monaco-editor-0.10.1.tgz')
+    run('mkdir -p dist/monaco-editor')
+    run('cp -au download/monaco-editor-0.10.1/package/LICENSE dist/monaco-editor')
+    run('cp -au download/monaco-editor-0.10.1/package/README.md dist/monaco-editor')
+    run('cp -au download/monaco-editor-0.10.1/package/ThirdPartyNotices.txt dist/monaco-editor')
+    run('cp -auv download/monaco-editor-0.10.1/package/min dist/monaco-editor')
+    if not os.path.exists('download/split.js-1.3.5.tgz'):
+        run('cd download && wget https://registry.npmjs.org/split.js/-/split.js-1.3.5.tgz')
+    if not os.path.exists('download/Split.js-1.3.5'):
+        run('mkdir -p download/Split.js-1.3.5')
+        run('cd download/Split.js-1.3.5 && tar -xf ../split.js-1.3.5.tgz')
+    run('mkdir -p dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/LICENSE.txt dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/AUTHORS.md dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/README.md dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/split.min.js dist/split.js')
+    run('cp -auv download/Split.js-1.3.5/package/grips dist/split.js')
+    app('clang', prepBuildDir)
+    run('cp -au build/apps-browser/clang.js build/apps-browser/clang.wasm build/apps-browser/clang.data dist')
+    run('cp -au src/clang.html src/process.js src/process-manager.js dist')
 
 def appClangNative():
     if not os.path.isdir('build/apps-native'):
@@ -249,9 +273,9 @@ parser.add_argument('-w', '--wabt', action='store_true', help="Build wabt if not
 parser.add_argument('-y', '--binaryen', action='store_true', help="(*) Build binaryen if not already built")
 parser.add_argument('-e', '--emscripten', action='store_true', help="(*) Prepare emscripten by compiling say-hello.cpp")
 parser.add_argument('-b', '--llvm-browser', action='store_true', help="(*) Build llvm in-browser components")
-parser.add_argument('-1', '--app-1', action='store_true', help="(*) Build app 1: clang-format")
-parser.add_argument('-2', '--app-2', action='store_true', help="    Build app 2: clang")
-parser.add_argument('-n', '--app-n', action='store_true', help="    Build app 2: clang, native")
+parser.add_argument('-1', '--app-1', action='store_true', help="Build app 1: clang-format")
+parser.add_argument('-2', '--app-2', action='store_true', help="Build app 2: clang")
+parser.add_argument('-n', '--app-n', action='store_true', help="Build app 2: clang, native")
 args = parser.parse_args()
 
 haveArg = False
@@ -282,7 +306,7 @@ if args.emscripten or args.all:
     emscripten()
 if args.llvm_browser or args.all:
     llvmBrowser()
-if args.app_1 or args.all:
+if args.app_1:
     appClangFormat()
 if args.app_2:
     appClang()

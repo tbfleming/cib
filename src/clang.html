@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Clang In Browser</title>
+    <style>
+        body {
+            margin: 0;
+            padding: none;
+            overflow: hidden;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #pane-compiler {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #compiler-output {
+            overflow: auto;
+            margin: 0;
+            flex-grow: 5;
+            background-color: black;
+            color: white;
+            font-family: 'Lucida Console', Monaco, monospace;
+        }
+
+        .controls {
+            margin: 4px;
+        }
+
+        .split {
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .gutter {
+            background-color: #eee;
+            background-repeat: no-repeat;
+            background-position: 50%;
+        }
+
+        .gutter.gutter-horizontal {
+            background-image: url('split.js/grips/vertical.png');
+            cursor: ew-resize;
+        }
+
+        .gutter.gutter-vertical {
+            background-image: url('split.js/grips/horizontal.png');
+            cursor: ns-resize;
+        }
+
+        .split.split-horizontal,
+        .gutter.gutter-horizontal {
+            height: 100%;
+            float: left;
+        }
+
+        #pane-source {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div id="pane-top" class="split split-vertical">
+            <div id="pane-source" class="split split-horizontal"></div>
+            <div id="pane-status" class="split split-horizontal">
+                <p>#pane-status</p>
+            </div>
+        </div>
+        <div id="pane-bottom" class="split split-vertical">
+            <div id="pane-compiler" class="split split-horizontal">
+                <div class="controls">
+                    <button id="compile-button" onclick="compile()">Compile</button>
+                    Status:
+                    <span id="compiler-status"></span>
+                </div>
+                <pre id="compiler-output"></pre>
+            </div>
+            <div id="pane-io" class="split split-horizontal">
+                <p>#pane-io</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="split.js/split.min.js"></script>
+    <script src="monaco-editor/min/vs/loader.js"></script>
+    <script type='text/javascript' src='process-manager.js'></script>
+    <script type='text/javascript'>
+        let exampleCode = `// Enter code here (C only for now)
+
+// #include not supported yet
+int puts(const char*);
+
+int main()
+{
+    puts("Hello\\n");
+}
+`
+
+        Split(['#pane-top', '#pane-bottom'], { direction: 'vertical' });
+        Split(['#pane-source', '#pane-status']);
+        Split(['#pane-compiler', '#pane-io']);
+
+        let editor;
+        require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            editor = monaco.editor.create(document.getElementById('pane-source'), {
+                value: exampleCode,
+                language: 'cpp',
+                automaticLayout: true,
+            });
+            updateUI();
+        });
+
+        let compiler = new Process('clang', 'clang')
+        let compileButton = document.getElementById('compile-button');
+        let compilerStatus = document.getElementById('compiler-status');
+        let compilerOutput = document.getElementById('compiler-output');
+        let compilerState = '';
+        let wasReady = false;
+
+        function updateUI() {
+            let ready = compilerState === 'ready' && editor;
+            compileButton.disabled = !ready;
+            if (ready && !wasReady) {
+                wasReady = true;
+                compilerOutput.textContent = 'Click the compile button\n\n';
+            }
+        }
+
+        compiler.setStatus = (state, status) => {
+            console.log('compiler state:', state, 'status:', status);
+            compilerStatus.textContent = status;
+            compilerState = state;
+            if (state == 'ready')
+                compilerStatus.style.color = 'green';
+            else if (state == 'error')
+                compilerStatus.style.color = 'red';
+            else
+                compilerStatus.style.color = 'blue';
+            updateUI();
+        };
+
+        compiler.print = args => {
+            compilerOutput.textContent += args.text + '\n';
+        };
+
+        compiler.print({ text: 'Preparing clang...\n\n' });
+
+        compiler.printErr = args => {
+            compilerOutput.textContent += args.text + '\n';
+        };
+
+        compiler.workerCompileDone = args => {
+            compiler.setStatus('ready', 'Ready');
+            if (args.ok)
+                compilerOutput.textContent += 'Compile successful\n';
+        };
+
+        compiler.start();
+
+        function compile() {
+            if (compilerState !== 'ready')
+                return;
+            compiler.setStatus('busy', 'Running');
+            compilerOutput.textContent = '';
+            compiler.worker.postMessage({
+                function: 'compile',
+                code: editor.getValue(),
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,57 +1,63 @@
 'use strict';
 
-function setStatus(status) {
-    console.log('postMessage:', { function: 'workerSetStatus', status });
-    postMessage({ function: 'workerSetStatus', status });
+function setStatus(state, status) {
+    postMessage({ function: 'workerSetStatus', state, status });
 }
 
 function terminate() { postMessage({ function: 'terminate' }); }
 
 let emModule = {
     noInitialRun: true,
-    downloadingFilesystem: false,
-    instanciated: false,
+    instanciating: false,
     arguments: [],
+    status: '',
 
-    print(text) { console.log('print:', text); },
+    print(text) {
+        postMessage({ function: 'print', text });
+    },
 
-    printErr(text) { console.error('printErr:', text); },
+    printErr(text) {
+        if (text.substr(0, 15) === 'atexit() called')
+            return;
+        if (text.substr(0, 12) === 'Calling stub')
+            return;
+        postMessage({ function: 'printErr', text });
+    },
 
     setStatus(text) {
-        console.log('??? ', text)
         if (!text || text === 'Running...')
             return;
         if (text.substr(0, 16) == 'Downloading data') {
-            this.downloadingFilesystem = true;
-            if (this.instanciated)
-                setStatus('Downloading filesystem');
-        } else {
-            setStatus(text);
+            if (this.instanciating)
+                return;
+            text = 'Downloading filesystem';
+        }
+        if (this.status != text) {
+            this.status = text;
+            setStatus('init', text);
         }
     },
 
     async instantiateWasmAsync(imports, successCallback) {
         try {
-            console.log('args', this.arguments);
-            setStatus('Compiling wasm');
-            let module = await WebAssembly.compile(this.binary);
-            setStatus('Instanciating wasm');
-            let instance = await WebAssembly.instantiate(module, imports);
-            this.instanciated = true;
-            if (this.downloadingFilesystem)
-                setStatus('Downloading filesystem');
-            else
-                setStatus('Instanciated');
-            successCallback(instance);
+            this.instanciating = true;
+            if (!this.wasmModule) {
+                setStatus('init', "Compiling " + this.moduleName + ".wasm (cache disabled)");
+                this.wasmModule = await WebAssembly.compile(this.wasmBinary);
+            }
+            setStatus('init', 'Instanciating ' + this.moduleName + '.wasm');
+            let instance = await WebAssembly.instantiate(this.wasmModule, imports);
+            this.instanciating = false;
+            setStatus('init', 'Initializing');
+            setTimeout(() => successCallback(instance), 0);
         } catch (e) {
             console.log(e.message);
-            setStatus('Error in startup');
+            setStatus('init', 'Error in startup');
             terminate();
         }
     },
 
     instantiateWasm(imports, successCallback) {
-        console.log(imports);
         this.instantiateWasmAsync(imports, successCallback);
         return {};
     },
@@ -64,14 +70,16 @@ let emModule = {
 };
 
 let commands = {
-    async start({ moduleName, binary }) {
+    async start({ moduleName, wasmBinary, wasmModule }) {
         try {
             importScripts(moduleName + '.js');
-            emModule.binary = binary;
+            emModule.moduleName = moduleName;
+            emModule.wasmBinary = wasmBinary;
+            emModule.wasmModule = wasmModule;
             Module(emModule);
         } catch (e) {
             console.log(e.message);
-            setStatus('Error in startup');
+            setStatus('error', 'Error in startup');
             terminate();
         }
     },
@@ -79,14 +87,17 @@ let commands = {
     compile({ code }) {
         try {
             emModule.FS.writeFile('source', code);
-            var ok = emModule.ccall(
+            let ok = emModule.ccall(
                 'compile', 'number', ['string', 'string'], ['source', 'result.wasm']);
-            console.log('ok:', ok);
-            var contents =
-                emModule.FS.readFile('result.wasm'); //, { encoding: `utf8` });
-            console.log(contents);
+            let contents;
+            if (ok)
+                contents = emModule.FS.readFile('result.wasm');
+            postMessage({ function: 'workerCompileDone', ok, contents });
         } catch (e) {
             console.log(e);
+            setStatus('error', 'Fatal error');
+            terminate();
+            emModule.printErr(e.toString());
         }
     },
 };
