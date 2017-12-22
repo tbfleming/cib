@@ -72,6 +72,7 @@ add_compile_options(-std=c++17)
 
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp)
+add_executable (runtime runtime.cpp)
 
 IF(EMSCRIPTEN)
     target_compile_options(clang PRIVATE
@@ -88,5 +89,11 @@ IF(EMSCRIPTEN)
         "-s NO_EXIT_RUNTIME=1"
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
+    )
+    target_link_libraries(runtime PRIVATE
+        "-s MODULARIZE=1"
+        "-s ALLOW_MEMORY_GROWTH=1"
+        "-s DEMANGLE_SUPPORT=1"
+        "-s NO_EXIT_RUNTIME=1"
     )
 ENDIF(EMSCRIPTEN)

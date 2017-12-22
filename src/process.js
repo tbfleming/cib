@@ -89,10 +89,10 @@ let commands = {
             emModule.FS.writeFile('source', code);
             let ok = emModule.ccall(
                 'compile', 'number', ['string', 'string'], ['source', 'result.wasm']);
-            let contents;
+            let result = null;
             if (ok)
-                contents = emModule.FS.readFile('result.wasm');
-            postMessage({ function: 'workerCompileDone', ok, contents });
+                result = emModule.FS.readFile('result.wasm');
+            postMessage({ function: 'workerCompileDone', result });
         } catch (e) {
             console.log(e);
             setStatus('error', 'Fatal error');

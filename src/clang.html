@@ -18,13 +18,13 @@
             overflow: hidden;
         }
 
-        #pane-compiler {
+        .process {
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        #compiler-output {
+        .io {
             overflow: auto;
             margin: 0;
             flex-grow: 5;
@@ -35,6 +35,10 @@
 
         .controls {
             margin: 4px;
+        }
+
+        .reboot {
+            float: right;
         }
 
         .split {
@@ -80,16 +84,23 @@
             </div>
         </div>
         <div id="pane-bottom" class="split split-vertical">
-            <div id="pane-compiler" class="split split-horizontal">
+            <div id="pane-clang" class="process split split-horizontal">
                 <div class="controls">
-                    <button id="compile-button" onclick="compile()">Compile</button>
+                    <button id="clang-run" onclick="compile()">Compile</button>
                     Status:
-                    <span id="compiler-status"></span>
+                    <span id="clang-status"></span>
+                    <button id="clang-reboot" class="reboot" onclick="clang.reboot()">Reboot</button>
                 </div>
-                <pre id="compiler-output"></pre>
+                <pre id="clang-io" class="io"></pre>
             </div>
-            <div id="pane-io" class="split split-horizontal">
-                <p>#pane-io</p>
+            <div id="pane-io" class="process split split-horizontal">
+                <div class="controls">
+                    <button id="runtime-run" onclick="run()">Run</button>
+                    Status:
+                    <span id="runtime-status"></span>
+                    <button id="runtime-reboot" class="reboot" onclick="runtime.reboot()">Reboot</button>
+                </div>
+                <pre id="runtime-io" class="io"></pre>
             </div>
         </div>
     </div>
@@ -111,7 +122,7 @@ int main()
 
         Split(['#pane-top', '#pane-bottom'], { direction: 'vertical' });
         Split(['#pane-source', '#pane-status']);
-        Split(['#pane-compiler', '#pane-io']);
+        Split(['#pane-clang', '#pane-io']);
 
         let editor;
         require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
@@ -124,63 +135,93 @@ int main()
             updateUI();
         });
 
-        let compiler = new Process('clang', 'clang')
-        let compileButton = document.getElementById('compile-button');
-        let compilerStatus = document.getElementById('compiler-status');
-        let compilerOutput = document.getElementById('compiler-output');
-        let compilerState = '';
-        let wasReady = false;
+        class ProcessUI {
+            constructor(name) {
+                this.name = name;
+                this.runButton = document.getElementById(name + '-run');
+                this.statusElem = document.getElementById(name + '-status');
+                this.ioElem = document.getElementById(name + '-io');
+                this.state = '';
+                this.wasReady = false;
 
-        function updateUI() {
-            let ready = compilerState === 'ready' && editor;
-            compileButton.disabled = !ready;
-            if (ready && !wasReady) {
-                wasReady = true;
-                compilerOutput.textContent = 'Click the compile button\n\n';
+                this.process = new Process(name, name)
+                this.process.setStatus = this.setStatus.bind(this);
+                this.process.print = this.print.bind(this);
+                this.process.printErr = this.printErr.bind(this);
             }
-        }
 
-        compiler.setStatus = (state, status) => {
-            console.log('compiler state:', state, 'status:', status);
-            compilerStatus.textContent = status;
-            compilerState = state;
-            if (state == 'ready')
-                compilerStatus.style.color = 'green';
-            else if (state == 'error')
-                compilerStatus.style.color = 'red';
-            else
-                compilerStatus.style.color = 'blue';
-            updateUI();
+            reboot() {
+                this.process.terminate();
+                this.ioElem.textContent = '';
+                this.process.start();
+            }
+
+            setStatus(state, status) {
+                console.log(this.name, state + ':', status);
+                this.statusElem.textContent = status;
+                this.state = state;
+                if (state == 'ready')
+                    this.statusElem.style.color = 'green';
+                else if (state == 'error')
+                    this.statusElem.style.color = 'red';
+                else
+                    this.statusElem.style.color = 'blue';
+                updateUI();
+            };
+
+            print({ text }) {
+                this.ioElem.textContent += text + '\n';
+            };
+
+            printErr({ text }) {
+                this.ioElem.textContent += text + '\n';
+            };
+        } // class ProcessUI
+
+        let clang = new ProcessUI('clang');
+        let runtime = new ProcessUI('runtime');
+        let clangOutput = null;
+
+        clang.process.print({ text: 'Preparing clang...\n\n' });
+        clang.process.workerCompileDone = args => {
+            if (args.result)
+                clang.ioElem.textContent += 'wasm size: ' + args.result.length + '\n';
+            clangOutput = args.result;
+            clang.process.setStatus('ready', 'Ready');
         };
 
-        compiler.print = args => {
-            compilerOutput.textContent += args.text + '\n';
-        };
+        runtime.process.print({ text: 'Preparing runtime...\n\n' });
 
-        compiler.print({ text: 'Preparing clang...\n\n' });
-
-        compiler.printErr = args => {
-            compilerOutput.textContent += args.text + '\n';
-        };
-
-        compiler.workerCompileDone = args => {
-            compiler.setStatus('ready', 'Ready');
-            if (args.ok)
-                compilerOutput.textContent += 'Compile successful\n';
-        };
-
-        compiler.start();
+        clang.process.start();
+        runtime.process.start();
 
         function compile() {
-            if (compilerState !== 'ready')
+            if (clang.state !== 'ready')
                 return;
-            compiler.setStatus('busy', 'Running');
-            compilerOutput.textContent = '';
-            compiler.worker.postMessage({
+            clang.process.setStatus('busy', 'Running');
+            clang.ioElem.textContent = '';
+            clang.process.worker.postMessage({
                 function: 'compile',
                 code: editor.getValue(),
             });
         }
+
+        function updateUI() {
+            let clangReady = editor && clang.state === 'ready';
+            clang.runButton.disabled = !clangReady;
+            if (clangReady && !clang.wasReady) {
+                clang.wasReady = true;
+                clang.ioElem.textContent = 'Click the compile button\n\n';
+            }
+
+            let runtimeReady = runtime.state === 'ready';
+            runtime.runButton.disabled = !runtimeReady || !clangOutput;
+            if (runtimeReady && !runtime.wasReady) {
+                runtime.wasReady = true;
+                runtime.ioElem.textContent = 'Click the compile button then the run button\n\n';
+            }
+        }
+
     </script>
 </body>
 

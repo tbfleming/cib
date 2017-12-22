@@ -261,6 +261,10 @@ def appClangNative():
     #run('cd build/apps-native && ./clang')
     #run('cd build/apps-native && gdb -q -ex run --args ./clang')
 
+def appRuntime():
+    app('runtime')
+    run('cp -au build/apps-browser/runtime.js build/apps-browser/runtime.wasm dist')
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-B', '--bash', action='store_true', help="Run bash with environment set up")
 parser.add_argument('-f', '--format', action='store_true', help="Format sources")
@@ -276,6 +280,7 @@ parser.add_argument('-b', '--llvm-browser', action='store_true', help="(*) Build
 parser.add_argument('-1', '--app-1', action='store_true', help="Build app 1: clang-format")
 parser.add_argument('-2', '--app-2', action='store_true', help="Build app 2: clang")
 parser.add_argument('-n', '--app-n', action='store_true', help="Build app 2: clang, native")
+parser.add_argument('-3', '--app-3', action='store_true', help="Build app 3: runtime")
 args = parser.parse_args()
 
 haveArg = False
@@ -312,3 +317,5 @@ if args.app_2:
     appClang()
 if args.app_n:
     appClangNative()
+if args.app_3:
+    appRuntime()
