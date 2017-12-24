@@ -5,11 +5,13 @@ import argparse, os, subprocess, sys
 llvmBuildType = 'Release'
 llvmNo86BuildType = 'Release'
 llvmBrowserBuildType = 'Release'
-fastcompBuildType = 'Release'
-binaryenBuildType = 'Release'
+fastcompBuildType = 'RelWithDebInfo'
+binaryenBuildType = 'RelWithDebInfo'
+optimizerBuildType = 'RelWithDebInfo'
 appBuildType = 'Release'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
+cmakeInstall = root + 'install/cmake/'
 llvmBuild = root + 'build/llvm-' + llvmBuildType + '/'
 llvmInstall = root + 'install/llvm-' + llvmBuildType + '/'
 llvmNo86Build = root + 'build/llvm-no86-' + llvmNo86BuildType + '/'
@@ -21,6 +23,7 @@ fastcompInstall = root + 'install/fastcomp-' + fastcompBuildType + '/'
 binaryenBuild = root + 'build/binaryen-' + binaryenBuildType + '/'
 binaryenInstall = root + 'install/binaryen-' + binaryenBuildType + '/'
 wabtInstall = root + 'repos/wabt/bin/'
+optimizerBuild = root + 'build/optimizer-' + optimizerBuildType + '/'
 
 llvmBrowserTargets = [
     'clangAnalysis',
@@ -75,16 +78,19 @@ llvmBrowserTargets = [
     'LLVMWebAssemblyInfo',
 ]
 
-parallel = '-j ' + subprocess.check_output("grep 'processor' /proc/cpuinfo | wc -l", shell=True).decode('utf-8').strip()
+cores = subprocess.check_output("grep 'processor' /proc/cpuinfo | wc -l", shell=True).decode('utf-8').strip()
+parallel = '-j ' + cores
 
 os.environ["PATH"] = os.pathsep.join([
     root + 'repos/emscripten',
+    cmakeInstall + 'bin',
     llvmInstall + 'bin',
     wabtInstall,
     binaryenInstall + 'bin',
     os.environ["PATH"],
 ])
 os.environ['BINARYEN'] = binaryenInstall
+os.environ['EMSCRIPTEN_NATIVE_OPTIMIZER'] = optimizerBuild + 'optimizer'
 
 def run(args):
     print('build.py:', args)
@@ -112,6 +118,17 @@ def clone():
         run('mkdir -p ' + dir)
         run('cd ' + dir + ' && git clone ' + url + ' ' + base)
 
+def cmake():
+    if not os.path.exists('download/cmake-3.10.1.tar.gz'):
+        run('mkdir -p download')
+        run('cd download && wget https://cmake.org/files/v3.10/cmake-3.10.1.tar.gz')
+    if not os.path.exists('build/cmake-3.10.1'):
+        run('mkdir -p build')
+        run('cd build && tar xf ../download/cmake-3.10.1.tar.gz')
+        run('cd build/cmake-3.10.1 && ./bootstrap --prefix=' + cmakeInstall + ' --parallel=' + cores)
+        run('cd build/cmake-3.10.1 && make ' + parallel)
+        run('cd build/cmake-3.10.1 && make install ' + parallel)
+
 def llvm():
     if not os.path.isdir(llvmBuild):
         run('mkdir -p ' + llvmBuild)
@@ -132,8 +149,11 @@ def fastcomp():
         run('cd ' + fastcompBuild + ' && time -p cmake -G "Ninja"' +
             ' -DCMAKE_INSTALL_PREFIX=' + fastcompInstall +
             ' -DCMAKE_BUILD_TYPE=' + fastcompBuildType +
-            ' -DLLVM_TARGETS_TO_BUILD=X86' +
-            ' -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly' +
+            ' "-DLLVM_TARGETS_TO_BUILD=X86;JSBackend"' +
+            ' -DLLVM_INCLUDE_EXAMPLES=OFF' +
+            ' -DLLVM_INCLUDE_TESTS=OFF' +
+            ' -DCLANG_INCLUDE_TESTS=OFF' +
+            ' -DLLVM_ENABLE_ASSERTIONS=ON' +
             ' ' + root + 'repos/fastcomp')
     run('cd ' + fastcompBuild + ' && time -p ninja')
     if not os.path.isdir(fastcompInstall):
@@ -171,8 +191,17 @@ def binaryen():
         run('cd ' + binaryenBuild + ' && time -p ninja ' + parallel + ' install')
 
 def emscripten():
-    if not os.path.exists(os.path.expanduser('~') + '/.emscripten'):
-        run('LLVM=' + fastcompInstall + 'bin em++')
+    configFile = os.path.expanduser('~') + '/.emscripten'
+    if not os.path.isdir(optimizerBuild):
+        run('mkdir -p ' + optimizerBuild)
+        run('cd ' + optimizerBuild + ' && time -p cmake -G "Ninja"' +
+            ' -DCMAKE_BUILD_TYPE=' + optimizerBuildType +
+            ' ' + root + 'repos/emscripten/tools/optimizer')
+    run('cd ' + optimizerBuild + ' && time -p ninja ' + parallel)
+    if not os.path.exists(configFile):
+        run('em++')
+        with open(configFile, "a") as file:
+            file.write("\nBINARYEN_ROOT='" + binaryenInstall + "'\n")
         run('mkdir -p build/dummy')
         run('cd build/dummy && em++ ../../src/say-hello.cpp -o say-hello.html')
 
@@ -193,6 +222,32 @@ def llvmBrowser():
             ' -DCLANG_TABLEGEN=' + llvmBuild + 'bin/clang-tblgen' +
             ' ' + root + 'repos/llvm')
     run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + parallel + ' ' + ' '.join(llvmBrowserTargets))
+
+def dist():
+    if not os.path.exists('download/monaco-editor-0.10.1.tgz'):
+        run('mkdir -p download')
+        run('cd download && wget https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.10.1.tgz')
+    if not os.path.exists('download/monaco-editor-0.10.1'):
+        run('mkdir -p download/monaco-editor-0.10.1')
+        run('cd download/monaco-editor-0.10.1 && tar -xf ../monaco-editor-0.10.1.tgz')
+    run('mkdir -p dist/monaco-editor')
+    run('cp -au download/monaco-editor-0.10.1/package/LICENSE dist/monaco-editor')
+    run('cp -au download/monaco-editor-0.10.1/package/README.md dist/monaco-editor')
+    run('cp -au download/monaco-editor-0.10.1/package/ThirdPartyNotices.txt dist/monaco-editor')
+    run('cp -auv download/monaco-editor-0.10.1/package/min dist/monaco-editor')
+    if not os.path.exists('download/split.js-1.3.5.tgz'):
+        run('cd download && wget https://registry.npmjs.org/split.js/-/split.js-1.3.5.tgz')
+    if not os.path.exists('download/Split.js-1.3.5'):
+        run('mkdir -p download/Split.js-1.3.5')
+        run('cd download/Split.js-1.3.5 && tar -xf ../split.js-1.3.5.tgz')
+    run('mkdir -p dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/LICENSE.txt dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/AUTHORS.md dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/README.md dist/split.js')
+    run('cp -au download/Split.js-1.3.5/package/split.min.js dist/split.js')
+    run('cp -auv download/Split.js-1.3.5/package/grips dist/split.js')
+    run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js dist')
+    run('cp -au src/process-clang.js src/process-runtime.js dist')
 
 def app(name, prepBuildDir=None):
     if not os.path.isdir('build/apps-browser'):
@@ -219,31 +274,8 @@ def appClang():
         run('cp -auv repos/emscripten/system/include build/apps-browser/usr')
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include build/apps-browser/usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten build/apps-browser/usr/lib/libc/musl/arch')
-    if not os.path.exists('download/monaco-editor-0.10.1.tgz'):
-        run('mkdir -p download')
-        run('cd download && wget https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.10.1.tgz')
-    if not os.path.exists('download/monaco-editor-0.10.1'):
-        run('mkdir -p download/monaco-editor-0.10.1')
-        run('cd download/monaco-editor-0.10.1 && tar -xf ../monaco-editor-0.10.1.tgz')
-    run('mkdir -p dist/monaco-editor')
-    run('cp -au download/monaco-editor-0.10.1/package/LICENSE dist/monaco-editor')
-    run('cp -au download/monaco-editor-0.10.1/package/README.md dist/monaco-editor')
-    run('cp -au download/monaco-editor-0.10.1/package/ThirdPartyNotices.txt dist/monaco-editor')
-    run('cp -auv download/monaco-editor-0.10.1/package/min dist/monaco-editor')
-    if not os.path.exists('download/split.js-1.3.5.tgz'):
-        run('cd download && wget https://registry.npmjs.org/split.js/-/split.js-1.3.5.tgz')
-    if not os.path.exists('download/Split.js-1.3.5'):
-        run('mkdir -p download/Split.js-1.3.5')
-        run('cd download/Split.js-1.3.5 && tar -xf ../split.js-1.3.5.tgz')
-    run('mkdir -p dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/LICENSE.txt dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/AUTHORS.md dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/README.md dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/split.min.js dist/split.js')
-    run('cp -auv download/Split.js-1.3.5/package/grips dist/split.js')
     app('clang', prepBuildDir)
     run('cp -au build/apps-browser/clang.js build/apps-browser/clang.wasm build/apps-browser/clang.data dist')
-    run('cp -au src/clang.html src/process.js src/process-manager.js dist')
 
 def appClangNative():
     if not os.path.isdir('build/apps-native'):
@@ -269,9 +301,10 @@ parser.add_argument('-B', '--bash', action='store_true', help="Run bash with env
 parser.add_argument('-f', '--format', action='store_true', help="Format sources")
 parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
 parser.add_argument('-c', '--clone', action='store_true', help="(*) Clone repos. Doesn't touch ones which already exist.")
+parser.add_argument('-C', '--cmake', action='store_true', help="Build cmake if not already built")
 parser.add_argument('-l', '--llvm', action='store_true', help="(*) Build llvm if not already built")
 parser.add_argument('-L', '--no86', action='store_true', help="Build llvm without X86 if not already built")
-parser.add_argument('-F', '--fastcomp', action='store_true', help="(*) Build fastcomp if not already built")
+parser.add_argument('-F', '--fastcomp', action='store_true', help="Build fastcomp if not already built")
 parser.add_argument('-w', '--wabt', action='store_true', help="Build wabt if not already built")
 parser.add_argument('-y', '--binaryen', action='store_true', help="(*) Build binaryen if not already built")
 parser.add_argument('-e', '--emscripten', action='store_true', help="(*) Prepare emscripten by compiling say-hello.cpp")
@@ -296,11 +329,13 @@ if args.format:
     run('chmod a-x src/*.cpp src/*.js src/*.html src/*.txt')
 if args.clone or args.all:
     clone()
+if args.cmake:
+    cmake()
 if args.llvm or args.all:
     llvm()
 if args.no86:
     llvmNo86()
-if args.fastcomp or args.all:
+if args.fastcomp:
     fastcomp()
 if args.wabt:
     wabt()
@@ -310,6 +345,8 @@ if args.emscripten or args.all:
     emscripten()
 if args.llvm_browser or args.all:
     llvmBrowser()
+if args.app_1 or args.app_2 or args.app_3:
+    dist()
 if args.app_1:
     appClangFormat()
 if args.app_2:

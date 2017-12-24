@@ -68,6 +68,9 @@ link_libraries(
     LLVMSupport
 )
 
+# https://gitlab.kitware.com/cmake/cmake/issues/15826
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s SAFE_HEAP=1 -s DEMANGLE_SUPPORT=1")
+
 add_compile_options(-std=c++17)
 
 add_executable (clang-format clang-format.cpp)
@@ -77,6 +80,8 @@ add_executable (runtime runtime.cpp)
 IF(EMSCRIPTEN)
     target_link_libraries(clang-format PRIVATE
         "-s MODULARIZE=1"
+        "-s SAFE_HEAP=1"
+        "-s ASSERTIONS=1"
         "-s ALLOW_MEMORY_GROWTH=1"
         "-s DEMANGLE_SUPPORT=1"
         "-s NO_EXIT_RUNTIME=1"
@@ -86,7 +91,6 @@ IF(EMSCRIPTEN)
     target_compile_options(clang PRIVATE
         -DLIB_PREFIX=/usr/
         -DxFAKE_COMPILE
-        -s DEMANGLE_SUPPORT=1
     )
     target_link_libraries(clang PRIVATE
         "--preload-file usr"

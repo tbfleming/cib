@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en-us">
+
+<body>
+    <script src="testmem.js"></script>
+    <script type='text/javascript'>
+        'use strict';
+
+        let mod = Module();
+        function testJS() {
+            mod.ccall('test', 'void', ['string'], [' '.repeat(10000)]);
+        }
+    </script>
+</body>
+
+</html>
