@@ -4,7 +4,10 @@ Try it at https://tbfleming.github.io/cib/
 
 I'm trying to see how far wasm can go. Is it possible to compile clang to wasm and have it generate code within the browser?
 
-Right now this is at the first baby step: ```clang-format```.
+Current status:
+* ```clang-format```: working
+* ```clang```: working for simple cases
+* Running generated wasm: working for simple cases
 
 ## VM for building WASM binaries
 
