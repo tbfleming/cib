@@ -8,7 +8,9 @@ llvmBrowserBuildType = 'Release'
 fastcompBuildType = 'RelWithDebInfo'
 binaryenBuildType = 'RelWithDebInfo'
 optimizerBuildType = 'RelWithDebInfo'
-appBuildType = 'Debug'
+browserClangFormatBuildType = 'Release'
+browserClangBuildType = 'Debug'
+browserRuntimeBuildType = 'Debug'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
 cmakeInstall = root + 'install/cmake/'
@@ -24,7 +26,9 @@ binaryenBuild = root + 'build/binaryen-' + binaryenBuildType + '/'
 binaryenInstall = root + 'install/binaryen-' + binaryenBuildType + '/'
 wabtInstall = root + 'repos/wabt/bin/'
 optimizerBuild = root + 'build/optimizer-' + optimizerBuildType + '/'
-appsBrowserBuild = root + 'build/apps-browser-' + appBuildType + '/'
+browserClangFormatBuild = root + 'build/apps-browser-' + browserClangFormatBuildType + '/'
+browserClangBuild = root + 'build/apps-browser-' + browserClangBuildType + '/'
+browserRuntimeBuild = root + 'build/apps-browser-' + browserRuntimeBuildType + '/'
 
 llvmBrowserTargets = [
     'clangAnalysis',
@@ -118,6 +122,13 @@ repos = [
     ('repos/wabt', 'git@github.com:WebAssembly/wabt.git', 'git@github.com:WebAssembly/wabt.git', False, 'master', 'master'),
     ('repos/binaryen', 'git@github.com:tbfleming/cib-binaryen.git', 'git@github.com:WebAssembly/binaryen.git', True, 'master', 'cib'),
 ]
+
+def bash():
+    run('bash')
+
+def format():
+    run('clang-format -i src/*.cpp')
+    run('chmod a-x src/*.cpp src/*.js src/*.html src/*.txt')
 
 def clone():
     for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
@@ -289,33 +300,33 @@ def dist():
     run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
-def app(name, prepBuildDir=None):
-    if not os.path.isdir(appsBrowserBuild):
-        run('mkdir -p ' + appsBrowserBuild)
-        run('cd ' + appsBrowserBuild + ' &&' +
+def app(name, buildType, buildDir, prepBuildDir=None):
+    if not os.path.isdir(buildDir):
+        run('mkdir -p ' + buildDir)
+        run('cd ' + buildDir + ' &&' +
             ' emcmake cmake -G "Ninja"' +
-            ' -DCMAKE_BUILD_TYPE=' + appBuildType +
+            ' -DCMAKE_BUILD_TYPE=' + buildType +
             ' -DLLVM_BUILD=' + llvmBrowserBuild +
             ' -DEMSCRIPTEN=on'
             ' ../../src')
     if prepBuildDir:
         prepBuildDir()
-    run('cd ' + appsBrowserBuild + ' && time -p ninja ' + name)
+    run('cd ' + buildDir + ' && time -p ninja ' + name)
     if not os.path.isdir('dist'):
         run('mkdir -p dist')
 
 def appClangFormat():
-    app('clang-format')
-    run('cp -au ' + appsBrowserBuild + 'clang-format.js ' + appsBrowserBuild + 'clang-format.wasm dist')
+    app('clang-format', browserClangFormatBuildType, browserClangFormatBuild)
+    run('cp -au ' + browserClangFormatBuild + 'clang-format.js ' + browserClangFormatBuild + 'clang-format.wasm dist')
 
 def appClang():
     def prepBuildDir():
-        run('mkdir -p ' + appsBrowserBuild + 'usr/lib/libcxxabi ' + appsBrowserBuild + 'usr/lib/libc/musl/arch/emscripten')
-        run('cp -auv repos/emscripten/system/include ' + appsBrowserBuild + 'usr')
-        run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + appsBrowserBuild + 'usr/lib/libcxxabi')
-        run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + appsBrowserBuild + 'usr/lib/libc/musl/arch')
-    app('clang', prepBuildDir)
-    run('cp -au ' + appsBrowserBuild + 'clang.js ' + appsBrowserBuild + 'clang.wasm ' + appsBrowserBuild + 'clang.data dist')
+        run('mkdir -p ' + browserClangBuild + 'usr/lib/libcxxabi ' + browserClangBuild + 'usr/lib/libc/musl/arch/emscripten')
+        run('cp -auv repos/emscripten/system/include ' + browserClangBuild + 'usr')
+        run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
+        run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
+    app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
+    run('cp -au ' + browserClangBuild + 'clang.js ' + browserClangBuild + 'clang.wasm ' + browserClangBuild + 'clang.data dist')
 
 def appClangNative():
     if not os.path.isdir('build/apps-native'):
@@ -333,77 +344,64 @@ def appClangNative():
     #run('cd build/apps-native && gdb -q -ex run --args ./clang')
 
 def appRuntime():
-    app('runtime')
-    run('cp -au ' + appsBrowserBuild + 'runtime.js ' + appsBrowserBuild + 'runtime.wasm dist')
+    app('runtime', browserRuntimeBuildType, browserRuntimeBuild)
+    run('cp -au ' + browserRuntimeBuild + 'runtime.js ' + browserRuntimeBuild + 'runtime.wasm dist')
+
+def http():
+    run('mkdir -p build/http')
+    run('cd build/http && ln -sf ' +
+        browserClangFormatBuild + 'clang-format.* ' +
+        browserClangBuild + 'clang.data ' +
+        browserClangBuild + 'clang.js ' +
+        browserClangBuild + 'clang.wasm ' +
+        browserRuntimeBuild + 'runtime.* ' +
+        '../../dist/monaco-editor ' +
+        '../../dist/split.js ' +
+        '../../src/clang.html ' +
+        '../../src/process*.js ' +
+        '.')
+    run('cd build/http && http-server -c-1')
+
+commands = [
+    ('B', 'bash',           bash,           False,  "Run bash with environment set up"),
+    ('f', 'format',         format,         False,  "Format sources"),
+    ('c', 'clone',          clone,          True,   "Clone repos. Doesn't touch ones which already exist."),
+    ('s', 'status',         status,         False,  "git status"),
+    ('',  'pull',           pull,           False,  "git pull"),
+    ('',  'merge',          merge,          False,  "git merge upstream"),
+    ('',  'push',           push,           False,  "git push"),
+    ('',  'cmake',          cmake,          False,  "Build cmake if not already built"),
+    ('l', 'llvm',           llvm,           True,   "Build llvm if not already built"),
+    ('',  'no86',           llvmNo86,       False,  "Build llvm without X86 if not already built"),
+    ('',  'fastcomp',       fastcomp,       False,  "Build fastcomp if not already built"),
+    ('',  'wabt',           wabt,           False,  "Build wabt if not already built"),
+    ('y', 'binaryen',       binaryen,       True,   "Build binaryen if not already built"),
+    ('e', 'emscripten',     emscripten,     True,   "Prepare emscripten by compiling say-hello.cpp"),
+    ('b', 'llvm-browser',   llvmBrowser,    True,   "Build llvm in-browser components"),
+    ('d', 'dist',           dist,           True,   "Fill dist/"),
+    ('1', 'app-1',          appClangFormat, True,   "Build app 1: clang-format"),
+    ('2', 'app-2',          appClang,       True,   "Build app 2: clang"),
+    ('n', 'app-n',          appClangNative, False,  "Build app 2: clang, native"),
+    ('3', 'app-3',          appRuntime,     True,   "Build app 3: runtime"),
+    ('H', 'http',           http,           False,  "http-server"),
+]
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
-parser.add_argument('-B', '--bash', action='store_true', help="Run bash with environment set up")
-parser.add_argument('-f', '--format', action='store_true', help="Format sources")
-parser.add_argument('-c', '--clone', action='store_true', help="(*) Clone repos. Doesn't touch ones which already exist.")
-parser.add_argument('-s', '--status', action='store_true', help="git status")
-parser.add_argument('--pull', action='store_true', help="git pull")
-parser.add_argument('--merge', action='store_true', help="git merge upstream")
-parser.add_argument('--push', action='store_true', help="git push")
-parser.add_argument('--cmake', action='store_true', help="Build cmake if not already built")
-parser.add_argument('-l', '--llvm', action='store_true', help="(*) Build llvm if not already built")
-parser.add_argument('--no86', action='store_true', help="Build llvm without X86 if not already built")
-parser.add_argument('--fastcomp', action='store_true', help="Build fastcomp if not already built")
-parser.add_argument('--wabt', action='store_true', help="Build wabt if not already built")
-parser.add_argument('-y', '--binaryen', action='store_true', help="(*) Build binaryen if not already built")
-parser.add_argument('-e', '--emscripten', action='store_true', help="(*) Prepare emscripten by compiling say-hello.cpp")
-parser.add_argument('-b', '--llvm-browser', action='store_true', help="(*) Build llvm in-browser components")
-parser.add_argument('-1', '--app-1', action='store_true', help="Build app 1: clang-format")
-parser.add_argument('-2', '--app-2', action='store_true', help="Build app 2: clang")
-parser.add_argument('-n', '--app-n', action='store_true', help="Build app 2: clang, native")
-parser.add_argument('-3', '--app-3', action='store_true', help="Build app 3: runtime")
+for (flag, command, function, inAll, help) in commands:
+    if inAll:
+        help = '(*) ' + help
+    if flag:
+        parser.add_argument('-' + flag, '--' + command, action='store_true', help=help, dest=command)
+    else:
+        parser.add_argument('--' + command, action='store_true', help=help, dest=command)
 args = parser.parse_args()
 
-haveArg = False
-for k,v in vars(args).items():
-    if v:
-        haveArg = True
-if not haveArg:
+haveCommand = False
+for (flag, command, function, inAll, help) in commands:
+    if getattr(args, command) or inAll and args.all:
+        haveCommand = True
+        function()
+        print(command)
+if not haveCommand:
     print('build.py: Tell me what to do. -a does almost everything. -h shows options.')
-
-if args.bash:
-    run('bash')
-if args.format:
-    run('clang-format -i src/*.cpp')
-    run('chmod a-x src/*.cpp src/*.js src/*.html src/*.txt')
-if args.clone or args.all:
-    clone()
-if args.status:
-    status()
-if args.pull:
-    pull()
-if args.merge:
-    merge()
-if args.push:
-    push()
-if args.cmake:
-    cmake()
-if args.llvm or args.all:
-    llvm()
-if args.no86:
-    llvmNo86()
-if args.fastcomp:
-    fastcomp()
-if args.wabt:
-    wabt()
-if args.binaryen or args.all:
-    binaryen()
-if args.emscripten or args.all:
-    emscripten()
-if args.llvm_browser or args.all:
-    llvmBrowser()
-if args.app_1 or args.app_2 or args.app_3:
-    dist()
-if args.app_1:
-    appClangFormat()
-if args.app_2:
-    appClang()
-if args.app_n:
-    appClangNative()
-if args.app_3:
-    appRuntime()
