@@ -8,7 +8,7 @@ llvmBrowserBuildType = 'Release'
 fastcompBuildType = 'RelWithDebInfo'
 binaryenBuildType = 'RelWithDebInfo'
 optimizerBuildType = 'RelWithDebInfo'
-appBuildType = 'Release'
+appBuildType = 'Debug'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
 cmakeInstall = root + 'install/cmake/'
@@ -24,6 +24,7 @@ binaryenBuild = root + 'build/binaryen-' + binaryenBuildType + '/'
 binaryenInstall = root + 'install/binaryen-' + binaryenBuildType + '/'
 wabtInstall = root + 'repos/wabt/bin/'
 optimizerBuild = root + 'build/optimizer-' + optimizerBuildType + '/'
+appsBrowserBuild = root + 'build/apps-browser-' + appBuildType + '/'
 
 llvmBrowserTargets = [
     'clangAnalysis',
@@ -98,25 +99,64 @@ def run(args):
         print('build.py: exiting because of error')
         sys.exit()
 
+def getOutput(args):
+    print('build.py:', args)
+    result = subprocess.run(args, shell=True, stdout=subprocess.PIPE)
+    if result.returncode:
+        print('build.py: exiting because of error')
+        sys.exit()
+    print(result.stdout.decode("utf-8"), end='')
+    return result.stdout
+
 repos = [
-    ('repos/llvm', 'git@github.com:tbfleming/cib-llvm.git'),
-    ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git'),
-    ('repos/llvm/tools/lld', 'git@github.com:tbfleming/cib-lld.git'),
-    ('repos/fastcomp', 'git@github.com:tbfleming/cib-emscripten-fastcomp.git'),
-    ('repos/fastcomp/tools/clang', 'git@github.com:tbfleming/cib-emscripten-fastcomp-clang.git'),
-    ('repos/emscripten', 'git@github.com:tbfleming/cib-emscripten.git'),
-    ('repos/wabt', 'git@github.com:WebAssembly/wabt.git'),
-    ('repos/binaryen', 'git@github.com:tbfleming/cib-binaryen.git'),
+    ('repos/llvm', 'git@github.com:tbfleming/cib-llvm.git', 'git@github.com:llvm-mirror/llvm.git', True, 'master', 'cib'),
+    ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git', 'git@github.com:llvm-mirror/clang.git', True, 'master', 'master'),
+    ('repos/llvm/tools/lld', 'git@github.com:tbfleming/cib-lld.git', 'git@github.com:llvm-mirror/lld.git', True, 'master', 'master'),
+    # ('repos/fastcomp', 'git@github.com:tbfleming/cib-emscripten-fastcomp.git', 'git@github.com:kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
+    # ('repos/fastcomp/tools/clang', 'git@github.com:tbfleming/cib-emscripten-fastcomp-clang.git', 'git@github.com:kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),
+    ('repos/emscripten', 'git@github.com:tbfleming/cib-emscripten.git', 'git@github.com:kripken/emscripten.git', True, 'incoming', 'cib'),
+    ('repos/wabt', 'git@github.com:WebAssembly/wabt.git', 'git@github.com:WebAssembly/wabt.git', False, 'master', 'master'),
+    ('repos/binaryen', 'git@github.com:tbfleming/cib-binaryen.git', 'git@github.com:WebAssembly/binaryen.git', True, 'master', 'cib'),
 ]
 
 def clone():
-    for (path, url) in repos:
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
         if os.path.isdir(path):
             continue
         dir = os.path.dirname(path)
         base = os.path.basename(path)
         run('mkdir -p ' + dir)
         run('cd ' + dir + ' && git clone ' + url + ' ' + base)
+        run('cd ' + path + ' && git remote add upstream ' + upstream)
+        run('cd ' + path + ' && git checkout ' + branch)
+
+def status():
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
+        print('****************')
+        run('cd ' + path + ' && git status')
+    print('****************')
+
+def pull():
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
+        if getOutput('cd ' + path + ' && git status --porcelain --untracked-files=no'):
+            print('build.py: skip', path)
+        else:
+            run('cd ' + path + ' && git pull --no-edit')
+
+def merge():
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
+        if getOutput('cd ' + path + ' && git status --porcelain --untracked-files=no'):
+            print('build.py: skip', path)
+        else:
+            run('cd ' + path + ' && git fetch upstream && git merge --no-edit upstream/' + upstreamBranch)
+
+def push():
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
+        if isPushable:
+            if getOutput('cd ' + path + ' && git status --porcelain --untracked-files=no'):
+                print('build.py: skip', path)
+            else:
+                run('cd ' + path + ' && git push')
 
 def cmake():
     if not os.path.exists('download/cmake-3.10.1.tar.gz'):
@@ -250,9 +290,9 @@ def dist():
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
 def app(name, prepBuildDir=None):
-    if not os.path.isdir('build/apps-browser'):
-        run('mkdir -p build/apps-browser')
-        run('cd build/apps-browser &&' +
+    if not os.path.isdir(appsBrowserBuild):
+        run('mkdir -p ' + appsBrowserBuild)
+        run('cd ' + appsBrowserBuild + ' &&' +
             ' emcmake cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=' + appBuildType +
             ' -DLLVM_BUILD=' + llvmBrowserBuild +
@@ -260,22 +300,22 @@ def app(name, prepBuildDir=None):
             ' ../../src')
     if prepBuildDir:
         prepBuildDir()
-    run('cd build/apps-browser && time -p ninja ' + name)
+    run('cd ' + appsBrowserBuild + ' && time -p ninja ' + name)
     if not os.path.isdir('dist'):
         run('mkdir -p dist')
 
 def appClangFormat():
     app('clang-format')
-    run('cp -au build/apps-browser/clang-format.js build/apps-browser/clang-format.wasm dist')
+    run('cp -au ' + appsBrowserBuild + 'clang-format.js ' + appsBrowserBuild + 'clang-format.wasm dist')
 
 def appClang():
     def prepBuildDir():
-        run('mkdir -p build/apps-browser/usr/lib/libcxxabi build/apps-browser/usr/lib/libc/musl/arch/emscripten')
-        run('cp -auv repos/emscripten/system/include build/apps-browser/usr')
-        run('cp -auv repos/emscripten/system/lib/libcxxabi/include build/apps-browser/usr/lib/libcxxabi')
-        run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten build/apps-browser/usr/lib/libc/musl/arch')
+        run('mkdir -p ' + appsBrowserBuild + 'usr/lib/libcxxabi ' + appsBrowserBuild + 'usr/lib/libc/musl/arch/emscripten')
+        run('cp -auv repos/emscripten/system/include ' + appsBrowserBuild + 'usr')
+        run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + appsBrowserBuild + 'usr/lib/libcxxabi')
+        run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + appsBrowserBuild + 'usr/lib/libc/musl/arch')
     app('clang', prepBuildDir)
-    run('cp -au build/apps-browser/clang.js build/apps-browser/clang.wasm build/apps-browser/clang.data dist')
+    run('cp -au ' + appsBrowserBuild + 'clang.js ' + appsBrowserBuild + 'clang.wasm ' + appsBrowserBuild + 'clang.data dist')
 
 def appClangNative():
     if not os.path.isdir('build/apps-native'):
@@ -294,18 +334,22 @@ def appClangNative():
 
 def appRuntime():
     app('runtime')
-    run('cp -au build/apps-browser/runtime.js build/apps-browser/runtime.wasm dist')
+    run('cp -au ' + appsBrowserBuild + 'runtime.js ' + appsBrowserBuild + 'runtime.wasm dist')
 
 parser = argparse.ArgumentParser()
+parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
 parser.add_argument('-B', '--bash', action='store_true', help="Run bash with environment set up")
 parser.add_argument('-f', '--format', action='store_true', help="Format sources")
-parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
 parser.add_argument('-c', '--clone', action='store_true', help="(*) Clone repos. Doesn't touch ones which already exist.")
-parser.add_argument('-C', '--cmake', action='store_true', help="Build cmake if not already built")
+parser.add_argument('-s', '--status', action='store_true', help="git status")
+parser.add_argument('--pull', action='store_true', help="git pull")
+parser.add_argument('--merge', action='store_true', help="git merge upstream")
+parser.add_argument('--push', action='store_true', help="git push")
+parser.add_argument('--cmake', action='store_true', help="Build cmake if not already built")
 parser.add_argument('-l', '--llvm', action='store_true', help="(*) Build llvm if not already built")
-parser.add_argument('-L', '--no86', action='store_true', help="Build llvm without X86 if not already built")
-parser.add_argument('-F', '--fastcomp', action='store_true', help="Build fastcomp if not already built")
-parser.add_argument('-w', '--wabt', action='store_true', help="Build wabt if not already built")
+parser.add_argument('--no86', action='store_true', help="Build llvm without X86 if not already built")
+parser.add_argument('--fastcomp', action='store_true', help="Build fastcomp if not already built")
+parser.add_argument('--wabt', action='store_true', help="Build wabt if not already built")
 parser.add_argument('-y', '--binaryen', action='store_true', help="(*) Build binaryen if not already built")
 parser.add_argument('-e', '--emscripten', action='store_true', help="(*) Prepare emscripten by compiling say-hello.cpp")
 parser.add_argument('-b', '--llvm-browser', action='store_true', help="(*) Build llvm in-browser components")
@@ -329,6 +373,14 @@ if args.format:
     run('chmod a-x src/*.cpp src/*.js src/*.html src/*.txt')
 if args.clone or args.all:
     clone()
+if args.status:
+    status()
+if args.pull:
+    pull()
+if args.merge:
+    merge()
+if args.push:
+    push()
 if args.cmake:
     cmake()
 if args.llvm or args.all:
