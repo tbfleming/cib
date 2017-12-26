@@ -297,7 +297,7 @@ def dist():
     run('cp -au download/Split.js-1.3.5/package/README.md dist/split.js')
     run('cp -au download/Split.js-1.3.5/package/split.min.js dist/split.js')
     run('cp -auv download/Split.js-1.3.5/package/grips dist/split.js')
-    run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js dist')
+    run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
 def app(name, buildType, buildDir, prepBuildDir=None):
@@ -359,8 +359,12 @@ def http():
         '../../dist/split.js ' +
         '../../src/clang.html ' +
         '../../src/process*.js ' +
+        '../../src/wasm-tools.js ' +
         '.')
-    run('cd build/http && http-server -c-1')
+    try:
+        run('cd build/http && http-server -c-1')
+    except KeyboardInterrupt:
+        pass
 
 commands = [
     ('B', 'bash',           bash,           False,  "Run bash with environment set up"),
@@ -402,6 +406,5 @@ for (flag, command, function, inAll, help) in commands:
     if getattr(args, command) or inAll and args.all:
         haveCommand = True
         function()
-        print(command)
 if not haveCommand:
     print('build.py: Tell me what to do. -a does almost everything. -h shows options.')

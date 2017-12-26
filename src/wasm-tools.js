@@ -221,6 +221,7 @@ function getElems(binary, standardSections) {
 
 function getData(binary, standardSections) {
     let dataSegments = [];
+    let endDataOffset = 0;
     let dataSection = standardSections[WASM_SEC_DATA];
     if (dataSection) {
         let pos = { byte: dataSection.byte };
@@ -235,11 +236,12 @@ function getData(binary, standardSections) {
             check(opcode === 0x0b, 'WASM_SEC_DATA init_expr missing end');
             let numBytes = readLeb(binary, pos);
             dataSegments.push({ offset, numBytes, byte: pos.byte });
+            endDataOffset = Math.max(endDataOffset, offset + numBytes);
             pos.byte += numBytes;
         }
         check(pos.byte === dataSection.end, 'WASM_SEC_DATA section corrupt');
     }
-    return dataSegments;
+    return { dataSegments, endDataOffset };
 } // getData
 
 function getLinkingInfo(binary, linking) {
@@ -335,7 +337,7 @@ function relocate(binary, standardSections, relocs, memoryBase, tableBase) {
     } // for(reloc)
 } // relocate()
 
-function replaceSections(oldBinary, standardSections, memoryBase, tableBase) {
+function replaceSections(oldBinary, standardSections, dataSegments, memoryBase, tableBase) {
     let elems = getElems(oldBinary, standardSections);
     let elemSection = standardSections[WASM_SEC_ELEM];
     let oldElemSize = elemSection ? elemSection.totalSize : 0;
@@ -345,7 +347,6 @@ function replaceSections(oldBinary, standardSections, memoryBase, tableBase) {
     if (!elemSection)
         newElemSize = 0;
 
-    let dataSegments = getData(oldBinary, standardSections);
     let dataSection = standardSections[WASM_SEC_DATA];
     let oldDataSize = dataSection ? dataSection.totalSize : 0;
     let newDataSize = 11;

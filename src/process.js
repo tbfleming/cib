@@ -4,12 +4,14 @@ function setStatus(state, status) {
     postMessage({ function: 'workerSetStatus', state, status });
 }
 
-function terminate() { postMessage({ function: 'terminate' }); }
+function terminate() { }
 
 let emModule = {
     noInitialRun: true,
     instanciating: false,
     arguments: [],
+    wasmImports: null,
+    wasmInstance: null,
     status: '',
 
     print(text) {
@@ -46,10 +48,11 @@ let emModule = {
                 this.wasmModule = await WebAssembly.compile(this.wasmBinary);
             }
             setStatus('init', 'Instanciating ' + this.moduleName + '.wasm');
-            let instance = await WebAssembly.instantiate(this.wasmModule, imports);
+            imports.env.__environ = emModule._environ; // It looks like emscripten forgot to set this
+            this.wasmInstance = await WebAssembly.instantiate(this.wasmModule, imports);
             this.instanciating = false;
             setStatus('init', 'Initializing');
-            setTimeout(() => successCallback(instance), 0);
+            setTimeout(() => successCallback(this.wasmInstance), 0);
         } catch (e) {
             console.log(e.message);
             setStatus('init', 'Error in startup');
@@ -58,6 +61,7 @@ let emModule = {
     },
 
     instantiateWasm(imports, successCallback) {
+        this.wasmImports = imports;
         this.instantiateWasmAsync(imports, successCallback);
         return {};
     },

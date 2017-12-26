@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.5.1)
 
-include_directories(
+set(LLVM_INCLUDE
     ../repos/llvm/include
     ../repos/llvm/tools/clang/include
     ../repos/llvm/tools/clang/lib
@@ -15,7 +15,7 @@ link_directories(
     ${LLVM_BUILD}lib
 )
 
-link_libraries(
+set(LLVM_LIBRARIES
     clangFormat
     clangRewrite
     clangToolingCore
@@ -77,6 +77,12 @@ add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp)
 add_executable (runtime runtime.cpp)
 
+target_include_directories(clang-format PRIVATE ${LLVM_INCLUDE})
+target_link_libraries(clang-format PRIVATE ${LLVM_LIBRARIES})
+
+target_include_directories(clang PRIVATE ${LLVM_INCLUDE})
+target_link_libraries(clang PRIVATE ${LLVM_LIBRARIES})
+
 IF(EMSCRIPTEN)
     target_link_libraries(clang-format PRIVATE
         "-s MODULARIZE=1"
@@ -88,6 +94,7 @@ IF(EMSCRIPTEN)
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_formatCode\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
     )
+
     target_compile_options(clang PRIVATE
         -DLIB_PREFIX=/usr/
         -DxFAKE_COMPILE
@@ -102,11 +109,13 @@ IF(EMSCRIPTEN)
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
     )
+
     target_link_libraries(runtime PRIVATE
         "-s MODULARIZE=1"
         "-s ALLOW_MEMORY_GROWTH=1"
         "-s DEMANGLE_SUPPORT=1"
         "-s NO_EXIT_RUNTIME=1"
+        "-s MAIN_MODULE=1"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"FS\"]'"
     )
 ENDIF(EMSCRIPTEN)

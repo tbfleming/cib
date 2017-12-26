@@ -46,7 +46,7 @@
             border-bottom: 1px solid black;
         }
 
-        .reboot {
+        .right-button {
             float: right;
         }
 
@@ -92,7 +92,7 @@
                 <div class="controls controls-border">
                     clang-format:
                     <span id="clang-format-status"></span>
-                    <button id="clang-format-reboot" class="reboot" onclick="rebootClangFormat()">Reboot</button>
+                    <button id="clang-format-reboot" class="right-button" onclick="rebootClangFormat()">Reboot</button>
                 </div>
                 <div id="clang-format-result"></div>
             </div>
@@ -101,18 +101,17 @@
             <div id="pane-clang" class="process split split-horizontal">
                 <div class="controls">
                     <button id="clang-run" onclick="compile()">Compile</button>
-                    Status:
+                    <button id="clang-save" onclick="saveWasm()">Save</button>
                     <span id="clang-status"></span>
-                    <button id="clang-reboot" class="reboot" onclick="clang.reboot()">Reboot</button>
+                    <button id="clang-reboot" class="right-button" onclick="clang.reboot()">Reboot</button>
                 </div>
                 <pre id="clang-io" class="io"></pre>
             </div>
             <div id="pane-runtime" class="process split split-horizontal">
                 <div class="controls">
                     <button id="runtime-run" onclick="run()">Run</button>
-                    Status:
                     <span id="runtime-status"></span>
-                    <button id="runtime-reboot" class="reboot" onclick="runtime.reboot()">Reboot</button>
+                    <button id="runtime-reboot" class="right-button" onclick="runtime.reboot()">Reboot</button>
                 </div>
                 <pre id="runtime-io" class="io"></pre>
             </div>
@@ -128,9 +127,9 @@
 // #include not supported yet
 int puts(const char*);
 
-int main()
-{
-    puts("Hello\\n");
+int main() {
+    for (int i = 0; i < 3; ++i)
+      puts("Hello\\n");
 }
 `
 
@@ -224,6 +223,7 @@ int main()
         let clangFormat = new ProcessUI('clang-format');
         let clang = new ProcessUI('clang');
         let runtime = new ProcessUI('runtime');
+        let saveButton = document.getElementById('clang-save');
         let clangOutput = null;
 
         clangFormat.process.workerFormatDone = args => {
@@ -240,6 +240,9 @@ int main()
         };
 
         runtime.process.print({ text: 'Preparing runtime...\n\n' });
+        runtime.process.workerRunDone = args => {
+            runtime.process.setStatus('ready', 'Ready');
+        };
 
         clangFormat.process.start();
         clang.process.start();
@@ -255,6 +258,7 @@ int main()
         function compile() {
             if (clang.state !== 'ready')
                 return;
+            clangOutput = null;
             clang.process.setStatus('busy', 'Running');
             clang.ioElem.textContent = '';
             clang.process.worker.postMessage({
@@ -263,9 +267,31 @@ int main()
             });
         }
 
+        function saveWasm() {
+            let blob = new Blob([clangOutput], {
+                "type": "application/binary"
+            });
+            let a = document.createElement("a");
+            a.download = 'user.wasm';
+            a.href = URL.createObjectURL(blob);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function run() {
+            runtime.ioElem.textContent = '';
+            runtime.process.setStatus('busy', 'Running');
+            runtime.process.worker.postMessage({
+                function: 'run',
+                wasmBinary: clangOutput,
+            });
+        }
+
         function updateUI() {
             let clangReady = editor && clang.state === 'ready';
             clang.runButton.disabled = !clangReady;
+            saveButton.disabled = !clangOutput;
             if (clangReady && !clang.wasReady) {
                 clang.wasReady = true;
                 clang.ioElem.textContent = 'Click the compile button\n\n';
@@ -287,7 +313,6 @@ int main()
                 });
             }
         }
-
     </script>
 </body>
 
