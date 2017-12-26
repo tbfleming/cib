@@ -4,126 +4,316 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>clang-format</title>
+    <title>Clang In Browser</title>
     <style>
         body {
-            font-family: arial;
             margin: 0;
             padding: none;
+            overflow: hidden;
         }
 
-        #main {
+        .main {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .process {
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 100vh;
         }
 
-        #input,
-        #output {
+        #clang-format-result {
+            flex-grow: 5;
+        }
+
+        .io {
+            overflow: auto;
+            margin: 0;
+            flex-grow: 5;
             background-color: black;
-            flex-grow: 4;
-        }
-
-        #status {
-            height: 20px;
-            background-color: grey;
-        }
-
-        #input,
-        #output,
-        #status {
-            resize: None;
-            width: 100%;
-            margin: 0 auto;
-            margin-top: 10px;
-            border-left: 0px;
-            border-right: 0px;
-            padding-left: 0px;
-            padding-right: 0px;
-            display: block;
             color: white;
             font-family: 'Lucida Console', Monaco, monospace;
-            outline: none;
+        }
+
+        .controls {
+            margin: 4px;
+        }
+
+        .controls-border {
+            padding-bottom: 2px;
+            border-bottom: 1px solid black;
+        }
+
+        .right-button {
+            float: right;
+        }
+
+        .split {
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .gutter {
+            background-color: #eee;
+            background-repeat: no-repeat;
+            background-position: 50%;
+        }
+
+        .gutter.gutter-horizontal {
+            background-image: url('split.js/grips/vertical.png');
+            cursor: ew-resize;
+        }
+
+        .gutter.gutter-vertical {
+            background-image: url('split.js/grips/horizontal.png');
+            cursor: ns-resize;
+        }
+
+        .split.split-horizontal,
+        .gutter.gutter-horizontal {
+            height: 100%;
+            float: left;
+        }
+
+        #pane-source {
+            overflow: hidden;
         }
     </style>
 </head>
 
 <body>
-    <div id='main'>
-        Source:
-        <textarea id="input" spellcheck="false">
-// Edit this code or paste in your own.
-// This runs clang-format directly in the browser (wasm).
-// Style = LLVM.
-
-void   aFunction(   bool&amp; b  , double  x)
-    {
-f(b); y(x);
-callSomeFunction(    sdfkjskdjfueroiwuerwerdsfs,    eureiou47sdfxjhsier34r234,    a*b/2+4, dfjkuiwer);
-    }
-    </textarea> clang-format result:
-        <textarea id="output" readonly></textarea>
-        <textarea id="status"></textarea>
+    <div class="main">
+        <div id="pane-top" class="split split-vertical">
+            <div id="pane-source" class="split split-horizontal"></div>
+            <div id="pane-clang-format" class="process split split-horizontal">
+                <div class="controls controls-border">
+                    clang-format:
+                    <span id="clang-format-status"></span>
+                    <button id="clang-format-reboot" class="right-button" onclick="rebootClangFormat()">Reboot</button>
+                </div>
+                <div id="clang-format-result"></div>
+            </div>
+        </div>
+        <div id="pane-bottom" class="split split-vertical">
+            <div id="pane-clang" class="process split split-horizontal">
+                <div class="controls">
+                    <button id="clang-run" onclick="compile()">Compile</button>
+                    <button id="clang-save" onclick="saveWasm()">Save</button>
+                    <span id="clang-status"></span>
+                    <button id="clang-reboot" class="right-button" onclick="clang.reboot()">Reboot</button>
+                </div>
+                <pre id="clang-io" class="io"></pre>
+            </div>
+            <div id="pane-runtime" class="process split split-horizontal">
+                <div class="controls">
+                    <button id="runtime-run" onclick="run()">Run</button>
+                    <span id="runtime-status"></span>
+                    <button id="runtime-reboot" class="right-button" onclick="runtime.reboot()">Reboot</button>
+                </div>
+                <pre id="runtime-io" class="io"></pre>
+            </div>
+        </div>
     </div>
 
+    <script src="split.js/split.min.js"></script>
+    <script src="monaco-editor/min/vs/loader.js"></script>
+    <script type='text/javascript' src='process-manager.js'></script>
     <script type='text/javascript'>
-        let inputElement = document.getElementById('input');
-        let outputElement = document.getElementById('output');
-        let statusElement = document.getElementById('status');
-        let ready = false;
+        let exampleCode = `// Enter code here (C only for now)
 
-        function format() {
-            if (ready)
-                outputElement.value = Module.formatCode(inputElement.value);
-        }
-        inputElement.addEventListener('input', format);
+// #include not supported yet
+int puts(const char*);
 
-        var Module = {
-            noExitRuntime: true,
+int main() {
+    for (int i = 0; i < 3; ++i)
+      puts("Hello\\n");
+}
+`
 
-            print(text) {
-                console.log(text);
-            },
+        Split(['#pane-top', '#pane-bottom'], { direction: 'vertical' });
+        Split(['#pane-source', '#pane-clang-format']);
+        Split(['#pane-clang', '#pane-runtime']);
 
-            printErr(text) {
-                console.error(text);
-            },
+        let editor;
+        let formatEditor;
+        let editorContent = exampleCode;
+        let prevEditorContent = '';
 
-            setStatus(text) {
-                if (!text) {
-                    text = 'Ready';
-                    if (!ready) {
-                        ready = true;
-                        format();
-                    }
-                }
-                text = 'status: ' + text + "\n";
-                console.log(text)
-                statusElement.value = text;
-            },
+        require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            editor = monaco.editor.create(document.getElementById('pane-source'), {
+                value: exampleCode,
+                language: 'cpp',
+                automaticLayout: true,
+            });
+            formatEditor = monaco.editor.create(document.getElementById('clang-format-result'), {
+                language: 'cpp',
+                automaticLayout: true,
+                readOnly: true,
+            });
 
-            totalDependencies: 0,
-            monitorRunDependencies(left) {
-                this.totalDependencies = Math.max(this.totalDependencies, left);
-                Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies - left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+            let changeTimer = -1;
+            function codeChanged() {
+                changeTimer = -1;
+                editorContent = editor.getValue();
+                updateUI();
             }
-        };
+            editor.onDidChangeModelContent(e => {
+                if (changeTimer !== -1)
+                    clearTimeout(changeTimer);
+                changeTimer = setTimeout(codeChanged, 100);
+            });
 
-        Module.setStatus('Downloading...');
+            updateUI();
+        });
 
-        window.onerror = function (event) {
-            Module.setStatus('Exception thrown, see JavaScript console');
-            Module.setStatus = function (text) {
-                if (text) Module.printErr('[post-exception status] ' + text);
+        class ProcessUI {
+            constructor(name) {
+                this.name = name;
+                this.runButton = document.getElementById(name + '-run');
+                this.statusElem = document.getElementById(name + '-status');
+                this.ioElem = document.getElementById(name + '-io');
+                this.state = '';
+                this.wasReady = false;
+
+                this.process = new ProcessManager(name, name)
+                this.process.setStatus = this.setStatus.bind(this);
+                this.process.print = this.print.bind(this);
+                this.process.printErr = this.printErr.bind(this);
+            }
+
+            reboot() {
+                this.process.terminate();
+                if (this.ioElem)
+                    this.ioElem.textContent = '';
+                this.process.start();
+            }
+
+            setStatus(state, status) {
+                console.log(this.name, state + ':', status);
+                this.statusElem.textContent = status;
+                this.state = state;
+                if (state == 'ready')
+                    this.statusElem.style.color = 'green';
+                else if (state == 'error')
+                    this.statusElem.style.color = 'red';
+                else
+                    this.statusElem.style.color = 'blue';
+                updateUI();
             };
-        };
-    </script>
-    <script>
-        let script = document.createElement('script');
-        script.src = "clang-format.js";
-        document.body.appendChild(script);
-    </script>
 
+            print({ text }) {
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stdout:', text);
+            };
+
+            printErr({ text }) {
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stderr:', text);
+            };
+        } // class ProcessUI
+
+        let clangFormat = new ProcessUI('clang-format');
+        let clang = new ProcessUI('clang');
+        let runtime = new ProcessUI('runtime');
+        let saveButton = document.getElementById('clang-save');
+        let clangOutput = null;
+
+        clangFormat.process.workerFormatDone = args => {
+            clangFormat.process.setStatus('ready', 'Ready');
+            formatEditor.setValue(args.result);
+        };
+
+        clang.process.print({ text: 'Preparing clang...\n\n' });
+        clang.process.workerCompileDone = args => {
+            if (args.result)
+                clang.ioElem.textContent += 'wasm size: ' + args.result.length + '\n';
+            clangOutput = args.result;
+            clang.process.setStatus('ready', 'Ready');
+        };
+
+        runtime.process.print({ text: 'Preparing runtime...\n\n' });
+        runtime.process.workerRunDone = args => {
+            runtime.process.setStatus('ready', 'Ready');
+        };
+
+        clangFormat.process.start();
+        clang.process.start();
+        runtime.process.start();
+
+        function rebootClangFormat() {
+            prevEditorContent = '';
+            if (formatEditor)
+                formatEditor.setValue('');
+            clangFormat.reboot();
+        }
+
+        function compile() {
+            if (clang.state !== 'ready')
+                return;
+            clangOutput = null;
+            clang.process.setStatus('busy', 'Running');
+            clang.ioElem.textContent = '';
+            clang.process.worker.postMessage({
+                function: 'compile',
+                code: editor.getValue(),
+            });
+        }
+
+        function saveWasm() {
+            let blob = new Blob([clangOutput], {
+                "type": "application/binary"
+            });
+            let a = document.createElement("a");
+            a.download = 'user.wasm';
+            a.href = URL.createObjectURL(blob);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function run() {
+            runtime.ioElem.textContent = '';
+            runtime.process.setStatus('busy', 'Running');
+            runtime.process.worker.postMessage({
+                function: 'run',
+                wasmBinary: clangOutput,
+            });
+        }
+
+        function updateUI() {
+            let clangReady = editor && clang.state === 'ready';
+            clang.runButton.disabled = !clangReady;
+            saveButton.disabled = !clangOutput;
+            if (clangReady && !clang.wasReady) {
+                clang.wasReady = true;
+                clang.ioElem.textContent = 'Click the compile button\n\n';
+            }
+
+            let runtimeReady = runtime.state === 'ready';
+            runtime.runButton.disabled = !runtimeReady || !clangOutput;
+            if (runtimeReady && !runtime.wasReady) {
+                runtime.wasReady = true;
+                runtime.ioElem.textContent = 'Click the compile button then the run button\n\n';
+            }
+
+            if (clangFormat.state === 'ready' && editorContent !== prevEditorContent && editor && formatEditor) {
+                prevEditorContent = editorContent;
+                clangFormat.process.setStatus('busy', 'Running');
+                clangFormat.process.worker.postMessage({
+                    function: 'format',
+                    code: editor.getValue(),
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>
