@@ -2,6 +2,9 @@
 
 import argparse, os, subprocess, sys
 
+useTag = 'cib-001'      # --clone and --checkout retrieve this tag
+#useTag = None          # --clone and --checkout retrieve branches
+
 llvmBuildType = 'Release'
 llvmNo86BuildType = 'Release'
 llvmBrowserBuildType = 'Release'
@@ -134,6 +137,8 @@ def clone():
     for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
         if os.path.isdir(path):
             continue
+        if useTag and isPushable:
+            branch = useTag
         dir = os.path.dirname(path)
         base = os.path.basename(path)
         run('mkdir -p ' + dir)
@@ -154,12 +159,31 @@ def pull():
         else:
             run('cd ' + path + ' && git pull --no-edit')
 
+def checkout():
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
+        if useTag and isPushable:
+            branch = useTag
+        if getOutput('cd ' + path + ' && git status --porcelain --untracked-files=no'):
+            print('build.py: skip', path)
+        else:
+            run('cd ' + path + ' && git checkout -q ' + branch)
+
 def merge():
     for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
         if getOutput('cd ' + path + ' && git status --porcelain --untracked-files=no'):
             print('build.py: skip', path)
         else:
             run('cd ' + path + ' && git fetch upstream && git merge --no-edit upstream/' + upstreamBranch)
+
+def createTags():
+    run('git tag -a ' + args.tag + ' -m "' + args.tag + '"')
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
+        if isPushable:
+            run('cd ' + path + ' && git tag -a ' + args.tag + ' -m "' + args.tag + '"')
+    run('git push origin ' + args.tag)
+    for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
+        if isPushable:
+            run('cd ' + path + ' && git push origin ' + args.tag)
 
 def push():
     for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
@@ -367,42 +391,44 @@ def http():
         pass
 
 commands = [
-    ('B', 'bash',           bash,           False,  "Run bash with environment set up"),
-    ('f', 'format',         format,         False,  "Format sources"),
-    ('c', 'clone',          clone,          True,   "Clone repos. Doesn't touch ones which already exist."),
-    ('s', 'status',         status,         False,  "git status"),
-    ('',  'pull',           pull,           False,  "git pull"),
-    ('',  'merge',          merge,          False,  "git merge upstream"),
-    ('',  'push',           push,           False,  "git push"),
-    ('',  'cmake',          cmake,          False,  "Build cmake if not already built"),
-    ('l', 'llvm',           llvm,           True,   "Build llvm if not already built"),
-    ('',  'no86',           llvmNo86,       False,  "Build llvm without X86 if not already built"),
-    ('',  'fastcomp',       fastcomp,       False,  "Build fastcomp if not already built"),
-    ('',  'wabt',           wabt,           False,  "Build wabt if not already built"),
-    ('y', 'binaryen',       binaryen,       True,   "Build binaryen if not already built"),
-    ('e', 'emscripten',     emscripten,     True,   "Prepare emscripten by compiling say-hello.cpp"),
-    ('b', 'llvm-browser',   llvmBrowser,    True,   "Build llvm in-browser components"),
-    ('d', 'dist',           dist,           True,   "Fill dist/"),
-    ('1', 'app-1',          appClangFormat, True,   "Build app 1: clang-format"),
-    ('2', 'app-2',          appClang,       True,   "Build app 2: clang"),
-    ('n', 'app-n',          appClangNative, False,  "Build app 2: clang, native"),
-    ('3', 'app-3',          appRuntime,     True,   "Build app 3: runtime"),
-    ('H', 'http',           http,           False,  "http-server"),
+    ('B', 'bash',           bash,           'store_true',   False,  "Run bash with environment set up"),
+    ('f', 'format',         format,         'store_true',   False,  "Format sources"),
+    ('c', 'clone',          clone,          'store_true',   True,   "Clone repos. Doesn't touch ones which already exist."),
+    ('s', 'status',         status,         'store_true',   False,  "git status"),
+    ('',  'pull',           pull,           'store_true',   False,  "git pull"),
+    ('',  'checkout',       checkout,       'store_true',   False,  "git checkout"),
+    ('',  'merge',          merge,          'store_true',   False,  "git merge upstream"),
+    ('',  'tag',            createTags,     'store',        False,  "create and push git tags"),
+    ('',  'push',           push,           'store_true',   False,  "git push"),
+    ('',  'cmake',          cmake,          'store_true',   False,  "Build cmake if not already built"),
+    ('l', 'llvm',           llvm,           'store_true',   True,   "Build llvm if not already built"),
+    ('',  'no86',           llvmNo86,       'store_true',   False,  "Build llvm without X86 if not already built"),
+    ('',  'fastcomp',       fastcomp,       'store_true',   False,  "Build fastcomp if not already built"),
+    ('',  'wabt',           wabt,           'store_true',   False,  "Build wabt if not already built"),
+    ('y', 'binaryen',       binaryen,       'store_true',   True,   "Build binaryen if not already built"),
+    ('e', 'emscripten',     emscripten,     'store_true',   True,   "Prepare emscripten by compiling say-hello.cpp"),
+    ('b', 'llvm-browser',   llvmBrowser,    'store_true',   True,   "Build llvm in-browser components"),
+    ('d', 'dist',           dist,           'store_true',   True,   "Fill dist/"),
+    ('1', 'app-1',          appClangFormat, 'store_true',   True,   "Build app 1: clang-format"),
+    ('2', 'app-2',          appClang,       'store_true',   True,   "Build app 2: clang"),
+    ('n', 'app-n',          appClangNative, 'store_true',   False,  "Build app 2: clang, native"),
+    ('3', 'app-3',          appRuntime,     'store_true',   True,   "Build app 3: runtime"),
+    ('H', 'http',           http,           'store_true',   False,  "http-server"),
 ]
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
-for (flag, command, function, inAll, help) in commands:
+for (flag, command, function, action, inAll, help) in commands:
     if inAll:
         help = '(*) ' + help
     if flag:
-        parser.add_argument('-' + flag, '--' + command, action='store_true', help=help, dest=command)
+        parser.add_argument('-' + flag, '--' + command, action=action, help=help, dest=command)
     else:
-        parser.add_argument('--' + command, action='store_true', help=help, dest=command)
+        parser.add_argument('--' + command, action=action, help=help, dest=command)
 args = parser.parse_args()
 
 haveCommand = False
-for (flag, command, function, inAll, help) in commands:
+for (flag, command, function, action, inAll, help) in commands:
     if getattr(args, command) or inAll and args.all:
         haveCommand = True
         function()
