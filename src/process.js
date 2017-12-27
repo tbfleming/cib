@@ -4,7 +4,52 @@ function setStatus(state, status) {
     postMessage({ function: 'workerSetStatus', state, status });
 }
 
+async function setStatusAsync(state, status) {
+    setStatus(state, status);
+    return new Promise(resolve => setTimeout(resolve, 0));
+}
+
 function terminate() { }
+
+function checkCache(name, hash) {
+    return new Promise(resolve => {
+        let result = {
+            db: null,
+            module: null,
+        };
+        let request = indexedDB.open('module-cache', 1);
+        request.onupgradeneeded = _ => {
+            let db = request.result;
+            let store = db.createObjectStore('module-cache');
+        };
+        request.onsuccess = _ => {
+            result.db = request.result;
+            let store = result.db.transaction(['module-cache'], 'readonly').objectStore('module-cache');
+            let read = store.get(name);
+            read.onsuccess = _ => {
+                if (read.result) {
+                    let h1 = new Uint32Array(hash);
+                    let h2 = new Uint32Array(read.result.hash);
+                    if (h1.length === h2.length) {
+                        let matched = true;
+                        for (let i = 0; i < h1.length; ++i)
+                            if (h1[i] !== h2[i])
+                                matched = false;
+                        if (matched)
+                            result.module = read.result.module;
+                    }
+                }
+                resolve(result);
+            };
+            read.onerror = _ => {
+                resolve(result);
+            };
+        };
+        request.onerror = _ => {
+            resolve(result);
+        };
+    });
+} // checkCache
 
 let emModule = {
     noInitialRun: true,
@@ -40,22 +85,43 @@ let emModule = {
         }
     },
 
+    async compileWasm() {
+        let hash, cacheResult;
+        if (crypto.subtle) {
+            hash = await crypto.subtle.digest('SHA-512', this.wasmBinary);
+            cacheResult = await checkCache(this.moduleName, hash);
+        } else {
+            console.log(this.moduleName, "crypto.subtle missing; can't put compiled module in object store");
+        }
+        if (cacheResult && cacheResult.module) {
+            this.wasmModule = cacheResult.module;
+            console.log(this.moduleName, 'Reusing module from cache');
+            return;
+        }
+        await setStatusAsync('init', 'Compiling ' + this.moduleName + '.wasm');
+        this.wasmModule = await WebAssembly.compile(this.wasmBinary);
+        if (cacheResult && cacheResult.db) {
+            let store = cacheResult.db.transaction(['module-cache'], 'readwrite').objectStore('module-cache');
+            try {
+                store.put({ hash, module: this.wasmModule }, this.moduleName);
+            } catch (e) {
+                console.log(this.moduleName, "Can't put compiled module in object store");
+            }
+        }
+    }, // compileWasm()   
+
     async instantiateWasmAsync(imports, successCallback) {
         try {
             this.instanciating = true;
-            if (!this.wasmModule) {
-                setStatus('init', "Compiling " + this.moduleName + ".wasm (cache disabled)");
-                this.wasmModule = await WebAssembly.compile(this.wasmBinary);
-            }
-            setStatus('init', 'Instanciating ' + this.moduleName + '.wasm');
+            await setStatusAsync('init', 'Instanciating ' + this.moduleName + '.wasm');
             imports.env.__environ = emModule._environ; // It looks like emscripten forgot to set this
             this.wasmInstance = await WebAssembly.instantiate(this.wasmModule, imports);
             this.instanciating = false;
-            setStatus('init', 'Initializing');
-            setTimeout(() => successCallback(this.wasmInstance), 0);
+            await setStatusAsync('init', 'Initializing');
+            successCallback(this.wasmInstance);
         } catch (e) {
             console.log(e.message);
-            setStatus('init', 'Error in startup');
+            await setStatusAsync('init', 'Error in startup');
             terminate();
         }
     },
@@ -74,16 +140,16 @@ let emModule = {
 };
 
 let commands = {
-    async start({ moduleName, wasmBinary, wasmModule }) {
+    async start({ moduleName, wasmBinary }) {
         try {
             importScripts(moduleName + '.js');
             emModule.moduleName = moduleName;
             emModule.wasmBinary = wasmBinary;
-            emModule.wasmModule = wasmModule;
+            await emModule.compileWasm();
             Module(emModule);
         } catch (e) {
             console.log(e.message);
-            setStatus('error', 'Error in startup');
+            await setStatusAsync('error', 'Error in startup');
             terminate();
         }
     },

@@ -386,7 +386,10 @@ def http():
         '../../src/wasm-tools.js ' +
         '.')
     try:
-        run('cd build/http && http-server -c-1')
+        if 'HTTP_SERVER' in os.environ:
+            run('cd build/http && ' + os.environ['HTTP_SERVER'])
+        else:
+            run('cd build/http && http-server -c-1')
     except KeyboardInterrupt:
         pass
 
