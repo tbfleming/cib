@@ -125,11 +125,11 @@
         let exampleCode = `// Enter code here (C only for now)
 
 // #include not supported yet
-int puts(const char*);
+int printf(const char*, ...);
 
 int main() {
-    for (int i = 0; i < 3; ++i)
-      puts("Hello\\n");
+    for (int i = 0; i < 256; ++i)
+        printf("hex:%02x dec:%3x\\n", i, i);
 }
 `
 
@@ -242,6 +242,10 @@ int main() {
         runtime.process.print({ text: 'Preparing runtime...\n\n' });
         runtime.process.workerRunDone = args => {
             runtime.process.setStatus('ready', 'Ready');
+        };
+        runtime.process.workerDebugReplaceBinary = args => {
+            clang.ioElem.textContent += 'new size:  ' + args.newBinary.length + '\n';
+            clangOutput = args.newBinary;
         };
 
         clangFormat.process.start();
