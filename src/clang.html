@@ -126,8 +126,21 @@
 
 // #include not supported yet
 int printf(const char*, ...);
+void* alloca(unsigned);
+
+extern void* __info_stack_begin(void);
+extern void* __info_stack_end(void);
+extern void* __info_data_begin(void);
+extern void* __info_data_end(void);
 
 int main() {
+    void* dummy1 = alloca(0x100);
+    void* dummy2 = alloca(0x100);
+    void* dummy3 = alloca(0x100);
+    printf("stack:  [%p-%p), size:%04x\\n", __info_stack_begin(), __info_stack_end(), __info_stack_end() - __info_stack_begin());
+    printf("alloca: [%p-%p) [%p-%p) [%p-%p)\\n", dummy1, dummy1 + 0x100, dummy2, dummy2 + 0x100, dummy3, dummy3 + 0x100);
+    printf("data:   [%p-%p), size:%04x\\n", __info_data_begin(), __info_data_end(), __info_data_end() - __info_data_begin());
+
     for (int i = 0; i < 256; ++i)
         printf("hex:%02x dec:%3d\\n", i, i);
 }

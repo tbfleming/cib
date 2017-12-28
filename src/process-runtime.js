@@ -11,13 +11,15 @@ commands.run = async function ({ wasmBinary }) {
         let mainExports = emModule.wasmInstance.exports;
         let memory = emModule.wasmMemory;
         let table = emModule.wasmTable;
-        let stack = mainExports.malloc(8 * 1024 * 1024);
+        let stackSize = 8 * 1024 * 1024;
+        let stackBegin = mainExports.malloc(stackSize);
+        let stackEnd = stackBegin + stackSize;
 
         let { standardSections, relocs, linking } = getSegments(binary);
         let { numGlobalImports, spGlobalIndex } = fixSPImport(binary, standardSections);
         let globals = getGlobals(binary, standardSections);
         let newSpIndex = numGlobalImports + globals.length;
-        globals.push({ type: 0x7f, mutability: 1, initExpr: createInitExpr32(stack) });
+        globals.push({ type: 0x7f, mutability: 1, initExpr: createInitExpr32(stackEnd) });
         let bodies = getCode(binary, standardSections);
         let { dataSegments, endDataOffset } = getData(binary, standardSections);
         let memoryBase = mainExports.malloc(endDataOffset);
@@ -33,6 +35,13 @@ commands.run = async function ({ wasmBinary }) {
                 __linear_memory: memory,
                 __indirect_function_table: table,
                 __stack_pointer: 0, // dummy value, not used
+
+                // __info_*: not used by runtime, but available to user code.
+                //           functions instead of constants to work around a codegen issue.
+                __info_stack_begin: () => stackBegin,
+                __info_stack_end: () => stackEnd,
+                __info_data_begin: () => memoryBase,
+                __info_data_end: () => memoryBase + endDataOffset,
             },
         };
         let module = await WebAssembly.compile(newBinary);
