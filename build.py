@@ -104,14 +104,14 @@ def run(args):
     print('build.py:', args)
     if subprocess.call(args, shell=True):
         print('build.py: exiting because of error')
-        sys.exit()
+        sys.exit(1)
 
 def getOutput(args):
     print('build.py:', args)
     result = subprocess.run(args, shell=True, stdout=subprocess.PIPE)
     if result.returncode:
         print('build.py: exiting because of error')
-        sys.exit()
+        sys.exit(1)
     print(result.stdout.decode("utf-8"), end='')
     return result.stdout
 
@@ -280,6 +280,16 @@ def emscripten():
         run('mkdir -p build/dummy')
         run('cd build/dummy && em++ ../../src/say-hello.cpp -o say-hello.html')
 
+def tools():
+    if not os.path.isdir('build/tools'):
+        run('mkdir -p build/tools')
+        run('cd build/tools &&' +
+            ' CXX=' + llvmInstall + 'bin/clang++' +
+            ' cmake -G "Ninja"' +
+            ' -DCMAKE_BUILD_TYPE=Debug' +
+            ' ../../src')
+    run('cd build/tools && ninja combine-data')
+
 def llvmBrowser():
     if not os.path.isdir(llvmBrowserBuild):
         run('mkdir -p ' + llvmBrowserBuild)
@@ -350,7 +360,9 @@ def appClang():
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
     app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
-    run('cp -au ' + browserClangBuild + 'clang.js ' + browserClangBuild + 'clang.wasm ' + browserClangBuild + 'clang.data dist')
+    run('cd ' + browserClangBuild + ' && ../tools/combine-data clang.wasm clang-combined.wasm')
+    run('cp -au ' + browserClangBuild + 'clang.js ' + browserClangBuild + 'clang.data dist')
+    run('cp -au ' + browserClangBuild + 'clang-combined.wasm dist/clang.wasm')
 
 def appClangNative():
     if not os.path.isdir('build/apps-native'):
@@ -377,7 +389,6 @@ def http():
         browserClangFormatBuild + 'clang-format.* ' +
         browserClangBuild + 'clang.data ' +
         browserClangBuild + 'clang.js ' +
-        browserClangBuild + 'clang.wasm ' +
         browserRuntimeBuild + 'runtime.* ' +
         '../../dist/monaco-editor ' +
         '../../dist/split.js ' +
@@ -385,6 +396,7 @@ def http():
         '../../src/process*.js ' +
         '../../src/wasm-tools.js ' +
         '.')
+    run('cd build/http && ln -sf ' + browserClangBuild + 'clang-combined.wasm clang.wasm')
     try:
         if 'HTTP_SERVER' in os.environ:
             run('cd build/http && ' + os.environ['HTTP_SERVER'])
@@ -410,6 +422,7 @@ commands = [
     ('',  'wabt',           wabt,           'store_true',   False,  "Build wabt if not already built"),
     ('y', 'binaryen',       binaryen,       'store_true',   True,   "Build binaryen if not already built"),
     ('e', 'emscripten',     emscripten,     'store_true',   True,   "Prepare emscripten by compiling say-hello.cpp"),
+    ('t', 'tools',          tools,          'store_true',   True,   "Build tools if not already built"),
     ('b', 'llvm-browser',   llvmBrowser,    'store_true',   True,   "Build llvm in-browser components"),
     ('d', 'dist',           dist,           'store_true',   True,   "Fill dist/"),
     ('1', 'app-1',          appClangFormat, 'store_true',   True,   "Build app 1: clang-format"),

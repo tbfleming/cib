@@ -68,11 +68,14 @@ set(LLVM_LIBRARIES
     LLVMSupport
 )
 
-# https://gitlab.kitware.com/cmake/cmake/issues/15826
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s SAFE_HEAP=1 -s DEMANGLE_SUPPORT=1")
+IF(EMSCRIPTEN)
+    # https://gitlab.kitware.com/cmake/cmake/issues/15826
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s SAFE_HEAP=1 -s DEMANGLE_SUPPORT=1")
+ENDIF(EMSCRIPTEN)
 
 add_compile_options(-std=c++17)
 
+add_executable (combine-data combine-data.cpp)
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp)
 add_executable (runtime runtime.cpp)
