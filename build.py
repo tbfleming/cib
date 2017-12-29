@@ -2,8 +2,10 @@
 
 import argparse, os, subprocess, sys
 
-useTag = 'cib-001'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-001'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
+
+useFastcomp = False
 
 llvmBuildType = 'Release'
 llvmNo86BuildType = 'Release'
@@ -29,9 +31,9 @@ binaryenBuild = root + 'build/binaryen-' + binaryenBuildType + '/'
 binaryenInstall = root + 'install/binaryen-' + binaryenBuildType + '/'
 wabtInstall = root + 'repos/wabt/bin/'
 optimizerBuild = root + 'build/optimizer-' + optimizerBuildType + '/'
-browserClangFormatBuild = root + 'build/apps-browser-' + browserClangFormatBuildType + '/'
-browserClangBuild = root + 'build/apps-browser-' + browserClangBuildType + '/'
-browserRuntimeBuild = root + 'build/apps-browser-' + browserRuntimeBuildType + '/'
+browserClangFormatBuild = root + 'build/clang-format-browser-' + browserClangFormatBuildType + '/'
+browserClangBuild = root + 'build/clang-browser-' + browserClangBuildType + '/'
+browserRuntimeBuild = root + 'build/runtime-browser-' + browserRuntimeBuildType + '/'
 
 llvmBrowserTargets = [
     'clangAnalysis',
@@ -92,7 +94,7 @@ parallel = '-j ' + cores
 os.environ["PATH"] = os.pathsep.join([
     root + 'repos/emscripten',
     cmakeInstall + 'bin',
-    llvmInstall + 'bin',
+    (fastcompInstall if useFastcomp else llvmInstall) + 'bin',
     wabtInstall,
     binaryenInstall + 'bin',
     os.environ["PATH"],
@@ -166,7 +168,7 @@ def checkout():
         if getOutput('cd ' + path + ' && git status --porcelain --untracked-files=no'):
             print('build.py: skip', path)
         else:
-            run('cd ' + path + ' && git checkout -q ' + branch)
+            run('cd ' + path + ' && git fetch && git checkout -q ' + branch)
 
 def merge():
     for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
@@ -295,6 +297,15 @@ def llvmBrowser():
         run('mkdir -p ' + llvmBrowserBuild)
         run('cd ' + llvmBrowserBuild + ' && ' +
             'time -p emcmake cmake -G "Ninja"' +
+            ' -DCMAKE_CXX_FLAGS="' +
+            #' -s ASSERTIONS=2' +
+            #' -s STACK_OVERFLOW_CHECK=2' +
+            #' -s SAFE_HEAP=1' +
+            '"' +
+            #' -DLLVM_ENABLE_DUMP=ON' +
+            ' -DLLVM_ENABLE_ASSERTIONS=ON' +
+            #' -DLLVM_ENABLE_EXPENSIVE_CHECKS=ON' +
+            ' -DLLVM_ENABLE_BACKTRACES=ON' +
             ' -DCMAKE_INSTALL_PREFIX=' + llvmBrowserInstall + '' +
             ' -DCMAKE_BUILD_TYPE=' + llvmBrowserBuildType +
             ' -DLLVM_TARGETS_TO_BUILD=' +
@@ -418,7 +429,7 @@ commands = [
     ('',  'cmake',          cmake,          'store_true',   False,  "Build cmake if not already built"),
     ('l', 'llvm',           llvm,           'store_true',   True,   "Build llvm if not already built"),
     ('',  'no86',           llvmNo86,       'store_true',   False,  "Build llvm without X86 if not already built"),
-    ('',  'fastcomp',       fastcomp,       'store_true',   False,  "Build fastcomp if not already built"),
+    ('',  'fastcomp',       fastcomp,       'store_true',   useFastcomp, "Build fastcomp if not already built"),
     ('',  'wabt',           wabt,           'store_true',   False,  "Build wabt if not already built"),
     ('y', 'binaryen',       binaryen,       'store_true',   True,   "Build binaryen if not already built"),
     ('e', 'emscripten',     emscripten,     'store_true',   True,   "Prepare emscripten by compiling say-hello.cpp"),

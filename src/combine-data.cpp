@@ -98,9 +98,9 @@ auto transform(const vector<uint8_t>& binary) {
             while (skip < data.size() && !data[skip])
                 ++skip;
             newBinary.push_back(wasm_sec_data);
-            pushLeb5(newBinary, 22 + data.size() - skip); // payload_len
+            pushLeb5(newBinary, 18 + data.size() - skip); // payload_len
             pushLeb5(newBinary, 1);                       // count
-            pushLeb5(newBinary, 0);                       // index
+            newBinary.push_back(0);                       // index
             newBinary.push_back(0x41);                    // i32.const
             pushLeb5(newBinary, skip);                    // offset
             newBinary.push_back(0x0b);                    // end

@@ -123,10 +123,8 @@
     <script type='text/javascript' src='process-manager.js'></script>
     <script type='text/javascript'>
         let exampleCode = `// Enter code here (C only for now)
-
-// #include not supported yet
-int printf(const char*, ...);
-void* alloca(unsigned);
+#include<alloca.h>
+#include<stdio.h>
 
 extern void* __info_stack_begin(void);
 extern void* __info_stack_end(void);

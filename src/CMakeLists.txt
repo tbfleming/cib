@@ -111,6 +111,9 @@ IF(EMSCRIPTEN)
         "-s NO_EXIT_RUNTIME=1"
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
+        #"-s ASSERTIONS=2"
+        #"-s STACK_OVERFLOW_CHECK=2"
+        #"-s FS_LOG=1"
     )
 
     target_link_libraries(runtime PRIVATE
