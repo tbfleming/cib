@@ -238,7 +238,7 @@ Module['FS_createPath']('/usr/lib/libc/musl/arch/emscripten', 'bits', true, true
   }
 
  }
- loadPackage({"files": [{"audio": 0, "start": 0, "crunched": 0, "end": 35, "filename": "/usr/include/emscripten.h"}, {"audio": 0, "start": 35, "crunched": 0, "end": 10002, "filename": "/usr/include/KHR/khrplatform.h"}, {"audio": 0, "start": 10002, "crunched": 0, "end": 162472, "filename": "/usr/include/GLFW/glfw3.h"}, {"audio": 0, "start": 162472, "crunched": 0, "end": 196804, "filename": "/usr/include/GLES/gl.h"}, {"audio": 0, "start": 196804, "crunched": 0, "end": 260826, "filename": "/usr/include/GLES/glext.h"}, {"audio": 0, "start": 260826, "crunched": 0, "end": 261727, "filename": "/usr/include/GLES/glplatform.h"}, {"audio": 0, "start": 261727, "crunched": 0, "end": 262304, "filename": "/usr/include/GLES3/gl2ext.h"}, {"audio": 0, "start": 262304, "crunched": 0, "end": 263213, "filename": "/usr/include/GLES3/gl3platform.h"}, {"audio": 0, "start": 263213, "crunched": 0, "end": 370676, "filename": "/usr/include/GLES3/gl31.h"}, {"audio": 0, "start": 370676, "crunched": 0, "end": 499019, "filename": "/usr/include/GLES3/gl32.h"}, {"audio": 0, "start": 499019, "crunched": 0, "end": 581741, "filename": "/usr/include/GLES3/gl3.h"}, {"audio": 0, "start": 581741, "crunched": 0, "end": 582650, "filename": "/usr/include/GLES2/gl2platform.h"}, {"audio": 0, "start": 582650, "crunched": 0, "end": 775887, "filename": "/usr/include/GLES2/gl2ext.h"}, {"audio": 0, "start": 775887, "crunched": 0, "end": 819933, "filename": "/usr/include/GLES2/gl2.h"}, {"audio": 0, "start": 819933, "crunched": 0, "end": 842316, "filename": "/usr/include/SSE/smmintrin.h"}, {"audio": 0, "start": 842316, "crunched": 0, "end": 842733, "filename": "/usr/include/SSE/x86intrin.h"}, {"audio": 0, "start": 842733, "crunched": 0, "end": 909139, "filename": "/usr/include/SSE/emmintrin.h"}, {"audio": 0, "start": 909139, "crunched": 0, "end": 909324, "filename": "/usr/include/SSE/immintrin.h"}, {"audio": 0, "start": 909324, "crunched": 0, "end": 913982, "filename": "/usr/include/SSE/pmmintrin.h"}, {"audio": 0, "start": 913982, "crunched": 0, "end": 932002, "filename": "/usr/include/SSE/xmmintrin.h"}, {"audio": 0, "start": 932002, "crunched": 0, "end": 943972, "filename": "/usr/include/SSE/tmmintrin.h"}, {"audio": 0, "start": 943972, "crunched": 0, "end": 950310, "filename": "/usr/include/X11/Xmd.h"}, {"audio": 0, "start": 950310, "crunched": 0, "end": 971322, "filename": "/usr/include/X11/Xutil.h"}, {"audio": 0, "start": 971322, "crunched": 0, "end": 974077, "filename": "/usr/include/X11/keysym.h"}, {"audio": 0, "start": 974077, "crunched": 0, "end": 975644, "filename": "/usr/include/X11/XlibConf.h"}, {"audio": 0, "start": 975644, "crunched": 0, "end": 1006639, "filename": "/usr/include/X11/XKBlib.h"}, {"audio": 0, "start": 1006639, "crunched": 0, "end": 1010672, "filename": "/usr/include/X11/Xfuncproto.h"}, {"audio": 0, "start": 1010672, "crunched": 0, "end": 1178893, "filename": "/usr/include/X11/keysymdef.h"}, {"audio": 0, "start": 1178893, "crunched": 0, "end": 1181698, "filename": "/usr/include/X11/Xprotostr.h"}, {"audio": 0, "start": 1181698, "crunched": 0, "end": 1184816, "filename": "/usr/include/X11/cursorfont.h"}, {"audio": 0, "start": 1184816, "crunched": 0, "end": 1284404, "filename": "/usr/include/X11/Xlib.h"}, {"audio": 0, "start": 1284404, "crunched": 0, "end": 1322979, "filename": "/usr/include/X11/Xlibint.h"}, {"audio": 0, "start": 1322979, "crunched": 0, "end": 1379656, "filename": "/usr/include/X11/Xproto.h"}, {"audio": 0, "start": 1379656, "crunched": 0, "end": 1382771, "filename": "/usr/include/X11/Xosdefs.h"}, {"audio": 0, "start": 1382771, "crunched": 0, "end": 1384971, "filename": "/usr/include/X11/Xfuncs.h"}, {"audio": 0, "start": 1384971, "crunched": 0, "end": 1387489, "filename": "/usr/include/X11/Xatom.h"}, {"audio": 0, "start": 1387489, "crunched": 0, "end": 1407694, "filename": "/usr/include/X11/X.h"}, {"audio": 0, "start": 1407694, "crunched": 0, "end": 1425910, "filename": "/usr/include/X11/extensions/XKBstr.h"}, {"audio": 0, "start": 1425910, "crunched": 0, "end": 1427555, "filename": "/usr/include/X11/extensions/shm.h"}, {"audio": 0, "start": 1427555, "crunched": 0, "end": 1433626, "filename": "/usr/include/X11/extensions/extutil.h"}, {"audio": 0, "start": 1433626, "crunched": 0, "end": 1461867, "filename": "/usr/include/X11/extensions/XKB.h"}, {"audio": 0, "start": 1461867, "crunched": 0, "end": 1465602, "filename": "/usr/include/X11/extensions/XShm.h"}, {"audio": 0, "start": 1465602, "crunched": 0, "end": 1467257, "filename": "/usr/include/X11/extensions/Xext.h"}, {"audio": 0, "start": 1467257, "crunched": 0, "end": 1468073, "filename": "/usr/include/uuid/uuid.h"}, {"audio": 0, "start": 1468073, "crunched": 0, "end": 1552743, "filename": "/usr/include/GL/gl.h"}, {"audio": 0, "start": 1552743, "crunched": 0, "end": 2354846, "filename": "/usr/include/GL/glext.h"}, {"audio": 0, "start": 2354846, "crunched": 0, "end": 2355485, "filename": "/usr/include/GL/glut.h"}, {"audio": 0, "start": 2355485, "crunched": 0, "end": 2375414, "filename": "/usr/include/GL/glfw.h"}, {"audio": 0, "start": 2375414, "crunched": 0, "end": 2401595, "filename": "/usr/include/GL/freeglut_std.h"}, {"audio": 0, "start": 2401595, "crunched": 0, "end": 2418850, "filename": "/usr/include/GL/glu.h"}, {"audio": 0, "start": 2418850, "crunched": 0, "end": 2469588, "filename": "/usr/include/GL/glew.h"}, {"audio": 0, "start": 2469588, "crunched": 0, "end": 2474720, "filename": "/usr/include/SDL/SDL_version.h"}, {"audio": 0, "start": 2474720, "crunched": 0, "end": 2501694, "filename": "/usr/include/SDL/SDL_video.h"}, {"audio": 0, "start": 2501694, "crunched": 0, "end": 2503927, "filename": "/usr/include/SDL/SDL_gesture.h"}, {"audio": 0, "start": 2503927, "crunched": 0, "end": 2504866, "filename": "/usr/include/SDL/SDL_copying.h"}, {"audio": 0, "start": 2504866, "crunched": 0, "end": 2508717, "filename": "/usr/include/SDL/SDL_platform.h"}, {"audio": 0, "start": 2508717, "crunched": 0, "end": 2510822, "filename": "/usr/include/SDL/SDL_error.h"}, {"audio": 0, "start": 2510822, "crunched": 0, "end": 2514682, "filename": "/usr/include/SDL/SDL_cpuinfo.h"}, {"audio": 0, "start": 2514682, "crunched": 0, "end": 2517785, "filename": "/usr/include/SDL/SDL_config_wiz.h"}, {"audio": 0, "start": 2517785, "crunched": 0, "end": 2555618, "filename": "/usr/include/SDL/SDL_haptic.h"}, {"audio": 0, "start": 2555618, "crunched": 0, "end": 2557210, "filename": "/usr/include/SDL/SDL_config.h"}, {"audio": 0, "start": 2557210, "crunched": 0, "end": 2561280, "filename": "/usr/include/SDL/SDL_rect.h"}, {"audio": 0, "start": 2561280, "crunched": 0, "end": 2579303, "filename": "/usr/include/SDL/SDL_surface.h"}, {"audio": 0, "start": 2579303, "crunched": 0, "end": 2585412, "filename": "/usr/include/SDL/SDL_joystick.h"}, {"audio": 0, "start": 2585412, "crunched": 0, "end": 2588002, "filename": "/usr/include/SDL/SDL_input.h"}, {"audio": 0, "start": 2588002, "crunched": 0, "end": 2602939, "filename": "/usr/include/SDL/SDL_scancode.h"}, {"audio": 0, "start": 2602939, "crunched": 0, "end": 2607771, "filename": "/usr/include/SDL/SDL_config_macosx.h"}, {"audio": 0, "start": 2607771, "crunched": 0, "end": 2613771, "filename": "/usr/include/SDL/SDL_log.h"}, {"audio": 0, "start": 2613771, "crunched": 0, "end": 2623156, "filename": "/usr/include/SDL/SDL_atomic.h"}, {"audio": 0, "start": 2623156, "crunched": 0, "end": 2625135, "filename": "/usr/include/SDL/SDL_clipboard.h"}, {"audio": 0, "start": 2625135, "crunched": 0, "end": 2640163, "filename": "/usr/include/SDL/SDL_keycode.h"}, {"audio": 0, "start": 2640163, "crunched": 0, "end": 2642563, "filename": "/usr/include/SDL/SDL_config_minimal.h"}, {"audio": 0, "start": 2642563, "crunched": 0, "end": 2644676, "filename": "/usr/include/SDL/SDL_quit.h"}, {"audio": 0, "start": 2644676, "crunched": 0, "end": 2651788, "filename": "/usr/include/SDL/SDL_mouse.h"}, {"audio": 0, "start": 2651788, "crunched": 0, "end": 2652819, "filename": "/usr/include/SDL/COPYING"}, {"audio": 0, "start": 2652819, "crunched": 0, "end": 2673097, "filename": "/usr/include/SDL/SDL_stdinc.h"}, {"audio": 0, "start": 2673097, "crunched": 0, "end": 2676285, "filename": "/usr/include/SDL/SDL_timer.h"}, {"audio": 0, "start": 2676285, "crunched": 0, "end": 2677521, "filename": "/usr/include/SDL/SDL_opengles2.h"}, {"audio": 0, "start": 2677521, "crunched": 0, "end": 2681084, "filename": "/usr/include/SDL/SDL_config_nintendods.h"}, {"audio": 0, "start": 2681084, "crunched": 0, "end": 2687940, "filename": "/usr/include/SDL/SDL_hints.h"}, {"audio": 0, "start": 2687940, "crunched": 0, "end": 2691876, "filename": "/usr/include/SDL/SDL_config_iphoneos.h"}, {"audio": 0, "start": 2691876, "crunched": 0, "end": 2698493, "filename": "/usr/include/SDL/SDL_rwops.h"}, {"audio": 0, "start": 2698493, "crunched": 0, "end": 2701038, "filename": "/usr/include/SDL/SDL_power.h"}, {"audio": 0, "start": 2701038, "crunched": 0, "end": 2713938, "filename": "/usr/include/SDL/SDL_compat.h"}, {"audio": 0, "start": 2713938, "crunched": 0, "end": 2736810, "filename": "/usr/include/SDL/SDL_events.h"}, {"audio": 0, "start": 2736810, "crunched": 0, "end": 2747796, "filename": "/usr/include/SDL/SDL_gfxPrimitives.h"}, {"audio": 0, "start": 2747796, "crunched": 0, "end": 3384260, "filename": "/usr/include/SDL/SDL_opengl.h"}, {"audio": 0, "start": 3384260, "crunched": 0, "end": 3390835, "filename": "/usr/include/SDL/SDL_mutex.h"}, {"audio": 0, "start": 3390835, "crunched": 0, "end": 3418569, "filename": "/usr/include/SDL/SDL_mixer.h"}, {"audio": 0, "start": 3418569, "crunched": 0, "end": 3433264, "filename": "/usr/include/SDL/SDL_pixels.h"}, {"audio": 0, "start": 3433264, "crunched": 0, "end": 3434297, "filename": "/usr/include/SDL/SDL_types.h"}, {"audio": 0, "start": 3434297, "crunched": 0, "end": 3434480, "filename": "/usr/include/SDL/SDL_name.h"}, {"audio": 0, "start": 3434480, "crunched": 0, "end": 3435899, "filename": "/usr/include/SDL/close_code.h"}, {"audio": 0, "start": 3435899, "crunched": 0, "end": 3441014, "filename": "/usr/include/SDL/SDL.h"}, {"audio": 0, "start": 3441014, "crunched": 0, "end": 3448612, "filename": "/usr/include/SDL/SDL_config.h.in"}, {"audio": 0, "start": 3448612, "crunched": 0, "end": 3470984, "filename": "/usr/include/SDL/SDL_render.h"}, {"audio": 0, "start": 3470984, "crunched": 0, "end": 3473968, "filename": "/usr/include/SDL/SDL_rotozoom.h"}, {"audio": 0, "start": 3473968, "crunched": 0, "end": 3480200, "filename": "/usr/include/SDL/SDL_syswm.h"}, {"audio": 0, "start": 3480200, "crunched": 0, "end": 3483400, "filename": "/usr/include/SDL/SDL_config_pandora.h"}, {"audio": 0, "start": 3483400, "crunched": 0, "end": 3485932, "filename": "/usr/include/SDL/SDL_touch.h"}, {"audio": 0, "start": 3485932, "crunched": 0, "end": 3486009, "filename": "/usr/include/SDL/SDL_revision.h"}, {"audio": 0, "start": 3486009, "crunched": 0, "end": 3505957, "filename": "/usr/include/SDL/SDL_audio.h"}, {"audio": 0, "start": 3505957, "crunched": 0, "end": 3516668, "filename": "/usr/include/SDL/SDL_ttf.h"}, {"audio": 0, "start": 3516668, "crunched": 0, "end": 3521881, "filename": "/usr/include/SDL/SDL_config_windows.h"}, {"audio": 0, "start": 3521881, "crunched": 0, "end": 3527394, "filename": "/usr/include/SDL/SDL_image.h"}, {"audio": 0, "start": 3527394, "crunched": 0, "end": 3530374, "filename": "/usr/include/SDL/SDL_loadso.h"}, {"audio": 0, "start": 3530374, "crunched": 0, "end": 3532218, "filename": "/usr/include/SDL/SDL_blendmode.h"}, {"audio": 0, "start": 3532218, "crunched": 0, "end": 3532295, "filename": "/usr/include/SDL/SDL_revision.h.orig"}, {"audio": 0, "start": 3532295, "crunched": 0, "end": 3536257, "filename": "/usr/include/SDL/begin_code.h"}, {"audio": 0, "start": 3536257, "crunched": 0, "end": 3539646, "filename": "/usr/include/SDL/SDL_config_android.h"}, {"audio": 0, "start": 3539646, "crunched": 0, "end": 3545937, "filename": "/usr/include/SDL/SDL_endian.h"}, {"audio": 0, "start": 3545937, "crunched": 0, "end": 3547169, "filename": "/usr/include/SDL/SDL_opengles.h"}, {"audio": 0, "start": 3547169, "crunched": 0, "end": 3552165, "filename": "/usr/include/SDL/SDL_keyboard.h"}, {"audio": 0, "start": 3552165, "crunched": 0, "end": 3554484, "filename": "/usr/include/SDL/SDL_main.h"}, {"audio": 0, "start": 3554484, "crunched": 0, "end": 3560207, "filename": "/usr/include/SDL/SDL_shape.h"}, {"audio": 0, "start": 3560207, "crunched": 0, "end": 3565908, "filename": "/usr/include/SDL/SDL_thread.h"}, {"audio": 0, "start": 3565908, "crunched": 0, "end": 3574715, "filename": "/usr/include/SDL/SDL_assert.h"}, {"audio": 0, "start": 3574715, "crunched": 0, "end": 3581983, "filename": "/usr/include/AL/al.h"}, {"audio": 0, "start": 3581983, "crunched": 0, "end": 3584920, "filename": "/usr/include/AL/alc.h"}, {"audio": 0, "start": 3584920, "crunched": 0, "end": 3678576, "filename": "/usr/include/libcxx/__hash_table"}, {"audio": 0, "start": 3678576, "crunched": 0, "end": 3679213, "filename": "/usr/include/libcxx/ctgmath"}, {"audio": 0, "start": 3679213, "crunched": 0, "end": 3724852, "filename": "/usr/include/libcxx/__locale"}, {"audio": 0, "start": 3724852, "crunched": 0, "end": 3725919, "filename": "/usr/include/libcxx/__undef_min_max"}, {"audio": 0, "start": 3725919, "crunched": 0, "end": 3726546, "filename": "/usr/include/libcxx/ccomplex"}, {"audio": 0, "start": 3726546, "crunched": 0, "end": 3734626, "filename": "/usr/include/libcxx/wchar.h"}, {"audio": 0, "start": 3734626, "crunched": 0, "end": 3736315, "filename": "/usr/include/libcxx/__nullptr"}, {"audio": 0, "start": 3736315, "crunched": 0, "end": 3741446, "filename": "/usr/include/libcxx/errno.h"}, {"audio": 0, "start": 3741446, "crunched": 0, "end": 3801810, "filename": "/usr/include/libcxx/forward_list"}, {"audio": 0, "start": 3801810, "crunched": 0, "end": 3802455, "filename": "/usr/include/libcxx/tgmath.h"}, {"audio": 0, "start": 3802455, "crunched": 0, "end": 3828024, "filename": "/usr/include/libcxx/scoped_allocator"}, {"audio": 0, "start": 3828024, "crunched": 0, "end": 3829444, "filename": "/usr/include/libcxx/ctype.h"}, {"audio": 0, "start": 3829444, "crunched": 0, "end": 3830857, "filename": "/usr/include/libcxx/ctime"}, {"audio": 0, "start": 3830857, "crunched": 0, "end": 3839587, "filename": "/usr/include/libcxx/numeric"}, {"audio": 0, "start": 3839587, "crunched": 0, "end": 3840243, "filename": "/usr/include/libcxx/cerrno"}, {"audio": 0, "start": 3840243, "crunched": 0, "end": 3868580, "filename": "/usr/include/libcxx/utility"}, {"audio": 0, "start": 3868580, "crunched": 0, "end": 3872188, "filename": "/usr/include/libcxx/stdio.h"}, {"audio": 0, "start": 3872188, "crunched": 0, "end": 3873322, "filename": "/usr/include/libcxx/cfloat"}, {"audio": 0, "start": 3873322, "crunched": 0, "end": 3874124, "filename": "/usr/include/libcxx/stdbool.h"}, {"audio": 0, "start": 3874124, "crunched": 0, "end": 3877721, "filename": "/usr/include/libcxx/inttypes.h"}, {"audio": 0, "start": 3877721, "crunched": 0, "end": 3881214, "filename": "/usr/include/libcxx/LICENSE.TXT"}, {"audio": 0, "start": 3881214, "crunched": 0, "end": 3882541, "filename": "/usr/include/libcxx/float.h"}, {"audio": 0, "start": 3882541, "crunched": 0, "end": 3883123, "filename": "/usr/include/libcxx/ciso646"}, {"audio": 0, "start": 3883123, "crunched": 0, "end": 3883167, "filename": "/usr/include/libcxx/readme.txt"}, {"audio": 0, "start": 3883167, "crunched": 0, "end": 3928145, "filename": "/usr/include/libcxx/fstream"}, {"audio": 0, "start": 3928145, "crunched": 0, "end": 3928908, "filename": "/usr/include/libcxx/locale.h"}, {"audio": 0, "start": 3928908, "crunched": 0, "end": 4086330, "filename": "/usr/include/libcxx/type_traits"}, {"audio": 0, "start": 4086330, "crunched": 0, "end": 4289166, "filename": "/usr/include/libcxx/algorithm"}, {"audio": 0, "start": 4289166, "crunched": 0, "end": 4290060, "filename": "/usr/include/libcxx/climits"}, {"audio": 0, "start": 4290060, "crunched": 0, "end": 4296620, "filename": "/usr/include/libcxx/stdexcept"}, {"audio": 0, "start": 4296620, "crunched": 0, "end": 4316865, "filename": "/usr/include/libcxx/__tuple"}, {"audio": 0, "start": 4316865, "crunched": 0, "end": 4321352, "filename": "/usr/include/libcxx/stdlib.h"}, {"audio": 0, "start": 4321352, "crunched": 0, "end": 4323817, "filename": "/usr/include/libcxx/__sso_allocator"}, {"audio": 0, "start": 4323817, "crunched": 0, "end": 4335089, "filename": "/usr/include/libcxx/strstream"}, {"audio": 0, "start": 4335089, "crunched": 0, "end": 4367470, "filename": "/usr/include/libcxx/ostream"}, {"audio": 0, "start": 4367470, "crunched": 0, "end": 4419504, "filename": "/usr/include/libcxx/__bit_reference"}, {"audio": 0, "start": 4419504, "crunched": 0, "end": 4425776, "filename": "/usr/include/libcxx/cwchar"}, {"audio": 0, "start": 4425776, "crunched": 0, "end": 4427317, "filename": "/usr/include/libcxx/wctype.h"}, {"audio": 0, "start": 4427317, "crunched": 0, "end": 4430412, "filename": "/usr/include/libcxx/CREDITS.TXT"}, {"audio": 0, "start": 4430412, "crunched": 0, "end": 4508827, "filename": "/usr/include/libcxx/list"}, {"audio": 0, "start": 4508827, "crunched": 0, "end": 4509553, "filename": "/usr/include/libcxx/complex.h"}, {"audio": 0, "start": 4509553, "crunched": 0, "end": 4542717, "filename": "/usr/include/libcxx/bitset"}, {"audio": 0, "start": 4542717, "crunched": 0, "end": 4553232, "filename": "/usr/include/libcxx/__std_stream"}, {"audio": 0, "start": 4553232, "crunched": 0, "end": 4569452, "filename": "/usr/include/libcxx/ratio"}, {"audio": 0, "start": 4569452, "crunched": 0, "end": 4570342, "filename": "/usr/include/libcxx/cstdarg"}, {"audio": 0, "start": 4570342, "crunched": 0, "end": 4573832, "filename": "/usr/include/libcxx/cinttypes"}, {"audio": 0, "start": 4573832, "crunched": 0, "end": 4655416, "filename": "/usr/include/libcxx/unordered_map"}, {"audio": 0, "start": 4655416, "crunched": 0, "end": 4658261, "filename": "/usr/include/libcxx/initializer_list"}, {"audio": 0, "start": 4658261, "crunched": 0, "end": 4792480, "filename": "/usr/include/libcxx/valarray"}, {"audio": 0, "start": 4792480, "crunched": 0, "end": 4796727, "filename": "/usr/include/libcxx/__bsd_locale_fallbacks.h"}, {"audio": 0, "start": 4796727, "crunched": 0, "end": 4803246, "filename": "/usr/include/libcxx/__functional_base_03"}, {"audio": 0, "start": 4803246, "crunched": 0, "end": 4828675, "filename": "/usr/include/libcxx/ios"}, {"audio": 0, "start": 4828675, "crunched": 0, "end": 4890014, "filename": "/usr/include/libcxx/atomic"}, {"audio": 0, "start": 4890014, "crunched": 0, "end": 4890722, "filename": "/usr/include/libcxx/cstdbool"}, {"audio": 0, "start": 4890722, "crunched": 0, "end": 4916359, "filename": "/usr/include/libcxx/queue"}, {"audio": 0, "start": 4916359, "crunched": 0, "end": 4925484, "filename": "/usr/include/libcxx/new"}, {"audio": 0, "start": 4925484, "crunched": 0, "end": 4934296, "filename": "/usr/include/libcxx/__debug"}, {"audio": 0, "start": 4934296, "crunched": 0, "end": 4935096, "filename": "/usr/include/libcxx/csetjmp"}, {"audio": 0, "start": 4935096, "crunched": 0, "end": 4998426, "filename": "/usr/include/libcxx/iterator"}, {"audio": 0, "start": 4998426, "crunched": 0, "end": 5003419, "filename": "/usr/include/libcxx/typeinfo"}, {"audio": 0, "start": 5003419, "crunched": 0, "end": 5229175, "filename": "/usr/include/libcxx/random"}, {"audio": 0, "start": 5229175, "crunched": 0, "end": 5284553, "filename": "/usr/include/libcxx/unordered_set"}, {"audio": 0, "start": 5284553, "crunched": 0, "end": 5296572, "filename": "/usr/include/libcxx/module.modulemap"}, {"audio": 0, "start": 5296572, "crunched": 0, "end": 5308531, "filename": "/usr/include/libcxx/array"}, {"audio": 0, "start": 5308531, "crunched": 0, "end": 5327061, "filename": "/usr/include/libcxx/any"}, {"audio": 0, "start": 5327061, "crunched": 0, "end": 5328439, "filename": "/usr/include/libcxx/iostream"}, {"audio": 0, "start": 5328439, "crunched": 0, "end": 5329390, "filename": "/usr/include/libcxx/csignal"}, {"audio": 0, "start": 5329390, "crunched": 0, "end": 5331135, "filename": "/usr/include/libcxx/cctype"}, {"audio": 0, "start": 5331135, "crunched": 0, "end": 5441927, "filename": "/usr/include/libcxx/vector"}, {"audio": 0, "start": 5441927, "crunched": 0, "end": 5591102, "filename": "/usr/include/libcxx/locale"}, {"audio": 0, "start": 5591102, "crunched": 0, "end": 5696532, "filename": "/usr/include/libcxx/deque"}, {"audio": 0, "start": 5696532, "crunched": 0, "end": 5701193, "filename": "/usr/include/libcxx/string.h"}, {"audio": 0, "start": 5701193, "crunched": 0, "end": 5747317, "filename": "/usr/include/libcxx/set"}, {"audio": 0, "start": 5747317, "crunched": 0, "end": 5748302, "filename": "/usr/include/libcxx/clocale"}, {"audio": 0, "start": 5748302, "crunched": 0, "end": 5928921, "filename": "/usr/include/libcxx/memory"}, {"audio": 0, "start": 5928921, "crunched": 0, "end": 5959173, "filename": "/usr/include/libcxx/__config"}, {"audio": 0, "start": 5959173, "crunched": 0, "end": 6017208, "filename": "/usr/include/libcxx/variant"}, {"audio": 0, "start": 6017208, "crunched": 0, "end": 6057721, "filename": "/usr/include/libcxx/limits"}, {"audio": 0, "start": 6057721, "crunched": 0, "end": 6087958, "filename": "/usr/include/libcxx/string_view"}, {"audio": 0, "start": 6087958, "crunched": 0, "end": 6089214, "filename": "/usr/include/libcxx/stddef.h"}, {"audio": 0, "start": 6089214, "crunched": 0, "end": 6093619, "filename": "/usr/include/libcxx/cstdio"}, {"audio": 0, "start": 6093619, "crunched": 0, "end": 6095948, "filename": "/usr/include/libcxx/CMakeLists.txt"}, {"audio": 0, "start": 6095948, "crunched": 0, "end": 6103423, "filename": "/usr/include/libcxx/condition_variable"}, {"audio": 0, "start": 6103423, "crunched": 0, "end": 6121674, "filename": "/usr/include/libcxx/iomanip"}, {"audio": 0, "start": 6121674, "crunched": 0, "end": 6124459, "filename": "/usr/include/libcxx/cstdint"}, {"audio": 0, "start": 6124459, "crunched": 0, "end": 6169749, "filename": "/usr/include/libcxx/complex"}, {"audio": 0, "start": 6169749, "crunched": 0, "end": 6171337, "filename": "/usr/include/libcxx/cfenv"}, {"audio": 0, "start": 6171337, "crunched": 0, "end": 6172126, "filename": "/usr/include/libcxx/setjmp.h"}, {"audio": 0, "start": 6172126, "crunched": 0, "end": 6174652, "filename": "/usr/include/libcxx/cstring"}, {"audio": 0, "start": 6174652, "crunched": 0, "end": 6176660, "filename": "/usr/include/libcxx/__bsd_locale_defaults.h"}, {"audio": 0, "start": 6176660, "crunched": 0, "end": 6193065, "filename": "/usr/include/libcxx/mutex"}, {"audio": 0, "start": 6193065, "crunched": 0, "end": 6215307, "filename": "/usr/include/libcxx/__split_buffer"}, {"audio": 0, "start": 6215307, "crunched": 0, "end": 6223130, "filename": "/usr/include/libcxx/exception"}, {"audio": 0, "start": 6223130, "crunched": 0, "end": 6237922, "filename": "/usr/include/libcxx/__threading_support"}, {"audio": 0, "start": 6237922, "crunched": 0, "end": 6245793, "filename": "/usr/include/libcxx/iosfwd"}, {"audio": 0, "start": 6245793, "crunched": 0, "end": 6294957, "filename": "/usr/include/libcxx/istream"}, {"audio": 0, "start": 6294957, "crunched": 0, "end": 6309309, "filename": "/usr/include/libcxx/shared_mutex"}, {"audio": 0, "start": 6309309, "crunched": 0, "end": 6312127, "filename": "/usr/include/libcxx/typeindex"}, {"audio": 0, "start": 6312127, "crunched": 0, "end": 6383753, "filename": "/usr/include/libcxx/future"}, {"audio": 0, "start": 6383753, "crunched": 0, "end": 6396752, "filename": "/usr/include/libcxx/thread"}, {"audio": 0, "start": 6396752, "crunched": 0, "end": 6409683, "filename": "/usr/include/libcxx/__mutex_base"}, {"audio": 0, "start": 6409683, "crunched": 0, "end": 6629215, "filename": "/usr/include/libcxx/regex"}, {"audio": 0, "start": 6629215, "crunched": 0, "end": 6647537, "filename": "/usr/include/libcxx/__functional_base"}, {"audio": 0, "start": 6647537, "crunched": 0, "end": 6661765, "filename": "/usr/include/libcxx/streambuf"}, {"audio": 0, "start": 6661765, "crunched": 0, "end": 6741262, "filename": "/usr/include/libcxx/functional"}, {"audio": 0, "start": 6741262, "crunched": 0, "end": 6741266, "filename": "/usr/include/libcxx/__libcpp_version"}, {"audio": 0, "start": 6741266, "crunched": 0, "end": 6892371, "filename": "/usr/include/libcxx/string"}, {"audio": 0, "start": 6892371, "crunched": 0, "end": 6895548, "filename": "/usr/include/libcxx/__refstring"}, {"audio": 0, "start": 6895548, "crunched": 0, "end": 6897226, "filename": "/usr/include/libcxx/cwctype"}, {"audio": 0, "start": 6897226, "crunched": 0, "end": 6968489, "filename": "/usr/include/libcxx/map"}, {"audio": 0, "start": 6968489, "crunched": 0, "end": 7009763, "filename": "/usr/include/libcxx/chrono"}, {"audio": 0, "start": 7009763, "crunched": 0, "end": 7048240, "filename": "/usr/include/libcxx/optional"}, {"audio": 0, "start": 7048240, "crunched": 0, "end": 7048786, "filename": "/usr/include/libcxx/cassert"}, {"audio": 0, "start": 7048786, "crunched": 0, "end": 7101946, "filename": "/usr/include/libcxx/tuple"}, {"audio": 0, "start": 7101946, "crunched": 0, "end": 7102964, "filename": "/usr/include/libcxx/__config_site.in"}, {"audio": 0, "start": 7102964, "crunched": 0, "end": 7105002, "filename": "/usr/include/libcxx/stdint.h"}, {"audio": 0, "start": 7105002, "crunched": 0, "end": 7203233, "filename": "/usr/include/libcxx/__tree"}, {"audio": 0, "start": 7203233, "crunched": 0, "end": 7236544, "filename": "/usr/include/libcxx/sstream"}, {"audio": 0, "start": 7236544, "crunched": 0, "end": 7264419, "filename": "/usr/include/libcxx/__string"}, {"audio": 0, "start": 7264419, "crunched": 0, "end": 7265565, "filename": "/usr/include/libcxx/cstddef"}, {"audio": 0, "start": 7265565, "crunched": 0, "end": 7309640, "filename": "/usr/include/libcxx/__functional_03"}, {"audio": 0, "start": 7309640, "crunched": 0, "end": 7332186, "filename": "/usr/include/libcxx/system_error"}, {"audio": 0, "start": 7332186, "crunched": 0, "end": 7352629, "filename": "/usr/include/libcxx/codecvt"}, {"audio": 0, "start": 7352629, "crunched": 0, "end": 7357313, "filename": "/usr/include/libcxx/cstdlib"}, {"audio": 0, "start": 7357313, "crunched": 0, "end": 7366869, "filename": "/usr/include/libcxx/stack"}, {"audio": 0, "start": 7366869, "crunched": 0, "end": 7412917, "filename": "/usr/include/libcxx/math.h"}, {"audio": 0, "start": 7412917, "crunched": 0, "end": 7414376, "filename": "/usr/include/libcxx/limits.h"}, {"audio": 0, "start": 7414376, "crunched": 0, "end": 7428922, "filename": "/usr/include/libcxx/cmath"}, {"audio": 0, "start": 7428922, "crunched": 0, "end": 7430122, "filename": "/usr/include/libcxx/experimental/forward_list"}, {"audio": 0, "start": 7430122, "crunched": 0, "end": 7433026, "filename": "/usr/include/libcxx/experimental/numeric"}, {"audio": 0, "start": 7433026, "crunched": 0, "end": 7434046, "filename": "/usr/include/libcxx/experimental/utility"}, {"audio": 0, "start": 7434046, "crunched": 0, "end": 7453788, "filename": "/usr/include/libcxx/experimental/type_traits"}, {"audio": 0, "start": 7453788, "crunched": 0, "end": 7455875, "filename": "/usr/include/libcxx/experimental/algorithm"}, {"audio": 0, "start": 7455875, "crunched": 0, "end": 7457002, "filename": "/usr/include/libcxx/experimental/list"}, {"audio": 0, "start": 7457002, "crunched": 0, "end": 7459273, "filename": "/usr/include/libcxx/experimental/ratio"}, {"audio": 0, "start": 7459273, "crunched": 0, "end": 7470292, "filename": "/usr/include/libcxx/experimental/dynarray"}, {"audio": 0, "start": 7470292, "crunched": 0, "end": 7472301, "filename": "/usr/include/libcxx/experimental/unordered_map"}, {"audio": 0, "start": 7472301, "crunched": 0, "end": 7475032, "filename": "/usr/include/libcxx/experimental/__memory"}, {"audio": 0, "start": 7475032, "crunched": 0, "end": 7478908, "filename": "/usr/include/libcxx/experimental/iterator"}, {"audio": 0, "start": 7478908, "crunched": 0, "end": 7499502, "filename": "/usr/include/libcxx/experimental/propagate_const"}, {"audio": 0, "start": 7499502, "crunched": 0, "end": 7501314, "filename": "/usr/include/libcxx/experimental/unordered_set"}, {"audio": 0, "start": 7501314, "crunched": 0, "end": 7516191, "filename": "/usr/include/libcxx/experimental/any"}, {"audio": 0, "start": 7516191, "crunched": 0, "end": 7517339, "filename": "/usr/include/libcxx/experimental/vector"}, {"audio": 0, "start": 7517339, "crunched": 0, "end": 7518476, "filename": "/usr/include/libcxx/experimental/deque"}, {"audio": 0, "start": 7518476, "crunched": 0, "end": 7520099, "filename": "/usr/include/libcxx/experimental/set"}, {"audio": 0, "start": 7520099, "crunched": 0, "end": 7521996, "filename": "/usr/include/libcxx/experimental/__config"}, {"audio": 0, "start": 7521996, "crunched": 0, "end": 7557185, "filename": "/usr/include/libcxx/experimental/string_view"}, {"audio": 0, "start": 7557185, "crunched": 0, "end": 7558965, "filename": "/usr/include/libcxx/experimental/regex"}, {"audio": 0, "start": 7558965, "crunched": 0, "end": 7576799, "filename": "/usr/include/libcxx/experimental/functional"}, {"audio": 0, "start": 7576799, "crunched": 0, "end": 7578567, "filename": "/usr/include/libcxx/experimental/string"}, {"audio": 0, "start": 7578567, "crunched": 0, "end": 7580259, "filename": "/usr/include/libcxx/experimental/map"}, {"audio": 0, "start": 7580259, "crunched": 0, "end": 7581629, "filename": "/usr/include/libcxx/experimental/chrono"}, {"audio": 0, "start": 7581629, "crunched": 0, "end": 7606716, "filename": "/usr/include/libcxx/experimental/optional"}, {"audio": 0, "start": 7606716, "crunched": 0, "end": 7608861, "filename": "/usr/include/libcxx/experimental/tuple"}, {"audio": 0, "start": 7608861, "crunched": 0, "end": 7610414, "filename": "/usr/include/libcxx/experimental/system_error"}, {"audio": 0, "start": 7610414, "crunched": 0, "end": 7649071, "filename": "/usr/include/libcxx/ext/hash_map"}, {"audio": 0, "start": 7649071, "crunched": 0, "end": 7652238, "filename": "/usr/include/libcxx/ext/__hash"}, {"audio": 0, "start": 7652238, "crunched": 0, "end": 7677101, "filename": "/usr/include/libcxx/ext/hash_set"}, {"audio": 0, "start": 7677101, "crunched": 0, "end": 7678515, "filename": "/usr/include/libcxx/support/xlocale/__nop_locale_mgmt.h"}, {"audio": 0, "start": 7678515, "crunched": 0, "end": 7682959, "filename": "/usr/include/libcxx/support/xlocale/__posix_l_fallback.h"}, {"audio": 0, "start": 7682959, "crunched": 0, "end": 7682959, "filename": "/usr/include/libcxx/support/xlocale/xlocale.h"}, {"audio": 0, "start": 7682959, "crunched": 0, "end": 7685256, "filename": "/usr/include/libcxx/support/xlocale/__strtonum_fallback.h"}, {"audio": 0, "start": 7685256, "crunched": 0, "end": 7686039, "filename": "/usr/include/libcxx/support/android/locale_bionic.h"}, {"audio": 0, "start": 7686039, "crunched": 0, "end": 7692257, "filename": "/usr/include/libcxx/support/win32/support.h"}, {"audio": 0, "start": 7692257, "crunched": 0, "end": 7693510, "filename": "/usr/include/libcxx/support/win32/locale_mgmt_win32.h"}, {"audio": 0, "start": 7693510, "crunched": 0, "end": 7697546, "filename": "/usr/include/libcxx/support/win32/locale_win32.h"}, {"audio": 0, "start": 7697546, "crunched": 0, "end": 7700394, "filename": "/usr/include/libcxx/support/win32/limits_win32.h"}, {"audio": 0, "start": 7700394, "crunched": 0, "end": 7702255, "filename": "/usr/include/libcxx/support/musl/xlocale.h"}, {"audio": 0, "start": 7702255, "crunched": 0, "end": 7703472, "filename": "/usr/include/libcxx/support/solaris/wchar.h"}, {"audio": 0, "start": 7703472, "crunched": 0, "end": 7705716, "filename": "/usr/include/libcxx/support/solaris/xlocale.h"}, {"audio": 0, "start": 7705716, "crunched": 0, "end": 7706179, "filename": "/usr/include/libcxx/support/solaris/floatingpoint.h"}, {"audio": 0, "start": 7706179, "crunched": 0, "end": 7706904, "filename": "/usr/include/libcxx/support/newlib/xlocale.h"}, {"audio": 0, "start": 7706904, "crunched": 0, "end": 7712597, "filename": "/usr/include/libcxx/support/ibm/xlocale.h"}, {"audio": 0, "start": 7712597, "crunched": 0, "end": 7714277, "filename": "/usr/include/libcxx/support/ibm/support.h"}, {"audio": 0, "start": 7714277, "crunched": 0, "end": 7716718, "filename": "/usr/include/libcxx/support/ibm/locale_mgmt_aix.h"}, {"audio": 0, "start": 7716718, "crunched": 0, "end": 7720315, "filename": "/usr/include/libcxx/support/ibm/limits.h"}, {"audio": 0, "start": 7720315, "crunched": 0, "end": 7726508, "filename": "/usr/include/libc/wchar.h"}, {"audio": 0, "start": 7726508, "crunched": 0, "end": 7726775, "filename": "/usr/include/libc/iso646.h"}, {"audio": 0, "start": 7726775, "crunched": 0, "end": 7728643, "filename": "/usr/include/libc/threads.h"}, {"audio": 0, "start": 7728643, "crunched": 0, "end": 7737626, "filename": "/usr/include/libc/pthread.h"}, {"audio": 0, "start": 7737626, "crunched": 0, "end": 7810242, "filename": "/usr/include/libc/elf.h"}, {"audio": 0, "start": 7810242, "crunched": 0, "end": 7810267, "filename": "/usr/include/libc/syscall.h"}, {"audio": 0, "start": 7810267, "crunched": 0, "end": 7810590, "filename": "/usr/include/libc/errno.h"}, {"audio": 0, "start": 7810590, "crunched": 0, "end": 7811020, "filename": "/usr/include/libc/sysexits.h"}, {"audio": 0, "start": 7811020, "crunched": 0, "end": 7811040, "filename": "/usr/include/libc/memory.h"}, {"audio": 0, "start": 7811040, "crunched": 0, "end": 7811512, "filename": "/usr/include/libc/err.h"}, {"audio": 0, "start": 7811512, "crunched": 0, "end": 7820070, "filename": "/usr/include/libc/tgmath.h"}, {"audio": 0, "start": 7820070, "crunched": 0, "end": 7821068, "filename": "/usr/include/libc/utmp.h"}, {"audio": 0, "start": 7821068, "crunched": 0, "end": 7822828, "filename": "/usr/include/libc/ctype.h"}, {"audio": 0, "start": 7822828, "crunched": 0, "end": 7823223, "filename": "/usr/include/libc/monetary.h"}, {"audio": 0, "start": 7823223, "crunched": 0, "end": 7823680, "filename": "/usr/include/libc/assert.h"}, {"audio": 0, "start": 7823680, "crunched": 0, "end": 7824582, "filename": "/usr/include/libc/paths.h"}, {"audio": 0, "start": 7824582, "crunched": 0, "end": 7828716, "filename": "/usr/include/libc/sched.h"}, {"audio": 0, "start": 7828716, "crunched": 0, "end": 7830458, "filename": "/usr/include/libc/dirent.h"}, {"audio": 0, "start": 7830458, "crunched": 0, "end": 7830774, "filename": "/usr/include/libc/nl_types.h"}, {"audio": 0, "start": 7830774, "crunched": 0, "end": 7836005, "filename": "/usr/include/libc/stdio.h"}, {"audio": 0, "start": 7836005, "crunched": 0, "end": 7836172, "filename": "/usr/include/libc/stdbool.h"}, {"audio": 0, "start": 7836172, "crunched": 0, "end": 7836190, "filename": "/usr/include/libc/lastlog.h"}, {"audio": 0, "start": 7836190, "crunched": 0, "end": 7840828, "filename": "/usr/include/libc/inttypes.h"}, {"audio": 0, "start": 7840828, "crunched": 0, "end": 7841070, "filename": "/usr/include/libc/alloca.h"}, {"audio": 0, "start": 7841070, "crunched": 0, "end": 7842130, "filename": "/usr/include/libc/float.h"}, {"audio": 0, "start": 7842130, "crunched": 0, "end": 7844529, "filename": "/usr/include/libc/stropts.h"}, {"audio": 0, "start": 7844529, "crunched": 0, "end": 7844690, "filename": "/usr/include/libc/libgen.h"}, {"audio": 0, "start": 7844690, "crunched": 0, "end": 7844967, "filename": "/usr/include/libc/crypt.h"}, {"audio": 0, "start": 7844967, "crunched": 0, "end": 7845050, "filename": "/usr/include/libc/readme.txt"}, {"audio": 0, "start": 7845050, "crunched": 0, "end": 7846699, "filename": "/usr/include/libc/locale.h"}, {"audio": 0, "start": 7846699, "crunched": 0, "end": 7848140, "filename": "/usr/include/libc/aio.h"}, {"audio": 0, "start": 7848140, "crunched": 0, "end": 7852825, "filename": "/usr/include/libc/stdlib.h"}, {"audio": 0, "start": 7852825, "crunched": 0, "end": 7853376, "filename": "/usr/include/libc/cpio.h"}, {"audio": 0, "start": 7853376, "crunched": 0, "end": 7853877, "filename": "/usr/include/libc/byteswap.h"}, {"audio": 0, "start": 7853877, "crunched": 0, "end": 7856621, "filename": "/usr/include/libc/syslog.h"}, {"audio": 0, "start": 7856621, "crunched": 0, "end": 7858536, "filename": "/usr/include/libc/wctype.h"}, {"audio": 0, "start": 7858536, "crunched": 0, "end": 7858922, "filename": "/usr/include/libc/fnmatch.h"}, {"audio": 0, "start": 7858922, "crunched": 0, "end": 7859189, "filename": "/usr/include/libc/utime.h"}, {"audio": 0, "start": 7859189, "crunched": 0, "end": 7860131, "filename": "/usr/include/libc/strings.h"}, {"audio": 0, "start": 7860131, "crunched": 0, "end": 7861012, "filename": "/usr/include/libc/libintl.h"}, {"audio": 0, "start": 7861012, "crunched": 0, "end": 7864717, "filename": "/usr/include/libc/complex.h"}, {"audio": 0, "start": 7864717, "crunched": 0, "end": 7865462, "filename": "/usr/include/libc/dlfcn.h"}, {"audio": 0, "start": 7865462, "crunched": 0, "end": 7872084, "filename": "/usr/include/libc/signal.h"}, {"audio": 0, "start": 7872084, "crunched": 0, "end": 7872820, "filename": "/usr/include/libc/semaphore.h"}, {"audio": 0, "start": 7872820, "crunched": 0, "end": 7873667, "filename": "/usr/include/libc/termios.h"}, {"audio": 0, "start": 7873667, "crunched": 0, "end": 7874484, "filename": "/usr/include/libc/pwd.h"}, {"audio": 0, "start": 7874484, "crunched": 0, "end": 7874846, "filename": "/usr/include/libc/malloc.h"}, {"audio": 0, "start": 7874846, "crunched": 0, "end": 7874975, "filename": "/usr/include/libc/stdnoreturn.h"}, {"audio": 0, "start": 7874975, "crunched": 0, "end": 7875576, "filename": "/usr/include/libc/uchar.h"}, {"audio": 0, "start": 7875576, "crunched": 0, "end": 7888799, "filename": "/usr/include/libc/unistd.h"}, {"audio": 0, "start": 7888799, "crunched": 0, "end": 7889649, "filename": "/usr/include/libc/poll.h"}, {"audio": 0, "start": 7889649, "crunched": 0, "end": 7891027, "filename": "/usr/include/libc/search.h"}, {"audio": 0, "start": 7891027, "crunched": 0, "end": 7891526, "filename": "/usr/include/libc/ucontext.h"}, {"audio": 0, "start": 7891526, "crunched": 0, "end": 7894101, "filename": "/usr/include/libc/spawn.h"}, {"audio": 0, "start": 7894101, "crunched": 0, "end": 7894660, "filename": "/usr/include/libc/getopt.h"}, {"audio": 0, "start": 7894660, "crunched": 0, "end": 7895867, "filename": "/usr/include/libc/utmpx.h"}, {"audio": 0, "start": 7895867, "crunched": 0, "end": 7896640, "filename": "/usr/include/libc/features.h"}, {"audio": 0, "start": 7896640, "crunched": 0, "end": 7896727, "filename": "/usr/include/libc/wait.h"}, {"audio": 0, "start": 7896727, "crunched": 0, "end": 7897305, "filename": "/usr/include/libc/tar.h"}, {"audio": 0, "start": 7897305, "crunched": 0, "end": 7897955, "filename": "/usr/include/libc/wordexp.h"}, {"audio": 0, "start": 7897955, "crunched": 0, "end": 7898938, "filename": "/usr/include/libc/link.h"}, {"audio": 0, "start": 7898938, "crunched": 0, "end": 7900945, "filename": "/usr/include/libc/alltypes.h.in"}, {"audio": 0, "start": 7900945, "crunched": 0, "end": 7901257, "filename": "/usr/include/libc/pty.h"}, {"audio": 0, "start": 7901257, "crunched": 0, "end": 7902206, "filename": "/usr/include/libc/grp.h"}, {"audio": 0, "start": 7902206, "crunched": 0, "end": 7902613, "filename": "/usr/include/libc/stdarg.h"}, {"audio": 0, "start": 7902613, "crunched": 0, "end": 7906572, "filename": "/usr/include/libc/netdb.h"}, {"audio": 0, "start": 7906572, "crunched": 0, "end": 7909659, "filename": "/usr/include/libc/string.h"}, {"audio": 0, "start": 7909659, "crunched": 0, "end": 7910258, "filename": "/usr/include/libc/ifaddrs.h"}, {"audio": 0, "start": 7910258, "crunched": 0, "end": 7913689, "filename": "/usr/include/libc/time.h"}, {"audio": 0, "start": 7913689, "crunched": 0, "end": 7914367, "filename": "/usr/include/libc/ftw.h"}, {"audio": 0, "start": 7914367, "crunched": 0, "end": 7915088, "filename": "/usr/include/libc/shadow.h"}, {"audio": 0, "start": 7915088, "crunched": 0, "end": 7915579, "filename": "/usr/include/libc/stddef.h"}, {"audio": 0, "start": 7915579, "crunched": 0, "end": 7916190, "filename": "/usr/include/libc/stdio_ext.h"}, {"audio": 0, "start": 7916190, "crunched": 0, "end": 7917138, "filename": "/usr/include/libc/setjmp.h"}, {"audio": 0, "start": 7917138, "crunched": 0, "end": 7920970, "filename": "/usr/include/libc/fcntl.h"}, {"audio": 0, "start": 7920970, "crunched": 0, "end": 7922979, "filename": "/usr/include/libc/endian.h"}, {"audio": 0, "start": 7922979, "crunched": 0, "end": 7924664, "filename": "/usr/include/libc/langinfo.h"}, {"audio": 0, "start": 7924664, "crunched": 0, "end": 7924975, "filename": "/usr/include/libc/ar.h"}, {"audio": 0, "start": 7924975, "crunched": 0, "end": 7925384, "filename": "/usr/include/libc/stdalign.h"}, {"audio": 0, "start": 7925384, "crunched": 0, "end": 7926230, "filename": "/usr/include/libc/values.h"}, {"audio": 0, "start": 7926230, "crunched": 0, "end": 7926615, "filename": "/usr/include/libc/iconv.h"}, {"audio": 0, "start": 7926615, "crunched": 0, "end": 7927064, "filename": "/usr/include/libc/fenv.h"}, {"audio": 0, "start": 7927064, "crunched": 0, "end": 7930651, "filename": "/usr/include/libc/resolv.h"}, {"audio": 0, "start": 7930651, "crunched": 0, "end": 7931392, "filename": "/usr/include/libc/fmtmsg.h"}, {"audio": 0, "start": 7931392, "crunched": 0, "end": 7932229, "filename": "/usr/include/libc/mntent.h"}, {"audio": 0, "start": 7932229, "crunched": 0, "end": 7932412, "filename": "/usr/include/libc/ulimit.h"}, {"audio": 0, "start": 7932412, "crunched": 0, "end": 7933390, "filename": "/usr/include/libc/mqueue.h"}, {"audio": 0, "start": 7933390, "crunched": 0, "end": 7933564, "filename": "/usr/include/libc/stdc-predef.h"}, {"audio": 0, "start": 7933564, "crunched": 0, "end": 7936142, "filename": "/usr/include/libc/stdint.h"}, {"audio": 0, "start": 7936142, "crunched": 0, "end": 7937369, "filename": "/usr/include/libc/regex.h"}, {"audio": 0, "start": 7937369, "crunched": 0, "end": 7948717, "filename": "/usr/include/libc/math.h"}, {"audio": 0, "start": 7948717, "crunched": 0, "end": 7949577, "filename": "/usr/include/libc/glob.h"}, {"audio": 0, "start": 7949577, "crunched": 0, "end": 7953551, "filename": "/usr/include/libc/limits.h"}, {"audio": 0, "start": 7953551, "crunched": 0, "end": 7959303, "filename": "/usr/include/libc/arpa/telnet.h"}, {"audio": 0, "start": 7959303, "crunched": 0, "end": 7970050, "filename": "/usr/include/libc/arpa/nameser.h"}, {"audio": 0, "start": 7970050, "crunched": 0, "end": 7970077, "filename": "/usr/include/libc/arpa/nameser_compat.h"}, {"audio": 0, "start": 7970077, "crunched": 0, "end": 7970898, "filename": "/usr/include/libc/arpa/ftp.h"}, {"audio": 0, "start": 7970898, "crunched": 0, "end": 7971442, "filename": "/usr/include/libc/arpa/tftp.h"}, {"audio": 0, "start": 7971442, "crunched": 0, "end": 7972249, "filename": "/usr/include/libc/arpa/inet.h"}, {"audio": 0, "start": 7972249, "crunched": 0, "end": 7975093, "filename": "/usr/include/libc/net/if_arp.h"}, {"audio": 0, "start": 7975093, "crunched": 0, "end": 7976270, "filename": "/usr/include/libc/net/ethernet.h"}, {"audio": 0, "start": 7976270, "crunched": 0, "end": 7978898, "filename": "/usr/include/libc/net/route.h"}, {"audio": 0, "start": 7978898, "crunched": 0, "end": 7981989, "filename": "/usr/include/libc/net/if.h"}, {"audio": 0, "start": 7981989, "crunched": 0, "end": 7983333, "filename": "/usr/include/libc/netpacket/packet.h"}, {"audio": 0, "start": 7983333, "crunched": 0, "end": 7984444, "filename": "/usr/include/libc/sys/acct.h"}, {"audio": 0, "start": 7984444, "crunched": 0, "end": 7984473, "filename": "/usr/include/libc/sys/soundcard.h"}, {"audio": 0, "start": 7984473, "crunched": 0, "end": 7987254, "filename": "/usr/include/libc/sys/stat.h"}, {"audio": 0, "start": 7987254, "crunched": 0, "end": 7987335, "filename": "/usr/include/libc/sys/syscall.h"}, {"audio": 0, "start": 7987335, "crunched": 0, "end": 7987421, "filename": "/usr/include/libc/sys/errno.h"}, {"audio": 0, "start": 7987421, "crunched": 0, "end": 7988288, "filename": "/usr/include/libc/sys/msg.h"}, {"audio": 0, "start": 7988288, "crunched": 0, "end": 7989044, "filename": "/usr/include/libc/sys/param.h"}, {"audio": 0, "start": 7989044, "crunched": 0, "end": 7991488, "filename": "/usr/include/libc/sys/fanotify.h"}, {"audio": 0, "start": 7991488, "crunched": 0, "end": 7992555, "filename": "/usr/include/libc/sys/uio.h"}, {"audio": 0, "start": 7992555, "crunched": 0, "end": 7992927, "filename": "/usr/include/libc/sys/utsname.h"}, {"audio": 0, "start": 7992927, "crunched": 0, "end": 7994308, "filename": "/usr/include/libc/sys/personality.h"}, {"audio": 0, "start": 7994308, "crunched": 0, "end": 7999499, "filename": "/usr/include/libc/sys/mtio.h"}, {"audio": 0, "start": 7999499, "crunched": 0, "end": 7999611, "filename": "/usr/include/libc/sys/kd.h"}, {"audio": 0, "start": 7999611, "crunched": 0, "end": 7999912, "filename": "/usr/include/libc/sys/times.h"}, {"audio": 0, "start": 7999912, "crunched": 0, "end": 7999933, "filename": "/usr/include/libc/sys/stropts.h"}, {"audio": 0, "start": 7999933, "crunched": 0, "end": 8000109, "filename": "/usr/include/libc/sys/auxv.h"}, {"audio": 0, "start": 8000109, "crunched": 0, "end": 8000860, "filename": "/usr/include/libc/sys/signalfd.h"}, {"audio": 0, "start": 8000860, "crunched": 0, "end": 8000880, "filename": "/usr/include/libc/sys/syslog.h"}, {"audio": 0, "start": 8000880, "crunched": 0, "end": 8002055, "filename": "/usr/include/libc/sys/procfs.h"}, {"audio": 0, "start": 8002055, "crunched": 0, "end": 8002205, "filename": "/usr/include/libc/sys/klog.h"}, {"audio": 0, "start": 8002205, "crunched": 0, "end": 8003131, "filename": "/usr/include/libc/sys/ttydefaults.h"}, {"audio": 0, "start": 8003131, "crunched": 0, "end": 8003331, "filename": "/usr/include/libc/sys/user.h"}, {"audio": 0, "start": 8003331, "crunched": 0, "end": 8003501, "filename": "/usr/include/libc/sys/ioctl.h"}, {"audio": 0, "start": 8003501, "crunched": 0, "end": 8004737, "filename": "/usr/include/libc/sys/select.h"}, {"audio": 0, "start": 8004737, "crunched": 0, "end": 8004826, "filename": "/usr/include/libc/sys/signal.h"}, {"audio": 0, "start": 8004826, "crunched": 0, "end": 8004918, "filename": "/usr/include/libc/sys/termios.h"}, {"audio": 0, "start": 8004918, "crunched": 0, "end": 8005292, "filename": "/usr/include/libc/sys/reboot.h"}, {"audio": 0, "start": 8005292, "crunched": 0, "end": 8005639, "filename": "/usr/include/libc/sys/cachectl.h"}, {"audio": 0, "start": 8005639, "crunched": 0, "end": 8005749, "filename": "/usr/include/libc/sys/reg.h"}, {"audio": 0, "start": 8005749, "crunched": 0, "end": 8005832, "filename": "/usr/include/libc/sys/poll.h"}, {"audio": 0, "start": 8005832, "crunched": 0, "end": 8006742, "filename": "/usr/include/libc/sys/shm.h"}, {"audio": 0, "start": 8006742, "crunched": 0, "end": 8006764, "filename": "/usr/include/libc/sys/ucontext.h"}, {"audio": 0, "start": 8006764, "crunched": 0, "end": 8006786, "filename": "/usr/include/libc/sys/vt.h"}, {"audio": 0, "start": 8006786, "crunched": 0, "end": 8008654, "filename": "/usr/include/libc/sys/mount.h"}, {"audio": 0, "start": 8008654, "crunched": 0, "end": 8010591, "filename": "/usr/include/libc/sys/types.h"}, {"audio": 0, "start": 8010591, "crunched": 0, "end": 8011876, "filename": "/usr/include/libc/sys/wait.h"}, {"audio": 0, "start": 8011876, "crunched": 0, "end": 8021381, "filename": "/usr/include/libc/sys/socket.h"}, {"audio": 0, "start": 8021381, "crunched": 0, "end": 8023530, "filename": "/usr/include/libc/sys/resource.h"}, {"audio": 0, "start": 8023530, "crunched": 0, "end": 8026195, "filename": "/usr/include/libc/sys/mman.h"}, {"audio": 0, "start": 8026195, "crunched": 0, "end": 8026219, "filename": "/usr/include/libc/sys/vfs.h"}, {"audio": 0, "start": 8026219, "crunched": 0, "end": 8027567, "filename": "/usr/include/libc/sys/inotify.h"}, {"audio": 0, "start": 8027567, "crunched": 0, "end": 8027786, "filename": "/usr/include/libc/sys/io.h"}, {"audio": 0, "start": 8027786, "crunched": 0, "end": 8028294, "filename": "/usr/include/libc/sys/statfs.h"}, {"audio": 0, "start": 8028294, "crunched": 0, "end": 8030347, "filename": "/usr/include/libc/sys/timex.h"}, {"audio": 0, "start": 8030347, "crunched": 0, "end": 8030580, "filename": "/usr/include/libc/sys/fsuid.h"}, {"audio": 0, "start": 8030580, "crunched": 0, "end": 8031224, "filename": "/usr/include/libc/sys/ipc.h"}, {"audio": 0, "start": 8031224, "crunched": 0, "end": 8031618, "filename": "/usr/include/libc/sys/sysmacros.h"}, {"audio": 0, "start": 8031618, "crunched": 0, "end": 8032794, "filename": "/usr/include/libc/sys/statvfs.h"}, {"audio": 0, "start": 8032794, "crunched": 0, "end": 8033808, "filename": "/usr/include/libc/sys/sem.h"}, {"audio": 0, "start": 8033808, "crunched": 0, "end": 8035718, "filename": "/usr/include/libc/sys/time.h"}, {"audio": 0, "start": 8035718, "crunched": 0, "end": 8037994, "filename": "/usr/include/libc/sys/quota.h"}, {"audio": 0, "start": 8037994, "crunched": 0, "end": 8038080, "filename": "/usr/include/libc/sys/fcntl.h"}, {"audio": 0, "start": 8038080, "crunched": 0, "end": 8038412, "filename": "/usr/include/libc/sys/swap.h"}, {"audio": 0, "start": 8038412, "crunched": 0, "end": 8038741, "filename": "/usr/include/libc/sys/sendfile.h"}, {"audio": 0, "start": 8038741, "crunched": 0, "end": 8039145, "filename": "/usr/include/libc/sys/eventfd.h"}, {"audio": 0, "start": 8039145, "crunched": 0, "end": 8040047, "filename": "/usr/include/libc/sys/xattr.h"}, {"audio": 0, "start": 8040047, "crunched": 0, "end": 8040089, "filename": "/usr/include/libc/sys/dir.h"}, {"audio": 0, "start": 8040089, "crunched": 0, "end": 8040723, "filename": "/usr/include/libc/sys/sysinfo.h"}, {"audio": 0, "start": 8040723, "crunched": 0, "end": 8041003, "filename": "/usr/include/libc/sys/timeb.h"}, {"audio": 0, "start": 8041003, "crunched": 0, "end": 8041475, "filename": "/usr/include/libc/sys/un.h"}, {"audio": 0, "start": 8041475, "crunched": 0, "end": 8042729, "filename": "/usr/include/libc/sys/epoll.h"}, {"audio": 0, "start": 8042729, "crunched": 0, "end": 8045440, "filename": "/usr/include/libc/sys/ptrace.h"}, {"audio": 0, "start": 8045440, "crunched": 0, "end": 8045870, "filename": "/usr/include/libc/sys/timerfd.h"}, {"audio": 0, "start": 8045870, "crunched": 0, "end": 8049356, "filename": "/usr/include/libc/sys/prctl.h"}, {"audio": 0, "start": 8049356, "crunched": 0, "end": 8049617, "filename": "/usr/include/libc/sys/file.h"}, {"audio": 0, "start": 8049617, "crunched": 0, "end": 8053522, "filename": "/usr/include/libc/scsi/scsi.h"}, {"audio": 0, "start": 8053522, "crunched": 0, "end": 8056607, "filename": "/usr/include/libc/scsi/sg.h"}, {"audio": 0, "start": 8056607, "crunched": 0, "end": 8056929, "filename": "/usr/include/libc/scsi/scsi_ioctl.h"}, {"audio": 0, "start": 8056929, "crunched": 0, "end": 8060104, "filename": "/usr/include/libc/netinet/if_ether.h"}, {"audio": 0, "start": 8060104, "crunched": 0, "end": 8064741, "filename": "/usr/include/libc/netinet/ip_icmp.h"}, {"audio": 0, "start": 8064741, "crunched": 0, "end": 8065771, "filename": "/usr/include/libc/netinet/igmp.h"}, {"audio": 0, "start": 8065771, "crunched": 0, "end": 8066318, "filename": "/usr/include/libc/netinet/udp.h"}, {"audio": 0, "start": 8066318, "crunched": 0, "end": 8070558, "filename": "/usr/include/libc/netinet/tcp.h"}, {"audio": 0, "start": 8070558, "crunched": 0, "end": 8079190, "filename": "/usr/include/libc/netinet/icmp6.h"}, {"audio": 0, "start": 8079190, "crunched": 0, "end": 8083543, "filename": "/usr/include/libc/netinet/ip.h"}, {"audio": 0, "start": 8083543, "crunched": 0, "end": 8083688, "filename": "/usr/include/libc/netinet/in_systm.h"}, {"audio": 0, "start": 8083688, "crunched": 0, "end": 8084231, "filename": "/usr/include/libc/netinet/ether.h"}, {"audio": 0, "start": 8084231, "crunched": 0, "end": 8095583, "filename": "/usr/include/libc/netinet/in.h"}, {"audio": 0, "start": 8095583, "crunched": 0, "end": 8098277, "filename": "/usr/include/libc/netinet/ip6.h"}, {"audio": 0, "start": 8098277, "crunched": 0, "end": 8109949, "filename": "/usr/include/emscripten/dom_pk_codes.h"}, {"audio": 0, "start": 8109949, "crunched": 0, "end": 8125118, "filename": "/usr/include/emscripten/wire.h"}, {"audio": 0, "start": 8125118, "crunched": 0, "end": 8138326, "filename": "/usr/include/emscripten/threading.h"}, {"audio": 0, "start": 8138326, "crunched": 0, "end": 8146462, "filename": "/usr/include/emscripten/fetch.h"}, {"audio": 0, "start": 8146462, "crunched": 0, "end": 8151575, "filename": "/usr/include/emscripten/em_asm.h"}, {"audio": 0, "start": 8151575, "crunched": 0, "end": 8156641, "filename": "/usr/include/emscripten/vr.h"}, {"audio": 0, "start": 8156641, "crunched": 0, "end": 8176840, "filename": "/usr/include/emscripten/html5.h"}, {"audio": 0, "start": 8176840, "crunched": 0, "end": 8184777, "filename": "/usr/include/emscripten/key_codes.h"}, {"audio": 0, "start": 8184777, "crunched": 0, "end": 8243431, "filename": "/usr/include/emscripten/bind.h"}, {"audio": 0, "start": 8243431, "crunched": 0, "end": 8254591, "filename": "/usr/include/emscripten/emscripten.h"}, {"audio": 0, "start": 8254591, "crunched": 0, "end": 8257691, "filename": "/usr/include/emscripten/trace.h"}, {"audio": 0, "start": 8257691, "crunched": 0, "end": 8273808, "filename": "/usr/include/emscripten/val.h"}, {"audio": 0, "start": 8273808, "crunched": 0, "end": 8327413, "filename": "/usr/include/emscripten/vector.h"}, {"audio": 0, "start": 8327413, "crunched": 0, "end": 8332206, "filename": "/usr/include/EGL/eglplatform.h"}, {"audio": 0, "start": 8332206, "crunched": 0, "end": 8350901, "filename": "/usr/include/EGL/eglext.h"}, {"audio": 0, "start": 8350901, "crunched": 0, "end": 8363254, "filename": "/usr/include/EGL/egl.h"}, {"audio": 0, "start": 8363254, "crunched": 0, "end": 8363689, "filename": "/usr/include/compat/wchar.h"}, {"audio": 0, "start": 8363689, "crunched": 0, "end": 8364547, "filename": "/usr/include/compat/ctype.h"}, {"audio": 0, "start": 8364547, "crunched": 0, "end": 8364956, "filename": "/usr/include/compat/xlocale.h"}, {"audio": 0, "start": 8364956, "crunched": 0, "end": 8365155, "filename": "/usr/include/compat/stdlib.h"}, {"audio": 0, "start": 8365155, "crunched": 0, "end": 8365594, "filename": "/usr/include/compat/wctype.h"}, {"audio": 0, "start": 8365594, "crunched": 0, "end": 8366681, "filename": "/usr/include/compat/malloc.h"}, {"audio": 0, "start": 8366681, "crunched": 0, "end": 8366881, "filename": "/usr/include/compat/stdarg.h"}, {"audio": 0, "start": 8366881, "crunched": 0, "end": 8367418, "filename": "/usr/include/compat/netdb.h"}, {"audio": 0, "start": 8367418, "crunched": 0, "end": 8367630, "filename": "/usr/include/compat/string.h"}, {"audio": 0, "start": 8367630, "crunched": 0, "end": 8367854, "filename": "/usr/include/compat/time.h"}, {"audio": 0, "start": 8367854, "crunched": 0, "end": 8368050, "filename": "/usr/include/compat/math.h"}, {"audio": 0, "start": 8368050, "crunched": 0, "end": 8368462, "filename": "/usr/include/compat/sys/stat.h"}, {"audio": 0, "start": 8368462, "crunched": 0, "end": 8368482, "filename": "/usr/include/compat/sys/unistd.h"}, {"audio": 0, "start": 8368482, "crunched": 0, "end": 8368713, "filename": "/usr/include/compat/sys/sysctl.h"}, {"audio": 0, "start": 8368713, "crunched": 0, "end": 8368871, "filename": "/usr/include/compat/sys/socketvar.h"}, {"audio": 0, "start": 8368871, "crunched": 0, "end": 8369533, "filename": "/usr/include/compat/sys/timeb.h"}, {"audio": 0, "start": 8369533, "crunched": 0, "end": 8377669, "filename": "/usr/lib/libcxxabi/include/unwind.h"}, {"audio": 0, "start": 8377669, "crunched": 0, "end": 8390383, "filename": "/usr/lib/libcxxabi/include/libunwind.h"}, {"audio": 0, "start": 8390383, "crunched": 0, "end": 8396388, "filename": "/usr/lib/libcxxabi/include/cxxabi.h"}, {"audio": 0, "start": 8396388, "crunched": 0, "end": 8415832, "filename": "/usr/lib/libcxxabi/include/mach-o/compact_unwind_encoding.h"}, {"audio": 0, "start": 8415832, "crunched": 0, "end": 8415832, "filename": "/usr/lib/libc/musl/arch/emscripten/crt_arch.h"}, {"audio": 0, "start": 8415832, "crunched": 0, "end": 8419657, "filename": "/usr/lib/libc/musl/arch/emscripten/atomic_arch.h"}, {"audio": 0, "start": 8419657, "crunched": 0, "end": 8424529, "filename": "/usr/lib/libc/musl/arch/emscripten/syscall_arch.h"}, {"audio": 0, "start": 8424529, "crunched": 0, "end": 8424656, "filename": "/usr/lib/libc/musl/arch/emscripten/pthread_arch.h"}, {"audio": 0, "start": 8424656, "crunched": 0, "end": 8425117, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/stat.h"}, {"audio": 0, "start": 8425117, "crunched": 0, "end": 8444248, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/syscall.h"}, {"audio": 0, "start": 8444248, "crunched": 0, "end": 8447917, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/errno.h"}, {"audio": 0, "start": 8447917, "crunched": 0, "end": 8448204, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/msg.h"}, {"audio": 0, "start": 8448204, "crunched": 0, "end": 8448683, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/float.h"}, {"audio": 0, "start": 8448683, "crunched": 0, "end": 8449837, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/user.h"}, {"audio": 0, "start": 8449837, "crunched": 0, "end": 8454962, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/ioctl.h"}, {"audio": 0, "start": 8454962, "crunched": 0, "end": 8457758, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/signal.h"}, {"audio": 0, "start": 8457758, "crunched": 0, "end": 8461002, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/termios.h"}, {"audio": 0, "start": 8461002, "crunched": 0, "end": 8461287, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/reg.h"}, {"audio": 0, "start": 8461287, "crunched": 0, "end": 8461287, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/poll.h"}, {"audio": 0, "start": 8461287, "crunched": 0, "end": 8461587, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/shm.h"}, {"audio": 0, "start": 8461587, "crunched": 0, "end": 8472477, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/alltypes.h"}, {"audio": 0, "start": 8472477, "crunched": 0, "end": 8472716, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/socket.h"}, {"audio": 0, "start": 8472716, "crunched": 0, "end": 8473425, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/alltypes.h.in"}, {"audio": 0, "start": 8473425, "crunched": 0, "end": 8473427, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/resource.h"}, {"audio": 0, "start": 8473427, "crunched": 0, "end": 8474990, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/mman.h"}, {"audio": 0, "start": 8474990, "crunched": 0, "end": 8474990, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/io.h"}, {"audio": 0, "start": 8474990, "crunched": 0, "end": 8475185, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/statfs.h"}, {"audio": 0, "start": 8475185, "crunched": 0, "end": 8475370, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/stdarg.h"}, {"audio": 0, "start": 8475370, "crunched": 0, "end": 8475549, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/ipc.h"}, {"audio": 0, "start": 8475549, "crunched": 0, "end": 8475791, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/sem.h"}, {"audio": 0, "start": 8475791, "crunched": 0, "end": 8475827, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/setjmp.h"}, {"audio": 0, "start": 8475827, "crunched": 0, "end": 8476669, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/fcntl.h"}, {"audio": 0, "start": 8476669, "crunched": 0, "end": 8476706, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/endian.h"}, {"audio": 0, "start": 8476706, "crunched": 0, "end": 8477483, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/fenv.h"}, {"audio": 0, "start": 8477483, "crunched": 0, "end": 8477551, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/posix.h"}, {"audio": 0, "start": 8477551, "crunched": 0, "end": 8478091, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/stdint.h"}, {"audio": 0, "start": 8478091, "crunched": 0, "end": 8478345, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/limits.h"}], "remote_package_size": 8478345, "package_uuid": "5c653f32-8039-4a55-8ee2-025f148d8389"});
+ loadPackage({"files": [{"audio": 0, "start": 0, "crunched": 0, "end": 35, "filename": "/usr/include/emscripten.h"}, {"audio": 0, "start": 35, "crunched": 0, "end": 10002, "filename": "/usr/include/KHR/khrplatform.h"}, {"audio": 0, "start": 10002, "crunched": 0, "end": 162472, "filename": "/usr/include/GLFW/glfw3.h"}, {"audio": 0, "start": 162472, "crunched": 0, "end": 196804, "filename": "/usr/include/GLES/gl.h"}, {"audio": 0, "start": 196804, "crunched": 0, "end": 260826, "filename": "/usr/include/GLES/glext.h"}, {"audio": 0, "start": 260826, "crunched": 0, "end": 261727, "filename": "/usr/include/GLES/glplatform.h"}, {"audio": 0, "start": 261727, "crunched": 0, "end": 262304, "filename": "/usr/include/GLES3/gl2ext.h"}, {"audio": 0, "start": 262304, "crunched": 0, "end": 263213, "filename": "/usr/include/GLES3/gl3platform.h"}, {"audio": 0, "start": 263213, "crunched": 0, "end": 370676, "filename": "/usr/include/GLES3/gl31.h"}, {"audio": 0, "start": 370676, "crunched": 0, "end": 499019, "filename": "/usr/include/GLES3/gl32.h"}, {"audio": 0, "start": 499019, "crunched": 0, "end": 581741, "filename": "/usr/include/GLES3/gl3.h"}, {"audio": 0, "start": 581741, "crunched": 0, "end": 582650, "filename": "/usr/include/GLES2/gl2platform.h"}, {"audio": 0, "start": 582650, "crunched": 0, "end": 775887, "filename": "/usr/include/GLES2/gl2ext.h"}, {"audio": 0, "start": 775887, "crunched": 0, "end": 819933, "filename": "/usr/include/GLES2/gl2.h"}, {"audio": 0, "start": 819933, "crunched": 0, "end": 842316, "filename": "/usr/include/SSE/smmintrin.h"}, {"audio": 0, "start": 842316, "crunched": 0, "end": 842733, "filename": "/usr/include/SSE/x86intrin.h"}, {"audio": 0, "start": 842733, "crunched": 0, "end": 909139, "filename": "/usr/include/SSE/emmintrin.h"}, {"audio": 0, "start": 909139, "crunched": 0, "end": 909324, "filename": "/usr/include/SSE/immintrin.h"}, {"audio": 0, "start": 909324, "crunched": 0, "end": 913982, "filename": "/usr/include/SSE/pmmintrin.h"}, {"audio": 0, "start": 913982, "crunched": 0, "end": 932002, "filename": "/usr/include/SSE/xmmintrin.h"}, {"audio": 0, "start": 932002, "crunched": 0, "end": 943972, "filename": "/usr/include/SSE/tmmintrin.h"}, {"audio": 0, "start": 943972, "crunched": 0, "end": 950310, "filename": "/usr/include/X11/Xmd.h"}, {"audio": 0, "start": 950310, "crunched": 0, "end": 971322, "filename": "/usr/include/X11/Xutil.h"}, {"audio": 0, "start": 971322, "crunched": 0, "end": 974077, "filename": "/usr/include/X11/keysym.h"}, {"audio": 0, "start": 974077, "crunched": 0, "end": 975644, "filename": "/usr/include/X11/XlibConf.h"}, {"audio": 0, "start": 975644, "crunched": 0, "end": 1006639, "filename": "/usr/include/X11/XKBlib.h"}, {"audio": 0, "start": 1006639, "crunched": 0, "end": 1010672, "filename": "/usr/include/X11/Xfuncproto.h"}, {"audio": 0, "start": 1010672, "crunched": 0, "end": 1178893, "filename": "/usr/include/X11/keysymdef.h"}, {"audio": 0, "start": 1178893, "crunched": 0, "end": 1181698, "filename": "/usr/include/X11/Xprotostr.h"}, {"audio": 0, "start": 1181698, "crunched": 0, "end": 1184816, "filename": "/usr/include/X11/cursorfont.h"}, {"audio": 0, "start": 1184816, "crunched": 0, "end": 1284404, "filename": "/usr/include/X11/Xlib.h"}, {"audio": 0, "start": 1284404, "crunched": 0, "end": 1322979, "filename": "/usr/include/X11/Xlibint.h"}, {"audio": 0, "start": 1322979, "crunched": 0, "end": 1379656, "filename": "/usr/include/X11/Xproto.h"}, {"audio": 0, "start": 1379656, "crunched": 0, "end": 1382771, "filename": "/usr/include/X11/Xosdefs.h"}, {"audio": 0, "start": 1382771, "crunched": 0, "end": 1384971, "filename": "/usr/include/X11/Xfuncs.h"}, {"audio": 0, "start": 1384971, "crunched": 0, "end": 1387489, "filename": "/usr/include/X11/Xatom.h"}, {"audio": 0, "start": 1387489, "crunched": 0, "end": 1407694, "filename": "/usr/include/X11/X.h"}, {"audio": 0, "start": 1407694, "crunched": 0, "end": 1425910, "filename": "/usr/include/X11/extensions/XKBstr.h"}, {"audio": 0, "start": 1425910, "crunched": 0, "end": 1427555, "filename": "/usr/include/X11/extensions/shm.h"}, {"audio": 0, "start": 1427555, "crunched": 0, "end": 1433626, "filename": "/usr/include/X11/extensions/extutil.h"}, {"audio": 0, "start": 1433626, "crunched": 0, "end": 1461867, "filename": "/usr/include/X11/extensions/XKB.h"}, {"audio": 0, "start": 1461867, "crunched": 0, "end": 1465602, "filename": "/usr/include/X11/extensions/XShm.h"}, {"audio": 0, "start": 1465602, "crunched": 0, "end": 1467257, "filename": "/usr/include/X11/extensions/Xext.h"}, {"audio": 0, "start": 1467257, "crunched": 0, "end": 1468073, "filename": "/usr/include/uuid/uuid.h"}, {"audio": 0, "start": 1468073, "crunched": 0, "end": 1552743, "filename": "/usr/include/GL/gl.h"}, {"audio": 0, "start": 1552743, "crunched": 0, "end": 2354846, "filename": "/usr/include/GL/glext.h"}, {"audio": 0, "start": 2354846, "crunched": 0, "end": 2355485, "filename": "/usr/include/GL/glut.h"}, {"audio": 0, "start": 2355485, "crunched": 0, "end": 2375414, "filename": "/usr/include/GL/glfw.h"}, {"audio": 0, "start": 2375414, "crunched": 0, "end": 2401595, "filename": "/usr/include/GL/freeglut_std.h"}, {"audio": 0, "start": 2401595, "crunched": 0, "end": 2418850, "filename": "/usr/include/GL/glu.h"}, {"audio": 0, "start": 2418850, "crunched": 0, "end": 2469588, "filename": "/usr/include/GL/glew.h"}, {"audio": 0, "start": 2469588, "crunched": 0, "end": 2474720, "filename": "/usr/include/SDL/SDL_version.h"}, {"audio": 0, "start": 2474720, "crunched": 0, "end": 2501694, "filename": "/usr/include/SDL/SDL_video.h"}, {"audio": 0, "start": 2501694, "crunched": 0, "end": 2503927, "filename": "/usr/include/SDL/SDL_gesture.h"}, {"audio": 0, "start": 2503927, "crunched": 0, "end": 2504866, "filename": "/usr/include/SDL/SDL_copying.h"}, {"audio": 0, "start": 2504866, "crunched": 0, "end": 2508717, "filename": "/usr/include/SDL/SDL_platform.h"}, {"audio": 0, "start": 2508717, "crunched": 0, "end": 2510822, "filename": "/usr/include/SDL/SDL_error.h"}, {"audio": 0, "start": 2510822, "crunched": 0, "end": 2514682, "filename": "/usr/include/SDL/SDL_cpuinfo.h"}, {"audio": 0, "start": 2514682, "crunched": 0, "end": 2517785, "filename": "/usr/include/SDL/SDL_config_wiz.h"}, {"audio": 0, "start": 2517785, "crunched": 0, "end": 2555618, "filename": "/usr/include/SDL/SDL_haptic.h"}, {"audio": 0, "start": 2555618, "crunched": 0, "end": 2557210, "filename": "/usr/include/SDL/SDL_config.h"}, {"audio": 0, "start": 2557210, "crunched": 0, "end": 2561280, "filename": "/usr/include/SDL/SDL_rect.h"}, {"audio": 0, "start": 2561280, "crunched": 0, "end": 2579303, "filename": "/usr/include/SDL/SDL_surface.h"}, {"audio": 0, "start": 2579303, "crunched": 0, "end": 2585412, "filename": "/usr/include/SDL/SDL_joystick.h"}, {"audio": 0, "start": 2585412, "crunched": 0, "end": 2588002, "filename": "/usr/include/SDL/SDL_input.h"}, {"audio": 0, "start": 2588002, "crunched": 0, "end": 2602939, "filename": "/usr/include/SDL/SDL_scancode.h"}, {"audio": 0, "start": 2602939, "crunched": 0, "end": 2607771, "filename": "/usr/include/SDL/SDL_config_macosx.h"}, {"audio": 0, "start": 2607771, "crunched": 0, "end": 2613771, "filename": "/usr/include/SDL/SDL_log.h"}, {"audio": 0, "start": 2613771, "crunched": 0, "end": 2623156, "filename": "/usr/include/SDL/SDL_atomic.h"}, {"audio": 0, "start": 2623156, "crunched": 0, "end": 2625135, "filename": "/usr/include/SDL/SDL_clipboard.h"}, {"audio": 0, "start": 2625135, "crunched": 0, "end": 2640163, "filename": "/usr/include/SDL/SDL_keycode.h"}, {"audio": 0, "start": 2640163, "crunched": 0, "end": 2642563, "filename": "/usr/include/SDL/SDL_config_minimal.h"}, {"audio": 0, "start": 2642563, "crunched": 0, "end": 2644676, "filename": "/usr/include/SDL/SDL_quit.h"}, {"audio": 0, "start": 2644676, "crunched": 0, "end": 2651788, "filename": "/usr/include/SDL/SDL_mouse.h"}, {"audio": 0, "start": 2651788, "crunched": 0, "end": 2652819, "filename": "/usr/include/SDL/COPYING"}, {"audio": 0, "start": 2652819, "crunched": 0, "end": 2673097, "filename": "/usr/include/SDL/SDL_stdinc.h"}, {"audio": 0, "start": 2673097, "crunched": 0, "end": 2676285, "filename": "/usr/include/SDL/SDL_timer.h"}, {"audio": 0, "start": 2676285, "crunched": 0, "end": 2677521, "filename": "/usr/include/SDL/SDL_opengles2.h"}, {"audio": 0, "start": 2677521, "crunched": 0, "end": 2681084, "filename": "/usr/include/SDL/SDL_config_nintendods.h"}, {"audio": 0, "start": 2681084, "crunched": 0, "end": 2687940, "filename": "/usr/include/SDL/SDL_hints.h"}, {"audio": 0, "start": 2687940, "crunched": 0, "end": 2691876, "filename": "/usr/include/SDL/SDL_config_iphoneos.h"}, {"audio": 0, "start": 2691876, "crunched": 0, "end": 2698493, "filename": "/usr/include/SDL/SDL_rwops.h"}, {"audio": 0, "start": 2698493, "crunched": 0, "end": 2701038, "filename": "/usr/include/SDL/SDL_power.h"}, {"audio": 0, "start": 2701038, "crunched": 0, "end": 2713938, "filename": "/usr/include/SDL/SDL_compat.h"}, {"audio": 0, "start": 2713938, "crunched": 0, "end": 2736810, "filename": "/usr/include/SDL/SDL_events.h"}, {"audio": 0, "start": 2736810, "crunched": 0, "end": 2747796, "filename": "/usr/include/SDL/SDL_gfxPrimitives.h"}, {"audio": 0, "start": 2747796, "crunched": 0, "end": 3384260, "filename": "/usr/include/SDL/SDL_opengl.h"}, {"audio": 0, "start": 3384260, "crunched": 0, "end": 3390835, "filename": "/usr/include/SDL/SDL_mutex.h"}, {"audio": 0, "start": 3390835, "crunched": 0, "end": 3418569, "filename": "/usr/include/SDL/SDL_mixer.h"}, {"audio": 0, "start": 3418569, "crunched": 0, "end": 3433264, "filename": "/usr/include/SDL/SDL_pixels.h"}, {"audio": 0, "start": 3433264, "crunched": 0, "end": 3434297, "filename": "/usr/include/SDL/SDL_types.h"}, {"audio": 0, "start": 3434297, "crunched": 0, "end": 3434480, "filename": "/usr/include/SDL/SDL_name.h"}, {"audio": 0, "start": 3434480, "crunched": 0, "end": 3435899, "filename": "/usr/include/SDL/close_code.h"}, {"audio": 0, "start": 3435899, "crunched": 0, "end": 3441014, "filename": "/usr/include/SDL/SDL.h"}, {"audio": 0, "start": 3441014, "crunched": 0, "end": 3448612, "filename": "/usr/include/SDL/SDL_config.h.in"}, {"audio": 0, "start": 3448612, "crunched": 0, "end": 3470984, "filename": "/usr/include/SDL/SDL_render.h"}, {"audio": 0, "start": 3470984, "crunched": 0, "end": 3473968, "filename": "/usr/include/SDL/SDL_rotozoom.h"}, {"audio": 0, "start": 3473968, "crunched": 0, "end": 3480200, "filename": "/usr/include/SDL/SDL_syswm.h"}, {"audio": 0, "start": 3480200, "crunched": 0, "end": 3483400, "filename": "/usr/include/SDL/SDL_config_pandora.h"}, {"audio": 0, "start": 3483400, "crunched": 0, "end": 3485932, "filename": "/usr/include/SDL/SDL_touch.h"}, {"audio": 0, "start": 3485932, "crunched": 0, "end": 3486009, "filename": "/usr/include/SDL/SDL_revision.h"}, {"audio": 0, "start": 3486009, "crunched": 0, "end": 3505957, "filename": "/usr/include/SDL/SDL_audio.h"}, {"audio": 0, "start": 3505957, "crunched": 0, "end": 3516668, "filename": "/usr/include/SDL/SDL_ttf.h"}, {"audio": 0, "start": 3516668, "crunched": 0, "end": 3521881, "filename": "/usr/include/SDL/SDL_config_windows.h"}, {"audio": 0, "start": 3521881, "crunched": 0, "end": 3527394, "filename": "/usr/include/SDL/SDL_image.h"}, {"audio": 0, "start": 3527394, "crunched": 0, "end": 3530374, "filename": "/usr/include/SDL/SDL_loadso.h"}, {"audio": 0, "start": 3530374, "crunched": 0, "end": 3532218, "filename": "/usr/include/SDL/SDL_blendmode.h"}, {"audio": 0, "start": 3532218, "crunched": 0, "end": 3532295, "filename": "/usr/include/SDL/SDL_revision.h.orig"}, {"audio": 0, "start": 3532295, "crunched": 0, "end": 3536257, "filename": "/usr/include/SDL/begin_code.h"}, {"audio": 0, "start": 3536257, "crunched": 0, "end": 3539646, "filename": "/usr/include/SDL/SDL_config_android.h"}, {"audio": 0, "start": 3539646, "crunched": 0, "end": 3545937, "filename": "/usr/include/SDL/SDL_endian.h"}, {"audio": 0, "start": 3545937, "crunched": 0, "end": 3547169, "filename": "/usr/include/SDL/SDL_opengles.h"}, {"audio": 0, "start": 3547169, "crunched": 0, "end": 3552165, "filename": "/usr/include/SDL/SDL_keyboard.h"}, {"audio": 0, "start": 3552165, "crunched": 0, "end": 3554484, "filename": "/usr/include/SDL/SDL_main.h"}, {"audio": 0, "start": 3554484, "crunched": 0, "end": 3560207, "filename": "/usr/include/SDL/SDL_shape.h"}, {"audio": 0, "start": 3560207, "crunched": 0, "end": 3565908, "filename": "/usr/include/SDL/SDL_thread.h"}, {"audio": 0, "start": 3565908, "crunched": 0, "end": 3574715, "filename": "/usr/include/SDL/SDL_assert.h"}, {"audio": 0, "start": 3574715, "crunched": 0, "end": 3581983, "filename": "/usr/include/AL/al.h"}, {"audio": 0, "start": 3581983, "crunched": 0, "end": 3584920, "filename": "/usr/include/AL/alc.h"}, {"audio": 0, "start": 3584920, "crunched": 0, "end": 3678576, "filename": "/usr/include/libcxx/__hash_table"}, {"audio": 0, "start": 3678576, "crunched": 0, "end": 3679213, "filename": "/usr/include/libcxx/ctgmath"}, {"audio": 0, "start": 3679213, "crunched": 0, "end": 3724852, "filename": "/usr/include/libcxx/__locale"}, {"audio": 0, "start": 3724852, "crunched": 0, "end": 3725919, "filename": "/usr/include/libcxx/__undef_min_max"}, {"audio": 0, "start": 3725919, "crunched": 0, "end": 3726546, "filename": "/usr/include/libcxx/ccomplex"}, {"audio": 0, "start": 3726546, "crunched": 0, "end": 3734626, "filename": "/usr/include/libcxx/wchar.h"}, {"audio": 0, "start": 3734626, "crunched": 0, "end": 3736315, "filename": "/usr/include/libcxx/__nullptr"}, {"audio": 0, "start": 3736315, "crunched": 0, "end": 3741446, "filename": "/usr/include/libcxx/errno.h"}, {"audio": 0, "start": 3741446, "crunched": 0, "end": 3801810, "filename": "/usr/include/libcxx/forward_list"}, {"audio": 0, "start": 3801810, "crunched": 0, "end": 3802455, "filename": "/usr/include/libcxx/tgmath.h"}, {"audio": 0, "start": 3802455, "crunched": 0, "end": 3828024, "filename": "/usr/include/libcxx/scoped_allocator"}, {"audio": 0, "start": 3828024, "crunched": 0, "end": 3829444, "filename": "/usr/include/libcxx/ctype.h"}, {"audio": 0, "start": 3829444, "crunched": 0, "end": 3830857, "filename": "/usr/include/libcxx/ctime"}, {"audio": 0, "start": 3830857, "crunched": 0, "end": 3839587, "filename": "/usr/include/libcxx/numeric"}, {"audio": 0, "start": 3839587, "crunched": 0, "end": 3840243, "filename": "/usr/include/libcxx/cerrno"}, {"audio": 0, "start": 3840243, "crunched": 0, "end": 3868580, "filename": "/usr/include/libcxx/utility"}, {"audio": 0, "start": 3868580, "crunched": 0, "end": 3872188, "filename": "/usr/include/libcxx/stdio.h"}, {"audio": 0, "start": 3872188, "crunched": 0, "end": 3873322, "filename": "/usr/include/libcxx/cfloat"}, {"audio": 0, "start": 3873322, "crunched": 0, "end": 3874124, "filename": "/usr/include/libcxx/stdbool.h"}, {"audio": 0, "start": 3874124, "crunched": 0, "end": 3877721, "filename": "/usr/include/libcxx/inttypes.h"}, {"audio": 0, "start": 3877721, "crunched": 0, "end": 3881214, "filename": "/usr/include/libcxx/LICENSE.TXT"}, {"audio": 0, "start": 3881214, "crunched": 0, "end": 3882541, "filename": "/usr/include/libcxx/float.h"}, {"audio": 0, "start": 3882541, "crunched": 0, "end": 3883123, "filename": "/usr/include/libcxx/ciso646"}, {"audio": 0, "start": 3883123, "crunched": 0, "end": 3883167, "filename": "/usr/include/libcxx/readme.txt"}, {"audio": 0, "start": 3883167, "crunched": 0, "end": 3928145, "filename": "/usr/include/libcxx/fstream"}, {"audio": 0, "start": 3928145, "crunched": 0, "end": 3928908, "filename": "/usr/include/libcxx/locale.h"}, {"audio": 0, "start": 3928908, "crunched": 0, "end": 4086330, "filename": "/usr/include/libcxx/type_traits"}, {"audio": 0, "start": 4086330, "crunched": 0, "end": 4289166, "filename": "/usr/include/libcxx/algorithm"}, {"audio": 0, "start": 4289166, "crunched": 0, "end": 4290060, "filename": "/usr/include/libcxx/climits"}, {"audio": 0, "start": 4290060, "crunched": 0, "end": 4296620, "filename": "/usr/include/libcxx/stdexcept"}, {"audio": 0, "start": 4296620, "crunched": 0, "end": 4316865, "filename": "/usr/include/libcxx/__tuple"}, {"audio": 0, "start": 4316865, "crunched": 0, "end": 4321352, "filename": "/usr/include/libcxx/stdlib.h"}, {"audio": 0, "start": 4321352, "crunched": 0, "end": 4323817, "filename": "/usr/include/libcxx/__sso_allocator"}, {"audio": 0, "start": 4323817, "crunched": 0, "end": 4335089, "filename": "/usr/include/libcxx/strstream"}, {"audio": 0, "start": 4335089, "crunched": 0, "end": 4367470, "filename": "/usr/include/libcxx/ostream"}, {"audio": 0, "start": 4367470, "crunched": 0, "end": 4419504, "filename": "/usr/include/libcxx/__bit_reference"}, {"audio": 0, "start": 4419504, "crunched": 0, "end": 4425776, "filename": "/usr/include/libcxx/cwchar"}, {"audio": 0, "start": 4425776, "crunched": 0, "end": 4427317, "filename": "/usr/include/libcxx/wctype.h"}, {"audio": 0, "start": 4427317, "crunched": 0, "end": 4430412, "filename": "/usr/include/libcxx/CREDITS.TXT"}, {"audio": 0, "start": 4430412, "crunched": 0, "end": 4508827, "filename": "/usr/include/libcxx/list"}, {"audio": 0, "start": 4508827, "crunched": 0, "end": 4509553, "filename": "/usr/include/libcxx/complex.h"}, {"audio": 0, "start": 4509553, "crunched": 0, "end": 4542717, "filename": "/usr/include/libcxx/bitset"}, {"audio": 0, "start": 4542717, "crunched": 0, "end": 4553232, "filename": "/usr/include/libcxx/__std_stream"}, {"audio": 0, "start": 4553232, "crunched": 0, "end": 4569452, "filename": "/usr/include/libcxx/ratio"}, {"audio": 0, "start": 4569452, "crunched": 0, "end": 4570342, "filename": "/usr/include/libcxx/cstdarg"}, {"audio": 0, "start": 4570342, "crunched": 0, "end": 4573832, "filename": "/usr/include/libcxx/cinttypes"}, {"audio": 0, "start": 4573832, "crunched": 0, "end": 4655416, "filename": "/usr/include/libcxx/unordered_map"}, {"audio": 0, "start": 4655416, "crunched": 0, "end": 4658261, "filename": "/usr/include/libcxx/initializer_list"}, {"audio": 0, "start": 4658261, "crunched": 0, "end": 4792480, "filename": "/usr/include/libcxx/valarray"}, {"audio": 0, "start": 4792480, "crunched": 0, "end": 4796727, "filename": "/usr/include/libcxx/__bsd_locale_fallbacks.h"}, {"audio": 0, "start": 4796727, "crunched": 0, "end": 4803246, "filename": "/usr/include/libcxx/__functional_base_03"}, {"audio": 0, "start": 4803246, "crunched": 0, "end": 4828675, "filename": "/usr/include/libcxx/ios"}, {"audio": 0, "start": 4828675, "crunched": 0, "end": 4890014, "filename": "/usr/include/libcxx/atomic"}, {"audio": 0, "start": 4890014, "crunched": 0, "end": 4890722, "filename": "/usr/include/libcxx/cstdbool"}, {"audio": 0, "start": 4890722, "crunched": 0, "end": 4916359, "filename": "/usr/include/libcxx/queue"}, {"audio": 0, "start": 4916359, "crunched": 0, "end": 4925484, "filename": "/usr/include/libcxx/new"}, {"audio": 0, "start": 4925484, "crunched": 0, "end": 4934296, "filename": "/usr/include/libcxx/__debug"}, {"audio": 0, "start": 4934296, "crunched": 0, "end": 4935096, "filename": "/usr/include/libcxx/csetjmp"}, {"audio": 0, "start": 4935096, "crunched": 0, "end": 4998426, "filename": "/usr/include/libcxx/iterator"}, {"audio": 0, "start": 4998426, "crunched": 0, "end": 5003419, "filename": "/usr/include/libcxx/typeinfo"}, {"audio": 0, "start": 5003419, "crunched": 0, "end": 5229175, "filename": "/usr/include/libcxx/random"}, {"audio": 0, "start": 5229175, "crunched": 0, "end": 5284553, "filename": "/usr/include/libcxx/unordered_set"}, {"audio": 0, "start": 5284553, "crunched": 0, "end": 5296572, "filename": "/usr/include/libcxx/module.modulemap"}, {"audio": 0, "start": 5296572, "crunched": 0, "end": 5308531, "filename": "/usr/include/libcxx/array"}, {"audio": 0, "start": 5308531, "crunched": 0, "end": 5327061, "filename": "/usr/include/libcxx/any"}, {"audio": 0, "start": 5327061, "crunched": 0, "end": 5328439, "filename": "/usr/include/libcxx/iostream"}, {"audio": 0, "start": 5328439, "crunched": 0, "end": 5329390, "filename": "/usr/include/libcxx/csignal"}, {"audio": 0, "start": 5329390, "crunched": 0, "end": 5331135, "filename": "/usr/include/libcxx/cctype"}, {"audio": 0, "start": 5331135, "crunched": 0, "end": 5441927, "filename": "/usr/include/libcxx/vector"}, {"audio": 0, "start": 5441927, "crunched": 0, "end": 5591102, "filename": "/usr/include/libcxx/locale"}, {"audio": 0, "start": 5591102, "crunched": 0, "end": 5696532, "filename": "/usr/include/libcxx/deque"}, {"audio": 0, "start": 5696532, "crunched": 0, "end": 5701193, "filename": "/usr/include/libcxx/string.h"}, {"audio": 0, "start": 5701193, "crunched": 0, "end": 5747317, "filename": "/usr/include/libcxx/set"}, {"audio": 0, "start": 5747317, "crunched": 0, "end": 5748302, "filename": "/usr/include/libcxx/clocale"}, {"audio": 0, "start": 5748302, "crunched": 0, "end": 5928921, "filename": "/usr/include/libcxx/memory"}, {"audio": 0, "start": 5928921, "crunched": 0, "end": 5959173, "filename": "/usr/include/libcxx/__config"}, {"audio": 0, "start": 5959173, "crunched": 0, "end": 6017208, "filename": "/usr/include/libcxx/variant"}, {"audio": 0, "start": 6017208, "crunched": 0, "end": 6057721, "filename": "/usr/include/libcxx/limits"}, {"audio": 0, "start": 6057721, "crunched": 0, "end": 6087958, "filename": "/usr/include/libcxx/string_view"}, {"audio": 0, "start": 6087958, "crunched": 0, "end": 6089214, "filename": "/usr/include/libcxx/stddef.h"}, {"audio": 0, "start": 6089214, "crunched": 0, "end": 6093619, "filename": "/usr/include/libcxx/cstdio"}, {"audio": 0, "start": 6093619, "crunched": 0, "end": 6095948, "filename": "/usr/include/libcxx/CMakeLists.txt"}, {"audio": 0, "start": 6095948, "crunched": 0, "end": 6103423, "filename": "/usr/include/libcxx/condition_variable"}, {"audio": 0, "start": 6103423, "crunched": 0, "end": 6121674, "filename": "/usr/include/libcxx/iomanip"}, {"audio": 0, "start": 6121674, "crunched": 0, "end": 6124459, "filename": "/usr/include/libcxx/cstdint"}, {"audio": 0, "start": 6124459, "crunched": 0, "end": 6169749, "filename": "/usr/include/libcxx/complex"}, {"audio": 0, "start": 6169749, "crunched": 0, "end": 6171337, "filename": "/usr/include/libcxx/cfenv"}, {"audio": 0, "start": 6171337, "crunched": 0, "end": 6172126, "filename": "/usr/include/libcxx/setjmp.h"}, {"audio": 0, "start": 6172126, "crunched": 0, "end": 6174652, "filename": "/usr/include/libcxx/cstring"}, {"audio": 0, "start": 6174652, "crunched": 0, "end": 6176660, "filename": "/usr/include/libcxx/__bsd_locale_defaults.h"}, {"audio": 0, "start": 6176660, "crunched": 0, "end": 6193065, "filename": "/usr/include/libcxx/mutex"}, {"audio": 0, "start": 6193065, "crunched": 0, "end": 6215307, "filename": "/usr/include/libcxx/__split_buffer"}, {"audio": 0, "start": 6215307, "crunched": 0, "end": 6223130, "filename": "/usr/include/libcxx/exception"}, {"audio": 0, "start": 6223130, "crunched": 0, "end": 6237922, "filename": "/usr/include/libcxx/__threading_support"}, {"audio": 0, "start": 6237922, "crunched": 0, "end": 6245793, "filename": "/usr/include/libcxx/iosfwd"}, {"audio": 0, "start": 6245793, "crunched": 0, "end": 6294957, "filename": "/usr/include/libcxx/istream"}, {"audio": 0, "start": 6294957, "crunched": 0, "end": 6309309, "filename": "/usr/include/libcxx/shared_mutex"}, {"audio": 0, "start": 6309309, "crunched": 0, "end": 6312127, "filename": "/usr/include/libcxx/typeindex"}, {"audio": 0, "start": 6312127, "crunched": 0, "end": 6383753, "filename": "/usr/include/libcxx/future"}, {"audio": 0, "start": 6383753, "crunched": 0, "end": 6396752, "filename": "/usr/include/libcxx/thread"}, {"audio": 0, "start": 6396752, "crunched": 0, "end": 6409683, "filename": "/usr/include/libcxx/__mutex_base"}, {"audio": 0, "start": 6409683, "crunched": 0, "end": 6629215, "filename": "/usr/include/libcxx/regex"}, {"audio": 0, "start": 6629215, "crunched": 0, "end": 6647537, "filename": "/usr/include/libcxx/__functional_base"}, {"audio": 0, "start": 6647537, "crunched": 0, "end": 6661765, "filename": "/usr/include/libcxx/streambuf"}, {"audio": 0, "start": 6661765, "crunched": 0, "end": 6741262, "filename": "/usr/include/libcxx/functional"}, {"audio": 0, "start": 6741262, "crunched": 0, "end": 6741266, "filename": "/usr/include/libcxx/__libcpp_version"}, {"audio": 0, "start": 6741266, "crunched": 0, "end": 6892371, "filename": "/usr/include/libcxx/string"}, {"audio": 0, "start": 6892371, "crunched": 0, "end": 6895548, "filename": "/usr/include/libcxx/__refstring"}, {"audio": 0, "start": 6895548, "crunched": 0, "end": 6897226, "filename": "/usr/include/libcxx/cwctype"}, {"audio": 0, "start": 6897226, "crunched": 0, "end": 6968489, "filename": "/usr/include/libcxx/map"}, {"audio": 0, "start": 6968489, "crunched": 0, "end": 7009763, "filename": "/usr/include/libcxx/chrono"}, {"audio": 0, "start": 7009763, "crunched": 0, "end": 7048240, "filename": "/usr/include/libcxx/optional"}, {"audio": 0, "start": 7048240, "crunched": 0, "end": 7048786, "filename": "/usr/include/libcxx/cassert"}, {"audio": 0, "start": 7048786, "crunched": 0, "end": 7101946, "filename": "/usr/include/libcxx/tuple"}, {"audio": 0, "start": 7101946, "crunched": 0, "end": 7102964, "filename": "/usr/include/libcxx/__config_site.in"}, {"audio": 0, "start": 7102964, "crunched": 0, "end": 7105002, "filename": "/usr/include/libcxx/stdint.h"}, {"audio": 0, "start": 7105002, "crunched": 0, "end": 7203233, "filename": "/usr/include/libcxx/__tree"}, {"audio": 0, "start": 7203233, "crunched": 0, "end": 7236544, "filename": "/usr/include/libcxx/sstream"}, {"audio": 0, "start": 7236544, "crunched": 0, "end": 7264419, "filename": "/usr/include/libcxx/__string"}, {"audio": 0, "start": 7264419, "crunched": 0, "end": 7265565, "filename": "/usr/include/libcxx/cstddef"}, {"audio": 0, "start": 7265565, "crunched": 0, "end": 7309640, "filename": "/usr/include/libcxx/__functional_03"}, {"audio": 0, "start": 7309640, "crunched": 0, "end": 7332186, "filename": "/usr/include/libcxx/system_error"}, {"audio": 0, "start": 7332186, "crunched": 0, "end": 7352629, "filename": "/usr/include/libcxx/codecvt"}, {"audio": 0, "start": 7352629, "crunched": 0, "end": 7357313, "filename": "/usr/include/libcxx/cstdlib"}, {"audio": 0, "start": 7357313, "crunched": 0, "end": 7366869, "filename": "/usr/include/libcxx/stack"}, {"audio": 0, "start": 7366869, "crunched": 0, "end": 7412917, "filename": "/usr/include/libcxx/math.h"}, {"audio": 0, "start": 7412917, "crunched": 0, "end": 7414376, "filename": "/usr/include/libcxx/limits.h"}, {"audio": 0, "start": 7414376, "crunched": 0, "end": 7428922, "filename": "/usr/include/libcxx/cmath"}, {"audio": 0, "start": 7428922, "crunched": 0, "end": 7430122, "filename": "/usr/include/libcxx/experimental/forward_list"}, {"audio": 0, "start": 7430122, "crunched": 0, "end": 7433026, "filename": "/usr/include/libcxx/experimental/numeric"}, {"audio": 0, "start": 7433026, "crunched": 0, "end": 7434046, "filename": "/usr/include/libcxx/experimental/utility"}, {"audio": 0, "start": 7434046, "crunched": 0, "end": 7453788, "filename": "/usr/include/libcxx/experimental/type_traits"}, {"audio": 0, "start": 7453788, "crunched": 0, "end": 7455875, "filename": "/usr/include/libcxx/experimental/algorithm"}, {"audio": 0, "start": 7455875, "crunched": 0, "end": 7457002, "filename": "/usr/include/libcxx/experimental/list"}, {"audio": 0, "start": 7457002, "crunched": 0, "end": 7459273, "filename": "/usr/include/libcxx/experimental/ratio"}, {"audio": 0, "start": 7459273, "crunched": 0, "end": 7470292, "filename": "/usr/include/libcxx/experimental/dynarray"}, {"audio": 0, "start": 7470292, "crunched": 0, "end": 7472301, "filename": "/usr/include/libcxx/experimental/unordered_map"}, {"audio": 0, "start": 7472301, "crunched": 0, "end": 7475032, "filename": "/usr/include/libcxx/experimental/__memory"}, {"audio": 0, "start": 7475032, "crunched": 0, "end": 7478908, "filename": "/usr/include/libcxx/experimental/iterator"}, {"audio": 0, "start": 7478908, "crunched": 0, "end": 7499502, "filename": "/usr/include/libcxx/experimental/propagate_const"}, {"audio": 0, "start": 7499502, "crunched": 0, "end": 7501314, "filename": "/usr/include/libcxx/experimental/unordered_set"}, {"audio": 0, "start": 7501314, "crunched": 0, "end": 7516191, "filename": "/usr/include/libcxx/experimental/any"}, {"audio": 0, "start": 7516191, "crunched": 0, "end": 7517339, "filename": "/usr/include/libcxx/experimental/vector"}, {"audio": 0, "start": 7517339, "crunched": 0, "end": 7518476, "filename": "/usr/include/libcxx/experimental/deque"}, {"audio": 0, "start": 7518476, "crunched": 0, "end": 7520099, "filename": "/usr/include/libcxx/experimental/set"}, {"audio": 0, "start": 7520099, "crunched": 0, "end": 7521996, "filename": "/usr/include/libcxx/experimental/__config"}, {"audio": 0, "start": 7521996, "crunched": 0, "end": 7557185, "filename": "/usr/include/libcxx/experimental/string_view"}, {"audio": 0, "start": 7557185, "crunched": 0, "end": 7558965, "filename": "/usr/include/libcxx/experimental/regex"}, {"audio": 0, "start": 7558965, "crunched": 0, "end": 7576799, "filename": "/usr/include/libcxx/experimental/functional"}, {"audio": 0, "start": 7576799, "crunched": 0, "end": 7578567, "filename": "/usr/include/libcxx/experimental/string"}, {"audio": 0, "start": 7578567, "crunched": 0, "end": 7580259, "filename": "/usr/include/libcxx/experimental/map"}, {"audio": 0, "start": 7580259, "crunched": 0, "end": 7581629, "filename": "/usr/include/libcxx/experimental/chrono"}, {"audio": 0, "start": 7581629, "crunched": 0, "end": 7606716, "filename": "/usr/include/libcxx/experimental/optional"}, {"audio": 0, "start": 7606716, "crunched": 0, "end": 7608861, "filename": "/usr/include/libcxx/experimental/tuple"}, {"audio": 0, "start": 7608861, "crunched": 0, "end": 7610414, "filename": "/usr/include/libcxx/experimental/system_error"}, {"audio": 0, "start": 7610414, "crunched": 0, "end": 7649071, "filename": "/usr/include/libcxx/ext/hash_map"}, {"audio": 0, "start": 7649071, "crunched": 0, "end": 7652238, "filename": "/usr/include/libcxx/ext/__hash"}, {"audio": 0, "start": 7652238, "crunched": 0, "end": 7677101, "filename": "/usr/include/libcxx/ext/hash_set"}, {"audio": 0, "start": 7677101, "crunched": 0, "end": 7678515, "filename": "/usr/include/libcxx/support/xlocale/__nop_locale_mgmt.h"}, {"audio": 0, "start": 7678515, "crunched": 0, "end": 7682959, "filename": "/usr/include/libcxx/support/xlocale/__posix_l_fallback.h"}, {"audio": 0, "start": 7682959, "crunched": 0, "end": 7682959, "filename": "/usr/include/libcxx/support/xlocale/xlocale.h"}, {"audio": 0, "start": 7682959, "crunched": 0, "end": 7685256, "filename": "/usr/include/libcxx/support/xlocale/__strtonum_fallback.h"}, {"audio": 0, "start": 7685256, "crunched": 0, "end": 7686039, "filename": "/usr/include/libcxx/support/android/locale_bionic.h"}, {"audio": 0, "start": 7686039, "crunched": 0, "end": 7692257, "filename": "/usr/include/libcxx/support/win32/support.h"}, {"audio": 0, "start": 7692257, "crunched": 0, "end": 7693510, "filename": "/usr/include/libcxx/support/win32/locale_mgmt_win32.h"}, {"audio": 0, "start": 7693510, "crunched": 0, "end": 7697546, "filename": "/usr/include/libcxx/support/win32/locale_win32.h"}, {"audio": 0, "start": 7697546, "crunched": 0, "end": 7700394, "filename": "/usr/include/libcxx/support/win32/limits_win32.h"}, {"audio": 0, "start": 7700394, "crunched": 0, "end": 7702255, "filename": "/usr/include/libcxx/support/musl/xlocale.h"}, {"audio": 0, "start": 7702255, "crunched": 0, "end": 7703472, "filename": "/usr/include/libcxx/support/solaris/wchar.h"}, {"audio": 0, "start": 7703472, "crunched": 0, "end": 7705716, "filename": "/usr/include/libcxx/support/solaris/xlocale.h"}, {"audio": 0, "start": 7705716, "crunched": 0, "end": 7706179, "filename": "/usr/include/libcxx/support/solaris/floatingpoint.h"}, {"audio": 0, "start": 7706179, "crunched": 0, "end": 7706904, "filename": "/usr/include/libcxx/support/newlib/xlocale.h"}, {"audio": 0, "start": 7706904, "crunched": 0, "end": 7712597, "filename": "/usr/include/libcxx/support/ibm/xlocale.h"}, {"audio": 0, "start": 7712597, "crunched": 0, "end": 7714277, "filename": "/usr/include/libcxx/support/ibm/support.h"}, {"audio": 0, "start": 7714277, "crunched": 0, "end": 7716718, "filename": "/usr/include/libcxx/support/ibm/locale_mgmt_aix.h"}, {"audio": 0, "start": 7716718, "crunched": 0, "end": 7720315, "filename": "/usr/include/libcxx/support/ibm/limits.h"}, {"audio": 0, "start": 7720315, "crunched": 0, "end": 7726508, "filename": "/usr/include/libc/wchar.h"}, {"audio": 0, "start": 7726508, "crunched": 0, "end": 7726775, "filename": "/usr/include/libc/iso646.h"}, {"audio": 0, "start": 7726775, "crunched": 0, "end": 7728643, "filename": "/usr/include/libc/threads.h"}, {"audio": 0, "start": 7728643, "crunched": 0, "end": 7737626, "filename": "/usr/include/libc/pthread.h"}, {"audio": 0, "start": 7737626, "crunched": 0, "end": 7810242, "filename": "/usr/include/libc/elf.h"}, {"audio": 0, "start": 7810242, "crunched": 0, "end": 7810267, "filename": "/usr/include/libc/syscall.h"}, {"audio": 0, "start": 7810267, "crunched": 0, "end": 7810590, "filename": "/usr/include/libc/errno.h"}, {"audio": 0, "start": 7810590, "crunched": 0, "end": 7811020, "filename": "/usr/include/libc/sysexits.h"}, {"audio": 0, "start": 7811020, "crunched": 0, "end": 7811040, "filename": "/usr/include/libc/memory.h"}, {"audio": 0, "start": 7811040, "crunched": 0, "end": 7811512, "filename": "/usr/include/libc/err.h"}, {"audio": 0, "start": 7811512, "crunched": 0, "end": 7820070, "filename": "/usr/include/libc/tgmath.h"}, {"audio": 0, "start": 7820070, "crunched": 0, "end": 7821068, "filename": "/usr/include/libc/utmp.h"}, {"audio": 0, "start": 7821068, "crunched": 0, "end": 7822828, "filename": "/usr/include/libc/ctype.h"}, {"audio": 0, "start": 7822828, "crunched": 0, "end": 7823223, "filename": "/usr/include/libc/monetary.h"}, {"audio": 0, "start": 7823223, "crunched": 0, "end": 7823680, "filename": "/usr/include/libc/assert.h"}, {"audio": 0, "start": 7823680, "crunched": 0, "end": 7824582, "filename": "/usr/include/libc/paths.h"}, {"audio": 0, "start": 7824582, "crunched": 0, "end": 7828716, "filename": "/usr/include/libc/sched.h"}, {"audio": 0, "start": 7828716, "crunched": 0, "end": 7830458, "filename": "/usr/include/libc/dirent.h"}, {"audio": 0, "start": 7830458, "crunched": 0, "end": 7830774, "filename": "/usr/include/libc/nl_types.h"}, {"audio": 0, "start": 7830774, "crunched": 0, "end": 7836005, "filename": "/usr/include/libc/stdio.h"}, {"audio": 0, "start": 7836005, "crunched": 0, "end": 7836172, "filename": "/usr/include/libc/stdbool.h"}, {"audio": 0, "start": 7836172, "crunched": 0, "end": 7836190, "filename": "/usr/include/libc/lastlog.h"}, {"audio": 0, "start": 7836190, "crunched": 0, "end": 7840828, "filename": "/usr/include/libc/inttypes.h"}, {"audio": 0, "start": 7840828, "crunched": 0, "end": 7841070, "filename": "/usr/include/libc/alloca.h"}, {"audio": 0, "start": 7841070, "crunched": 0, "end": 7842130, "filename": "/usr/include/libc/float.h"}, {"audio": 0, "start": 7842130, "crunched": 0, "end": 7844529, "filename": "/usr/include/libc/stropts.h"}, {"audio": 0, "start": 7844529, "crunched": 0, "end": 7844690, "filename": "/usr/include/libc/libgen.h"}, {"audio": 0, "start": 7844690, "crunched": 0, "end": 7844967, "filename": "/usr/include/libc/crypt.h"}, {"audio": 0, "start": 7844967, "crunched": 0, "end": 7845050, "filename": "/usr/include/libc/readme.txt"}, {"audio": 0, "start": 7845050, "crunched": 0, "end": 7846699, "filename": "/usr/include/libc/locale.h"}, {"audio": 0, "start": 7846699, "crunched": 0, "end": 7848140, "filename": "/usr/include/libc/aio.h"}, {"audio": 0, "start": 7848140, "crunched": 0, "end": 7852825, "filename": "/usr/include/libc/stdlib.h"}, {"audio": 0, "start": 7852825, "crunched": 0, "end": 7853376, "filename": "/usr/include/libc/cpio.h"}, {"audio": 0, "start": 7853376, "crunched": 0, "end": 7853877, "filename": "/usr/include/libc/byteswap.h"}, {"audio": 0, "start": 7853877, "crunched": 0, "end": 7856621, "filename": "/usr/include/libc/syslog.h"}, {"audio": 0, "start": 7856621, "crunched": 0, "end": 7858536, "filename": "/usr/include/libc/wctype.h"}, {"audio": 0, "start": 7858536, "crunched": 0, "end": 7858922, "filename": "/usr/include/libc/fnmatch.h"}, {"audio": 0, "start": 7858922, "crunched": 0, "end": 7859189, "filename": "/usr/include/libc/utime.h"}, {"audio": 0, "start": 7859189, "crunched": 0, "end": 7860131, "filename": "/usr/include/libc/strings.h"}, {"audio": 0, "start": 7860131, "crunched": 0, "end": 7861012, "filename": "/usr/include/libc/libintl.h"}, {"audio": 0, "start": 7861012, "crunched": 0, "end": 7864717, "filename": "/usr/include/libc/complex.h"}, {"audio": 0, "start": 7864717, "crunched": 0, "end": 7865462, "filename": "/usr/include/libc/dlfcn.h"}, {"audio": 0, "start": 7865462, "crunched": 0, "end": 7872084, "filename": "/usr/include/libc/signal.h"}, {"audio": 0, "start": 7872084, "crunched": 0, "end": 7872820, "filename": "/usr/include/libc/semaphore.h"}, {"audio": 0, "start": 7872820, "crunched": 0, "end": 7873667, "filename": "/usr/include/libc/termios.h"}, {"audio": 0, "start": 7873667, "crunched": 0, "end": 7874484, "filename": "/usr/include/libc/pwd.h"}, {"audio": 0, "start": 7874484, "crunched": 0, "end": 7874846, "filename": "/usr/include/libc/malloc.h"}, {"audio": 0, "start": 7874846, "crunched": 0, "end": 7874975, "filename": "/usr/include/libc/stdnoreturn.h"}, {"audio": 0, "start": 7874975, "crunched": 0, "end": 7875576, "filename": "/usr/include/libc/uchar.h"}, {"audio": 0, "start": 7875576, "crunched": 0, "end": 7888799, "filename": "/usr/include/libc/unistd.h"}, {"audio": 0, "start": 7888799, "crunched": 0, "end": 7889649, "filename": "/usr/include/libc/poll.h"}, {"audio": 0, "start": 7889649, "crunched": 0, "end": 7891027, "filename": "/usr/include/libc/search.h"}, {"audio": 0, "start": 7891027, "crunched": 0, "end": 7891526, "filename": "/usr/include/libc/ucontext.h"}, {"audio": 0, "start": 7891526, "crunched": 0, "end": 7894101, "filename": "/usr/include/libc/spawn.h"}, {"audio": 0, "start": 7894101, "crunched": 0, "end": 7894660, "filename": "/usr/include/libc/getopt.h"}, {"audio": 0, "start": 7894660, "crunched": 0, "end": 7895867, "filename": "/usr/include/libc/utmpx.h"}, {"audio": 0, "start": 7895867, "crunched": 0, "end": 7896640, "filename": "/usr/include/libc/features.h"}, {"audio": 0, "start": 7896640, "crunched": 0, "end": 7896727, "filename": "/usr/include/libc/wait.h"}, {"audio": 0, "start": 7896727, "crunched": 0, "end": 7897305, "filename": "/usr/include/libc/tar.h"}, {"audio": 0, "start": 7897305, "crunched": 0, "end": 7897955, "filename": "/usr/include/libc/wordexp.h"}, {"audio": 0, "start": 7897955, "crunched": 0, "end": 7898938, "filename": "/usr/include/libc/link.h"}, {"audio": 0, "start": 7898938, "crunched": 0, "end": 7900945, "filename": "/usr/include/libc/alltypes.h.in"}, {"audio": 0, "start": 7900945, "crunched": 0, "end": 7901257, "filename": "/usr/include/libc/pty.h"}, {"audio": 0, "start": 7901257, "crunched": 0, "end": 7902206, "filename": "/usr/include/libc/grp.h"}, {"audio": 0, "start": 7902206, "crunched": 0, "end": 7902613, "filename": "/usr/include/libc/stdarg.h"}, {"audio": 0, "start": 7902613, "crunched": 0, "end": 7906572, "filename": "/usr/include/libc/netdb.h"}, {"audio": 0, "start": 7906572, "crunched": 0, "end": 7909659, "filename": "/usr/include/libc/string.h"}, {"audio": 0, "start": 7909659, "crunched": 0, "end": 7910258, "filename": "/usr/include/libc/ifaddrs.h"}, {"audio": 0, "start": 7910258, "crunched": 0, "end": 7913689, "filename": "/usr/include/libc/time.h"}, {"audio": 0, "start": 7913689, "crunched": 0, "end": 7914367, "filename": "/usr/include/libc/ftw.h"}, {"audio": 0, "start": 7914367, "crunched": 0, "end": 7915088, "filename": "/usr/include/libc/shadow.h"}, {"audio": 0, "start": 7915088, "crunched": 0, "end": 7915579, "filename": "/usr/include/libc/stddef.h"}, {"audio": 0, "start": 7915579, "crunched": 0, "end": 7916190, "filename": "/usr/include/libc/stdio_ext.h"}, {"audio": 0, "start": 7916190, "crunched": 0, "end": 7917138, "filename": "/usr/include/libc/setjmp.h"}, {"audio": 0, "start": 7917138, "crunched": 0, "end": 7920970, "filename": "/usr/include/libc/fcntl.h"}, {"audio": 0, "start": 7920970, "crunched": 0, "end": 7922979, "filename": "/usr/include/libc/endian.h"}, {"audio": 0, "start": 7922979, "crunched": 0, "end": 7924664, "filename": "/usr/include/libc/langinfo.h"}, {"audio": 0, "start": 7924664, "crunched": 0, "end": 7924975, "filename": "/usr/include/libc/ar.h"}, {"audio": 0, "start": 7924975, "crunched": 0, "end": 7925384, "filename": "/usr/include/libc/stdalign.h"}, {"audio": 0, "start": 7925384, "crunched": 0, "end": 7926230, "filename": "/usr/include/libc/values.h"}, {"audio": 0, "start": 7926230, "crunched": 0, "end": 7926615, "filename": "/usr/include/libc/iconv.h"}, {"audio": 0, "start": 7926615, "crunched": 0, "end": 7927064, "filename": "/usr/include/libc/fenv.h"}, {"audio": 0, "start": 7927064, "crunched": 0, "end": 7930651, "filename": "/usr/include/libc/resolv.h"}, {"audio": 0, "start": 7930651, "crunched": 0, "end": 7931392, "filename": "/usr/include/libc/fmtmsg.h"}, {"audio": 0, "start": 7931392, "crunched": 0, "end": 7932229, "filename": "/usr/include/libc/mntent.h"}, {"audio": 0, "start": 7932229, "crunched": 0, "end": 7932412, "filename": "/usr/include/libc/ulimit.h"}, {"audio": 0, "start": 7932412, "crunched": 0, "end": 7933390, "filename": "/usr/include/libc/mqueue.h"}, {"audio": 0, "start": 7933390, "crunched": 0, "end": 7933564, "filename": "/usr/include/libc/stdc-predef.h"}, {"audio": 0, "start": 7933564, "crunched": 0, "end": 7936142, "filename": "/usr/include/libc/stdint.h"}, {"audio": 0, "start": 7936142, "crunched": 0, "end": 7937369, "filename": "/usr/include/libc/regex.h"}, {"audio": 0, "start": 7937369, "crunched": 0, "end": 7948717, "filename": "/usr/include/libc/math.h"}, {"audio": 0, "start": 7948717, "crunched": 0, "end": 7949577, "filename": "/usr/include/libc/glob.h"}, {"audio": 0, "start": 7949577, "crunched": 0, "end": 7953551, "filename": "/usr/include/libc/limits.h"}, {"audio": 0, "start": 7953551, "crunched": 0, "end": 7959303, "filename": "/usr/include/libc/arpa/telnet.h"}, {"audio": 0, "start": 7959303, "crunched": 0, "end": 7970050, "filename": "/usr/include/libc/arpa/nameser.h"}, {"audio": 0, "start": 7970050, "crunched": 0, "end": 7970077, "filename": "/usr/include/libc/arpa/nameser_compat.h"}, {"audio": 0, "start": 7970077, "crunched": 0, "end": 7970898, "filename": "/usr/include/libc/arpa/ftp.h"}, {"audio": 0, "start": 7970898, "crunched": 0, "end": 7971442, "filename": "/usr/include/libc/arpa/tftp.h"}, {"audio": 0, "start": 7971442, "crunched": 0, "end": 7972249, "filename": "/usr/include/libc/arpa/inet.h"}, {"audio": 0, "start": 7972249, "crunched": 0, "end": 7975093, "filename": "/usr/include/libc/net/if_arp.h"}, {"audio": 0, "start": 7975093, "crunched": 0, "end": 7976270, "filename": "/usr/include/libc/net/ethernet.h"}, {"audio": 0, "start": 7976270, "crunched": 0, "end": 7978898, "filename": "/usr/include/libc/net/route.h"}, {"audio": 0, "start": 7978898, "crunched": 0, "end": 7981989, "filename": "/usr/include/libc/net/if.h"}, {"audio": 0, "start": 7981989, "crunched": 0, "end": 7983333, "filename": "/usr/include/libc/netpacket/packet.h"}, {"audio": 0, "start": 7983333, "crunched": 0, "end": 7984444, "filename": "/usr/include/libc/sys/acct.h"}, {"audio": 0, "start": 7984444, "crunched": 0, "end": 7984473, "filename": "/usr/include/libc/sys/soundcard.h"}, {"audio": 0, "start": 7984473, "crunched": 0, "end": 7987254, "filename": "/usr/include/libc/sys/stat.h"}, {"audio": 0, "start": 7987254, "crunched": 0, "end": 7987335, "filename": "/usr/include/libc/sys/syscall.h"}, {"audio": 0, "start": 7987335, "crunched": 0, "end": 7987421, "filename": "/usr/include/libc/sys/errno.h"}, {"audio": 0, "start": 7987421, "crunched": 0, "end": 7988288, "filename": "/usr/include/libc/sys/msg.h"}, {"audio": 0, "start": 7988288, "crunched": 0, "end": 7989044, "filename": "/usr/include/libc/sys/param.h"}, {"audio": 0, "start": 7989044, "crunched": 0, "end": 7991488, "filename": "/usr/include/libc/sys/fanotify.h"}, {"audio": 0, "start": 7991488, "crunched": 0, "end": 7992555, "filename": "/usr/include/libc/sys/uio.h"}, {"audio": 0, "start": 7992555, "crunched": 0, "end": 7992927, "filename": "/usr/include/libc/sys/utsname.h"}, {"audio": 0, "start": 7992927, "crunched": 0, "end": 7994308, "filename": "/usr/include/libc/sys/personality.h"}, {"audio": 0, "start": 7994308, "crunched": 0, "end": 7999499, "filename": "/usr/include/libc/sys/mtio.h"}, {"audio": 0, "start": 7999499, "crunched": 0, "end": 7999611, "filename": "/usr/include/libc/sys/kd.h"}, {"audio": 0, "start": 7999611, "crunched": 0, "end": 7999912, "filename": "/usr/include/libc/sys/times.h"}, {"audio": 0, "start": 7999912, "crunched": 0, "end": 7999933, "filename": "/usr/include/libc/sys/stropts.h"}, {"audio": 0, "start": 7999933, "crunched": 0, "end": 8000109, "filename": "/usr/include/libc/sys/auxv.h"}, {"audio": 0, "start": 8000109, "crunched": 0, "end": 8000860, "filename": "/usr/include/libc/sys/signalfd.h"}, {"audio": 0, "start": 8000860, "crunched": 0, "end": 8000880, "filename": "/usr/include/libc/sys/syslog.h"}, {"audio": 0, "start": 8000880, "crunched": 0, "end": 8002055, "filename": "/usr/include/libc/sys/procfs.h"}, {"audio": 0, "start": 8002055, "crunched": 0, "end": 8002205, "filename": "/usr/include/libc/sys/klog.h"}, {"audio": 0, "start": 8002205, "crunched": 0, "end": 8003131, "filename": "/usr/include/libc/sys/ttydefaults.h"}, {"audio": 0, "start": 8003131, "crunched": 0, "end": 8003331, "filename": "/usr/include/libc/sys/user.h"}, {"audio": 0, "start": 8003331, "crunched": 0, "end": 8003501, "filename": "/usr/include/libc/sys/ioctl.h"}, {"audio": 0, "start": 8003501, "crunched": 0, "end": 8004737, "filename": "/usr/include/libc/sys/select.h"}, {"audio": 0, "start": 8004737, "crunched": 0, "end": 8004826, "filename": "/usr/include/libc/sys/signal.h"}, {"audio": 0, "start": 8004826, "crunched": 0, "end": 8004918, "filename": "/usr/include/libc/sys/termios.h"}, {"audio": 0, "start": 8004918, "crunched": 0, "end": 8005292, "filename": "/usr/include/libc/sys/reboot.h"}, {"audio": 0, "start": 8005292, "crunched": 0, "end": 8005639, "filename": "/usr/include/libc/sys/cachectl.h"}, {"audio": 0, "start": 8005639, "crunched": 0, "end": 8005749, "filename": "/usr/include/libc/sys/reg.h"}, {"audio": 0, "start": 8005749, "crunched": 0, "end": 8005832, "filename": "/usr/include/libc/sys/poll.h"}, {"audio": 0, "start": 8005832, "crunched": 0, "end": 8006742, "filename": "/usr/include/libc/sys/shm.h"}, {"audio": 0, "start": 8006742, "crunched": 0, "end": 8006764, "filename": "/usr/include/libc/sys/ucontext.h"}, {"audio": 0, "start": 8006764, "crunched": 0, "end": 8006786, "filename": "/usr/include/libc/sys/vt.h"}, {"audio": 0, "start": 8006786, "crunched": 0, "end": 8008654, "filename": "/usr/include/libc/sys/mount.h"}, {"audio": 0, "start": 8008654, "crunched": 0, "end": 8010591, "filename": "/usr/include/libc/sys/types.h"}, {"audio": 0, "start": 8010591, "crunched": 0, "end": 8011876, "filename": "/usr/include/libc/sys/wait.h"}, {"audio": 0, "start": 8011876, "crunched": 0, "end": 8021381, "filename": "/usr/include/libc/sys/socket.h"}, {"audio": 0, "start": 8021381, "crunched": 0, "end": 8023530, "filename": "/usr/include/libc/sys/resource.h"}, {"audio": 0, "start": 8023530, "crunched": 0, "end": 8026195, "filename": "/usr/include/libc/sys/mman.h"}, {"audio": 0, "start": 8026195, "crunched": 0, "end": 8026219, "filename": "/usr/include/libc/sys/vfs.h"}, {"audio": 0, "start": 8026219, "crunched": 0, "end": 8027567, "filename": "/usr/include/libc/sys/inotify.h"}, {"audio": 0, "start": 8027567, "crunched": 0, "end": 8027786, "filename": "/usr/include/libc/sys/io.h"}, {"audio": 0, "start": 8027786, "crunched": 0, "end": 8028294, "filename": "/usr/include/libc/sys/statfs.h"}, {"audio": 0, "start": 8028294, "crunched": 0, "end": 8030347, "filename": "/usr/include/libc/sys/timex.h"}, {"audio": 0, "start": 8030347, "crunched": 0, "end": 8030580, "filename": "/usr/include/libc/sys/fsuid.h"}, {"audio": 0, "start": 8030580, "crunched": 0, "end": 8031224, "filename": "/usr/include/libc/sys/ipc.h"}, {"audio": 0, "start": 8031224, "crunched": 0, "end": 8031618, "filename": "/usr/include/libc/sys/sysmacros.h"}, {"audio": 0, "start": 8031618, "crunched": 0, "end": 8032794, "filename": "/usr/include/libc/sys/statvfs.h"}, {"audio": 0, "start": 8032794, "crunched": 0, "end": 8033808, "filename": "/usr/include/libc/sys/sem.h"}, {"audio": 0, "start": 8033808, "crunched": 0, "end": 8035718, "filename": "/usr/include/libc/sys/time.h"}, {"audio": 0, "start": 8035718, "crunched": 0, "end": 8037994, "filename": "/usr/include/libc/sys/quota.h"}, {"audio": 0, "start": 8037994, "crunched": 0, "end": 8038080, "filename": "/usr/include/libc/sys/fcntl.h"}, {"audio": 0, "start": 8038080, "crunched": 0, "end": 8038412, "filename": "/usr/include/libc/sys/swap.h"}, {"audio": 0, "start": 8038412, "crunched": 0, "end": 8038741, "filename": "/usr/include/libc/sys/sendfile.h"}, {"audio": 0, "start": 8038741, "crunched": 0, "end": 8039145, "filename": "/usr/include/libc/sys/eventfd.h"}, {"audio": 0, "start": 8039145, "crunched": 0, "end": 8040047, "filename": "/usr/include/libc/sys/xattr.h"}, {"audio": 0, "start": 8040047, "crunched": 0, "end": 8040089, "filename": "/usr/include/libc/sys/dir.h"}, {"audio": 0, "start": 8040089, "crunched": 0, "end": 8040723, "filename": "/usr/include/libc/sys/sysinfo.h"}, {"audio": 0, "start": 8040723, "crunched": 0, "end": 8041003, "filename": "/usr/include/libc/sys/timeb.h"}, {"audio": 0, "start": 8041003, "crunched": 0, "end": 8041475, "filename": "/usr/include/libc/sys/un.h"}, {"audio": 0, "start": 8041475, "crunched": 0, "end": 8042729, "filename": "/usr/include/libc/sys/epoll.h"}, {"audio": 0, "start": 8042729, "crunched": 0, "end": 8045440, "filename": "/usr/include/libc/sys/ptrace.h"}, {"audio": 0, "start": 8045440, "crunched": 0, "end": 8045870, "filename": "/usr/include/libc/sys/timerfd.h"}, {"audio": 0, "start": 8045870, "crunched": 0, "end": 8049356, "filename": "/usr/include/libc/sys/prctl.h"}, {"audio": 0, "start": 8049356, "crunched": 0, "end": 8049617, "filename": "/usr/include/libc/sys/file.h"}, {"audio": 0, "start": 8049617, "crunched": 0, "end": 8053522, "filename": "/usr/include/libc/scsi/scsi.h"}, {"audio": 0, "start": 8053522, "crunched": 0, "end": 8056607, "filename": "/usr/include/libc/scsi/sg.h"}, {"audio": 0, "start": 8056607, "crunched": 0, "end": 8056929, "filename": "/usr/include/libc/scsi/scsi_ioctl.h"}, {"audio": 0, "start": 8056929, "crunched": 0, "end": 8060104, "filename": "/usr/include/libc/netinet/if_ether.h"}, {"audio": 0, "start": 8060104, "crunched": 0, "end": 8064741, "filename": "/usr/include/libc/netinet/ip_icmp.h"}, {"audio": 0, "start": 8064741, "crunched": 0, "end": 8065771, "filename": "/usr/include/libc/netinet/igmp.h"}, {"audio": 0, "start": 8065771, "crunched": 0, "end": 8066318, "filename": "/usr/include/libc/netinet/udp.h"}, {"audio": 0, "start": 8066318, "crunched": 0, "end": 8070558, "filename": "/usr/include/libc/netinet/tcp.h"}, {"audio": 0, "start": 8070558, "crunched": 0, "end": 8079190, "filename": "/usr/include/libc/netinet/icmp6.h"}, {"audio": 0, "start": 8079190, "crunched": 0, "end": 8083543, "filename": "/usr/include/libc/netinet/ip.h"}, {"audio": 0, "start": 8083543, "crunched": 0, "end": 8083688, "filename": "/usr/include/libc/netinet/in_systm.h"}, {"audio": 0, "start": 8083688, "crunched": 0, "end": 8084231, "filename": "/usr/include/libc/netinet/ether.h"}, {"audio": 0, "start": 8084231, "crunched": 0, "end": 8095583, "filename": "/usr/include/libc/netinet/in.h"}, {"audio": 0, "start": 8095583, "crunched": 0, "end": 8098277, "filename": "/usr/include/libc/netinet/ip6.h"}, {"audio": 0, "start": 8098277, "crunched": 0, "end": 8109949, "filename": "/usr/include/emscripten/dom_pk_codes.h"}, {"audio": 0, "start": 8109949, "crunched": 0, "end": 8125118, "filename": "/usr/include/emscripten/wire.h"}, {"audio": 0, "start": 8125118, "crunched": 0, "end": 8138326, "filename": "/usr/include/emscripten/threading.h"}, {"audio": 0, "start": 8138326, "crunched": 0, "end": 8146462, "filename": "/usr/include/emscripten/fetch.h"}, {"audio": 0, "start": 8146462, "crunched": 0, "end": 8151575, "filename": "/usr/include/emscripten/em_asm.h"}, {"audio": 0, "start": 8151575, "crunched": 0, "end": 8156641, "filename": "/usr/include/emscripten/vr.h"}, {"audio": 0, "start": 8156641, "crunched": 0, "end": 8176840, "filename": "/usr/include/emscripten/html5.h"}, {"audio": 0, "start": 8176840, "crunched": 0, "end": 8184777, "filename": "/usr/include/emscripten/key_codes.h"}, {"audio": 0, "start": 8184777, "crunched": 0, "end": 8243431, "filename": "/usr/include/emscripten/bind.h"}, {"audio": 0, "start": 8243431, "crunched": 0, "end": 8254591, "filename": "/usr/include/emscripten/emscripten.h"}, {"audio": 0, "start": 8254591, "crunched": 0, "end": 8257691, "filename": "/usr/include/emscripten/trace.h"}, {"audio": 0, "start": 8257691, "crunched": 0, "end": 8273808, "filename": "/usr/include/emscripten/val.h"}, {"audio": 0, "start": 8273808, "crunched": 0, "end": 8327413, "filename": "/usr/include/emscripten/vector.h"}, {"audio": 0, "start": 8327413, "crunched": 0, "end": 8332206, "filename": "/usr/include/EGL/eglplatform.h"}, {"audio": 0, "start": 8332206, "crunched": 0, "end": 8350901, "filename": "/usr/include/EGL/eglext.h"}, {"audio": 0, "start": 8350901, "crunched": 0, "end": 8363254, "filename": "/usr/include/EGL/egl.h"}, {"audio": 0, "start": 8363254, "crunched": 0, "end": 8363689, "filename": "/usr/include/compat/wchar.h"}, {"audio": 0, "start": 8363689, "crunched": 0, "end": 8364547, "filename": "/usr/include/compat/ctype.h"}, {"audio": 0, "start": 8364547, "crunched": 0, "end": 8364956, "filename": "/usr/include/compat/xlocale.h"}, {"audio": 0, "start": 8364956, "crunched": 0, "end": 8365155, "filename": "/usr/include/compat/stdlib.h"}, {"audio": 0, "start": 8365155, "crunched": 0, "end": 8365594, "filename": "/usr/include/compat/wctype.h"}, {"audio": 0, "start": 8365594, "crunched": 0, "end": 8366681, "filename": "/usr/include/compat/malloc.h"}, {"audio": 0, "start": 8366681, "crunched": 0, "end": 8366881, "filename": "/usr/include/compat/stdarg.h"}, {"audio": 0, "start": 8366881, "crunched": 0, "end": 8367418, "filename": "/usr/include/compat/netdb.h"}, {"audio": 0, "start": 8367418, "crunched": 0, "end": 8367630, "filename": "/usr/include/compat/string.h"}, {"audio": 0, "start": 8367630, "crunched": 0, "end": 8367854, "filename": "/usr/include/compat/time.h"}, {"audio": 0, "start": 8367854, "crunched": 0, "end": 8368050, "filename": "/usr/include/compat/math.h"}, {"audio": 0, "start": 8368050, "crunched": 0, "end": 8368462, "filename": "/usr/include/compat/sys/stat.h"}, {"audio": 0, "start": 8368462, "crunched": 0, "end": 8368482, "filename": "/usr/include/compat/sys/unistd.h"}, {"audio": 0, "start": 8368482, "crunched": 0, "end": 8368713, "filename": "/usr/include/compat/sys/sysctl.h"}, {"audio": 0, "start": 8368713, "crunched": 0, "end": 8368871, "filename": "/usr/include/compat/sys/socketvar.h"}, {"audio": 0, "start": 8368871, "crunched": 0, "end": 8369533, "filename": "/usr/include/compat/sys/timeb.h"}, {"audio": 0, "start": 8369533, "crunched": 0, "end": 8377669, "filename": "/usr/lib/libcxxabi/include/unwind.h"}, {"audio": 0, "start": 8377669, "crunched": 0, "end": 8390383, "filename": "/usr/lib/libcxxabi/include/libunwind.h"}, {"audio": 0, "start": 8390383, "crunched": 0, "end": 8396388, "filename": "/usr/lib/libcxxabi/include/cxxabi.h"}, {"audio": 0, "start": 8396388, "crunched": 0, "end": 8415832, "filename": "/usr/lib/libcxxabi/include/mach-o/compact_unwind_encoding.h"}, {"audio": 0, "start": 8415832, "crunched": 0, "end": 8415832, "filename": "/usr/lib/libc/musl/arch/emscripten/crt_arch.h"}, {"audio": 0, "start": 8415832, "crunched": 0, "end": 8419657, "filename": "/usr/lib/libc/musl/arch/emscripten/atomic_arch.h"}, {"audio": 0, "start": 8419657, "crunched": 0, "end": 8424529, "filename": "/usr/lib/libc/musl/arch/emscripten/syscall_arch.h"}, {"audio": 0, "start": 8424529, "crunched": 0, "end": 8424656, "filename": "/usr/lib/libc/musl/arch/emscripten/pthread_arch.h"}, {"audio": 0, "start": 8424656, "crunched": 0, "end": 8425117, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/stat.h"}, {"audio": 0, "start": 8425117, "crunched": 0, "end": 8444248, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/syscall.h"}, {"audio": 0, "start": 8444248, "crunched": 0, "end": 8447917, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/errno.h"}, {"audio": 0, "start": 8447917, "crunched": 0, "end": 8448204, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/msg.h"}, {"audio": 0, "start": 8448204, "crunched": 0, "end": 8448683, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/float.h"}, {"audio": 0, "start": 8448683, "crunched": 0, "end": 8449837, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/user.h"}, {"audio": 0, "start": 8449837, "crunched": 0, "end": 8454962, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/ioctl.h"}, {"audio": 0, "start": 8454962, "crunched": 0, "end": 8457758, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/signal.h"}, {"audio": 0, "start": 8457758, "crunched": 0, "end": 8461002, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/termios.h"}, {"audio": 0, "start": 8461002, "crunched": 0, "end": 8461287, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/reg.h"}, {"audio": 0, "start": 8461287, "crunched": 0, "end": 8461287, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/poll.h"}, {"audio": 0, "start": 8461287, "crunched": 0, "end": 8461587, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/shm.h"}, {"audio": 0, "start": 8461587, "crunched": 0, "end": 8472477, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/alltypes.h"}, {"audio": 0, "start": 8472477, "crunched": 0, "end": 8472716, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/socket.h"}, {"audio": 0, "start": 8472716, "crunched": 0, "end": 8473425, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/alltypes.h.in"}, {"audio": 0, "start": 8473425, "crunched": 0, "end": 8473427, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/resource.h"}, {"audio": 0, "start": 8473427, "crunched": 0, "end": 8474990, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/mman.h"}, {"audio": 0, "start": 8474990, "crunched": 0, "end": 8474990, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/io.h"}, {"audio": 0, "start": 8474990, "crunched": 0, "end": 8475185, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/statfs.h"}, {"audio": 0, "start": 8475185, "crunched": 0, "end": 8475370, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/stdarg.h"}, {"audio": 0, "start": 8475370, "crunched": 0, "end": 8475549, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/ipc.h"}, {"audio": 0, "start": 8475549, "crunched": 0, "end": 8475791, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/sem.h"}, {"audio": 0, "start": 8475791, "crunched": 0, "end": 8475827, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/setjmp.h"}, {"audio": 0, "start": 8475827, "crunched": 0, "end": 8476669, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/fcntl.h"}, {"audio": 0, "start": 8476669, "crunched": 0, "end": 8476706, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/endian.h"}, {"audio": 0, "start": 8476706, "crunched": 0, "end": 8477483, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/fenv.h"}, {"audio": 0, "start": 8477483, "crunched": 0, "end": 8477551, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/posix.h"}, {"audio": 0, "start": 8477551, "crunched": 0, "end": 8478091, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/stdint.h"}, {"audio": 0, "start": 8478091, "crunched": 0, "end": 8478345, "filename": "/usr/lib/libc/musl/arch/emscripten/bits/limits.h"}], "remote_package_size": 8478345, "package_uuid": "ae55fc8a-1c5e-4ad1-a07a-8b4591008c5c"});
 
 })();
 
@@ -2185,11 +2185,11 @@ var ASM_CONSTS = [];
 
 STATIC_BASE = GLOBAL_BASE;
 
-STATICTOP = STATIC_BASE + 2609968;
-/* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_CodeGenModule_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeGenPGO_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyTargetMachine_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyExplicitLocals_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyPeephole_cpp() } }, { func: function() { __GLOBAL__sub_I_AsmPrinter_cpp() } }, { func: function() { __GLOBAL__sub_I_DwarfDebug_cpp() } }, { func: function() { __GLOBAL__sub_I_DwarfUnit_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeViewDebug_cpp() } }, { func: function() { __GLOBAL__sub_I_ContinuationRecordBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_TypeDumpVisitor_cpp() } }, { func: function() { __GLOBAL__sub_I_TypeHashing_cpp() } }, { func: function() { __GLOBAL__sub_I_SelectionDAGBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_SelectionDAGISel_cpp() } }, { func: function() { __GLOBAL__sub_I_DAGCombiner_cpp() } }, { func: function() { __GLOBAL__sub_I_LegalizeTypes_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGRRList_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGSDNodes_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGVLIW_cpp() } }, { func: function() { __GLOBAL__sub_I_SelectionDAGDumper_cpp() } }, { func: function() { __GLOBAL__sub_I_ResourcePriorityQueue_cpp() } }, { func: function() { __GLOBAL__sub_I_PassBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_BasicTargetTransformInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_DFAPacketizer_cpp() } }, { func: function() { __GLOBAL__sub_I_LiveIntervals_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineDominators_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineFunction_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineOperand_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineRegisterInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_PostRASchedulerList_cpp() } }, { func: function() { __GLOBAL__sub_I_RegisterClassInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_RegisterCoalescer_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGInstrs_cpp() } }, { func: function() { __GLOBAL__sub_I_ShrinkWrap_cpp() } }, { func: function() { __GLOBAL__sub_I_StackMapLivenessAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_StackProtector_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetInstrInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetLoweringBase_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetPassConfig_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetSchedule_cpp() } }, { func: function() { __GLOBAL__sub_I_TwoAddressInstructionPass_cpp() } }, { func: function() { __GLOBAL__sub_I_WinEHPrepare_cpp() } }, { func: function() { __GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp() } }, { func: function() { __GLOBAL__sub_I_BranchFolding_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeGenPrepare_cpp() } }, { func: function() { __GLOBAL__sub_I_EarlyIfConversion_cpp() } }, { func: function() { __GLOBAL__sub_I_ExpandMemCmp_cpp() } }, { func: function() { __GLOBAL__sub_I_IfConversion_cpp() } }, { func: function() { __GLOBAL__sub_I_ImplicitNullChecks_cpp() } }, { func: function() { __GLOBAL__sub_I_InterleavedAccessPass_cpp() } }, { func: function() { __GLOBAL__sub_I_LiveDebugVariables_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineBlockPlacement_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineCombiner_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineLICM_cpp() } }, { func: function() { __GLOBAL__sub_I_MachinePipeliner_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineScheduler_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineSink_cpp() } }, { func: function() { __GLOBAL__sub_I_MIRPrinter_cpp() } }, { func: function() { __GLOBAL__sub_I_PeepholeOptimizer_cpp() } }, { func: function() { __GLOBAL__sub_I_PHIElimination_cpp() } }, { func: function() { __GLOBAL__sub_I_PrologEpilogInserter_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocBasic_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocFast_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocGreedy_cpp() } }, { func: function() { __GLOBAL__sub_I_MIRCanonicalizerPass_cpp() } }, { func: function() { __GLOBAL__sub_I_SafeStackColoring_cpp() } }, { func: function() { __GLOBAL__sub_I_SafeStackLayout_cpp() } }, { func: function() { __GLOBAL__sub_I_StackColoring_cpp() } }, { func: function() { __GLOBAL__sub_I_StackMaps_cpp() } }, { func: function() { __GLOBAL__sub_I_StackSlotColoring_cpp() } }, { func: function() { __GLOBAL__sub_I_TailDuplicator_cpp() } }, { func: function() { __GLOBAL__sub_I_EdgeBundles_cpp() } }, { func: function() { __GLOBAL__sub_I_InlineSpiller_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocBase_cpp() } }, { func: function() { __GLOBAL__sub_I_RegisterUsageInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_CalledValuePropagation_cpp() } }, { func: function() { __GLOBAL__sub_I_ForceFunctionAttrs_cpp() } }, { func: function() { __GLOBAL__sub_I_FunctionAttrs_cpp() } }, { func: function() { __GLOBAL__sub_I_FunctionImport_cpp() } }, { func: function() { __GLOBAL__sub_I_Inliner_cpp() } }, { func: function() { __GLOBAL__sub_I_Internalize_cpp() } }, { func: function() { __GLOBAL__sub_I_LowerTypeTests_cpp() } }, { func: function() { __GLOBAL__sub_I_PartialInlining_cpp() } }, { func: function() { __GLOBAL__sub_I_PassManagerBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_SampleProfile_cpp() } }, { func: function() { __GLOBAL__sub_I_WholeProgramDevirt_cpp() } }, { func: function() { __GLOBAL__sub_I_MergeFunctions_cpp() } }, { func: function() { __GLOBAL__sub_I_BitcodeWriter_cpp() } }, { func: function() { __GLOBAL__sub_I_AddressSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_BoundsChecking_cpp() } }, { func: function() { __GLOBAL__sub_I_DataFlowSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_GCOVProfiling_cpp() } }, { func: function() { __GLOBAL__sub_I_MemorySanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_IndirectCallPromotion_cpp() } }, { func: function() { __GLOBAL__sub_I_InstrProfiling_cpp() } }, { func: function() { __GLOBAL__sub_I_PGOInstrumentation_cpp() } }, { func: function() { __GLOBAL__sub_I_PGOMemOPSizeOpt_cpp() } }, { func: function() { __GLOBAL__sub_I_SanitizerCoverage_cpp() } }, { func: function() { __GLOBAL__sub_I_ThreadSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_EfficiencySanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_HWAddressSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_ADCE_cpp() } }, { func: function() { __GLOBAL__sub_I_ConstantHoisting_cpp() } }, { func: function() { __GLOBAL__sub_I_CorrelatedValuePropagation_cpp() } }, { func: function() { __GLOBAL__sub_I_DeadStoreElimination_cpp() } }, { func: function() { __GLOBAL__sub_I_Float2Int_cpp() } }, { func: function() { __GLOBAL__sub_I_GVN_cpp() } }, { func: function() { __GLOBAL__sub_I_GVNHoist_cpp() } }, { func: function() { __GLOBAL__sub_I_IndVarSimplify_cpp() } }, { func: function() { __GLOBAL__sub_I_JumpThreading_cpp() } }, { func: function() { __GLOBAL__sub_I_LICM_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopSink_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopDataPrefetch_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopDistribute_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopIdiomRecognize_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopInterchange_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopLoadElimination_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopPredication_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopRerollPass_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopRotation_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopStrengthReduce_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnrollPass_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnswitch_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopVersioningLICM_cpp() } }, { func: function() { __GLOBAL__sub_I_LowerExpectIntrinsic_cpp() } }, { func: function() { __GLOBAL__sub_I_LowerGuardIntrinsic_cpp() } }, { func: function() { __GLOBAL__sub_I_NewGVN_cpp() } }, { func: function() { __GLOBAL__sub_I_RewriteStatepointsForGC_cpp() } }, { func: function() { __GLOBAL__sub_I_SROA_cpp() } }, { func: function() { __GLOBAL__sub_I_SimpleLoopUnswitch_cpp() } }, { func: function() { __GLOBAL__sub_I_SimplifyCFGPass_cpp() } }, { func: function() { __GLOBAL__sub_I_SpeculativeExecution_cpp() } }, { func: function() { __GLOBAL__sub_I_InstructionCombining_cpp() } }, { func: function() { __GLOBAL__sub_I_InstCombineCalls_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopVectorize_cpp() } }, { func: function() { __GLOBAL__sub_I_SLPVectorizer_cpp() } }, { func: function() { __GLOBAL__sub_I_AddDiscriminators_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeExtractor_cpp() } }, { func: function() { __GLOBAL__sub_I_InlineFunction_cpp() } }, { func: function() { __GLOBAL__sub_I_LCSSA_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnroll_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnrollPeel_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnrollRuntime_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopVersioning_cpp() } }, { func: function() { __GLOBAL__sub_I_PredicateInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_SimplifyCFG_cpp() } }, { func: function() { __GLOBAL__sub_I_SimplifyLibCalls_cpp() } }, { func: function() { __GLOBAL__sub_I_SymbolRewriter_cpp() } }, { func: function() { __GLOBAL__sub_I_AliasAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_AliasAnalysisEvaluator_cpp() } }, { func: function() { __GLOBAL__sub_I_AliasSetTracker_cpp() } }, { func: function() { __GLOBAL__sub_I_AssumptionCache_cpp() } }, { func: function() { __GLOBAL__sub_I_BasicAliasAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_BlockFrequencyInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_BranchProbabilityInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_CallGraphSCCPass_cpp() } }, { func: function() { __GLOBAL__sub_I_DependenceAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_GlobalsModRef_cpp() } }, { func: function() { __GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_InlineCost_cpp() } }, { func: function() { __GLOBAL__sub_I_Loads_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopAccessAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopAnalysisManager_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_MemoryBuiltins_cpp() } }, { func: function() { __GLOBAL__sub_I_MemoryDependenceAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_MemorySSA_cpp() } }, { func: function() { __GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp() } }, { func: function() { __GLOBAL__sub_I_ProfileSummaryInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_RegionInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_ScalarEvolution_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetLibraryInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetTransformInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_ScopedNoAliasAA_cpp() } }, { func: function() { __GLOBAL__sub_I_ValueTracking_cpp() } }, { func: function() { __GLOBAL__sub_I_IRSymtab_cpp() } }, { func: function() { __GLOBAL__sub_I_InstrProf_cpp() } }, { func: function() { __GLOBAL__sub_I_AsmParser_cpp() } }, { func: function() { __GLOBAL__sub_I_BitcodeReader_cpp() } }, { func: function() { __GLOBAL__sub_I_MetadataLoader_cpp() } }, { func: function() { __GLOBAL__sub_I_DIBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_DiagnosticHandler_cpp() } }, { func: function() { __GLOBAL__sub_I_Dominators_cpp() } }, { func: function() { __GLOBAL__sub_I_LegacyPassManager_cpp() } }, { func: function() { __GLOBAL__sub_I_OptBisect_cpp() } }, { func: function() { __GLOBAL__sub_I_MCContext_cpp() } }, { func: function() { __GLOBAL__sub_I_MCSymbol_cpp() } }, { func: function() { __GLOBAL__sub_I_ARMAttributeParser_cpp() } }, { func: function() { __GLOBAL__sub_I_CommandLine_cpp() } }, { func: function() { __GLOBAL__sub_I_DebugCounter_cpp() } }, { func: function() { __GLOBAL__sub_I_GraphWriter_cpp() } }, { func: function() { __GLOBAL__sub_I_RandomNumberGenerator_cpp() } }, { func: function() { __GLOBAL__sub_I_Statistic_cpp() } }, { func: function() { __GLOBAL__sub_I_Timer_cpp() } }, { func: function() { __GLOBAL__sub_I_Signals_cpp() } });
+STATICTOP = STATIC_BASE + 5606768;
+/* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__sub_I_CodeGenModule_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeGenPGO_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyTargetMachine_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyExplicitLocals_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp() } }, { func: function() { __GLOBAL__sub_I_WebAssemblyPeephole_cpp() } }, { func: function() { __GLOBAL__sub_I_AsmPrinter_cpp() } }, { func: function() { __GLOBAL__sub_I_DwarfDebug_cpp() } }, { func: function() { __GLOBAL__sub_I_DwarfUnit_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeViewDebug_cpp() } }, { func: function() { __GLOBAL__sub_I_ContinuationRecordBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_TypeDumpVisitor_cpp() } }, { func: function() { __GLOBAL__sub_I_TypeHashing_cpp() } }, { func: function() { __GLOBAL__sub_I_SelectionDAGBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_SelectionDAGDumper_cpp() } }, { func: function() { __GLOBAL__sub_I_SelectionDAGISel_cpp() } }, { func: function() { __GLOBAL__sub_I_DAGCombiner_cpp() } }, { func: function() { __GLOBAL__sub_I_LegalizeTypes_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGRRList_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGSDNodes_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGVLIW_cpp() } }, { func: function() { __GLOBAL__sub_I_ResourcePriorityQueue_cpp() } }, { func: function() { __GLOBAL__sub_I_PassBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_BasicTargetTransformInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_DFAPacketizer_cpp() } }, { func: function() { __GLOBAL__sub_I_LiveIntervals_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineDominators_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineFunction_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineOperand_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineRegisterInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_PostRASchedulerList_cpp() } }, { func: function() { __GLOBAL__sub_I_RegisterClassInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_RegisterCoalescer_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAG_cpp() } }, { func: function() { __GLOBAL__sub_I_ScheduleDAGInstrs_cpp() } }, { func: function() { __GLOBAL__sub_I_ShrinkWrap_cpp() } }, { func: function() { __GLOBAL__sub_I_StackMapLivenessAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_StackProtector_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetInstrInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetLoweringBase_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetPassConfig_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetSchedule_cpp() } }, { func: function() { __GLOBAL__sub_I_TwoAddressInstructionPass_cpp() } }, { func: function() { __GLOBAL__sub_I_WinEHPrepare_cpp() } }, { func: function() { __GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp() } }, { func: function() { __GLOBAL__sub_I_BranchFolding_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeGenPrepare_cpp() } }, { func: function() { __GLOBAL__sub_I_EarlyIfConversion_cpp() } }, { func: function() { __GLOBAL__sub_I_ExpandMemCmp_cpp() } }, { func: function() { __GLOBAL__sub_I_IfConversion_cpp() } }, { func: function() { __GLOBAL__sub_I_ImplicitNullChecks_cpp() } }, { func: function() { __GLOBAL__sub_I_InterleavedAccessPass_cpp() } }, { func: function() { __GLOBAL__sub_I_LiveDebugVariables_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineBlockPlacement_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineCombiner_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineLICM_cpp() } }, { func: function() { __GLOBAL__sub_I_MachinePipeliner_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineScheduler_cpp() } }, { func: function() { __GLOBAL__sub_I_MachineSink_cpp() } }, { func: function() { __GLOBAL__sub_I_MIRPrinter_cpp() } }, { func: function() { __GLOBAL__sub_I_PeepholeOptimizer_cpp() } }, { func: function() { __GLOBAL__sub_I_PHIElimination_cpp() } }, { func: function() { __GLOBAL__sub_I_PrologEpilogInserter_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocBasic_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocFast_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocGreedy_cpp() } }, { func: function() { __GLOBAL__sub_I_MIRCanonicalizerPass_cpp() } }, { func: function() { __GLOBAL__sub_I_SafeStackColoring_cpp() } }, { func: function() { __GLOBAL__sub_I_SafeStackLayout_cpp() } }, { func: function() { __GLOBAL__sub_I_StackColoring_cpp() } }, { func: function() { __GLOBAL__sub_I_StackMaps_cpp() } }, { func: function() { __GLOBAL__sub_I_StackSlotColoring_cpp() } }, { func: function() { __GLOBAL__sub_I_TailDuplicator_cpp() } }, { func: function() { __GLOBAL__sub_I_EdgeBundles_cpp() } }, { func: function() { __GLOBAL__sub_I_InlineSpiller_cpp() } }, { func: function() { __GLOBAL__sub_I_RegAllocBase_cpp() } }, { func: function() { __GLOBAL__sub_I_RegisterUsageInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_CalledValuePropagation_cpp() } }, { func: function() { __GLOBAL__sub_I_ForceFunctionAttrs_cpp() } }, { func: function() { __GLOBAL__sub_I_FunctionAttrs_cpp() } }, { func: function() { __GLOBAL__sub_I_FunctionImport_cpp() } }, { func: function() { __GLOBAL__sub_I_Inliner_cpp() } }, { func: function() { __GLOBAL__sub_I_Internalize_cpp() } }, { func: function() { __GLOBAL__sub_I_LowerTypeTests_cpp() } }, { func: function() { __GLOBAL__sub_I_PartialInlining_cpp() } }, { func: function() { __GLOBAL__sub_I_PassManagerBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_SampleProfile_cpp() } }, { func: function() { __GLOBAL__sub_I_WholeProgramDevirt_cpp() } }, { func: function() { __GLOBAL__sub_I_MergeFunctions_cpp() } }, { func: function() { __GLOBAL__sub_I_BitcodeWriter_cpp() } }, { func: function() { __GLOBAL__sub_I_AddressSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_BoundsChecking_cpp() } }, { func: function() { __GLOBAL__sub_I_DataFlowSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_GCOVProfiling_cpp() } }, { func: function() { __GLOBAL__sub_I_MemorySanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_IndirectCallPromotion_cpp() } }, { func: function() { __GLOBAL__sub_I_InstrProfiling_cpp() } }, { func: function() { __GLOBAL__sub_I_PGOInstrumentation_cpp() } }, { func: function() { __GLOBAL__sub_I_PGOMemOPSizeOpt_cpp() } }, { func: function() { __GLOBAL__sub_I_SanitizerCoverage_cpp() } }, { func: function() { __GLOBAL__sub_I_ThreadSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_EfficiencySanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_HWAddressSanitizer_cpp() } }, { func: function() { __GLOBAL__sub_I_ADCE_cpp() } }, { func: function() { __GLOBAL__sub_I_ConstantHoisting_cpp() } }, { func: function() { __GLOBAL__sub_I_CorrelatedValuePropagation_cpp() } }, { func: function() { __GLOBAL__sub_I_DeadStoreElimination_cpp() } }, { func: function() { __GLOBAL__sub_I_Float2Int_cpp() } }, { func: function() { __GLOBAL__sub_I_GVN_cpp() } }, { func: function() { __GLOBAL__sub_I_GVNHoist_cpp() } }, { func: function() { __GLOBAL__sub_I_IndVarSimplify_cpp() } }, { func: function() { __GLOBAL__sub_I_JumpThreading_cpp() } }, { func: function() { __GLOBAL__sub_I_LICM_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopSink_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopDataPrefetch_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopDistribute_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopIdiomRecognize_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopInterchange_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopLoadElimination_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopPredication_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopRerollPass_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopRotation_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopStrengthReduce_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnrollPass_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnswitch_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopVersioningLICM_cpp() } }, { func: function() { __GLOBAL__sub_I_LowerExpectIntrinsic_cpp() } }, { func: function() { __GLOBAL__sub_I_LowerGuardIntrinsic_cpp() } }, { func: function() { __GLOBAL__sub_I_NewGVN_cpp() } }, { func: function() { __GLOBAL__sub_I_RewriteStatepointsForGC_cpp() } }, { func: function() { __GLOBAL__sub_I_SROA_cpp() } }, { func: function() { __GLOBAL__sub_I_SimpleLoopUnswitch_cpp() } }, { func: function() { __GLOBAL__sub_I_SimplifyCFGPass_cpp() } }, { func: function() { __GLOBAL__sub_I_SpeculativeExecution_cpp() } }, { func: function() { __GLOBAL__sub_I_InstructionCombining_cpp() } }, { func: function() { __GLOBAL__sub_I_InstCombineCalls_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopVectorize_cpp() } }, { func: function() { __GLOBAL__sub_I_SLPVectorizer_cpp() } }, { func: function() { __GLOBAL__sub_I_AddDiscriminators_cpp() } }, { func: function() { __GLOBAL__sub_I_CodeExtractor_cpp() } }, { func: function() { __GLOBAL__sub_I_InlineFunction_cpp() } }, { func: function() { __GLOBAL__sub_I_LCSSA_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnroll_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnrollPeel_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopUnrollRuntime_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopVersioning_cpp() } }, { func: function() { __GLOBAL__sub_I_PredicateInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_SimplifyCFG_cpp() } }, { func: function() { __GLOBAL__sub_I_SimplifyLibCalls_cpp() } }, { func: function() { __GLOBAL__sub_I_SymbolRewriter_cpp() } }, { func: function() { __GLOBAL__sub_I_AliasAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_AliasAnalysisEvaluator_cpp() } }, { func: function() { __GLOBAL__sub_I_AliasSetTracker_cpp() } }, { func: function() { __GLOBAL__sub_I_AssumptionCache_cpp() } }, { func: function() { __GLOBAL__sub_I_BasicAliasAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_BlockFrequencyInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_BranchProbabilityInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_CallGraphSCCPass_cpp() } }, { func: function() { __GLOBAL__sub_I_DependenceAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_GlobalsModRef_cpp() } }, { func: function() { __GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_InlineCost_cpp() } }, { func: function() { __GLOBAL__sub_I_Loads_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopAccessAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopAnalysisManager_cpp() } }, { func: function() { __GLOBAL__sub_I_LoopInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_MemoryBuiltins_cpp() } }, { func: function() { __GLOBAL__sub_I_MemoryDependenceAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_MemorySSA_cpp() } }, { func: function() { __GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp() } }, { func: function() { __GLOBAL__sub_I_ProfileSummaryInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_RegionInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_RegionPrinter_cpp() } }, { func: function() { __GLOBAL__sub_I_ScalarEvolution_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetLibraryInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_TargetTransformInfo_cpp() } }, { func: function() { __GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp() } }, { func: function() { __GLOBAL__sub_I_ScopedNoAliasAA_cpp() } }, { func: function() { __GLOBAL__sub_I_ValueTracking_cpp() } }, { func: function() { __GLOBAL__sub_I_IRSymtab_cpp() } }, { func: function() { __GLOBAL__sub_I_InstrProf_cpp() } }, { func: function() { __GLOBAL__sub_I_AsmParser_cpp() } }, { func: function() { __GLOBAL__sub_I_BitcodeReader_cpp() } }, { func: function() { __GLOBAL__sub_I_MetadataLoader_cpp() } }, { func: function() { __GLOBAL__sub_I_DIBuilder_cpp() } }, { func: function() { __GLOBAL__sub_I_DiagnosticHandler_cpp() } }, { func: function() { __GLOBAL__sub_I_Dominators_cpp() } }, { func: function() { __GLOBAL__sub_I_LegacyPassManager_cpp() } }, { func: function() { __GLOBAL__sub_I_OptBisect_cpp() } }, { func: function() { __GLOBAL__sub_I_MCContext_cpp() } }, { func: function() { __GLOBAL__sub_I_MCSymbol_cpp() } }, { func: function() { __GLOBAL__sub_I_ARMAttributeParser_cpp() } }, { func: function() { __GLOBAL__sub_I_CommandLine_cpp() } }, { func: function() { __GLOBAL__sub_I_Debug_cpp() } }, { func: function() { __GLOBAL__sub_I_DebugCounter_cpp() } }, { func: function() { __GLOBAL__sub_I_GraphWriter_cpp() } }, { func: function() { __GLOBAL__sub_I_RandomNumberGenerator_cpp() } }, { func: function() { __GLOBAL__sub_I_Statistic_cpp() } }, { func: function() { __GLOBAL__sub_I_Timer_cpp() } }, { func: function() { __GLOBAL__sub_I_Signals_cpp() } });
 
 
-var STATIC_BUMP = 2609968;
+var STATIC_BUMP = 5606768;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 
@@ -6981,70 +6981,22 @@ Module.asmGlobalArg = {};
 Module.asmLibraryArg = { "abort": abort, "assert": assert, "enlargeMemory": enlargeMemory, "getTotalMemory": getTotalMemory, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "segfault": segfault, "alignfault": alignfault, "invoke_diii": invoke_diii, "invoke_fiii": invoke_fiii, "invoke_i": invoke_i, "invoke_ii": invoke_ii, "invoke_iii": invoke_iii, "invoke_iiii": invoke_iiii, "invoke_iiiii": invoke_iiiii, "invoke_iiiiid": invoke_iiiiid, "invoke_iiiiii": invoke_iiiiii, "invoke_iiiiiii": invoke_iiiiiii, "invoke_iiiiiiii": invoke_iiiiiiii, "invoke_iiiiiiiii": invoke_iiiiiiiii, "invoke_iiiiiiiiiii": invoke_iiiiiiiiiii, "invoke_iiiiiiiiiiii": invoke_iiiiiiiiiiii, "invoke_iiiiiiiiiiiii": invoke_iiiiiiiiiiiii, "invoke_iiiiij": invoke_iiiiij, "invoke_jiiii": invoke_jiiii, "invoke_v": invoke_v, "invoke_vi": invoke_vi, "invoke_vii": invoke_vii, "invoke_viii": invoke_viii, "invoke_viiii": invoke_viiii, "invoke_viiiii": invoke_viiiii, "invoke_viiiiiii": invoke_viiiiiii, "invoke_viiiiiiiiii": invoke_viiiiiiiiii, "invoke_viiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiii, "___syscall221": ___syscall221, "___syscall220": ___syscall220, "___syscall63": ___syscall63, "___assert_fail": ___assert_fail, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "_longjmp": _longjmp, "_execv": _execv, "_clock_gettime": _clock_gettime, "_sbrk": _sbrk, "_sigfillset": _sigfillset, "___cxa_begin_catch": ___cxa_begin_catch, "__addDays": __addDays, "_execl": _execl, "___syscall75": ___syscall75, "___syscall77": ___syscall77, "__isLeapYear": __isLeapYear, "___cxa_atexit": ___cxa_atexit, "_round": _round, "___cxa_rethrow": ___cxa_rethrow, "___syscall140": ___syscall140, "_posix_spawn_file_actions_adddup2": _posix_spawn_file_actions_adddup2, "___syscall145": ___syscall145, "___syscall146": ___syscall146, "___syscall147": ___syscall147, "___syscall85": ___syscall85, "_execve": _execve, "_emscripten_get_now_is_monotonic": _emscripten_get_now_is_monotonic, "___syscall83": ___syscall83, "___syscall122": ___syscall122, "_log2": _log2, "___cxa_free_exception": ___cxa_free_exception, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_wait": _wait, "___setErrNo": ___setErrNo, "_alarm": _alarm, "___resumeException": ___resumeException, "_mktime": _mktime, "_nanosleep": _nanosleep, "___syscall91": ___syscall91, "_kill": _kill, "_dladdr": _dladdr, "_pthread_once": _pthread_once, "___syscall12": ___syscall12, "_emscripten_get_now": _emscripten_get_now, "___syscall10": ___syscall10, "___syscall3": ___syscall3, "_asctime": _asctime, "___lock": ___lock, "___syscall6": ___syscall6, "___syscall5": ___syscall5, "___syscall4": ___syscall4, "_time": _time, "_pthread_mutex_lock": _pthread_mutex_lock, "_exit": _exit, "_posix_spawn_file_actions_addopen": _posix_spawn_file_actions_addopen, "___syscall202": ___syscall202, "___syscall20": ___syscall20, "___cxa_allocate_exception": ___cxa_allocate_exception, "___buildEnvironment": ___buildEnvironment, "_localtime_r": _localtime_r, "_tzset": _tzset, "___syscall192": ___syscall192, "___syscall191": ___syscall191, "___syscall197": ___syscall197, "___syscall196": ___syscall196, "___syscall195": ___syscall195, "___cxa_end_catch": ___cxa_end_catch, "___syscall199": ___syscall199, "_sigemptyset": _sigemptyset, "_raise": _raise, "_pthread_getspecific": _pthread_getspecific, "_asctime_r": _asctime_r, "_getenv": _getenv, "___map_file": ___map_file, "___syscall33": ___syscall33, "_pthread_key_create": _pthread_key_create, "_pthread_cond_broadcast": _pthread_cond_broadcast, "___syscall39": ___syscall39, "___syscall38": ___syscall38, "_testSetjmp": _testSetjmp, "___syscall340": ___syscall340, "___syscall180": ___syscall180, "_abort": _abort, "___syscall183": ___syscall183, "_localtime": _localtime, "___cxa_pure_virtual": ___cxa_pure_virtual, "_waitpid": _waitpid, "_strftime": _strftime, "_pthread_cond_wait": _pthread_cond_wait, "___syscall40": ___syscall40, "_sigaction": _sigaction, "_fork": _fork, "___cxa_find_matching_catch_2": ___cxa_find_matching_catch_2, "___cxa_find_matching_catch_3": ___cxa_find_matching_catch_3, "_posix_spawn_file_actions_destroy": _posix_spawn_file_actions_destroy, "_strftime_l": _strftime_l, "_getpagesize": _getpagesize, "_usleep": _usleep, "__exit": __exit, "_posix_spawn_file_actions_init": _posix_spawn_file_actions_init, "__arraySum": __arraySum, "_posix_spawn": _posix_spawn, "_pthread_mutex_unlock": _pthread_mutex_unlock, "___syscall54": ___syscall54, "___unlock": ___unlock, "_saveSetjmp": _saveSetjmp, "_pthread_setspecific": _pthread_setspecific, "_getpwuid": _getpwuid, "___cxa_throw": ___cxa_throw, "_sigprocmask": _sigprocmask, "_emscripten_longjmp": _emscripten_longjmp, "_atexit": _atexit, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "DYNAMICTOP_PTR": DYNAMICTOP_PTR, "ABORT": ABORT, "___dso_handle": ___dso_handle, "_environ": _environ };
 
 var asm = Module['asm'](Module.asmGlobalArg, Module.asmLibraryArg, buffer);
-var real___GLOBAL__sub_I_AliasAnalysisEvaluator_cpp = asm["_GLOBAL__sub_I_AliasAnalysisEvaluator.cpp"]; asm["_GLOBAL__sub_I_AliasAnalysisEvaluator.cpp"] = function() {
+var real___ZNK5clang16TemplateArgument4dumpEv = asm["_ZNK5clang16TemplateArgument4dumpEv"]; asm["_ZNK5clang16TemplateArgument4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AliasAnalysisEvaluator_cpp.apply(null, arguments);
+return real___ZNK5clang16TemplateArgument4dumpEv.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_Timer_cpp = asm["_GLOBAL__sub_I_Timer.cpp"]; asm["_GLOBAL__sub_I_Timer.cpp"] = function() {
+var real___GLOBAL__sub_I_AssumptionCache_cpp = asm["_GLOBAL__sub_I_AssumptionCache.cpp"]; asm["_GLOBAL__sub_I_AssumptionCache.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_Timer_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_AssumptionCache_cpp.apply(null, arguments);
 };
 
-var real____trunctfdf2 = asm["__trunctfdf2"]; asm["__trunctfdf2"] = function() {
+var real___GLOBAL__sub_I_EarlyIfConversion_cpp = asm["_GLOBAL__sub_I_EarlyIfConversion.cpp"]; asm["_GLOBAL__sub_I_EarlyIfConversion.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____trunctfdf2.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_PassManagerBuilder_cpp = asm["_GLOBAL__sub_I_PassManagerBuilder.cpp"]; asm["_GLOBAL__sub_I_PassManagerBuilder.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_PassManagerBuilder_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ForceFunctionAttrs_cpp = asm["_GLOBAL__sub_I_ForceFunctionAttrs.cpp"]; asm["_GLOBAL__sub_I_ForceFunctionAttrs.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ForceFunctionAttrs_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_TailDuplicator_cpp = asm["_GLOBAL__sub_I_TailDuplicator.cpp"]; asm["_GLOBAL__sub_I_TailDuplicator.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TailDuplicator_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_StackSlotColoring_cpp = asm["_GLOBAL__sub_I_StackSlotColoring.cpp"]; asm["_GLOBAL__sub_I_StackSlotColoring.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_StackSlotColoring_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_AliasAnalysis_cpp = asm["_GLOBAL__sub_I_AliasAnalysis.cpp"]; asm["_GLOBAL__sub_I_AliasAnalysis.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AliasAnalysis_cpp.apply(null, arguments);
-};
-
-var real_dynCall_viiiiiiiiiiiiiii = asm["dynCall_viiiiiiiiiiiiiii"]; asm["dynCall_viiiiiiiiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiiiiiiiiiiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp = asm["_GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj.cpp"]; asm["_GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegAllocBasic_cpp = asm["_GLOBAL__sub_I_RegAllocBasic.cpp"]; asm["_GLOBAL__sub_I_RegAllocBasic.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegAllocBasic_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_EarlyIfConversion_cpp.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_MemoryBuiltins_cpp = asm["_GLOBAL__sub_I_MemoryBuiltins.cpp"]; asm["_GLOBAL__sub_I_MemoryBuiltins.cpp"] = function() {
@@ -7053,100 +7005,22 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_MemoryBuiltins_cpp.apply(null, arguments);
 };
 
-var real____extendsftf2 = asm["__extendsftf2"]; asm["__extendsftf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____extendsftf2.apply(null, arguments);
-};
-
 var real___GLOBAL__sub_I_PostRASchedulerList_cpp = asm["_GLOBAL__sub_I_PostRASchedulerList.cpp"]; asm["_GLOBAL__sub_I_PostRASchedulerList.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_PostRASchedulerList_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_GVN_cpp = asm["_GLOBAL__sub_I_GVN.cpp"]; asm["_GLOBAL__sub_I_GVN.cpp"] = function() {
+var real___ZNK4llvm6SDNode9dumprFullEPKNS_12SelectionDAGE = asm["_ZNK4llvm6SDNode9dumprFullEPKNS_12SelectionDAGE"]; asm["_ZNK4llvm6SDNode9dumprFullEPKNS_12SelectionDAGE"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_GVN_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopLoadElimination_cpp = asm["_GLOBAL__sub_I_LoopLoadElimination.cpp"]; asm["_GLOBAL__sub_I_LoopLoadElimination.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopLoadElimination_cpp.apply(null, arguments);
-};
-
-var real__fflush = asm["fflush"]; asm["fflush"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__fflush.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_BoundsChecking_cpp = asm["_GLOBAL__sub_I_BoundsChecking.cpp"]; asm["_GLOBAL__sub_I_BoundsChecking.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_BoundsChecking_cpp.apply(null, arguments);
+return real___ZNK4llvm6SDNode9dumprFullEPKNS_12SelectionDAGE.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_PeepholeOptimizer_cpp = asm["_GLOBAL__sub_I_PeepholeOptimizer.cpp"]; asm["_GLOBAL__sub_I_PeepholeOptimizer.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_PeepholeOptimizer_cpp.apply(null, arguments);
-};
-
-var real_____cxa_demangle = asm["___cxa_demangle"]; asm["___cxa_demangle"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_____cxa_demangle.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ThreadSanitizer_cpp = asm["_GLOBAL__sub_I_ThreadSanitizer.cpp"]; asm["_GLOBAL__sub_I_ThreadSanitizer.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ThreadSanitizer_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_JumpThreading_cpp = asm["_GLOBAL__sub_I_JumpThreading.cpp"]; asm["_GLOBAL__sub_I_JumpThreading.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_JumpThreading_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegAllocBase_cpp = asm["_GLOBAL__sub_I_RegAllocBase.cpp"]; asm["_GLOBAL__sub_I_RegAllocBase.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegAllocBase_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_DIBuilder_cpp = asm["_GLOBAL__sub_I_DIBuilder.cpp"]; asm["_GLOBAL__sub_I_DIBuilder.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DIBuilder_cpp.apply(null, arguments);
-};
-
-var real_dynCall_iiiiii = asm["dynCall_iiiiii"]; asm["dynCall_iiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegisterCoalescer_cpp = asm["_GLOBAL__sub_I_RegisterCoalescer.cpp"]; asm["_GLOBAL__sub_I_RegisterCoalescer.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegisterCoalescer_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_DependenceAnalysis_cpp = asm["_GLOBAL__sub_I_DependenceAnalysis.cpp"]; asm["_GLOBAL__sub_I_DependenceAnalysis.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DependenceAnalysis_cpp.apply(null, arguments);
-};
-
-var real____letf2 = asm["__letf2"]; asm["__letf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____letf2.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_WebAssemblyTargetMachine_cpp = asm["_GLOBAL__sub_I_WebAssemblyTargetMachine.cpp"]; asm["_GLOBAL__sub_I_WebAssemblyTargetMachine.cpp"] = function() {
@@ -7161,112 +7035,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_CodeExtractor_cpp.apply(null, arguments);
 };
 
-var real____multi3 = asm["__multi3"]; asm["__multi3"] = function() {
+var real___GLOBAL__sub_I_TwoAddressInstructionPass_cpp = asm["_GLOBAL__sub_I_TwoAddressInstructionPass.cpp"]; asm["_GLOBAL__sub_I_TwoAddressInstructionPass.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____multi3.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ScheduleDAGVLIW_cpp = asm["_GLOBAL__sub_I_ScheduleDAGVLIW.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGVLIW.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ScheduleDAGVLIW_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_InlineSpiller_cpp = asm["_GLOBAL__sub_I_InlineSpiller.cpp"]; asm["_GLOBAL__sub_I_InlineSpiller.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_InlineSpiller_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_InstructionCombining_cpp = asm["_GLOBAL__sub_I_InstructionCombining.cpp"]; asm["_GLOBAL__sub_I_InstructionCombining.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_InstructionCombining_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineLICM_cpp = asm["_GLOBAL__sub_I_MachineLICM.cpp"]; asm["_GLOBAL__sub_I_MachineLICM.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineLICM_cpp.apply(null, arguments);
-};
-
-var real__main = asm["main"]; asm["main"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__main.apply(null, arguments);
-};
-
-var real_dynCall_viiiiiiiiiiii = asm["dynCall_viiiiiiiiiiii"]; asm["dynCall_viiiiiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiiiiiiiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_PGOMemOPSizeOpt_cpp = asm["_GLOBAL__sub_I_PGOMemOPSizeOpt.cpp"]; asm["_GLOBAL__sub_I_PGOMemOPSizeOpt.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_PGOMemOPSizeOpt_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_IndirectCallPromotion_cpp = asm["_GLOBAL__sub_I_IndirectCallPromotion.cpp"]; asm["_GLOBAL__sub_I_IndirectCallPromotion.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_IndirectCallPromotion_cpp.apply(null, arguments);
-};
-
-var real____fixtfsi = asm["__fixtfsi"]; asm["__fixtfsi"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____fixtfsi.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RandomNumberGenerator_cpp = asm["_GLOBAL__sub_I_RandomNumberGenerator.cpp"]; asm["_GLOBAL__sub_I_RandomNumberGenerator.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RandomNumberGenerator_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_AliasSetTracker_cpp = asm["_GLOBAL__sub_I_AliasSetTracker.cpp"]; asm["_GLOBAL__sub_I_AliasSetTracker.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AliasSetTracker_cpp.apply(null, arguments);
-};
-
-var real____getf2 = asm["__getf2"]; asm["__getf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____getf2.apply(null, arguments);
-};
-
-var real_dynCall_viiiiiiii = asm["dynCall_viiiiiiii"]; asm["dynCall_viiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiiiii.apply(null, arguments);
-};
-
-var real_dynCall_iiii = asm["dynCall_iiii"]; asm["dynCall_iiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_CodeGenPrepare_cpp = asm["_GLOBAL__sub_I_CodeGenPrepare.cpp"]; asm["_GLOBAL__sub_I_CodeGenPrepare.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_CodeGenPrepare_cpp.apply(null, arguments);
-};
-
-var real_dynCall_iiiiid = asm["dynCall_iiiiid"]; asm["dynCall_iiiiid"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiid.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_AsmParser_cpp = asm["_GLOBAL__sub_I_AsmParser.cpp"]; asm["_GLOBAL__sub_I_AsmParser.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AsmParser_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_TwoAddressInstructionPass_cpp.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_FunctionAttrs_cpp = asm["_GLOBAL__sub_I_FunctionAttrs.cpp"]; asm["_GLOBAL__sub_I_FunctionAttrs.cpp"] = function() {
@@ -7275,34 +7047,22 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_FunctionAttrs_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_LegacyPassManager_cpp = asm["_GLOBAL__sub_I_LegacyPassManager.cpp"]; asm["_GLOBAL__sub_I_LegacyPassManager.cpp"] = function() {
+var real___GLOBAL__sub_I_IndirectCallPromotion_cpp = asm["_GLOBAL__sub_I_IndirectCallPromotion.cpp"]; asm["_GLOBAL__sub_I_IndirectCallPromotion.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LegacyPassManager_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_IndirectCallPromotion_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_EarlyIfConversion_cpp = asm["_GLOBAL__sub_I_EarlyIfConversion.cpp"]; asm["_GLOBAL__sub_I_EarlyIfConversion.cpp"] = function() {
+var real___GLOBAL__sub_I_LoopAnalysisManager_cpp = asm["_GLOBAL__sub_I_LoopAnalysisManager.cpp"]; asm["_GLOBAL__sub_I_LoopAnalysisManager.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_EarlyIfConversion_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_LoopAnalysisManager_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_LICM_cpp = asm["_GLOBAL__sub_I_LICM.cpp"]; asm["_GLOBAL__sub_I_LICM.cpp"] = function() {
+var real___GLOBAL__sub_I_PGOInstrumentation_cpp = asm["_GLOBAL__sub_I_PGOInstrumentation.cpp"]; asm["_GLOBAL__sub_I_PGOInstrumentation.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LICM_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_SimpleLoopUnswitch_cpp = asm["_GLOBAL__sub_I_SimpleLoopUnswitch.cpp"]; asm["_GLOBAL__sub_I_SimpleLoopUnswitch.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SimpleLoopUnswitch_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MemoryDependenceAnalysis_cpp = asm["_GLOBAL__sub_I_MemoryDependenceAnalysis.cpp"]; asm["_GLOBAL__sub_I_MemoryDependenceAnalysis.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MemoryDependenceAnalysis_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_PGOInstrumentation_cpp.apply(null, arguments);
 };
 
 var real__emscripten_get_global_libc = asm["emscripten_get_global_libc"]; asm["emscripten_get_global_libc"] = function() {
@@ -7311,10 +7071,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__emscripten_get_global_libc.apply(null, arguments);
 };
 
-var real__memcpy = asm["memcpy"]; asm["memcpy"] = function() {
+var real___ZNK4llvm12PressureDiff4dumpERKNS_18TargetRegisterInfoE = asm["_ZNK4llvm12PressureDiff4dumpERKNS_18TargetRegisterInfoE"]; asm["_ZNK4llvm12PressureDiff4dumpERKNS_18TargetRegisterInfoE"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__memcpy.apply(null, arguments);
+return real___ZNK4llvm12PressureDiff4dumpERKNS_18TargetRegisterInfoE.apply(null, arguments);
 };
 
 var real__stackSave = asm["stackSave"]; asm["stackSave"] = function() {
@@ -7323,76 +7083,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__stackSave.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_ImplicitNullChecks_cpp = asm["_GLOBAL__sub_I_ImplicitNullChecks.cpp"]; asm["_GLOBAL__sub_I_ImplicitNullChecks.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ImplicitNullChecks_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MIRPrinter_cpp = asm["_GLOBAL__sub_I_MIRPrinter.cpp"]; asm["_GLOBAL__sub_I_MIRPrinter.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MIRPrinter_cpp.apply(null, arguments);
-};
-
-var real_____cxa_can_catch = asm["___cxa_can_catch"]; asm["___cxa_can_catch"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_____cxa_can_catch.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_TypeHashing_cpp = asm["_GLOBAL__sub_I_TypeHashing.cpp"]; asm["_GLOBAL__sub_I_TypeHashing.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TypeHashing_cpp.apply(null, arguments);
-};
-
-var real_dynCall_viiiii = asm["dynCall_viiiii"]; asm["dynCall_viiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiii.apply(null, arguments);
-};
-
-var real__memmove = asm["memmove"]; asm["memmove"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__memmove.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_NewGVN_cpp = asm["_GLOBAL__sub_I_NewGVN.cpp"]; asm["_GLOBAL__sub_I_NewGVN.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_NewGVN_cpp.apply(null, arguments);
-};
-
 var real___GLOBAL__sub_I_ScopedNoAliasAA_cpp = asm["_GLOBAL__sub_I_ScopedNoAliasAA.cpp"]; asm["_GLOBAL__sub_I_ScopedNoAliasAA.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_ScopedNoAliasAA_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineOperand_cpp = asm["_GLOBAL__sub_I_MachineOperand.cpp"]; asm["_GLOBAL__sub_I_MachineOperand.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineOperand_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_EfficiencySanitizer_cpp = asm["_GLOBAL__sub_I_EfficiencySanitizer.cpp"]; asm["_GLOBAL__sub_I_EfficiencySanitizer.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_EfficiencySanitizer_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_WebAssemblyPeephole_cpp = asm["_GLOBAL__sub_I_WebAssemblyPeephole.cpp"]; asm["_GLOBAL__sub_I_WebAssemblyPeephole.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_WebAssemblyPeephole_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_StackMaps_cpp = asm["_GLOBAL__sub_I_StackMaps.cpp"]; asm["_GLOBAL__sub_I_StackMaps.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_StackMaps_cpp.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_CodeGenModule_cpp = asm["_GLOBAL__sub_I_CodeGenModule.cpp"]; asm["_GLOBAL__sub_I_CodeGenModule.cpp"] = function() {
@@ -7401,28 +7095,22 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_CodeGenModule_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_ScheduleDAGSDNodes_cpp = asm["_GLOBAL__sub_I_ScheduleDAGSDNodes.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGSDNodes.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ScheduleDAGSDNodes_cpp.apply(null, arguments);
-};
-
 var real___GLOBAL__sub_I_LoopUnswitch_cpp = asm["_GLOBAL__sub_I_LoopUnswitch.cpp"]; asm["_GLOBAL__sub_I_LoopUnswitch.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_LoopUnswitch_cpp.apply(null, arguments);
 };
 
-var real____unordtf2 = asm["__unordtf2"]; asm["__unordtf2"] = function() {
+var real___ZNK4llvm16MachineFrameInfo4dumpERKNS_15MachineFunctionE = asm["_ZNK4llvm16MachineFrameInfo4dumpERKNS_15MachineFunctionE"]; asm["_ZNK4llvm16MachineFrameInfo4dumpERKNS_15MachineFunctionE"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____unordtf2.apply(null, arguments);
+return real___ZNK4llvm16MachineFrameInfo4dumpERKNS_15MachineFunctionE.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_CorrelatedValuePropagation_cpp = asm["_GLOBAL__sub_I_CorrelatedValuePropagation.cpp"]; asm["_GLOBAL__sub_I_CorrelatedValuePropagation.cpp"] = function() {
+var real___ZNK5clang5Scope4dumpEv = asm["_ZNK5clang5Scope4dumpEv"]; asm["_ZNK5clang5Scope4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_CorrelatedValuePropagation_cpp.apply(null, arguments);
+return real___ZNK5clang5Scope4dumpEv.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_StackMapLivenessAnalysis_cpp = asm["_GLOBAL__sub_I_StackMapLivenessAnalysis.cpp"]; asm["_GLOBAL__sub_I_StackMapLivenessAnalysis.cpp"] = function() {
@@ -7437,76 +7125,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_LCSSA_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_SROA_cpp = asm["_GLOBAL__sub_I_SROA.cpp"]; asm["_GLOBAL__sub_I_SROA.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SROA_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegionInfo_cpp = asm["_GLOBAL__sub_I_RegionInfo.cpp"]; asm["_GLOBAL__sub_I_RegionInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegionInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_IndVarSimplify_cpp = asm["_GLOBAL__sub_I_IndVarSimplify.cpp"]; asm["_GLOBAL__sub_I_IndVarSimplify.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_IndVarSimplify_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_StackProtector_cpp = asm["_GLOBAL__sub_I_StackProtector.cpp"]; asm["_GLOBAL__sub_I_StackProtector.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_StackProtector_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_TargetLibraryInfo_cpp = asm["_GLOBAL__sub_I_TargetLibraryInfo.cpp"]; asm["_GLOBAL__sub_I_TargetLibraryInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TargetLibraryInfo_cpp.apply(null, arguments);
-};
-
-var real_dynCall_iiiiiiiiiiiii = asm["dynCall_iiiiiiiiiiiii"]; asm["dynCall_iiiiiiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiiiiiiiiii.apply(null, arguments);
-};
-
 var real___main = asm["_main"]; asm["_main"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___main.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp = asm["_GLOBAL__sub_I_MachineBlockFrequencyInfo.cpp"]; asm["_GLOBAL__sub_I_MachineBlockFrequencyInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_CodeViewDebug_cpp = asm["_GLOBAL__sub_I_CodeViewDebug.cpp"]; asm["_GLOBAL__sub_I_CodeViewDebug.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_CodeViewDebug_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopSink_cpp = asm["_GLOBAL__sub_I_LoopSink.cpp"]; asm["_GLOBAL__sub_I_LoopSink.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopSink_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RewriteStatepointsForGC_cpp = asm["_GLOBAL__sub_I_RewriteStatepointsForGC.cpp"]; asm["_GLOBAL__sub_I_RewriteStatepointsForGC.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RewriteStatepointsForGC_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ScheduleDAGInstrs_cpp = asm["_GLOBAL__sub_I_ScheduleDAGInstrs.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGInstrs.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ScheduleDAGInstrs_cpp.apply(null, arguments);
 };
 
 var real__memset = asm["memset"]; asm["memset"] = function() {
@@ -7521,22 +7143,16 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_ContinuationRecordBuilder_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_AddressSanitizer_cpp = asm["_GLOBAL__sub_I_AddressSanitizer.cpp"]; asm["_GLOBAL__sub_I_AddressSanitizer.cpp"] = function() {
+var real___ZNK5clang4Type4dumpEv = asm["_ZNK5clang4Type4dumpEv"]; asm["_ZNK5clang4Type4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AddressSanitizer_cpp.apply(null, arguments);
+return real___ZNK5clang4Type4dumpEv.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_SelectionDAGBuilder_cpp = asm["_GLOBAL__sub_I_SelectionDAGBuilder.cpp"]; asm["_GLOBAL__sub_I_SelectionDAGBuilder.cpp"] = function() {
+var real___ZN5clang12LookupResult4dumpEv = asm["_ZN5clang12LookupResult4dumpEv"]; asm["_ZN5clang12LookupResult4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SelectionDAGBuilder_cpp.apply(null, arguments);
-};
-
-var real____cxa_is_pointer_type = asm["__cxa_is_pointer_type"]; asm["__cxa_is_pointer_type"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____cxa_is_pointer_type.apply(null, arguments);
+return real___ZN5clang12LookupResult4dumpEv.apply(null, arguments);
 };
 
 var real_setThrew = asm["setThrew"]; asm["setThrew"] = function() {
@@ -7545,106 +7161,34 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real_setThrew.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_OptBisect_cpp = asm["_GLOBAL__sub_I_OptBisect.cpp"]; asm["_GLOBAL__sub_I_OptBisect.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_OptBisect_cpp.apply(null, arguments);
-};
-
 var real___GLOBAL__sub_I_SimplifyCFG_cpp = asm["_GLOBAL__sub_I_SimplifyCFG.cpp"]; asm["_GLOBAL__sub_I_SimplifyCFG.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_SimplifyCFG_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_PassBuilder_cpp = asm["_GLOBAL__sub_I_PassBuilder.cpp"]; asm["_GLOBAL__sub_I_PassBuilder.cpp"] = function() {
+var real___ZNK4llvm8ILPValue5printERNS_11raw_ostreamE = asm["_ZNK4llvm8ILPValue5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm8ILPValue5printERNS_11raw_ostreamE"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_PassBuilder_cpp.apply(null, arguments);
+return real___ZNK4llvm8ILPValue5printERNS_11raw_ostreamE.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_SafeStackLayout_cpp = asm["_GLOBAL__sub_I_SafeStackLayout.cpp"]; asm["_GLOBAL__sub_I_SafeStackLayout.cpp"] = function() {
+var real___ZNK4llvm9CallGraph4dumpEv = asm["_ZNK4llvm9CallGraph4dumpEv"]; asm["_ZNK4llvm9CallGraph4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SafeStackLayout_cpp.apply(null, arguments);
+return real___ZNK4llvm9CallGraph4dumpEv.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_LoopAccessAnalysis_cpp = asm["_GLOBAL__sub_I_LoopAccessAnalysis.cpp"]; asm["_GLOBAL__sub_I_LoopAccessAnalysis.cpp"] = function() {
+var real___ZNK4llvm16ValueSymbolTable4dumpEv = asm["_ZNK4llvm16ValueSymbolTable4dumpEv"]; asm["_ZNK4llvm16ValueSymbolTable4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopAccessAnalysis_cpp.apply(null, arguments);
+return real___ZNK4llvm16ValueSymbolTable4dumpEv.apply(null, arguments);
 };
 
-var real____cxa_demangle = asm["__cxa_demangle"]; asm["__cxa_demangle"] = function() {
+var real_dynCall_viiiiiiiiiiiii = asm["dynCall_viiiiiiiiiiiii"]; asm["dynCall_viiiiiiiiiiiii"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____cxa_demangle.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp = asm["_GLOBAL__sub_I_AggressiveAntiDepBreaker.cpp"]; asm["_GLOBAL__sub_I_AggressiveAntiDepBreaker.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegAllocFast_cpp = asm["_GLOBAL__sub_I_RegAllocFast.cpp"]; asm["_GLOBAL__sub_I_RegAllocFast.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegAllocFast_cpp.apply(null, arguments);
-};
-
-var real_dynCall_iiiii = asm["dynCall_iiiii"]; asm["dynCall_iiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiii.apply(null, arguments);
-};
-
-var real_____cxa_is_pointer_type = asm["___cxa_is_pointer_type"]; asm["___cxa_is_pointer_type"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_____cxa_is_pointer_type.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_CallGraphSCCPass_cpp = asm["_GLOBAL__sub_I_CallGraphSCCPass.cpp"]; asm["_GLOBAL__sub_I_CallGraphSCCPass.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_CallGraphSCCPass_cpp.apply(null, arguments);
-};
-
-var real____gttf2 = asm["__gttf2"]; asm["__gttf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____gttf2.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ScalarEvolution_cpp = asm["_GLOBAL__sub_I_ScalarEvolution.cpp"]; asm["_GLOBAL__sub_I_ScalarEvolution.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ScalarEvolution_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopInfo_cpp = asm["_GLOBAL__sub_I_LoopInfo.cpp"]; asm["_GLOBAL__sub_I_LoopInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_SelectionDAGISel_cpp = asm["_GLOBAL__sub_I_SelectionDAGISel.cpp"]; asm["_GLOBAL__sub_I_SelectionDAGISel.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SelectionDAGISel_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_DeadStoreElimination_cpp = asm["_GLOBAL__sub_I_DeadStoreElimination.cpp"]; asm["_GLOBAL__sub_I_DeadStoreElimination.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DeadStoreElimination_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopIdiomRecognize_cpp = asm["_GLOBAL__sub_I_LoopIdiomRecognize.cpp"]; asm["_GLOBAL__sub_I_LoopIdiomRecognize.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopIdiomRecognize_cpp.apply(null, arguments);
+return real_dynCall_viiiiiiiiiiiii.apply(null, arguments);
 };
 
 var real__stackAlloc = asm["stackAlloc"]; asm["stackAlloc"] = function() {
@@ -7653,70 +7197,34 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__stackAlloc.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_SampleProfile_cpp = asm["_GLOBAL__sub_I_SampleProfile.cpp"]; asm["_GLOBAL__sub_I_SampleProfile.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SampleProfile_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_DwarfUnit_cpp = asm["_GLOBAL__sub_I_DwarfUnit.cpp"]; asm["_GLOBAL__sub_I_DwarfUnit.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DwarfUnit_cpp.apply(null, arguments);
-};
-
-var real___memalign = asm["_memalign"]; asm["_memalign"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___memalign.apply(null, arguments);
-};
-
-var real___compile = asm["_compile"]; asm["_compile"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___compile.apply(null, arguments);
-};
-
 var real___GLOBAL__sub_I_LoopRotation_cpp = asm["_GLOBAL__sub_I_LoopRotation.cpp"]; asm["_GLOBAL__sub_I_LoopRotation.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_LoopRotation_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_Dominators_cpp = asm["_GLOBAL__sub_I_Dominators.cpp"]; asm["_GLOBAL__sub_I_Dominators.cpp"] = function() {
+var real___GLOBAL__sub_I_ScheduleDAG_cpp = asm["_GLOBAL__sub_I_ScheduleDAG.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAG.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_Dominators_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_ScheduleDAG_cpp.apply(null, arguments);
 };
 
-var real_dynCall_diii = asm["dynCall_diii"]; asm["dynCall_diii"] = function() {
+var real___ZNK4llvm12LivePhysRegs4dumpEv = asm["_ZNK4llvm12LivePhysRegs4dumpEv"]; asm["_ZNK4llvm12LivePhysRegs4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_diii.apply(null, arguments);
+return real___ZNK4llvm12LivePhysRegs4dumpEv.apply(null, arguments);
 };
 
-var real____eqtf2 = asm["__eqtf2"]; asm["__eqtf2"] = function() {
+var real___ZNK5clang8QualType4dumpERN4llvm11raw_ostreamE = asm["_ZNK5clang8QualType4dumpERN4llvm11raw_ostreamE"]; asm["_ZNK5clang8QualType4dumpERN4llvm11raw_ostreamE"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____eqtf2.apply(null, arguments);
+return real___ZNK5clang8QualType4dumpERN4llvm11raw_ostreamE.apply(null, arguments);
 };
 
-var real__memalign = asm["memalign"]; asm["memalign"] = function() {
+var real___ZNK5clang7CodeGen14CGRecordLayout4dumpEv = asm["_ZNK5clang7CodeGen14CGRecordLayout4dumpEv"]; asm["_ZNK5clang7CodeGen14CGRecordLayout4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__memalign.apply(null, arguments);
-};
-
-var real_dynCall_fiii = asm["dynCall_fiii"]; asm["dynCall_fiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_fiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineSink_cpp = asm["_GLOBAL__sub_I_MachineSink.cpp"]; asm["_GLOBAL__sub_I_MachineSink.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineSink_cpp.apply(null, arguments);
+return real___ZNK5clang7CodeGen14CGRecordLayout4dumpEv.apply(null, arguments);
 };
 
 var real__free = asm["free"]; asm["free"] = function() {
@@ -7725,76 +7233,16 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__free.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_DiagnosticHandler_cpp = asm["_GLOBAL__sub_I_DiagnosticHandler.cpp"]; asm["_GLOBAL__sub_I_DiagnosticHandler.cpp"] = function() {
+var real___GLOBAL__sub_I_ThreadSanitizer_cpp = asm["_GLOBAL__sub_I_ThreadSanitizer.cpp"]; asm["_GLOBAL__sub_I_ThreadSanitizer.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DiagnosticHandler_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_ThreadSanitizer_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_DwarfDebug_cpp = asm["_GLOBAL__sub_I_DwarfDebug.cpp"]; asm["_GLOBAL__sub_I_DwarfDebug.cpp"] = function() {
+var real___ZNK4llvm12MachineInstr4dumpEv = asm["_ZNK4llvm12MachineInstr4dumpEv"]; asm["_ZNK4llvm12MachineInstr4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DwarfDebug_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_GraphWriter_cpp = asm["_GLOBAL__sub_I_GraphWriter.cpp"]; asm["_GLOBAL__sub_I_GraphWriter.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_GraphWriter_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_SimplifyLibCalls_cpp = asm["_GLOBAL__sub_I_SimplifyLibCalls.cpp"]; asm["_GLOBAL__sub_I_SimplifyLibCalls.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SimplifyLibCalls_cpp.apply(null, arguments);
-};
-
-var real_dynCall_iiiiiiii = asm["dynCall_iiiiiiii"]; asm["dynCall_iiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiiiii.apply(null, arguments);
-};
-
-var real_dynCall_iiiiiiiii = asm["dynCall_iiiiiiiii"]; asm["dynCall_iiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiiiiii.apply(null, arguments);
-};
-
-var real_dynCall_viiii = asm["dynCall_viiii"]; asm["dynCall_viiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopDistribute_cpp = asm["_GLOBAL__sub_I_LoopDistribute.cpp"]; asm["_GLOBAL__sub_I_LoopDistribute.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopDistribute_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_SanitizerCoverage_cpp = asm["_GLOBAL__sub_I_SanitizerCoverage.cpp"]; asm["_GLOBAL__sub_I_SanitizerCoverage.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SanitizerCoverage_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ConstantHoisting_cpp = asm["_GLOBAL__sub_I_ConstantHoisting.cpp"]; asm["_GLOBAL__sub_I_ConstantHoisting.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ConstantHoisting_cpp.apply(null, arguments);
-};
-
-var real_dynCall_iiiiiiiiiiii = asm["dynCall_iiiiiiiiiiii"]; asm["dynCall_iiiiiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiiiiiiiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_PartialInlining_cpp = asm["_GLOBAL__sub_I_PartialInlining.cpp"]; asm["_GLOBAL__sub_I_PartialInlining.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_PartialInlining_cpp.apply(null, arguments);
+return real___ZNK4llvm12MachineInstr4dumpEv.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_BlockFrequencyInfo_cpp = asm["_GLOBAL__sub_I_BlockFrequencyInfo.cpp"]; asm["_GLOBAL__sub_I_BlockFrequencyInfo.cpp"] = function() {
@@ -7803,64 +7251,28 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_BlockFrequencyInfo_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_LoopUnroll_cpp = asm["_GLOBAL__sub_I_LoopUnroll.cpp"]; asm["_GLOBAL__sub_I_LoopUnroll.cpp"] = function() {
+var real___ZNK4llvm3DIE4dumpEv = asm["_ZNK4llvm3DIE4dumpEv"]; asm["_ZNK4llvm3DIE4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopUnroll_cpp.apply(null, arguments);
+return real___ZNK4llvm3DIE4dumpEv.apply(null, arguments);
 };
 
-var real__malloc = asm["malloc"]; asm["malloc"] = function() {
+var real___GLOBAL__sub_I_CalledValuePropagation_cpp = asm["_GLOBAL__sub_I_CalledValuePropagation.cpp"]; asm["_GLOBAL__sub_I_CalledValuePropagation.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__malloc.apply(null, arguments);
+return real___GLOBAL__sub_I_CalledValuePropagation_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_TargetPassConfig_cpp = asm["_GLOBAL__sub_I_TargetPassConfig.cpp"]; asm["_GLOBAL__sub_I_TargetPassConfig.cpp"] = function() {
+var real_dynCall_viiiiiiiiiii = asm["dynCall_viiiiiiiiiii"]; asm["dynCall_viiiiiiiiiii"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TargetPassConfig_cpp.apply(null, arguments);
+return real_dynCall_viiiiiiiiiii.apply(null, arguments);
 };
 
-var real_dynCall_iiiiiiiiii = asm["dynCall_iiiiiiiiii"]; asm["dynCall_iiiiiiiiii"] = function() {
+var real___GLOBAL__sub_I_InstrProf_cpp = asm["_GLOBAL__sub_I_InstrProf.cpp"]; asm["_GLOBAL__sub_I_InstrProf.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiiiiiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LiveDebugVariables_cpp = asm["_GLOBAL__sub_I_LiveDebugVariables.cpp"]; asm["_GLOBAL__sub_I_LiveDebugVariables.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LiveDebugVariables_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_BitcodeReader_cpp = asm["_GLOBAL__sub_I_BitcodeReader.cpp"]; asm["_GLOBAL__sub_I_BitcodeReader.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_BitcodeReader_cpp.apply(null, arguments);
-};
-
-var real____fixunstfsi = asm["__fixunstfsi"]; asm["__fixunstfsi"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____fixunstfsi.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegAllocGreedy_cpp = asm["_GLOBAL__sub_I_RegAllocGreedy.cpp"]; asm["_GLOBAL__sub_I_RegAllocGreedy.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegAllocGreedy_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_InlineFunction_cpp = asm["_GLOBAL__sub_I_InlineFunction.cpp"]; asm["_GLOBAL__sub_I_InlineFunction.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_InlineFunction_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_CodeGenPGO_cpp = asm["_GLOBAL__sub_I_CodeGenPGO.cpp"]; asm["_GLOBAL__sub_I_CodeGenPGO.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_CodeGenPGO_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_InstrProf_cpp.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_SelectionDAGDumper_cpp = asm["_GLOBAL__sub_I_SelectionDAGDumper.cpp"]; asm["_GLOBAL__sub_I_SelectionDAGDumper.cpp"] = function() {
@@ -7875,28 +7287,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_PHIElimination_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_BranchProbabilityInfo_cpp = asm["_GLOBAL__sub_I_BranchProbabilityInfo.cpp"]; asm["_GLOBAL__sub_I_BranchProbabilityInfo.cpp"] = function() {
+var real___ZNK4llvm20MachineJumpTableInfo4dumpEv = asm["_ZNK4llvm20MachineJumpTableInfo4dumpEv"]; asm["_ZNK4llvm20MachineJumpTableInfo4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_BranchProbabilityInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_TargetLoweringBase_cpp = asm["_GLOBAL__sub_I_TargetLoweringBase.cpp"]; asm["_GLOBAL__sub_I_TargetLoweringBase.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TargetLoweringBase_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_WinEHPrepare_cpp = asm["_GLOBAL__sub_I_WinEHPrepare.cpp"]; asm["_GLOBAL__sub_I_WinEHPrepare.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_WinEHPrepare_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_InterleavedAccessPass_cpp = asm["_GLOBAL__sub_I_InterleavedAccessPass.cpp"]; asm["_GLOBAL__sub_I_InterleavedAccessPass.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_InterleavedAccessPass_cpp.apply(null, arguments);
+return real___ZNK4llvm20MachineJumpTableInfo4dumpEv.apply(null, arguments);
 };
 
 var real__realloc = asm["realloc"]; asm["realloc"] = function() {
@@ -7905,118 +7299,22 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real__realloc.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_PredicateInfo_cpp = asm["_GLOBAL__sub_I_PredicateInfo.cpp"]; asm["_GLOBAL__sub_I_PredicateInfo.cpp"] = function() {
+var real___ZNK4llvm4sroa12AllocaSlices4dumpEv = asm["_ZNK4llvm4sroa12AllocaSlices4dumpEv"]; asm["_ZNK4llvm4sroa12AllocaSlices4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_PredicateInfo_cpp.apply(null, arguments);
+return real___ZNK4llvm4sroa12AllocaSlices4dumpEv.apply(null, arguments);
 };
 
-var real_dynCall_viiiiiiiiii = asm["dynCall_viiiiiiiiii"]; asm["dynCall_viiiiiiiiii"] = function() {
+var real___ZNK4llvm8DIEValue4dumpEv = asm["_ZNK4llvm8DIEValue4dumpEv"]; asm["_ZNK4llvm8DIEValue4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiiiiiii.apply(null, arguments);
-};
-
-var real_dynCall_iiiiiii = asm["dynCall_iiiiiii"]; asm["dynCall_iiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiiii.apply(null, arguments);
-};
-
-var real_dynCall_iiiiiiiiiii = asm["dynCall_iiiiiiiiiii"]; asm["dynCall_iiiiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iiiiiiiiiii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LowerExpectIntrinsic_cpp = asm["_GLOBAL__sub_I_LowerExpectIntrinsic.cpp"]; asm["_GLOBAL__sub_I_LowerExpectIntrinsic.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LowerExpectIntrinsic_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp = asm["_GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts.cpp"]; asm["_GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp.apply(null, arguments);
-};
-
-var real___realloc = asm["_realloc"]; asm["_realloc"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___realloc.apply(null, arguments);
-};
-
-var real____extenddftf2 = asm["__extenddftf2"]; asm["__extenddftf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____extenddftf2.apply(null, arguments);
-};
-
-var real____netf2 = asm["__netf2"]; asm["__netf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____netf2.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_Signals_cpp = asm["_GLOBAL__sub_I_Signals.cpp"]; asm["_GLOBAL__sub_I_Signals.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_Signals_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineCombiner_cpp = asm["_GLOBAL__sub_I_MachineCombiner.cpp"]; asm["_GLOBAL__sub_I_MachineCombiner.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineCombiner_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_WholeProgramDevirt_cpp = asm["_GLOBAL__sub_I_WholeProgramDevirt.cpp"]; asm["_GLOBAL__sub_I_WholeProgramDevirt.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_WholeProgramDevirt_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MergeFunctions_cpp = asm["_GLOBAL__sub_I_MergeFunctions.cpp"]; asm["_GLOBAL__sub_I_MergeFunctions.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MergeFunctions_cpp.apply(null, arguments);
-};
-
-var real_dynCall_vi = asm["dynCall_vi"]; asm["dynCall_vi"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_vi.apply(null, arguments);
-};
-
-var real____addtf3 = asm["__addtf3"]; asm["__addtf3"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____addtf3.apply(null, arguments);
+return real___ZNK4llvm8DIEValue4dumpEv.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_TargetSchedule_cpp = asm["_GLOBAL__sub_I_TargetSchedule.cpp"]; asm["_GLOBAL__sub_I_TargetSchedule.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_TargetSchedule_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopRerollPass_cpp = asm["_GLOBAL__sub_I_LoopRerollPass.cpp"]; asm["_GLOBAL__sub_I_LoopRerollPass.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopRerollPass_cpp.apply(null, arguments);
-};
-
-var real_dynCall_iii = asm["dynCall_iii"]; asm["dynCall_iii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iii.apply(null, arguments);
-};
-
-var real____growWasmMemory = asm["__growWasmMemory"]; asm["__growWasmMemory"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____growWasmMemory.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_MachineFunction_cpp = asm["_GLOBAL__sub_I_MachineFunction.cpp"]; asm["_GLOBAL__sub_I_MachineFunction.cpp"] = function() {
@@ -8061,10 +7359,2110 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_LoopInterchange_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_TypeDumpVisitor_cpp = asm["_GLOBAL__sub_I_TypeDumpVisitor.cpp"]; asm["_GLOBAL__sub_I_TypeDumpVisitor.cpp"] = function() {
+var real_dynCall_viiiiiiiii = asm["dynCall_viiiiiiiii"]; asm["dynCall_viiiiiiiii"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TypeDumpVisitor_cpp.apply(null, arguments);
+return real_dynCall_viiiiiiiii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_GVNHoist_cpp = asm["_GLOBAL__sub_I_GVNHoist.cpp"]; asm["_GLOBAL__sub_I_GVNHoist.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_GVNHoist_cpp.apply(null, arguments);
+};
+
+var real_dynCall_fiii = asm["dynCall_fiii"]; asm["dynCall_fiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_fiii.apply(null, arguments);
+};
+
+var real_dynCall_viiiiiiiiiiii = asm["dynCall_viiiiiiiiiiii"]; asm["dynCall_viiiiiiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_viiiiiiiiiiii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LowerGuardIntrinsic_cpp = asm["_GLOBAL__sub_I_LowerGuardIntrinsic.cpp"]; asm["_GLOBAL__sub_I_LowerGuardIntrinsic.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LowerGuardIntrinsic_cpp.apply(null, arguments);
+};
+
+var real___ZN4llvmlsERNS_11raw_ostreamERKNS_8ILPValueE = asm["_ZN4llvmlsERNS_11raw_ostreamERKNS_8ILPValueE"]; asm["_ZN4llvmlsERNS_11raw_ostreamERKNS_8ILPValueE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN4llvmlsERNS_11raw_ostreamERKNS_8ILPValueE.apply(null, arguments);
+};
+
+var real___ZNK4llvm12AttributeSet4dumpEv = asm["_ZNK4llvm12AttributeSet4dumpEv"]; asm["_ZNK4llvm12AttributeSet4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm12AttributeSet4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm5Value4dumpEv = asm["_ZNK4llvm5Value4dumpEv"]; asm["_ZNK4llvm5Value4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5Value4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm17BranchProbability4dumpEv = asm["_ZNK4llvm17BranchProbability4dumpEv"]; asm["_ZNK4llvm17BranchProbability4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm17BranchProbability4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MCContext_cpp = asm["_GLOBAL__sub_I_MCContext.cpp"]; asm["_GLOBAL__sub_I_MCContext.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MCContext_cpp.apply(null, arguments);
+};
+
+var real_dynCall_i = asm["dynCall_i"]; asm["dynCall_i"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_i.apply(null, arguments);
+};
+
+var real____multf3 = asm["__multf3"]; asm["__multf3"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____multf3.apply(null, arguments);
+};
+
+var real___ZNK4llvm13LazyCallGraph4Node4dumpEv = asm["_ZNK4llvm13LazyCallGraph4Node4dumpEv"]; asm["_ZNK4llvm13LazyCallGraph4Node4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13LazyCallGraph4Node4dumpEv.apply(null, arguments);
+};
+
+var real____errno_location = asm["__errno_location"]; asm["__errno_location"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____errno_location.apply(null, arguments);
+};
+
+var real___malloc = asm["_malloc"]; asm["_malloc"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___malloc.apply(null, arguments);
+};
+
+var real_dynCall_v = asm["dynCall_v"]; asm["dynCall_v"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_v.apply(null, arguments);
+};
+
+var real___ZNK5clang11DeclContext15dumpDeclContextEv = asm["_ZNK5clang11DeclContext15dumpDeclContextEv"]; asm["_ZNK5clang11DeclContext15dumpDeclContextEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang11DeclContext15dumpDeclContextEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopAccessAnalysis_cpp = asm["_GLOBAL__sub_I_LoopAccessAnalysis.cpp"]; asm["_GLOBAL__sub_I_LoopAccessAnalysis.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopAccessAnalysis_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm10sampleprof12LineLocation4dumpEv = asm["_ZNK4llvm10sampleprof12LineLocation4dumpEv"]; asm["_ZNK4llvm10sampleprof12LineLocation4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10sampleprof12LineLocation4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineDominators_cpp = asm["_GLOBAL__sub_I_MachineDominators.cpp"]; asm["_GLOBAL__sub_I_MachineDominators.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineDominators_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SimpleLoopUnswitch_cpp = asm["_GLOBAL__sub_I_SimpleLoopUnswitch.cpp"]; asm["_GLOBAL__sub_I_SimpleLoopUnswitch.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SimpleLoopUnswitch_cpp.apply(null, arguments);
+};
+
+var real____divtf3 = asm["__divtf3"]; asm["__divtf3"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____divtf3.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineScheduler_cpp = asm["_GLOBAL__sub_I_MachineScheduler.cpp"]; asm["_GLOBAL__sub_I_MachineScheduler.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineScheduler_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ADCE_cpp = asm["_GLOBAL__sub_I_ADCE.cpp"]; asm["_GLOBAL__sub_I_ADCE.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ADCE_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp = asm["_GLOBAL__sub_I_ObjCARCAnalysisUtils.cpp"]; asm["_GLOBAL__sub_I_ObjCARCAnalysisUtils.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SafeStackColoring_cpp = asm["_GLOBAL__sub_I_SafeStackColoring.cpp"]; asm["_GLOBAL__sub_I_SafeStackColoring.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SafeStackColoring_cpp.apply(null, arguments);
+};
+
+var real___ZN4llvm9safestack13StackColoring17dumpBlockLivenessEv = asm["_ZN4llvm9safestack13StackColoring17dumpBlockLivenessEv"]; asm["_ZN4llvm9safestack13StackColoring17dumpBlockLivenessEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN4llvm9safestack13StackColoring17dumpBlockLivenessEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SimplifyCFGPass_cpp = asm["_GLOBAL__sub_I_SimplifyCFGPass.cpp"]; asm["_GLOBAL__sub_I_SimplifyCFGPass.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SimplifyCFGPass_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LiveDebugVariables_cpp = asm["_GLOBAL__sub_I_LiveDebugVariables.cpp"]; asm["_GLOBAL__sub_I_LiveDebugVariables.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LiveDebugVariables_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm6SDNode4dumpEv = asm["_ZNK4llvm6SDNode4dumpEv"]; asm["_ZNK4llvm6SDNode4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6SDNode4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegisterUsageInfo_cpp = asm["_GLOBAL__sub_I_RegisterUsageInfo.cpp"]; asm["_GLOBAL__sub_I_RegisterUsageInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegisterUsageInfo_cpp.apply(null, arguments);
+};
+
+var real__stackRestore = asm["stackRestore"]; asm["stackRestore"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__stackRestore.apply(null, arguments);
+};
+
+var real___ZNK5clang14SourceLocation4dumpERKNS_13SourceManagerE = asm["_ZNK5clang14SourceLocation4dumpERKNS_13SourceManagerE"]; asm["_ZNK5clang14SourceLocation4dumpERKNS_13SourceManagerE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang14SourceLocation4dumpERKNS_13SourceManagerE.apply(null, arguments);
+};
+
+var real___ZNK5clang13SourceManager4dumpEv = asm["_ZNK5clang13SourceManager4dumpEv"]; asm["_ZNK5clang13SourceManager4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang13SourceManager4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm3opt3Arg4dumpEv = asm["_ZNK4llvm3opt3Arg4dumpEv"]; asm["_ZNK4llvm3opt3Arg4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm3opt3Arg4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MIRCanonicalizerPass_cpp = asm["_GLOBAL__sub_I_MIRCanonicalizerPass.cpp"]; asm["_GLOBAL__sub_I_MIRCanonicalizerPass.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MIRCanonicalizerPass_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_Statistic_cpp = asm["_GLOBAL__sub_I_Statistic.cpp"]; asm["_GLOBAL__sub_I_Statistic.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_Statistic_cpp.apply(null, arguments);
+};
+
+var real____trunctfsf2 = asm["__trunctfsf2"]; asm["__trunctfsf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____trunctfsf2.apply(null, arguments);
+};
+
+var real___ZNK5clang9MacroInfo4dumpEv = asm["_ZNK5clang9MacroInfo4dumpEv"]; asm["_ZNK5clang9MacroInfo4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang9MacroInfo4dumpEv.apply(null, arguments);
+};
+
+var real_dynCall_ii = asm["dynCall_ii"]; asm["dynCall_ii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_ii.apply(null, arguments);
+};
+
+var real___ZNK4llvm10ReadyQueue4dumpEv = asm["_ZNK4llvm10ReadyQueue4dumpEv"]; asm["_ZNK4llvm10ReadyQueue4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10ReadyQueue4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang17InitializedEntity4dumpEv = asm["_ZNK5clang17InitializedEntity4dumpEv"]; asm["_ZNK5clang17InitializedEntity4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang17InitializedEntity4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm6MCInst4dumpEv = asm["_ZNK4llvm6MCInst4dumpEv"]; asm["_ZNK4llvm6MCInst4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6MCInst4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm19MachineRegisterInfo8dumpUsesEj = asm["_ZNK4llvm19MachineRegisterInfo8dumpUsesEj"]; asm["_ZNK4llvm19MachineRegisterInfo8dumpUsesEj"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm19MachineRegisterInfo8dumpUsesEj.apply(null, arguments);
+};
+
+var real___ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamE = asm["_ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamE"]; asm["_ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamE.apply(null, arguments);
+};
+
+var real____cxa_can_catch = asm["__cxa_can_catch"]; asm["__cxa_can_catch"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____cxa_can_catch.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AddDiscriminators_cpp = asm["_GLOBAL__sub_I_AddDiscriminators.cpp"]; asm["_GLOBAL__sub_I_AddDiscriminators.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AddDiscriminators_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AliasAnalysisEvaluator_cpp = asm["_GLOBAL__sub_I_AliasAnalysisEvaluator.cpp"]; asm["_GLOBAL__sub_I_AliasAnalysisEvaluator.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AliasAnalysisEvaluator_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm16LiveRangeUpdater4dumpEv = asm["_ZNK4llvm16LiveRangeUpdater4dumpEv"]; asm["_ZNK4llvm16LiveRangeUpdater4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm16LiveRangeUpdater4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm10bfi_detail9BlockMass4dumpEv = asm["_ZNK4llvm10bfi_detail9BlockMass4dumpEv"]; asm["_ZNK4llvm10bfi_detail9BlockMass4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10bfi_detail9BlockMass4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm7PMStack4dumpEv = asm["_ZNK4llvm7PMStack4dumpEv"]; asm["_ZNK4llvm7PMStack4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm7PMStack4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegAllocBasic_cpp = asm["_GLOBAL__sub_I_RegAllocBasic.cpp"]; asm["_GLOBAL__sub_I_RegAllocBasic.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegAllocBasic_cpp.apply(null, arguments);
+};
+
+var real____extendsftf2 = asm["__extendsftf2"]; asm["__extendsftf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____extendsftf2.apply(null, arguments);
+};
+
+var real___ZN4llvm9safestack13StackColoring14dumpLiveRangesEv = asm["_ZN4llvm9safestack13StackColoring14dumpLiveRangesEv"]; asm["_ZN4llvm9safestack13StackColoring14dumpLiveRangesEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN4llvm9safestack13StackColoring14dumpLiveRangesEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm9MCSection4dumpEv = asm["_ZNK4llvm9MCSection4dumpEv"]; asm["_ZNK4llvm9MCSection4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm9MCSection4dumpEv.apply(null, arguments);
+};
+
+var real_____cxa_demangle = asm["___cxa_demangle"]; asm["___cxa_demangle"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_____cxa_demangle.apply(null, arguments);
+};
+
+var real___ZNK5clang4Decl4dumpERN4llvm11raw_ostreamEb = asm["_ZNK5clang4Decl4dumpERN4llvm11raw_ostreamEb"]; asm["_ZNK5clang4Decl4dumpERN4llvm11raw_ostreamEb"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Decl4dumpERN4llvm11raw_ostreamEb.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_JumpThreading_cpp = asm["_GLOBAL__sub_I_JumpThreading.cpp"]; asm["_GLOBAL__sub_I_JumpThreading.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_JumpThreading_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DIBuilder_cpp = asm["_GLOBAL__sub_I_DIBuilder.cpp"]; asm["_GLOBAL__sub_I_DIBuilder.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DIBuilder_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegisterCoalescer_cpp = asm["_GLOBAL__sub_I_RegisterCoalescer.cpp"]; asm["_GLOBAL__sub_I_RegisterCoalescer.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegisterCoalescer_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_InlineSpiller_cpp = asm["_GLOBAL__sub_I_InlineSpiller.cpp"]; asm["_GLOBAL__sub_I_InlineSpiller.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_InlineSpiller_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_InstructionCombining_cpp = asm["_GLOBAL__sub_I_InstructionCombining.cpp"]; asm["_GLOBAL__sub_I_InstructionCombining.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_InstructionCombining_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineLICM_cpp = asm["_GLOBAL__sub_I_MachineLICM.cpp"]; asm["_GLOBAL__sub_I_MachineLICM.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineLICM_cpp.apply(null, arguments);
+};
+
+var real__main = asm["main"]; asm["main"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__main.apply(null, arguments);
+};
+
+var real___ZNK4llvm20CallGraphWrapperPass4dumpEv = asm["_ZNK4llvm20CallGraphWrapperPass4dumpEv"]; asm["_ZNK4llvm20CallGraphWrapperPass4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm20CallGraphWrapperPass4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RandomNumberGenerator_cpp = asm["_GLOBAL__sub_I_RandomNumberGenerator.cpp"]; asm["_GLOBAL__sub_I_RandomNumberGenerator.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RandomNumberGenerator_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm15MachineFunction4dumpEv = asm["_ZNK4llvm15MachineFunction4dumpEv"]; asm["_ZNK4llvm15MachineFunction4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm15MachineFunction4dumpEv.apply(null, arguments);
+};
+
+var real___ZN5clang17GlobalModuleIndex4dumpEv = asm["_ZN5clang17GlobalModuleIndex4dumpEv"]; asm["_ZN5clang17GlobalModuleIndex4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN5clang17GlobalModuleIndex4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AsmParser_cpp = asm["_GLOBAL__sub_I_AsmParser.cpp"]; asm["_GLOBAL__sub_I_AsmParser.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AsmParser_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp = asm["_GLOBAL__sub_I_IndirectCallPromotionAnalysis.cpp"]; asm["_GLOBAL__sub_I_IndirectCallPromotionAnalysis.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MemoryDependenceAnalysis_cpp = asm["_GLOBAL__sub_I_MemoryDependenceAnalysis.cpp"]; asm["_GLOBAL__sub_I_MemoryDependenceAnalysis.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MemoryDependenceAnalysis_cpp.apply(null, arguments);
+};
+
+var real_dynCall_iiiiiiiiiiii = asm["dynCall_iiiiiiiiiiii"]; asm["dynCall_iiiiiiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiiiiiiiii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ImplicitNullChecks_cpp = asm["_GLOBAL__sub_I_ImplicitNullChecks.cpp"]; asm["_GLOBAL__sub_I_ImplicitNullChecks.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ImplicitNullChecks_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MIRPrinter_cpp = asm["_GLOBAL__sub_I_MIRPrinter.cpp"]; asm["_GLOBAL__sub_I_MIRPrinter.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MIRPrinter_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TypeHashing_cpp = asm["_GLOBAL__sub_I_TypeHashing.cpp"]; asm["_GLOBAL__sub_I_TypeHashing.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TypeHashing_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DwarfDebug_cpp = asm["_GLOBAL__sub_I_DwarfDebug.cpp"]; asm["_GLOBAL__sub_I_DwarfDebug.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DwarfDebug_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SROA_cpp = asm["_GLOBAL__sub_I_SROA.cpp"]; asm["_GLOBAL__sub_I_SROA.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SROA_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_StackProtector_cpp = asm["_GLOBAL__sub_I_StackProtector.cpp"]; asm["_GLOBAL__sub_I_StackProtector.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_StackProtector_cpp.apply(null, arguments);
+};
+
+var real___ZN5clang9ASTReader4dumpEv = asm["_ZN5clang9ASTReader4dumpEv"]; asm["_ZN5clang9ASTReader4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN5clang9ASTReader4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm8ILPValue4dumpEv = asm["_ZNK4llvm8ILPValue4dumpEv"]; asm["_ZNK4llvm8ILPValue4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8ILPValue4dumpEv.apply(null, arguments);
+};
+
+var real___ZN5clang13serialization10ModuleFile4dumpEv = asm["_ZN5clang13serialization10ModuleFile4dumpEv"]; asm["_ZN5clang13serialization10ModuleFile4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN5clang13serialization10ModuleFile4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegionPrinter_cpp = asm["_GLOBAL__sub_I_RegionPrinter.cpp"]; asm["_GLOBAL__sub_I_RegionPrinter.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegionPrinter_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp = asm["_GLOBAL__sub_I_MachineBranchProbabilityInfo.cpp"]; asm["_GLOBAL__sub_I_MachineBranchProbabilityInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AddressSanitizer_cpp = asm["_GLOBAL__sub_I_AddressSanitizer.cpp"]; asm["_GLOBAL__sub_I_AddressSanitizer.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AddressSanitizer_cpp.apply(null, arguments);
+};
+
+var real____cxa_is_pointer_type = asm["__cxa_is_pointer_type"]; asm["__cxa_is_pointer_type"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____cxa_is_pointer_type.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_PassBuilder_cpp = asm["_GLOBAL__sub_I_PassBuilder.cpp"]; asm["_GLOBAL__sub_I_PassBuilder.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_PassBuilder_cpp.apply(null, arguments);
+};
+
+var real_dynCall_iiiii = asm["dynCall_iiiii"]; asm["dynCall_iiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiii.apply(null, arguments);
+};
+
+var real___ZNK4llvm6Comdat4dumpEv = asm["_ZNK4llvm6Comdat4dumpEv"]; asm["_ZNK4llvm6Comdat4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6Comdat4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_CallGraphSCCPass_cpp = asm["_GLOBAL__sub_I_CallGraphSCCPass.cpp"]; asm["_GLOBAL__sub_I_CallGraphSCCPass.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_CallGraphSCCPass_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang11DeclContext11dumpLookupsERN4llvm11raw_ostreamEbb = asm["_ZNK5clang11DeclContext11dumpLookupsERN4llvm11raw_ostreamEbb"]; asm["_ZNK5clang11DeclContext11dumpLookupsERN4llvm11raw_ostreamEbb"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang11DeclContext11dumpLookupsERN4llvm11raw_ostreamEbb.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SampleProfile_cpp = asm["_GLOBAL__sub_I_SampleProfile.cpp"]; asm["_GLOBAL__sub_I_SampleProfile.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SampleProfile_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm10DIEInteger5printERNS_11raw_ostreamE = asm["_ZNK4llvm10DIEInteger5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm10DIEInteger5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10DIEInteger5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real____eqtf2 = asm["__eqtf2"]; asm["__eqtf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____eqtf2.apply(null, arguments);
+};
+
+var real____unordtf2 = asm["__unordtf2"]; asm["__unordtf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____unordtf2.apply(null, arguments);
+};
+
+var real___ZNK5clang14SourceLocation13printToStringERKNS_13SourceManagerE = asm["_ZNK5clang14SourceLocation13printToStringERKNS_13SourceManagerE"]; asm["_ZNK5clang14SourceLocation13printToStringERKNS_13SourceManagerE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang14SourceLocation13printToStringERKNS_13SourceManagerE.apply(null, arguments);
+};
+
+var real___ZNK5clang4Stmt4dumpEv = asm["_ZNK5clang4Stmt4dumpEv"]; asm["_ZNK5clang4Stmt4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Stmt4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_CorrelatedValuePropagation_cpp = asm["_GLOBAL__sub_I_CorrelatedValuePropagation.cpp"]; asm["_GLOBAL__sub_I_CorrelatedValuePropagation.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_CorrelatedValuePropagation_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm13LazyCallGraph6RefSCC4dumpEv = asm["_ZNK4llvm13LazyCallGraph6RefSCC4dumpEv"]; asm["_ZNK4llvm13LazyCallGraph6RefSCC4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13LazyCallGraph6RefSCC4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm28DominanceFrontierWrapperPass4dumpEv = asm["_ZNK4llvm28DominanceFrontierWrapperPass4dumpEv"]; asm["_ZNK4llvm28DominanceFrontierWrapperPass4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm28DominanceFrontierWrapperPass4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_GraphWriter_cpp = asm["_GLOBAL__sub_I_GraphWriter.cpp"]; asm["_GLOBAL__sub_I_GraphWriter.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_GraphWriter_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SimplifyLibCalls_cpp = asm["_GLOBAL__sub_I_SimplifyLibCalls.cpp"]; asm["_GLOBAL__sub_I_SimplifyLibCalls.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SimplifyLibCalls_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm12SelectionDAG4dumpEv = asm["_ZNK4llvm12SelectionDAG4dumpEv"]; asm["_ZNK4llvm12SelectionDAG4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm12SelectionDAG4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopDistribute_cpp = asm["_GLOBAL__sub_I_LoopDistribute.cpp"]; asm["_GLOBAL__sub_I_LoopDistribute.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopDistribute_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm15AliasSetTracker4dumpEv = asm["_ZNK4llvm15AliasSetTracker4dumpEv"]; asm["_ZNK4llvm15AliasSetTracker4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm15AliasSetTracker4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm5Twine8dumpReprEv = asm["_ZNK4llvm5Twine8dumpReprEv"]; asm["_ZNK4llvm5Twine8dumpReprEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5Twine8dumpReprEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm6SDNode14dumprWithDepthEPKNS_12SelectionDAGEj = asm["_ZNK4llvm6SDNode14dumprWithDepthEPKNS_12SelectionDAGEj"]; asm["_ZNK4llvm6SDNode14dumprWithDepthEPKNS_12SelectionDAGEj"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6SDNode14dumprWithDepthEPKNS_12SelectionDAGEj.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_CodeGenPGO_cpp = asm["_GLOBAL__sub_I_CodeGenPGO.cpp"]; asm["_GLOBAL__sub_I_CodeGenPGO.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_CodeGenPGO_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_StackSlotColoring_cpp = asm["_GLOBAL__sub_I_StackSlotColoring.cpp"]; asm["_GLOBAL__sub_I_StackSlotColoring.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_StackSlotColoring_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_WinEHPrepare_cpp = asm["_GLOBAL__sub_I_WinEHPrepare.cpp"]; asm["_GLOBAL__sub_I_WinEHPrepare.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_WinEHPrepare_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_InterleavedAccessPass_cpp = asm["_GLOBAL__sub_I_InterleavedAccessPass.cpp"]; asm["_GLOBAL__sub_I_InterleavedAccessPass.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_InterleavedAccessPass_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_PredicateInfo_cpp = asm["_GLOBAL__sub_I_PredicateInfo.cpp"]; asm["_GLOBAL__sub_I_PredicateInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_PredicateInfo_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm12LiveInterval4dumpEv = asm["_ZNK4llvm12LiveInterval4dumpEv"]; asm["_ZNK4llvm12LiveInterval4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm12LiveInterval4dumpEv.apply(null, arguments);
+};
+
+var real___realloc = asm["_realloc"]; asm["_realloc"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___realloc.apply(null, arguments);
+};
+
+var real___ZNK5clang15LocationContext9dumpStackEv = asm["_ZNK5clang15LocationContext9dumpStackEv"]; asm["_ZNK5clang15LocationContext9dumpStackEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang15LocationContext9dumpStackEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_Signals_cpp = asm["_GLOBAL__sub_I_Signals.cpp"]; asm["_GLOBAL__sub_I_Signals.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_Signals_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm11NamedMDNode4dumpEv = asm["_ZNK4llvm11NamedMDNode4dumpEv"]; asm["_ZNK4llvm11NamedMDNode4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm11NamedMDNode4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MergeFunctions_cpp = asm["_GLOBAL__sub_I_MergeFunctions.cpp"]; asm["_GLOBAL__sub_I_MergeFunctions.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MergeFunctions_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm13ScheduleDAGMI12dumpScheduleEv = asm["_ZNK4llvm13ScheduleDAGMI12dumpScheduleEv"]; asm["_ZNK4llvm13ScheduleDAGMI12dumpScheduleEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13ScheduleDAGMI12dumpScheduleEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SanitizerCoverage_cpp = asm["_GLOBAL__sub_I_SanitizerCoverage.cpp"]; asm["_GLOBAL__sub_I_SanitizerCoverage.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SanitizerCoverage_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm14DependenceInfo10Constraint4dumpERNS_11raw_ostreamE = asm["_ZNK4llvm14DependenceInfo10Constraint4dumpERNS_11raw_ostreamE"]; asm["_ZNK4llvm14DependenceInfo10Constraint4dumpERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm14DependenceInfo10Constraint4dumpERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_BranchProbabilityInfo_cpp = asm["_GLOBAL__sub_I_BranchProbabilityInfo.cpp"]; asm["_GLOBAL__sub_I_BranchProbabilityInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_BranchProbabilityInfo_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm8DebugLoc4dumpEv = asm["_ZNK4llvm8DebugLoc4dumpEv"]; asm["_ZNK4llvm8DebugLoc4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8DebugLoc4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ScheduleDAGInstrs_cpp = asm["_GLOBAL__sub_I_ScheduleDAGInstrs.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGInstrs.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ScheduleDAGInstrs_cpp.apply(null, arguments);
+};
+
+var real_setTempRet0 = asm["setTempRet0"]; asm["setTempRet0"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_setTempRet0.apply(null, arguments);
+};
+
+var real_dynCall_viiiiiiiiiiiiiii = asm["dynCall_viiiiiiiiiiiiiii"]; asm["dynCall_viiiiiiiiiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_viiiiiiiiiiiiiii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopStrengthReduce_cpp = asm["_GLOBAL__sub_I_LoopStrengthReduce.cpp"]; asm["_GLOBAL__sub_I_LoopStrengthReduce.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopStrengthReduce_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_HWAddressSanitizer_cpp = asm["_GLOBAL__sub_I_HWAddressSanitizer.cpp"]; asm["_GLOBAL__sub_I_HWAddressSanitizer.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_HWAddressSanitizer_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang12TemplateName4dumpEv = asm["_ZNK5clang12TemplateName4dumpEv"]; asm["_ZNK5clang12TemplateName4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang12TemplateName4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_BitcodeReader_cpp = asm["_GLOBAL__sub_I_BitcodeReader.cpp"]; asm["_GLOBAL__sub_I_BitcodeReader.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_BitcodeReader_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm21MachineRegionInfoPass4dumpEv = asm["_ZNK4llvm21MachineRegionInfoPass4dumpEv"]; asm["_ZNK4llvm21MachineRegionInfoPass4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm21MachineRegionInfoPass4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineRegisterInfo_cpp = asm["_GLOBAL__sub_I_MachineRegisterInfo.cpp"]; asm["_GLOBAL__sub_I_MachineRegisterInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineRegisterInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AsmPrinter_cpp = asm["_GLOBAL__sub_I_AsmPrinter.cpp"]; asm["_GLOBAL__sub_I_AsmPrinter.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AsmPrinter_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_PrologEpilogInserter_cpp = asm["_GLOBAL__sub_I_PrologEpilogInserter.cpp"]; asm["_GLOBAL__sub_I_PrologEpilogInserter.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_PrologEpilogInserter_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm3GVN4dumpERNS_8DenseMapIjPNS_5ValueENS_12DenseMapInfoIjEENS_6detail12DenseMapPairIjS3_EEEE = asm["_ZNK4llvm3GVN4dumpERNS_8DenseMapIjPNS_5ValueENS_12DenseMapInfoIjEENS_6detail12DenseMapPairIjS3_EEEE"]; asm["_ZNK4llvm3GVN4dumpERNS_8DenseMapIjPNS_5ValueENS_12DenseMapInfoIjEENS_6detail12DenseMapPairIjS3_EEEE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm3GVN4dumpERNS_8DenseMapIjPNS_5ValueENS_12DenseMapInfoIjEENS_6detail12DenseMapPairIjS3_EEEE.apply(null, arguments);
+};
+
+var real___free = asm["_free"]; asm["_free"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___free.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LowerTypeTests_cpp = asm["_GLOBAL__sub_I_LowerTypeTests.cpp"]; asm["_GLOBAL__sub_I_LowerTypeTests.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LowerTypeTests_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm5SUnit4dumpEPKNS_11ScheduleDAGE = asm["_ZNK4llvm5SUnit4dumpEPKNS_11ScheduleDAGE"]; asm["_ZNK4llvm5SUnit4dumpEPKNS_11ScheduleDAGE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5SUnit4dumpEPKNS_11ScheduleDAGE.apply(null, arguments);
+};
+
+var real_dynCall_vii = asm["dynCall_vii"]; asm["dynCall_vii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_vii.apply(null, arguments);
+};
+
+var real___ZN4llvm9safestack11StackLayout5printERNS_11raw_ostreamE = asm["_ZN4llvm9safestack11StackLayout5printERNS_11raw_ostreamE"]; asm["_ZN4llvm9safestack11StackLayout5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN4llvm9safestack11StackLayout5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___fflush = asm["_fflush"]; asm["_fflush"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___fflush.apply(null, arguments);
+};
+
+var real____floatsitf = asm["__floatsitf"]; asm["__floatsitf"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____floatsitf.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ExpandMemCmp_cpp = asm["_GLOBAL__sub_I_ExpandMemCmp.cpp"]; asm["_GLOBAL__sub_I_ExpandMemCmp.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ExpandMemCmp_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_Inliner_cpp = asm["_GLOBAL__sub_I_Inliner.cpp"]; asm["_GLOBAL__sub_I_Inliner.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_Inliner_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm9LiveRange4dumpEv = asm["_ZNK4llvm9LiveRange4dumpEv"]; asm["_ZNK4llvm9LiveRange4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm9LiveRange4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang15DeclarationName4dumpEv = asm["_ZNK5clang15DeclarationName4dumpEv"]; asm["_ZNK5clang15DeclarationName4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang15DeclarationName4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm18LiveDebugVariables4dumpEv = asm["_ZNK4llvm18LiveDebugVariables4dumpEv"]; asm["_ZNK4llvm18LiveDebugVariables4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm18LiveDebugVariables4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang4Decl4dumpEv = asm["_ZNK5clang4Decl4dumpEv"]; asm["_ZNK5clang4Decl4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Decl4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_CommandLine_cpp = asm["_GLOBAL__sub_I_CommandLine.cpp"]; asm["_GLOBAL__sub_I_CommandLine.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_CommandLine_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm17AttributeListImpl4dumpEv = asm["_ZNK4llvm17AttributeListImpl4dumpEv"]; asm["_ZNK4llvm17AttributeListImpl4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm17AttributeListImpl4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MCSymbol_cpp = asm["_GLOBAL__sub_I_MCSymbol.cpp"]; asm["_GLOBAL__sub_I_MCSymbol.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MCSymbol_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DebugCounter_cpp = asm["_GLOBAL__sub_I_DebugCounter.cpp"]; asm["_GLOBAL__sub_I_DebugCounter.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DebugCounter_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKS0_S4_ = asm["_ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKS0_S4_"]; asm["_ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKS0_S4_"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKS0_S4_.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_WholeProgramDevirt_cpp = asm["_GLOBAL__sub_I_WholeProgramDevirt.cpp"]; asm["_GLOBAL__sub_I_WholeProgramDevirt.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_WholeProgramDevirt_cpp.apply(null, arguments);
+};
+
+var real_____errno_location = asm["___errno_location"]; asm["___errno_location"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_____errno_location.apply(null, arguments);
+};
+
+var real___ZNK4llvm6Module4dumpEv = asm["_ZNK4llvm6Module4dumpEv"]; asm["_ZNK4llvm6Module4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6Module4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm12PHITransAddr4dumpEv = asm["_ZNK4llvm12PHITransAddr4dumpEv"]; asm["_ZNK4llvm12PHITransAddr4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm12PHITransAddr4dumpEv.apply(null, arguments);
+};
+
+var real____subtf3 = asm["__subtf3"]; asm["__subtf3"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____subtf3.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopUnrollPass_cpp = asm["_GLOBAL__sub_I_LoopUnrollPass.cpp"]; asm["_GLOBAL__sub_I_LoopUnrollPass.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopUnrollPass_cpp.apply(null, arguments);
+};
+
+var real___ZN4llvm18TargetRegisterInfo7dumpRegEjjPKS0_ = asm["_ZN4llvm18TargetRegisterInfo7dumpRegEjjPKS0_"]; asm["_ZN4llvm18TargetRegisterInfo7dumpRegEjjPKS0_"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN4llvm18TargetRegisterInfo7dumpRegEjjPKS0_.apply(null, arguments);
+};
+
+var real___ZNK4llvm7IVUsers4dumpEv = asm["_ZNK4llvm7IVUsers4dumpEv"]; asm["_ZNK4llvm7IVUsers4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm7IVUsers4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ScheduleDAGRRList_cpp = asm["_GLOBAL__sub_I_ScheduleDAGRRList.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGRRList.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ScheduleDAGRRList_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm8DIEBlock5printERNS_11raw_ostreamE = asm["_ZNK4llvm8DIEBlock5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm8DIEBlock5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8DIEBlock5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_Timer_cpp = asm["_GLOBAL__sub_I_Timer.cpp"]; asm["_GLOBAL__sub_I_Timer.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_Timer_cpp.apply(null, arguments);
+};
+
+var real____trunctfdf2 = asm["__trunctfdf2"]; asm["__trunctfdf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____trunctfdf2.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_PassManagerBuilder_cpp = asm["_GLOBAL__sub_I_PassManagerBuilder.cpp"]; asm["_GLOBAL__sub_I_PassManagerBuilder.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_PassManagerBuilder_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm10VirtRegMap4dumpEv = asm["_ZNK4llvm10VirtRegMap4dumpEv"]; asm["_ZNK4llvm10VirtRegMap4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10VirtRegMap4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_WebAssemblyPeephole_cpp = asm["_GLOBAL__sub_I_WebAssemblyPeephole.cpp"]; asm["_GLOBAL__sub_I_WebAssemblyPeephole.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_WebAssemblyPeephole_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm6MCExpr4dumpEv = asm["_ZNK4llvm6MCExpr4dumpEv"]; asm["_ZNK4llvm6MCExpr4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6MCExpr4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopLoadElimination_cpp = asm["_GLOBAL__sub_I_LoopLoadElimination.cpp"]; asm["_GLOBAL__sub_I_LoopLoadElimination.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopLoadElimination_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm3opt7ArgList4dumpEv = asm["_ZNK4llvm3opt7ArgList4dumpEv"]; asm["_ZNK4llvm3opt7ArgList4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm3opt7ArgList4dumpEv.apply(null, arguments);
+};
+
+var real____growWasmMemory = asm["__growWasmMemory"]; asm["__growWasmMemory"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____growWasmMemory.apply(null, arguments);
+};
+
+var real___ZNK4llvm10sampleprof15FunctionSamples4dumpEv = asm["_ZNK4llvm10sampleprof15FunctionSamples4dumpEv"]; asm["_ZNK4llvm10sampleprof15FunctionSamples4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10sampleprof15FunctionSamples4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TailDuplicator_cpp = asm["_GLOBAL__sub_I_TailDuplicator.cpp"]; asm["_GLOBAL__sub_I_TailDuplicator.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TailDuplicator_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm4Loop4dumpEv = asm["_ZNK4llvm4Loop4dumpEv"]; asm["_ZNK4llvm4Loop4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm4Loop4dumpEv.apply(null, arguments);
+};
+
+var real_dynCall_diii = asm["dynCall_diii"]; asm["dynCall_diii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_diii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ScheduleDAGVLIW_cpp = asm["_GLOBAL__sub_I_ScheduleDAGVLIW.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGVLIW.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ScheduleDAGVLIW_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopPredication_cpp = asm["_GLOBAL__sub_I_LoopPredication.cpp"]; asm["_GLOBAL__sub_I_LoopPredication.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopPredication_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang11DeclContext11dumpLookupsEv = asm["_ZNK5clang11DeclContext11dumpLookupsEv"]; asm["_ZNK5clang11DeclContext11dumpLookupsEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang11DeclContext11dumpLookupsEv.apply(null, arguments);
+};
+
+var real_dynCall_viiiiiiii = asm["dynCall_viiiiiiii"]; asm["dynCall_viiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_viiiiiiii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_CodeGenPrepare_cpp = asm["_GLOBAL__sub_I_CodeGenPrepare.cpp"]; asm["_GLOBAL__sub_I_CodeGenPrepare.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_CodeGenPrepare_cpp.apply(null, arguments);
+};
+
+var real_dynCall_iiiiid = asm["dynCall_iiiiid"]; asm["dynCall_iiiiid"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiid.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LICM_cpp = asm["_GLOBAL__sub_I_LICM.cpp"]; asm["_GLOBAL__sub_I_LICM.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LICM_cpp.apply(null, arguments);
+};
+
+var real_dynCall_iiiiii = asm["dynCall_iiiiii"]; asm["dynCall_iiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiii.apply(null, arguments);
+};
+
+var real__memcpy = asm["memcpy"]; asm["memcpy"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__memcpy.apply(null, arguments);
+};
+
+var real___ZNK4llvm8Metadata4dumpEv = asm["_ZNK4llvm8Metadata4dumpEv"]; asm["_ZNK4llvm8Metadata4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8Metadata4dumpEv.apply(null, arguments);
+};
+
+var real_dynCall_viiiiii = asm["dynCall_viiiiii"]; asm["dynCall_viiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_viiiiii.apply(null, arguments);
+};
+
+var real___ZNK4llvm8DIEDelta5printERNS_11raw_ostreamE = asm["_ZNK4llvm8DIEDelta5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm8DIEDelta5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8DIEDelta5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_EfficiencySanitizer_cpp = asm["_GLOBAL__sub_I_EfficiencySanitizer.cpp"]; asm["_GLOBAL__sub_I_EfficiencySanitizer.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_EfficiencySanitizer_cpp.apply(null, arguments);
+};
+
+var real____extenddftf2 = asm["__extenddftf2"]; asm["__extenddftf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____extenddftf2.apply(null, arguments);
+};
+
+var real___ZNK4llvm15ValueEnumerator4dumpEv = asm["_ZNK4llvm15ValueEnumerator4dumpEv"]; asm["_ZNK4llvm15ValueEnumerator4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm15ValueEnumerator4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_Debug_cpp = asm["_GLOBAL__sub_I_Debug.cpp"]; asm["_GLOBAL__sub_I_Debug.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_Debug_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ScheduleDAGSDNodes_cpp = asm["_GLOBAL__sub_I_ScheduleDAGSDNodes.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGSDNodes.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ScheduleDAGSDNodes_cpp.apply(null, arguments);
+};
+
+var real___memalign = asm["_memalign"]; asm["_memalign"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___memalign.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MetadataLoader_cpp = asm["_GLOBAL__sub_I_MetadataLoader.cpp"]; asm["_GLOBAL__sub_I_MetadataLoader.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MetadataLoader_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm7DIEExpr5printERNS_11raw_ostreamE = asm["_ZNK4llvm7DIEExpr5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm7DIEExpr5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm7DIEExpr5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___ZNK4llvm11MachineLoop4dumpEv = asm["_ZNK4llvm11MachineLoop4dumpEv"]; asm["_ZNK4llvm11MachineLoop4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm11MachineLoop4dumpEv.apply(null, arguments);
+};
+
+var real____fixunstfsi = asm["__fixunstfsi"]; asm["__fixunstfsi"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____fixunstfsi.apply(null, arguments);
+};
+
+var real_dynCall_iiiiiiiiiiiii = asm["dynCall_iiiiiiiiiiiii"]; asm["dynCall_iiiiiiiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiiiiiiiiii.apply(null, arguments);
+};
+
+var real___ZNK4llvm18RegPressureTracker4dumpEv = asm["_ZNK4llvm18RegPressureTracker4dumpEv"]; asm["_ZNK4llvm18RegPressureTracker4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm18RegPressureTracker4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RewriteStatepointsForGC_cpp = asm["_GLOBAL__sub_I_RewriteStatepointsForGC.cpp"]; asm["_GLOBAL__sub_I_RewriteStatepointsForGC.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RewriteStatepointsForGC_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang13HeaderMapImpl4dumpEv = asm["_ZNK5clang13HeaderMapImpl4dumpEv"]; asm["_ZNK5clang13HeaderMapImpl4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang13HeaderMapImpl4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SelectionDAGBuilder_cpp = asm["_GLOBAL__sub_I_SelectionDAGBuilder.cpp"]; asm["_GLOBAL__sub_I_SelectionDAGBuilder.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SelectionDAGBuilder_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_BranchFolding_cpp = asm["_GLOBAL__sub_I_BranchFolding.cpp"]; asm["_GLOBAL__sub_I_BranchFolding.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_BranchFolding_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm9SlotIndex4dumpEv = asm["_ZNK4llvm9SlotIndex4dumpEv"]; asm["_ZNK4llvm9SlotIndex4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm9SlotIndex4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm15DIEInlineString5printERNS_11raw_ostreamE = asm["_ZNK4llvm15DIEInlineString5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm15DIEInlineString5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm15DIEInlineString5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real____cxa_demangle = asm["__cxa_demangle"]; asm["__cxa_demangle"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____cxa_demangle.apply(null, arguments);
+};
+
+var real___ZNK4llvm8MCSymbol4dumpEv = asm["_ZNK4llvm8MCSymbol4dumpEv"]; asm["_ZNK4llvm8MCSymbol4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8MCSymbol4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang6driver11MultilibSet4dumpEv = asm["_ZNK5clang6driver11MultilibSet4dumpEv"]; asm["_ZNK5clang6driver11MultilibSet4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang6driver11MultilibSet4dumpEv.apply(null, arguments);
+};
+
+var real_____cxa_is_pointer_type = asm["___cxa_is_pointer_type"]; asm["___cxa_is_pointer_type"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_____cxa_is_pointer_type.apply(null, arguments);
+};
+
+var real___ZNK4llvm4Pass4dumpEv = asm["_ZNK4llvm4Pass4dumpEv"]; asm["_ZNK4llvm4Pass4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm4Pass4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm13LazyCallGraph3SCC4dumpEv = asm["_ZNK4llvm13LazyCallGraph3SCC4dumpEv"]; asm["_ZNK4llvm13LazyCallGraph3SCC4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13LazyCallGraph3SCC4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopIdiomRecognize_cpp = asm["_GLOBAL__sub_I_LoopIdiomRecognize.cpp"]; asm["_GLOBAL__sub_I_LoopIdiomRecognize.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopIdiomRecognize_cpp.apply(null, arguments);
+};
+
+var real_dynCall_vi = asm["dynCall_vi"]; asm["dynCall_vi"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_vi.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DwarfUnit_cpp = asm["_GLOBAL__sub_I_DwarfUnit.cpp"]; asm["_GLOBAL__sub_I_DwarfUnit.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DwarfUnit_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang19NestedNameSpecifier4dumpEv = asm["_ZNK5clang19NestedNameSpecifier4dumpEv"]; asm["_ZNK5clang19NestedNameSpecifier4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang19NestedNameSpecifier4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_OptBisect_cpp = asm["_GLOBAL__sub_I_OptBisect.cpp"]; asm["_GLOBAL__sub_I_OptBisect.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_OptBisect_cpp.apply(null, arguments);
+};
+
+var real__memalign = asm["memalign"]; asm["memalign"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__memalign.apply(null, arguments);
+};
+
+var real___ZNK5clang13FullSourceLoc4dumpEv = asm["_ZNK5clang13FullSourceLoc4dumpEv"]; asm["_ZNK5clang13FullSourceLoc4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang13FullSourceLoc4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_PartialInlining_cpp = asm["_GLOBAL__sub_I_PartialInlining.cpp"]; asm["_GLOBAL__sub_I_PartialInlining.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_PartialInlining_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm11SplitEditor4dumpEv = asm["_ZNK4llvm11SplitEditor4dumpEv"]; asm["_ZNK4llvm11SplitEditor4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm11SplitEditor4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang4Stmt9dumpColorEv = asm["_ZNK5clang4Stmt9dumpColorEv"]; asm["_ZNK5clang4Stmt9dumpColorEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Stmt9dumpColorEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TargetPassConfig_cpp = asm["_GLOBAL__sub_I_TargetPassConfig.cpp"]; asm["_GLOBAL__sub_I_TargetPassConfig.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TargetPassConfig_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm9DIEAbbrev5printERNS_11raw_ostreamE = asm["_ZNK4llvm9DIEAbbrev5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm9DIEAbbrev5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm9DIEAbbrev5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___ZNK5clang26StandardConversionSequence4dumpEv = asm["_ZNK5clang26StandardConversionSequence4dumpEv"]; asm["_ZNK5clang26StandardConversionSequence4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang26StandardConversionSequence4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegAllocGreedy_cpp = asm["_GLOBAL__sub_I_RegAllocGreedy.cpp"]; asm["_GLOBAL__sub_I_RegAllocGreedy.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegAllocGreedy_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm14RegionInfoPass4dumpEv = asm["_ZNK4llvm14RegionInfoPass4dumpEv"]; asm["_ZNK4llvm14RegionInfoPass4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm14RegionInfoPass4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm9DIEString5printERNS_11raw_ostreamE = asm["_ZNK4llvm9DIEString5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm9DIEString5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm9DIEString5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DependenceAnalysis_cpp = asm["_GLOBAL__sub_I_DependenceAnalysis.cpp"]; asm["_GLOBAL__sub_I_DependenceAnalysis.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DependenceAnalysis_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang7APValue4dumpEv = asm["_ZNK5clang7APValue4dumpEv"]; asm["_ZNK5clang7APValue4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang7APValue4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm4SDep5printERNS_11raw_ostreamEPKNS_18TargetRegisterInfoE = asm["_ZNK4llvm4SDep5printERNS_11raw_ostreamEPKNS_18TargetRegisterInfoE"]; asm["_ZNK4llvm4SDep5printERNS_11raw_ostreamEPKNS_18TargetRegisterInfoE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm4SDep5printERNS_11raw_ostreamEPKNS_18TargetRegisterInfoE.apply(null, arguments);
+};
+
+var real_dynCall_iiiiiii = asm["dynCall_iiiiiii"]; asm["dynCall_iiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiiii.apply(null, arguments);
+};
+
+var real___ZNK4llvm16RegisterPressure4dumpEPKNS_18TargetRegisterInfoE = asm["_ZNK4llvm16RegisterPressure4dumpEPKNS_18TargetRegisterInfoE"]; asm["_ZNK4llvm16RegisterPressure4dumpEPKNS_18TargetRegisterInfoE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm16RegisterPressure4dumpEPKNS_18TargetRegisterInfoE.apply(null, arguments);
+};
+
+var real___ZNK4llvm12LiveInterval8SubRange4dumpEv = asm["_ZNK4llvm12LiveInterval8SubRange4dumpEv"]; asm["_ZNK4llvm12LiveInterval8SubRange4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm12LiveInterval8SubRange4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ValueTracking_cpp = asm["_GLOBAL__sub_I_ValueTracking.cpp"]; asm["_GLOBAL__sub_I_ValueTracking.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ValueTracking_cpp.apply(null, arguments);
+};
+
+var real____netf2 = asm["__netf2"]; asm["__netf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____netf2.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineCombiner_cpp = asm["_GLOBAL__sub_I_MachineCombiner.cpp"]; asm["_GLOBAL__sub_I_MachineCombiner.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineCombiner_cpp.apply(null, arguments);
+};
+
+var real____addtf3 = asm["__addtf3"]; asm["__addtf3"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____addtf3.apply(null, arguments);
+};
+
+var real_dynCall_iid = asm["dynCall_iid"]; asm["dynCall_iid"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iid.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopRerollPass_cpp = asm["_GLOBAL__sub_I_LoopRerollPass.cpp"]; asm["_GLOBAL__sub_I_LoopRerollPass.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopRerollPass_cpp.apply(null, arguments);
+};
+
+var real_dynCall_iii = asm["dynCall_iii"]; asm["dynCall_iii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iii.apply(null, arguments);
+};
+
+var real___ZNK4llvm4Type4dumpEv = asm["_ZNK4llvm4Type4dumpEv"]; asm["_ZNK4llvm4Type4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm4Type4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm4Loop11dumpVerboseEv = asm["_ZNK4llvm4Loop11dumpVerboseEv"]; asm["_ZNK4llvm4Loop11dumpVerboseEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm4Loop11dumpVerboseEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_BasicTargetTransformInfo_cpp = asm["_GLOBAL__sub_I_BasicTargetTransformInfo.cpp"]; asm["_GLOBAL__sub_I_BasicTargetTransformInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_BasicTargetTransformInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp = asm["_GLOBAL__sub_I_TypeBasedAliasAnalysis.cpp"]; asm["_GLOBAL__sub_I_TypeBasedAliasAnalysis.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm5APInt4dumpEv = asm["_ZNK4llvm5APInt4dumpEv"]; asm["_ZNK4llvm5APInt4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5APInt4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ForceFunctionAttrs_cpp = asm["_GLOBAL__sub_I_ForceFunctionAttrs.cpp"]; asm["_GLOBAL__sub_I_ForceFunctionAttrs.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ForceFunctionAttrs_cpp.apply(null, arguments);
+};
+
+var real_dynCall_iiiiiiii = asm["dynCall_iiiiiiii"]; asm["dynCall_iiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiiiii.apply(null, arguments);
+};
+
+var real___ZNK4llvm17MachineBasicBlock4dumpEv = asm["_ZNK4llvm17MachineBasicBlock4dumpEv"]; asm["_ZNK4llvm17MachineBasicBlock4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm17MachineBasicBlock4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamERNS_13SourceManagerE = asm["_ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamERNS_13SourceManagerE"]; asm["_ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamERNS_13SourceManagerE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamERNS_13SourceManagerE.apply(null, arguments);
+};
+
+var real__compile = asm["compile"]; asm["compile"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__compile.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MemorySSA_cpp = asm["_GLOBAL__sub_I_MemorySSA.cpp"]; asm["_GLOBAL__sub_I_MemorySSA.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MemorySSA_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_FunctionImport_cpp = asm["_GLOBAL__sub_I_FunctionImport.cpp"]; asm["_GLOBAL__sub_I_FunctionImport.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_FunctionImport_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopVectorize_cpp = asm["_GLOBAL__sub_I_LoopVectorize.cpp"]; asm["_GLOBAL__sub_I_LoopVectorize.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopVectorize_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ProfileSummaryInfo_cpp = asm["_GLOBAL__sub_I_ProfileSummaryInfo.cpp"]; asm["_GLOBAL__sub_I_ProfileSummaryInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ProfileSummaryInfo_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm8DIEEntry5printERNS_11raw_ostreamE = asm["_ZNK4llvm8DIEEntry5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm8DIEEntry5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8DIEEntry5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_StackColoring_cpp = asm["_GLOBAL__sub_I_StackColoring.cpp"]; asm["_GLOBAL__sub_I_StackColoring.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_StackColoring_cpp.apply(null, arguments);
+};
+
+var real__malloc = asm["malloc"]; asm["malloc"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__malloc.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegisterClassInfo_cpp = asm["_GLOBAL__sub_I_RegisterClassInfo.cpp"]; asm["_GLOBAL__sub_I_RegisterClassInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegisterClassInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DAGCombiner_cpp = asm["_GLOBAL__sub_I_DAGCombiner.cpp"]; asm["_GLOBAL__sub_I_DAGCombiner.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DAGCombiner_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm7APFloat4dumpEv = asm["_ZNK4llvm7APFloat4dumpEv"]; asm["_ZNK4llvm7APFloat4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm7APFloat4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DiagnosticHandler_cpp = asm["_GLOBAL__sub_I_DiagnosticHandler.cpp"]; asm["_GLOBAL__sub_I_DiagnosticHandler.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DiagnosticHandler_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LiveIntervals_cpp = asm["_GLOBAL__sub_I_LiveIntervals.cpp"]; asm["_GLOBAL__sub_I_LiveIntervals.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LiveIntervals_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TargetTransformInfo_cpp = asm["_GLOBAL__sub_I_TargetTransformInfo.cpp"]; asm["_GLOBAL__sub_I_TargetTransformInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TargetTransformInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_DFAPacketizer_cpp = asm["_GLOBAL__sub_I_DFAPacketizer.cpp"]; asm["_GLOBAL__sub_I_DFAPacketizer.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_DFAPacketizer_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang8comments7Comment4dumpERKNS_10ASTContextE = asm["_ZNK5clang8comments7Comment4dumpERKNS_10ASTContextE"]; asm["_ZNK5clang8comments7Comment4dumpERKNS_10ASTContextE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang8comments7Comment4dumpERKNS_10ASTContextE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_GCOVProfiling_cpp = asm["_GLOBAL__sub_I_GCOVProfiling.cpp"]; asm["_GLOBAL__sub_I_GCOVProfiling.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_GCOVProfiling_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKNS_11ScheduleDAGE = asm["_ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKNS_11ScheduleDAGE"]; asm["_ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKNS_11ScheduleDAGE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKNS_11ScheduleDAGE.apply(null, arguments);
+};
+
+var real_dynCall_iiiiiiiiiii = asm["dynCall_iiiiiiiiiii"]; asm["dynCall_iiiiiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiiiiiiii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TargetLibraryInfo_cpp = asm["_GLOBAL__sub_I_TargetLibraryInfo.cpp"]; asm["_GLOBAL__sub_I_TargetLibraryInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TargetLibraryInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LegalizeTypes_cpp = asm["_GLOBAL__sub_I_LegalizeTypes.cpp"]; asm["_GLOBAL__sub_I_LegalizeTypes.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LegalizeTypes_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm13ConstantRange4dumpEv = asm["_ZNK4llvm13ConstantRange4dumpEv"]; asm["_ZNK4llvm13ConstantRange4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13ConstantRange4dumpEv.apply(null, arguments);
+};
+
+var real_____cxa_can_catch = asm["___cxa_can_catch"]; asm["___cxa_can_catch"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_____cxa_can_catch.apply(null, arguments);
+};
+
+var real___ZNK5clang7CodeGen10ABIArgInfo4dumpEv = asm["_ZNK5clang7CodeGen10ABIArgInfo4dumpEv"]; asm["_ZNK5clang7CodeGen10ABIArgInfo4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang7CodeGen10ABIArgInfo4dumpEv.apply(null, arguments);
+};
+
+var real____lttf2 = asm["__lttf2"]; asm["__lttf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____lttf2.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_BasicAliasAnalysis_cpp = asm["_GLOBAL__sub_I_BasicAliasAnalysis.cpp"]; asm["_GLOBAL__sub_I_BasicAliasAnalysis.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_BasicAliasAnalysis_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp = asm["_GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj.cpp"]; asm["_GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm6SDNode5dumprEv = asm["_ZNK4llvm6SDNode5dumprEv"]; asm["_ZNK4llvm6SDNode5dumprEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6SDNode5dumprEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_GVN_cpp = asm["_GLOBAL__sub_I_GVN.cpp"]; asm["_GLOBAL__sub_I_GVN.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_GVN_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm17SubtargetFeatures4dumpEv = asm["_ZNK4llvm17SubtargetFeatures4dumpEv"]; asm["_ZNK4llvm17SubtargetFeatures4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm17SubtargetFeatures4dumpEv.apply(null, arguments);
+};
+
+var real__fflush = asm["fflush"]; asm["fflush"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__fflush.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_BoundsChecking_cpp = asm["_GLOBAL__sub_I_BoundsChecking.cpp"]; asm["_GLOBAL__sub_I_BoundsChecking.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_BoundsChecking_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm12LexicalScope4dumpEj = asm["_ZNK4llvm12LexicalScope4dumpEj"]; asm["_ZNK4llvm12LexicalScope4dumpEj"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm12LexicalScope4dumpEj.apply(null, arguments);
+};
+
+var real___ZNK4llvm10DIELocList5printERNS_11raw_ostreamE = asm["_ZNK4llvm10DIELocList5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm10DIELocList5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10DIELocList5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_InlineFunction_cpp = asm["_GLOBAL__sub_I_InlineFunction.cpp"]; asm["_GLOBAL__sub_I_InlineFunction.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_InlineFunction_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm11MCAssembler4dumpEv = asm["_ZNK4llvm11MCAssembler4dumpEv"]; asm["_ZNK4llvm11MCAssembler4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm11MCAssembler4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm13LiveIntervals10dumpInstrsEv = asm["_ZNK4llvm13LiveIntervals10dumpInstrsEv"]; asm["_ZNK4llvm13LiveIntervals10dumpInstrsEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13LiveIntervals10dumpInstrsEv.apply(null, arguments);
+};
+
+var real____letf2 = asm["__letf2"]; asm["__letf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____letf2.apply(null, arguments);
+};
+
+var real____multi3 = asm["__multi3"]; asm["__multi3"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____multi3.apply(null, arguments);
+};
+
+var real___ZNK4llvm4SCEV4dumpEv = asm["_ZNK4llvm4SCEV4dumpEv"]; asm["_ZNK4llvm4SCEV4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm4SCEV4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm3DIE5printERNS_11raw_ostreamEj = asm["_ZNK4llvm3DIE5printERNS_11raw_ostreamEj"]; asm["_ZNK4llvm3DIE5printERNS_11raw_ostreamEj"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm3DIE5printERNS_11raw_ostreamEj.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_PGOMemOPSizeOpt_cpp = asm["_GLOBAL__sub_I_PGOMemOPSizeOpt.cpp"]; asm["_GLOBAL__sub_I_PGOMemOPSizeOpt.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_PGOMemOPSizeOpt_cpp.apply(null, arguments);
+};
+
+var real____fixtfsi = asm["__fixtfsi"]; asm["__fixtfsi"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____fixtfsi.apply(null, arguments);
+};
+
+var real___ZNK5clang8comments7Comment4dumpEv = asm["_ZNK5clang8comments7Comment4dumpEv"]; asm["_ZNK5clang8comments7Comment4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang8comments7Comment4dumpEv.apply(null, arguments);
+};
+
+var real____getf2 = asm["__getf2"]; asm["__getf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____getf2.apply(null, arguments);
+};
+
+var real_dynCall_iiii = asm["dynCall_iiii"]; asm["dynCall_iiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiii.apply(null, arguments);
+};
+
+var real___ZNK5clang14MacroDirective4dumpEv = asm["_ZNK5clang14MacroDirective4dumpEv"]; asm["_ZNK5clang14MacroDirective4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang14MacroDirective4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopUnrollPeel_cpp = asm["_GLOBAL__sub_I_LoopUnrollPeel.cpp"]; asm["_GLOBAL__sub_I_LoopUnrollPeel.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopUnrollPeel_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang4Stmt4dumpERNS_13SourceManagerE = asm["_ZNK5clang4Stmt4dumpERNS_13SourceManagerE"]; asm["_ZNK5clang4Stmt4dumpERNS_13SourceManagerE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Stmt4dumpERNS_13SourceManagerE.apply(null, arguments);
+};
+
+var real___ZNK4llvm10sampleprof12SampleRecord4dumpEv = asm["_ZNK4llvm10sampleprof12SampleRecord4dumpEv"]; asm["_ZNK4llvm10sampleprof12SampleRecord4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10sampleprof12SampleRecord4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AliasSetTracker_cpp = asm["_GLOBAL__sub_I_AliasSetTracker.cpp"]; asm["_GLOBAL__sub_I_AliasSetTracker.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AliasSetTracker_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm26ScoreboardHazardRecognizer10Scoreboard4dumpEv = asm["_ZNK4llvm26ScoreboardHazardRecognizer10Scoreboard4dumpEv"]; asm["_ZNK4llvm26ScoreboardHazardRecognizer10Scoreboard4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm26ScoreboardHazardRecognizer10Scoreboard4dumpEv.apply(null, arguments);
+};
+
+var real_dynCall_viiiii = asm["dynCall_viiiii"]; asm["dynCall_viiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_viiiii.apply(null, arguments);
+};
+
+var real__memmove = asm["memmove"]; asm["memmove"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__memmove.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_NewGVN_cpp = asm["_GLOBAL__sub_I_NewGVN.cpp"]; asm["_GLOBAL__sub_I_NewGVN.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_NewGVN_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineOperand_cpp = asm["_GLOBAL__sub_I_MachineOperand.cpp"]; asm["_GLOBAL__sub_I_MachineOperand.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineOperand_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_StackMaps_cpp = asm["_GLOBAL__sub_I_StackMaps.cpp"]; asm["_GLOBAL__sub_I_StackMaps.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_StackMaps_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegionInfo_cpp = asm["_GLOBAL__sub_I_RegionInfo.cpp"]; asm["_GLOBAL__sub_I_RegionInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegionInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_IndVarSimplify_cpp = asm["_GLOBAL__sub_I_IndVarSimplify.cpp"]; asm["_GLOBAL__sub_I_IndVarSimplify.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_IndVarSimplify_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp = asm["_GLOBAL__sub_I_MachineBlockFrequencyInfo.cpp"]; asm["_GLOBAL__sub_I_MachineBlockFrequencyInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_CodeViewDebug_cpp = asm["_GLOBAL__sub_I_CodeViewDebug.cpp"]; asm["_GLOBAL__sub_I_CodeViewDebug.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_CodeViewDebug_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopSink_cpp = asm["_GLOBAL__sub_I_LoopSink.cpp"]; asm["_GLOBAL__sub_I_LoopSink.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopSink_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm3opt6Option4dumpEv = asm["_ZNK4llvm3opt6Option4dumpEv"]; asm["_ZNK4llvm3opt6Option4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm3opt6Option4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SafeStackLayout_cpp = asm["_GLOBAL__sub_I_SafeStackLayout.cpp"]; asm["_GLOBAL__sub_I_SafeStackLayout.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SafeStackLayout_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp = asm["_GLOBAL__sub_I_AggressiveAntiDepBreaker.cpp"]; asm["_GLOBAL__sub_I_AggressiveAntiDepBreaker.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm10MCFragment4dumpEv = asm["_ZNK4llvm10MCFragment4dumpEv"]; asm["_ZNK4llvm10MCFragment4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm10MCFragment4dumpEv.apply(null, arguments);
+};
+
+var real_dynCall_iiiiiiiiii = asm["dynCall_iiiiiiiiii"]; asm["dynCall_iiiiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiiiiiii.apply(null, arguments);
+};
+
+var real___ZNK5clang8QualType4dumpEv = asm["_ZNK5clang8QualType4dumpEv"]; asm["_ZNK5clang8QualType4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang8QualType4dumpEv.apply(null, arguments);
+};
+
+var real____gttf2 = asm["__gttf2"]; asm["__gttf2"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____gttf2.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ScalarEvolution_cpp = asm["_GLOBAL__sub_I_ScalarEvolution.cpp"]; asm["_GLOBAL__sub_I_ScalarEvolution.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ScalarEvolution_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopInfo_cpp = asm["_GLOBAL__sub_I_LoopInfo.cpp"]; asm["_GLOBAL__sub_I_LoopInfo.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopInfo_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SelectionDAGISel_cpp = asm["_GLOBAL__sub_I_SelectionDAGISel.cpp"]; asm["_GLOBAL__sub_I_SelectionDAGISel.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SelectionDAGISel_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang8comments7Comment9dumpColorEv = asm["_ZNK5clang8comments7Comment9dumpColorEv"]; asm["_ZNK5clang8comments7Comment9dumpColorEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang8comments7Comment9dumpColorEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm13AttributeList4dumpEv = asm["_ZNK4llvm13AttributeList4dumpEv"]; asm["_ZNK4llvm13AttributeList4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13AttributeList4dumpEv.apply(null, arguments);
+};
+
+var real___compile = asm["_compile"]; asm["_compile"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___compile.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_Dominators_cpp = asm["_GLOBAL__sub_I_Dominators.cpp"]; asm["_GLOBAL__sub_I_Dominators.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_Dominators_cpp.apply(null, arguments);
+};
+
+var real___ZN4llvm9safestack13StackColoring11dumpAllocasEv = asm["_ZN4llvm9safestack13StackColoring11dumpAllocasEv"]; asm["_ZN4llvm9safestack13StackColoring11dumpAllocasEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN4llvm9safestack13StackColoring11dumpAllocasEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm5Twine4dumpEv = asm["_ZNK4llvm5Twine4dumpEv"]; asm["_ZNK4llvm5Twine4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5Twine4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm8DIEValue5printERNS_11raw_ostreamE = asm["_ZNK4llvm8DIEValue5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm8DIEValue5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8DIEValue5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachineSink_cpp = asm["_GLOBAL__sub_I_MachineSink.cpp"]; asm["_GLOBAL__sub_I_MachineSink.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachineSink_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm13CallGraphNode4dumpEv = asm["_ZNK4llvm13CallGraphNode4dumpEv"]; asm["_ZNK4llvm13CallGraphNode4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13CallGraphNode4dumpEv.apply(null, arguments);
+};
+
+var real_dynCall_iiiiiiiii = asm["dynCall_iiiiiiiii"]; asm["dynCall_iiiiiiiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_iiiiiiiii.apply(null, arguments);
+};
+
+var real_dynCall_viiii = asm["dynCall_viiii"]; asm["dynCall_viiii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_viiii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SLPVectorizer_cpp = asm["_GLOBAL__sub_I_SLPVectorizer.cpp"]; asm["_GLOBAL__sub_I_SLPVectorizer.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SLPVectorizer_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ConstantHoisting_cpp = asm["_GLOBAL__sub_I_ConstantHoisting.cpp"]; asm["_GLOBAL__sub_I_ConstantHoisting.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ConstantHoisting_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm9MemorySSA4dumpEv = asm["_ZNK4llvm9MemorySSA4dumpEv"]; asm["_ZNK4llvm9MemorySSA4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm9MemorySSA4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LoopUnroll_cpp = asm["_GLOBAL__sub_I_LoopUnroll.cpp"]; asm["_GLOBAL__sub_I_LoopUnroll.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LoopUnroll_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm6SDNode5dumprEPKNS_12SelectionDAGE = asm["_ZNK4llvm6SDNode5dumprEPKNS_12SelectionDAGE"]; asm["_ZNK4llvm6SDNode5dumprEPKNS_12SelectionDAGE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6SDNode5dumprEPKNS_12SelectionDAGE.apply(null, arguments);
+};
+
+var real___ZNK4llvm8AliasSet4dumpEv = asm["_ZNK4llvm8AliasSet4dumpEv"]; asm["_ZNK4llvm8AliasSet4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8AliasSet4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang6driver8Multilib4dumpEv = asm["_ZNK5clang6driver8Multilib4dumpEv"]; asm["_ZNK5clang6driver8Multilib4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang6driver8Multilib4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LegacyPassManager_cpp = asm["_GLOBAL__sub_I_LegacyPassManager.cpp"]; asm["_GLOBAL__sub_I_LegacyPassManager.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LegacyPassManager_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TargetLoweringBase_cpp = asm["_GLOBAL__sub_I_TargetLoweringBase.cpp"]; asm["_GLOBAL__sub_I_TargetLoweringBase.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TargetLoweringBase_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm12DebugCounter4dumpEv = asm["_ZNK4llvm12DebugCounter4dumpEv"]; asm["_ZNK4llvm12DebugCounter4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm12DebugCounter4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK5clang4Type4dumpERN4llvm11raw_ostreamE = asm["_ZNK5clang4Type4dumpERN4llvm11raw_ostreamE"]; asm["_ZNK5clang4Type4dumpERN4llvm11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Type4dumpERN4llvm11raw_ostreamE.apply(null, arguments);
+};
+
+var real___ZNK4llvm13SchedBoundary18dumpScheduledStateEv = asm["_ZNK4llvm13SchedBoundary18dumpScheduledStateEv"]; asm["_ZNK4llvm13SchedBoundary18dumpScheduledStateEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13SchedBoundary18dumpScheduledStateEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_SpeculativeExecution_cpp = asm["_GLOBAL__sub_I_SpeculativeExecution.cpp"]; asm["_GLOBAL__sub_I_SpeculativeExecution.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_SpeculativeExecution_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_LowerExpectIntrinsic_cpp = asm["_GLOBAL__sub_I_LowerExpectIntrinsic.cpp"]; asm["_GLOBAL__sub_I_LowerExpectIntrinsic.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_LowerExpectIntrinsic_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang8CFGBlock4dumpEv = asm["_ZNK5clang8CFGBlock4dumpEv"]; asm["_ZNK5clang8CFGBlock4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang8CFGBlock4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp = asm["_GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts.cpp"]; asm["_GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm8Metadata4dumpEPKNS_6ModuleE = asm["_ZNK4llvm8Metadata4dumpEPKNS_6ModuleE"]; asm["_ZNK4llvm8Metadata4dumpEPKNS_6ModuleE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8Metadata4dumpEPKNS_6ModuleE.apply(null, arguments);
+};
+
+var real___ZNK5clang4Decl9dumpColorEv = asm["_ZNK5clang4Decl9dumpColorEv"]; asm["_ZNK5clang4Decl9dumpColorEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang4Decl9dumpColorEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm11SlotIndexes4dumpEv = asm["_ZNK4llvm11SlotIndexes4dumpEv"]; asm["_ZNK4llvm11SlotIndexes4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm11SlotIndexes4dumpEv.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_TargetInstrInfo_cpp = asm["_GLOBAL__sub_I_TargetInstrInfo.cpp"]; asm["_GLOBAL__sub_I_TargetInstrInfo.cpp"] = function() {
@@ -8079,34 +9477,16 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_LoopVersioningLICM_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_GVNHoist_cpp = asm["_GLOBAL__sub_I_GVNHoist.cpp"]; asm["_GLOBAL__sub_I_GVNHoist.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_GVNHoist_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_BasicTargetTransformInfo_cpp = asm["_GLOBAL__sub_I_BasicTargetTransformInfo.cpp"]; asm["_GLOBAL__sub_I_BasicTargetTransformInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_BasicTargetTransformInfo_cpp.apply(null, arguments);
-};
-
 var real_dynCall_viiiiiii = asm["dynCall_viiiiiii"]; asm["dynCall_viiiiiii"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real_dynCall_viiiiiii.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp = asm["_GLOBAL__sub_I_MachineBranchProbabilityInfo.cpp"]; asm["_GLOBAL__sub_I_MachineBranchProbabilityInfo.cpp"] = function() {
+var real___ZNK4llvm9LiveRange7Segment4dumpEv = asm["_ZNK4llvm9LiveRange7Segment4dumpEv"]; asm["_ZNK4llvm9LiveRange7Segment4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp.apply(null, arguments);
-};
-
-var real_setTempRet0 = asm["setTempRet0"]; asm["setTempRet0"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_setTempRet0.apply(null, arguments);
+return real___ZNK4llvm9LiveRange7Segment4dumpEv.apply(null, arguments);
 };
 
 var real____ashlti3 = asm["__ashlti3"]; asm["__ashlti3"] = function() {
@@ -8115,28 +9495,16 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real____ashlti3.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_LoopStrengthReduce_cpp = asm["_GLOBAL__sub_I_LoopStrengthReduce.cpp"]; asm["_GLOBAL__sub_I_LoopStrengthReduce.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopStrengthReduce_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_TwoAddressInstructionPass_cpp = asm["_GLOBAL__sub_I_TwoAddressInstructionPass.cpp"]; asm["_GLOBAL__sub_I_TwoAddressInstructionPass.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TwoAddressInstructionPass_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp = asm["_GLOBAL__sub_I_TypeBasedAliasAnalysis.cpp"]; asm["_GLOBAL__sub_I_TypeBasedAliasAnalysis.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp.apply(null, arguments);
-};
-
 var real___GLOBAL__sub_I_ResourcePriorityQueue_cpp = asm["_GLOBAL__sub_I_ResourcePriorityQueue.cpp"]; asm["_GLOBAL__sub_I_ResourcePriorityQueue.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_ResourcePriorityQueue_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm5SUnit7dumpAllEPKNS_11ScheduleDAGE = asm["_ZNK4llvm5SUnit7dumpAllEPKNS_11ScheduleDAGE"]; asm["_ZNK4llvm5SUnit7dumpAllEPKNS_11ScheduleDAGE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm5SUnit7dumpAllEPKNS_11ScheduleDAGE.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_InstCombineCalls_cpp = asm["_GLOBAL__sub_I_InstCombineCalls.cpp"]; asm["_GLOBAL__sub_I_InstCombineCalls.cpp"] = function() {
@@ -8151,10 +9519,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_EdgeBundles_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_HWAddressSanitizer_cpp = asm["_GLOBAL__sub_I_HWAddressSanitizer.cpp"]; asm["_GLOBAL__sub_I_HWAddressSanitizer.cpp"] = function() {
+var real___ZNK4llvm13LiveVariables7VarInfo4dumpEv = asm["_ZNK4llvm13LiveVariables7VarInfo4dumpEv"]; asm["_ZNK4llvm13LiveVariables7VarInfo4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_HWAddressSanitizer_cpp.apply(null, arguments);
+return real___ZNK4llvm13LiveVariables7VarInfo4dumpEv.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_Loads_cpp = asm["_GLOBAL__sub_I_Loads.cpp"]; asm["_GLOBAL__sub_I_Loads.cpp"] = function() {
@@ -8181,40 +9549,22 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_MachineBlockPlacement_cpp.apply(null, arguments);
 };
 
+var real___ZNK4llvm19MachineConstantPool4dumpEv = asm["_ZNK4llvm19MachineConstantPool4dumpEv"]; asm["_ZNK4llvm19MachineConstantPool4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm19MachineConstantPool4dumpEv.apply(null, arguments);
+};
+
 var real___GLOBAL__sub_I_InlineCost_cpp = asm["_GLOBAL__sub_I_InlineCost.cpp"]; asm["_GLOBAL__sub_I_InlineCost.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_InlineCost_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_MCContext_cpp = asm["_GLOBAL__sub_I_MCContext.cpp"]; asm["_GLOBAL__sub_I_MCContext.cpp"] = function() {
+var real___GLOBAL__sub_I_DeadStoreElimination_cpp = asm["_GLOBAL__sub_I_DeadStoreElimination.cpp"]; asm["_GLOBAL__sub_I_DeadStoreElimination.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MCContext_cpp.apply(null, arguments);
-};
-
-var real_dynCall_i = asm["dynCall_i"]; asm["dynCall_i"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_i.apply(null, arguments);
-};
-
-var real____multf3 = asm["__multf3"]; asm["__multf3"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____multf3.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_BranchFolding_cpp = asm["_GLOBAL__sub_I_BranchFolding.cpp"]; asm["_GLOBAL__sub_I_BranchFolding.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_BranchFolding_cpp.apply(null, arguments);
-};
-
-var real____errno_location = asm["__errno_location"]; asm["__errno_location"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____errno_location.apply(null, arguments);
+return real___GLOBAL__sub_I_DeadStoreElimination_cpp.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_Float2Int_cpp = asm["_GLOBAL__sub_I_Float2Int.cpp"]; asm["_GLOBAL__sub_I_Float2Int.cpp"] = function() {
@@ -8229,16 +9579,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_IfConversion_cpp.apply(null, arguments);
 };
 
-var real__compile = asm["compile"]; asm["compile"] = function() {
+var real___GLOBAL__sub_I_RegAllocFast_cpp = asm["_GLOBAL__sub_I_RegAllocFast.cpp"]; asm["_GLOBAL__sub_I_RegAllocFast.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__compile.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MemorySSA_cpp = asm["_GLOBAL__sub_I_MemorySSA.cpp"]; asm["_GLOBAL__sub_I_MemorySSA.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MemorySSA_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_RegAllocFast_cpp.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_Internalize_cpp = asm["_GLOBAL__sub_I_Internalize.cpp"]; asm["_GLOBAL__sub_I_Internalize.cpp"] = function() {
@@ -8247,232 +9591,34 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_Internalize_cpp.apply(null, arguments);
 };
 
-var real___fflush = asm["_fflush"]; asm["_fflush"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___fflush.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_FunctionImport_cpp = asm["_GLOBAL__sub_I_FunctionImport.cpp"]; asm["_GLOBAL__sub_I_FunctionImport.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_FunctionImport_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineRegisterInfo_cpp = asm["_GLOBAL__sub_I_MachineRegisterInfo.cpp"]; asm["_GLOBAL__sub_I_MachineRegisterInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineRegisterInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopVectorize_cpp = asm["_GLOBAL__sub_I_LoopVectorize.cpp"]; asm["_GLOBAL__sub_I_LoopVectorize.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopVectorize_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_AsmPrinter_cpp = asm["_GLOBAL__sub_I_AsmPrinter.cpp"]; asm["_GLOBAL__sub_I_AsmPrinter.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AsmPrinter_cpp.apply(null, arguments);
-};
-
-var real_dynCall_v = asm["dynCall_v"]; asm["dynCall_v"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_v.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ProfileSummaryInfo_cpp = asm["_GLOBAL__sub_I_ProfileSummaryInfo.cpp"]; asm["_GLOBAL__sub_I_ProfileSummaryInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ProfileSummaryInfo_cpp.apply(null, arguments);
-};
-
 var real___GLOBAL__sub_I_BitcodeWriter_cpp = asm["_GLOBAL__sub_I_BitcodeWriter.cpp"]; asm["_GLOBAL__sub_I_BitcodeWriter.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_BitcodeWriter_cpp.apply(null, arguments);
 };
 
-var real_dynCall_viiiiiiiiiiiii = asm["dynCall_viiiiiiiiiiiii"]; asm["dynCall_viiiiiiiiiiiii"] = function() {
+var real___ZNK5clang6Module4dumpEv = asm["_ZNK5clang6Module4dumpEv"]; asm["_ZNK5clang6Module4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiiiiiiiiii.apply(null, arguments);
+return real___ZNK5clang6Module4dumpEv.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_StackColoring_cpp = asm["_GLOBAL__sub_I_StackColoring.cpp"]; asm["_GLOBAL__sub_I_StackColoring.cpp"] = function() {
+var real_dynCall_viiiiiiiiii = asm["dynCall_viiiiiiiiii"]; asm["dynCall_viiiiiiiiii"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_StackColoring_cpp.apply(null, arguments);
+return real_dynCall_viiiiiiiiii.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_PrologEpilogInserter_cpp = asm["_GLOBAL__sub_I_PrologEpilogInserter.cpp"]; asm["_GLOBAL__sub_I_PrologEpilogInserter.cpp"] = function() {
+var real___ZN5clang9ModuleMap4dumpEv = asm["_ZN5clang9ModuleMap4dumpEv"]; asm["_ZN5clang9ModuleMap4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_PrologEpilogInserter_cpp.apply(null, arguments);
+return real___ZN5clang9ModuleMap4dumpEv.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_BasicAliasAnalysis_cpp = asm["_GLOBAL__sub_I_BasicAliasAnalysis.cpp"]; asm["_GLOBAL__sub_I_BasicAliasAnalysis.cpp"] = function() {
+var real___ZNK4llvm9MCOperand4dumpEv = asm["_ZNK4llvm9MCOperand4dumpEv"]; asm["_ZNK4llvm9MCOperand4dumpEv"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_BasicAliasAnalysis_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegisterClassInfo_cpp = asm["_GLOBAL__sub_I_RegisterClassInfo.cpp"]; asm["_GLOBAL__sub_I_RegisterClassInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegisterClassInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_DAGCombiner_cpp = asm["_GLOBAL__sub_I_DAGCombiner.cpp"]; asm["_GLOBAL__sub_I_DAGCombiner.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DAGCombiner_cpp.apply(null, arguments);
-};
-
-var real___free = asm["_free"]; asm["_free"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___free.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp = asm["_GLOBAL__sub_I_IndirectCallPromotionAnalysis.cpp"]; asm["_GLOBAL__sub_I_IndirectCallPromotionAnalysis.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LowerTypeTests_cpp = asm["_GLOBAL__sub_I_LowerTypeTests.cpp"]; asm["_GLOBAL__sub_I_LowerTypeTests.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LowerTypeTests_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineDominators_cpp = asm["_GLOBAL__sub_I_MachineDominators.cpp"]; asm["_GLOBAL__sub_I_MachineDominators.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineDominators_cpp.apply(null, arguments);
-};
-
-var real_dynCall_vii = asm["dynCall_vii"]; asm["dynCall_vii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_vii.apply(null, arguments);
-};
-
-var real____divtf3 = asm["__divtf3"]; asm["__divtf3"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____divtf3.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_RegisterUsageInfo_cpp = asm["_GLOBAL__sub_I_RegisterUsageInfo.cpp"]; asm["_GLOBAL__sub_I_RegisterUsageInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_RegisterUsageInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopUnrollRuntime_cpp = asm["_GLOBAL__sub_I_LoopUnrollRuntime.cpp"]; asm["_GLOBAL__sub_I_LoopUnrollRuntime.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopUnrollRuntime_cpp.apply(null, arguments);
-};
-
-var real____floatsitf = asm["__floatsitf"]; asm["__floatsitf"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____floatsitf.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachinePipeliner_cpp = asm["_GLOBAL__sub_I_MachinePipeliner.cpp"]; asm["_GLOBAL__sub_I_MachinePipeliner.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachinePipeliner_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_CalledValuePropagation_cpp = asm["_GLOBAL__sub_I_CalledValuePropagation.cpp"]; asm["_GLOBAL__sub_I_CalledValuePropagation.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_CalledValuePropagation_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MachineScheduler_cpp = asm["_GLOBAL__sub_I_MachineScheduler.cpp"]; asm["_GLOBAL__sub_I_MachineScheduler.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MachineScheduler_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LiveIntervals_cpp = asm["_GLOBAL__sub_I_LiveIntervals.cpp"]; asm["_GLOBAL__sub_I_LiveIntervals.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LiveIntervals_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LowerGuardIntrinsic_cpp = asm["_GLOBAL__sub_I_LowerGuardIntrinsic.cpp"]; asm["_GLOBAL__sub_I_LowerGuardIntrinsic.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LowerGuardIntrinsic_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ADCE_cpp = asm["_GLOBAL__sub_I_ADCE.cpp"]; asm["_GLOBAL__sub_I_ADCE.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ADCE_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_TargetTransformInfo_cpp = asm["_GLOBAL__sub_I_TargetTransformInfo.cpp"]; asm["_GLOBAL__sub_I_TargetTransformInfo.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_TargetTransformInfo_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp = asm["_GLOBAL__sub_I_ObjCARCAnalysisUtils.cpp"]; asm["_GLOBAL__sub_I_ObjCARCAnalysisUtils.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_DFAPacketizer_cpp = asm["_GLOBAL__sub_I_DFAPacketizer.cpp"]; asm["_GLOBAL__sub_I_DFAPacketizer.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DFAPacketizer_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ExpandMemCmp_cpp = asm["_GLOBAL__sub_I_ExpandMemCmp.cpp"]; asm["_GLOBAL__sub_I_ExpandMemCmp.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ExpandMemCmp_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_Inliner_cpp = asm["_GLOBAL__sub_I_Inliner.cpp"]; asm["_GLOBAL__sub_I_Inliner.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_Inliner_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_SafeStackColoring_cpp = asm["_GLOBAL__sub_I_SafeStackColoring.cpp"]; asm["_GLOBAL__sub_I_SafeStackColoring.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SafeStackColoring_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_SpeculativeExecution_cpp = asm["_GLOBAL__sub_I_SpeculativeExecution.cpp"]; asm["_GLOBAL__sub_I_SpeculativeExecution.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SpeculativeExecution_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopAnalysisManager_cpp = asm["_GLOBAL__sub_I_LoopAnalysisManager.cpp"]; asm["_GLOBAL__sub_I_LoopAnalysisManager.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopAnalysisManager_cpp.apply(null, arguments);
-};
-
-var real__fmodl = asm["fmodl"]; asm["fmodl"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__fmodl.apply(null, arguments);
+return real___ZNK4llvm9MCOperand4dumpEv.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_LoopDataPrefetch_cpp = asm["_GLOBAL__sub_I_LoopDataPrefetch.cpp"]; asm["_GLOBAL__sub_I_LoopDataPrefetch.cpp"] = function() {
@@ -8481,10 +9627,58 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_LoopDataPrefetch_cpp.apply(null, arguments);
 };
 
-var real___GLOBAL__sub_I_SimplifyCFGPass_cpp = asm["_GLOBAL__sub_I_SimplifyCFGPass.cpp"]; asm["_GLOBAL__sub_I_SimplifyCFGPass.cpp"] = function() {
+var real___GLOBAL__sub_I_LoopUnrollRuntime_cpp = asm["_GLOBAL__sub_I_LoopUnrollRuntime.cpp"]; asm["_GLOBAL__sub_I_LoopUnrollRuntime.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SimplifyCFGPass_cpp.apply(null, arguments);
+return real___GLOBAL__sub_I_LoopUnrollRuntime_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_MachinePipeliner_cpp = asm["_GLOBAL__sub_I_MachinePipeliner.cpp"]; asm["_GLOBAL__sub_I_MachinePipeliner.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_MachinePipeliner_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_AliasAnalysis_cpp = asm["_GLOBAL__sub_I_AliasAnalysis.cpp"]; asm["_GLOBAL__sub_I_AliasAnalysis.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_AliasAnalysis_cpp.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_RegAllocBase_cpp = asm["_GLOBAL__sub_I_RegAllocBase.cpp"]; asm["_GLOBAL__sub_I_RegAllocBase.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_RegAllocBase_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm9DIEAbbrev4dumpEv = asm["_ZNK4llvm9DIEAbbrev4dumpEv"]; asm["_ZNK4llvm9DIEAbbrev4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm9DIEAbbrev4dumpEv.apply(null, arguments);
+};
+
+var real___ZNK4llvm6SDNode4dumpEPKNS_12SelectionDAGE = asm["_ZNK4llvm6SDNode4dumpEPKNS_12SelectionDAGE"]; asm["_ZNK4llvm6SDNode4dumpEPKNS_12SelectionDAGE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm6SDNode4dumpEPKNS_12SelectionDAGE.apply(null, arguments);
+};
+
+var real___ZN4llvm18dumpRegSetPressureENS_8ArrayRefIjEEPKNS_18TargetRegisterInfoE = asm["_ZN4llvm18dumpRegSetPressureENS_8ArrayRefIjEEPKNS_18TargetRegisterInfoE"]; asm["_ZN4llvm18dumpRegSetPressureENS_8ArrayRefIjEEPKNS_18TargetRegisterInfoE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN4llvm18dumpRegSetPressureENS_8ArrayRefIjEEPKNS_18TargetRegisterInfoE.apply(null, arguments);
+};
+
+var real___ZNK4llvm13GVNExpression10Expression4dumpEv = asm["_ZNK4llvm13GVNExpression10Expression4dumpEv"]; asm["_ZNK4llvm13GVNExpression10Expression4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm13GVNExpression10Expression4dumpEv.apply(null, arguments);
+};
+
+var real__fmodl = asm["fmodl"]; asm["fmodl"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real__fmodl.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_SymbolRewriter_cpp = asm["_GLOBAL__sub_I_SymbolRewriter.cpp"]; asm["_GLOBAL__sub_I_SymbolRewriter.cpp"] = function() {
@@ -8493,172 +9687,10 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_SymbolRewriter_cpp.apply(null, arguments);
 };
 
-var real_dynCall_iid = asm["dynCall_iid"]; asm["dynCall_iid"] = function() {
+var real___ZNK4llvm6DIELoc5printERNS_11raw_ostreamE = asm["_ZNK4llvm6DIELoc5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm6DIELoc5printERNS_11raw_ostreamE"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_iid.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_PGOInstrumentation_cpp = asm["_GLOBAL__sub_I_PGOInstrumentation.cpp"]; asm["_GLOBAL__sub_I_PGOInstrumentation.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_PGOInstrumentation_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_CommandLine_cpp = asm["_GLOBAL__sub_I_CommandLine.cpp"]; asm["_GLOBAL__sub_I_CommandLine.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_CommandLine_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_GCOVProfiling_cpp = asm["_GLOBAL__sub_I_GCOVProfiling.cpp"]; asm["_GLOBAL__sub_I_GCOVProfiling.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_GCOVProfiling_cpp.apply(null, arguments);
-};
-
-var real____lshrti3 = asm["__lshrti3"]; asm["__lshrti3"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____lshrti3.apply(null, arguments);
-};
-
-var real__stackRestore = asm["stackRestore"]; asm["stackRestore"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real__stackRestore.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_SLPVectorizer_cpp = asm["_GLOBAL__sub_I_SLPVectorizer.cpp"]; asm["_GLOBAL__sub_I_SLPVectorizer.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_SLPVectorizer_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MCSymbol_cpp = asm["_GLOBAL__sub_I_MCSymbol.cpp"]; asm["_GLOBAL__sub_I_MCSymbol.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MCSymbol_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_DebugCounter_cpp = asm["_GLOBAL__sub_I_DebugCounter.cpp"]; asm["_GLOBAL__sub_I_DebugCounter.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_DebugCounter_cpp.apply(null, arguments);
-};
-
-var real_dynCall_viii = asm["dynCall_viii"]; asm["dynCall_viii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MIRCanonicalizerPass_cpp = asm["_GLOBAL__sub_I_MIRCanonicalizerPass.cpp"]; asm["_GLOBAL__sub_I_MIRCanonicalizerPass.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MIRCanonicalizerPass_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_AssumptionCache_cpp = asm["_GLOBAL__sub_I_AssumptionCache.cpp"]; asm["_GLOBAL__sub_I_AssumptionCache.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AssumptionCache_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LegalizeTypes_cpp = asm["_GLOBAL__sub_I_LegalizeTypes.cpp"]; asm["_GLOBAL__sub_I_LegalizeTypes.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LegalizeTypes_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_InstrProfiling_cpp = asm["_GLOBAL__sub_I_InstrProfiling.cpp"]; asm["_GLOBAL__sub_I_InstrProfiling.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_InstrProfiling_cpp.apply(null, arguments);
-};
-
-var real_____errno_location = asm["___errno_location"]; asm["___errno_location"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_____errno_location.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_Statistic_cpp = asm["_GLOBAL__sub_I_Statistic.cpp"]; asm["_GLOBAL__sub_I_Statistic.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_Statistic_cpp.apply(null, arguments);
-};
-
-var real____trunctfsf2 = asm["__trunctfsf2"]; asm["__trunctfsf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____trunctfsf2.apply(null, arguments);
-};
-
-var real_dynCall_viiiiiiiiiii = asm["dynCall_viiiiiiiiiii"]; asm["dynCall_viiiiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiiiiiiii.apply(null, arguments);
-};
-
-var real_dynCall_ii = asm["dynCall_ii"]; asm["dynCall_ii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_ii.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_MetadataLoader_cpp = asm["_GLOBAL__sub_I_MetadataLoader.cpp"]; asm["_GLOBAL__sub_I_MetadataLoader.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_MetadataLoader_cpp.apply(null, arguments);
-};
-
-var real____subtf3 = asm["__subtf3"]; asm["__subtf3"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____subtf3.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ShrinkWrap_cpp = asm["_GLOBAL__sub_I_ShrinkWrap.cpp"]; asm["_GLOBAL__sub_I_ShrinkWrap.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ShrinkWrap_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopUnrollPass_cpp = asm["_GLOBAL__sub_I_LoopUnrollPass.cpp"]; asm["_GLOBAL__sub_I_LoopUnrollPass.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopUnrollPass_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_InstrProf_cpp = asm["_GLOBAL__sub_I_InstrProf.cpp"]; asm["_GLOBAL__sub_I_InstrProf.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_InstrProf_cpp.apply(null, arguments);
-};
-
-var real___malloc = asm["_malloc"]; asm["_malloc"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___malloc.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopPredication_cpp = asm["_GLOBAL__sub_I_LoopPredication.cpp"]; asm["_GLOBAL__sub_I_LoopPredication.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopPredication_cpp.apply(null, arguments);
-};
-
-var real_dynCall_viiiiii = asm["dynCall_viiiiii"]; asm["dynCall_viiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiii.apply(null, arguments);
-};
-
-var real_dynCall_viiiiiiiii = asm["dynCall_viiiiiiiii"]; asm["dynCall_viiiiiiiii"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real_dynCall_viiiiiiiii.apply(null, arguments);
+return real___ZNK4llvm6DIELoc5printERNS_11raw_ostreamE.apply(null, arguments);
 };
 
 var real___GLOBAL__sub_I_ARMAttributeParser_cpp = asm["_GLOBAL__sub_I_ARMAttributeParser.cpp"]; asm["_GLOBAL__sub_I_ARMAttributeParser.cpp"] = function() {
@@ -8667,221 +9699,122 @@ assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it a
 return real___GLOBAL__sub_I_ARMAttributeParser_cpp.apply(null, arguments);
 };
 
+var real___ZNK4llvm14MachineOperand4dumpEv = asm["_ZNK4llvm14MachineOperand4dumpEv"]; asm["_ZNK4llvm14MachineOperand4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm14MachineOperand4dumpEv.apply(null, arguments);
+};
+
+var real____lshrti3 = asm["__lshrti3"]; asm["__lshrti3"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real____lshrti3.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_TypeDumpVisitor_cpp = asm["_GLOBAL__sub_I_TypeDumpVisitor.cpp"]; asm["_GLOBAL__sub_I_TypeDumpVisitor.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_TypeDumpVisitor_cpp.apply(null, arguments);
+};
+
+var real___ZNK4llvm8DIELabel5printERNS_11raw_ostreamE = asm["_ZNK4llvm8DIELabel5printERNS_11raw_ostreamE"]; asm["_ZNK4llvm8DIELabel5printERNS_11raw_ostreamE"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK4llvm8DIELabel5printERNS_11raw_ostreamE.apply(null, arguments);
+};
+
+var real_dynCall_viii = asm["dynCall_viii"]; asm["dynCall_viii"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real_dynCall_viii.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_InstrProfiling_cpp = asm["_GLOBAL__sub_I_InstrProfiling.cpp"]; asm["_GLOBAL__sub_I_InstrProfiling.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_InstrProfiling_cpp.apply(null, arguments);
+};
+
+var real___ZNK5clang7CodeGen14CGBitFieldInfo4dumpEv = asm["_ZNK5clang7CodeGen14CGBitFieldInfo4dumpEv"]; asm["_ZNK5clang7CodeGen14CGBitFieldInfo4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZNK5clang7CodeGen14CGBitFieldInfo4dumpEv.apply(null, arguments);
+};
+
+var real___GLOBAL__sub_I_ShrinkWrap_cpp = asm["_GLOBAL__sub_I_ShrinkWrap.cpp"]; asm["_GLOBAL__sub_I_ShrinkWrap.cpp"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___GLOBAL__sub_I_ShrinkWrap_cpp.apply(null, arguments);
+};
+
+var real___ZN5clang20LayoutOverrideSource4dumpEv = asm["_ZN5clang20LayoutOverrideSource4dumpEv"]; asm["_ZN5clang20LayoutOverrideSource4dumpEv"] = function() {
+assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+return real___ZN5clang20LayoutOverrideSource4dumpEv.apply(null, arguments);
+};
+
 var real___GLOBAL__sub_I_DataFlowSanitizer_cpp = asm["_GLOBAL__sub_I_DataFlowSanitizer.cpp"]; asm["_GLOBAL__sub_I_DataFlowSanitizer.cpp"] = function() {
 assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
 assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
 return real___GLOBAL__sub_I_DataFlowSanitizer_cpp.apply(null, arguments);
 };
-
-var real____cxa_can_catch = asm["__cxa_can_catch"]; asm["__cxa_can_catch"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____cxa_can_catch.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ValueTracking_cpp = asm["_GLOBAL__sub_I_ValueTracking.cpp"]; asm["_GLOBAL__sub_I_ValueTracking.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ValueTracking_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_ScheduleDAGRRList_cpp = asm["_GLOBAL__sub_I_ScheduleDAGRRList.cpp"]; asm["_GLOBAL__sub_I_ScheduleDAGRRList.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_ScheduleDAGRRList_cpp.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_AddDiscriminators_cpp = asm["_GLOBAL__sub_I_AddDiscriminators.cpp"]; asm["_GLOBAL__sub_I_AddDiscriminators.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_AddDiscriminators_cpp.apply(null, arguments);
-};
-
-var real____lttf2 = asm["__lttf2"]; asm["__lttf2"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real____lttf2.apply(null, arguments);
-};
-
-var real___GLOBAL__sub_I_LoopUnrollPeel_cpp = asm["_GLOBAL__sub_I_LoopUnrollPeel.cpp"]; asm["_GLOBAL__sub_I_LoopUnrollPeel.cpp"] = function() {
-assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
-assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
-return real___GLOBAL__sub_I_LoopUnrollPeel_cpp.apply(null, arguments);
-};
 Module["asm"] = asm;
-var __GLOBAL__sub_I_AliasAnalysisEvaluator_cpp = Module["__GLOBAL__sub_I_AliasAnalysisEvaluator_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AliasAnalysisEvaluator.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_Timer_cpp = Module["__GLOBAL__sub_I_Timer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Timer.cpp"].apply(null, arguments) };
-var ___trunctfdf2 = Module["___trunctfdf2"] = function() { return Module["asm"]["__trunctfdf2"].apply(null, arguments) };
-var __GLOBAL__sub_I_PassManagerBuilder_cpp = Module["__GLOBAL__sub_I_PassManagerBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PassManagerBuilder.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ForceFunctionAttrs_cpp = Module["__GLOBAL__sub_I_ForceFunctionAttrs_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ForceFunctionAttrs.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_TailDuplicator_cpp = Module["__GLOBAL__sub_I_TailDuplicator_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TailDuplicator.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_StackSlotColoring_cpp = Module["__GLOBAL__sub_I_StackSlotColoring_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackSlotColoring.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_AliasAnalysis_cpp = Module["__GLOBAL__sub_I_AliasAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AliasAnalysis.cpp"].apply(null, arguments) };
-var dynCall_viiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiiiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp = Module["__GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegAllocBasic_cpp = Module["__GLOBAL__sub_I_RegAllocBasic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocBasic.cpp"].apply(null, arguments) };
+var __ZNK5clang16TemplateArgument4dumpEv = Module["__ZNK5clang16TemplateArgument4dumpEv"] = function() { return Module["asm"]["_ZNK5clang16TemplateArgument4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_AssumptionCache_cpp = Module["__GLOBAL__sub_I_AssumptionCache_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AssumptionCache.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_EarlyIfConversion_cpp = Module["__GLOBAL__sub_I_EarlyIfConversion_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_EarlyIfConversion.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_MemoryBuiltins_cpp = Module["__GLOBAL__sub_I_MemoryBuiltins_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MemoryBuiltins.cpp"].apply(null, arguments) };
-var ___extendsftf2 = Module["___extendsftf2"] = function() { return Module["asm"]["__extendsftf2"].apply(null, arguments) };
 var __GLOBAL__sub_I_PostRASchedulerList_cpp = Module["__GLOBAL__sub_I_PostRASchedulerList_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PostRASchedulerList.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_GVN_cpp = Module["__GLOBAL__sub_I_GVN_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GVN.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopLoadElimination_cpp = Module["__GLOBAL__sub_I_LoopLoadElimination_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopLoadElimination.cpp"].apply(null, arguments) };
-var _fflush = Module["_fflush"] = function() { return Module["asm"]["fflush"].apply(null, arguments) };
-var __GLOBAL__sub_I_BoundsChecking_cpp = Module["__GLOBAL__sub_I_BoundsChecking_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BoundsChecking.cpp"].apply(null, arguments) };
+var __ZNK4llvm6SDNode9dumprFullEPKNS_12SelectionDAGE = Module["__ZNK4llvm6SDNode9dumprFullEPKNS_12SelectionDAGE"] = function() { return Module["asm"]["_ZNK4llvm6SDNode9dumprFullEPKNS_12SelectionDAGE"].apply(null, arguments) };
 var __GLOBAL__sub_I_PeepholeOptimizer_cpp = Module["__GLOBAL__sub_I_PeepholeOptimizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PeepholeOptimizer.cpp"].apply(null, arguments) };
-var ____cxa_demangle = Module["____cxa_demangle"] = function() { return Module["asm"]["___cxa_demangle"].apply(null, arguments) };
-var __GLOBAL__sub_I_ThreadSanitizer_cpp = Module["__GLOBAL__sub_I_ThreadSanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ThreadSanitizer.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_JumpThreading_cpp = Module["__GLOBAL__sub_I_JumpThreading_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_JumpThreading.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegAllocBase_cpp = Module["__GLOBAL__sub_I_RegAllocBase_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocBase.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DIBuilder_cpp = Module["__GLOBAL__sub_I_DIBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DIBuilder.cpp"].apply(null, arguments) };
-var dynCall_iiiiii = Module["dynCall_iiiiii"] = function() { return Module["asm"]["dynCall_iiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegisterCoalescer_cpp = Module["__GLOBAL__sub_I_RegisterCoalescer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegisterCoalescer.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DependenceAnalysis_cpp = Module["__GLOBAL__sub_I_DependenceAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DependenceAnalysis.cpp"].apply(null, arguments) };
-var ___letf2 = Module["___letf2"] = function() { return Module["asm"]["__letf2"].apply(null, arguments) };
 var __GLOBAL__sub_I_WebAssemblyTargetMachine_cpp = Module["__GLOBAL__sub_I_WebAssemblyTargetMachine_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyTargetMachine.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_CodeExtractor_cpp = Module["__GLOBAL__sub_I_CodeExtractor_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeExtractor.cpp"].apply(null, arguments) };
-var ___multi3 = Module["___multi3"] = function() { return Module["asm"]["__multi3"].apply(null, arguments) };
-var __GLOBAL__sub_I_ScheduleDAGVLIW_cpp = Module["__GLOBAL__sub_I_ScheduleDAGVLIW_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGVLIW.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_InlineSpiller_cpp = Module["__GLOBAL__sub_I_InlineSpiller_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InlineSpiller.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_InstructionCombining_cpp = Module["__GLOBAL__sub_I_InstructionCombining_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InstructionCombining.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineLICM_cpp = Module["__GLOBAL__sub_I_MachineLICM_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineLICM.cpp"].apply(null, arguments) };
-var _main = Module["_main"] = function() { return Module["asm"]["main"].apply(null, arguments) };
-var dynCall_viiiiiiiiiiii = Module["dynCall_viiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_PGOMemOPSizeOpt_cpp = Module["__GLOBAL__sub_I_PGOMemOPSizeOpt_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PGOMemOPSizeOpt.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_IndirectCallPromotion_cpp = Module["__GLOBAL__sub_I_IndirectCallPromotion_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IndirectCallPromotion.cpp"].apply(null, arguments) };
-var ___fixtfsi = Module["___fixtfsi"] = function() { return Module["asm"]["__fixtfsi"].apply(null, arguments) };
-var __GLOBAL__sub_I_RandomNumberGenerator_cpp = Module["__GLOBAL__sub_I_RandomNumberGenerator_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RandomNumberGenerator.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_AliasSetTracker_cpp = Module["__GLOBAL__sub_I_AliasSetTracker_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AliasSetTracker.cpp"].apply(null, arguments) };
-var ___getf2 = Module["___getf2"] = function() { return Module["asm"]["__getf2"].apply(null, arguments) };
-var dynCall_viiiiiiii = Module["dynCall_viiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiii"].apply(null, arguments) };
-var dynCall_iiii = Module["dynCall_iiii"] = function() { return Module["asm"]["dynCall_iiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_CodeGenPrepare_cpp = Module["__GLOBAL__sub_I_CodeGenPrepare_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeGenPrepare.cpp"].apply(null, arguments) };
-var dynCall_iiiiid = Module["dynCall_iiiiid"] = function() { return Module["asm"]["dynCall_iiiiid"].apply(null, arguments) };
-var __GLOBAL__sub_I_AsmParser_cpp = Module["__GLOBAL__sub_I_AsmParser_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AsmParser.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_TwoAddressInstructionPass_cpp = Module["__GLOBAL__sub_I_TwoAddressInstructionPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TwoAddressInstructionPass.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_FunctionAttrs_cpp = Module["__GLOBAL__sub_I_FunctionAttrs_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_FunctionAttrs.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LegacyPassManager_cpp = Module["__GLOBAL__sub_I_LegacyPassManager_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LegacyPassManager.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_EarlyIfConversion_cpp = Module["__GLOBAL__sub_I_EarlyIfConversion_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_EarlyIfConversion.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LICM_cpp = Module["__GLOBAL__sub_I_LICM_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LICM.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SimpleLoopUnswitch_cpp = Module["__GLOBAL__sub_I_SimpleLoopUnswitch_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SimpleLoopUnswitch.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MemoryDependenceAnalysis_cpp = Module["__GLOBAL__sub_I_MemoryDependenceAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MemoryDependenceAnalysis.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_IndirectCallPromotion_cpp = Module["__GLOBAL__sub_I_IndirectCallPromotion_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IndirectCallPromotion.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopAnalysisManager_cpp = Module["__GLOBAL__sub_I_LoopAnalysisManager_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopAnalysisManager.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_PGOInstrumentation_cpp = Module["__GLOBAL__sub_I_PGOInstrumentation_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PGOInstrumentation.cpp"].apply(null, arguments) };
 var _emscripten_get_global_libc = Module["_emscripten_get_global_libc"] = function() { return Module["asm"]["emscripten_get_global_libc"].apply(null, arguments) };
-var _memcpy = Module["_memcpy"] = function() { return Module["asm"]["memcpy"].apply(null, arguments) };
+var __ZNK4llvm12PressureDiff4dumpERKNS_18TargetRegisterInfoE = Module["__ZNK4llvm12PressureDiff4dumpERKNS_18TargetRegisterInfoE"] = function() { return Module["asm"]["_ZNK4llvm12PressureDiff4dumpERKNS_18TargetRegisterInfoE"].apply(null, arguments) };
 var _stackSave = Module["_stackSave"] = function() { return Module["asm"]["stackSave"].apply(null, arguments) };
-var __GLOBAL__sub_I_ImplicitNullChecks_cpp = Module["__GLOBAL__sub_I_ImplicitNullChecks_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ImplicitNullChecks.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MIRPrinter_cpp = Module["__GLOBAL__sub_I_MIRPrinter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MIRPrinter.cpp"].apply(null, arguments) };
-var ____cxa_can_catch = Module["____cxa_can_catch"] = function() { return Module["asm"]["___cxa_can_catch"].apply(null, arguments) };
-var __GLOBAL__sub_I_TypeHashing_cpp = Module["__GLOBAL__sub_I_TypeHashing_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TypeHashing.cpp"].apply(null, arguments) };
-var dynCall_viiiii = Module["dynCall_viiiii"] = function() { return Module["asm"]["dynCall_viiiii"].apply(null, arguments) };
-var _memmove = Module["_memmove"] = function() { return Module["asm"]["memmove"].apply(null, arguments) };
-var __GLOBAL__sub_I_NewGVN_cpp = Module["__GLOBAL__sub_I_NewGVN_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_NewGVN.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_ScopedNoAliasAA_cpp = Module["__GLOBAL__sub_I_ScopedNoAliasAA_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScopedNoAliasAA.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineOperand_cpp = Module["__GLOBAL__sub_I_MachineOperand_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineOperand.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_EfficiencySanitizer_cpp = Module["__GLOBAL__sub_I_EfficiencySanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_EfficiencySanitizer.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_WebAssemblyPeephole_cpp = Module["__GLOBAL__sub_I_WebAssemblyPeephole_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyPeephole.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_StackMaps_cpp = Module["__GLOBAL__sub_I_StackMaps_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackMaps.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_CodeGenModule_cpp = Module["__GLOBAL__sub_I_CodeGenModule_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeGenModule.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ScheduleDAGSDNodes_cpp = Module["__GLOBAL__sub_I_ScheduleDAGSDNodes_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGSDNodes.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_LoopUnswitch_cpp = Module["__GLOBAL__sub_I_LoopUnswitch_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnswitch.cpp"].apply(null, arguments) };
-var ___unordtf2 = Module["___unordtf2"] = function() { return Module["asm"]["__unordtf2"].apply(null, arguments) };
-var __GLOBAL__sub_I_CorrelatedValuePropagation_cpp = Module["__GLOBAL__sub_I_CorrelatedValuePropagation_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CorrelatedValuePropagation.cpp"].apply(null, arguments) };
+var __ZNK4llvm16MachineFrameInfo4dumpERKNS_15MachineFunctionE = Module["__ZNK4llvm16MachineFrameInfo4dumpERKNS_15MachineFunctionE"] = function() { return Module["asm"]["_ZNK4llvm16MachineFrameInfo4dumpERKNS_15MachineFunctionE"].apply(null, arguments) };
+var __ZNK5clang5Scope4dumpEv = Module["__ZNK5clang5Scope4dumpEv"] = function() { return Module["asm"]["_ZNK5clang5Scope4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_StackMapLivenessAnalysis_cpp = Module["__GLOBAL__sub_I_StackMapLivenessAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackMapLivenessAnalysis.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_LCSSA_cpp = Module["__GLOBAL__sub_I_LCSSA_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LCSSA.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SROA_cpp = Module["__GLOBAL__sub_I_SROA_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SROA.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegionInfo_cpp = Module["__GLOBAL__sub_I_RegionInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegionInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_IndVarSimplify_cpp = Module["__GLOBAL__sub_I_IndVarSimplify_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IndVarSimplify.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_StackProtector_cpp = Module["__GLOBAL__sub_I_StackProtector_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackProtector.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_TargetLibraryInfo_cpp = Module["__GLOBAL__sub_I_TargetLibraryInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetLibraryInfo.cpp"].apply(null, arguments) };
-var dynCall_iiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiiiii"].apply(null, arguments) };
 var __main = Module["__main"] = function() { return Module["asm"]["_main"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp = Module["__GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineBlockFrequencyInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_CodeViewDebug_cpp = Module["__GLOBAL__sub_I_CodeViewDebug_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeViewDebug.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopSink_cpp = Module["__GLOBAL__sub_I_LoopSink_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopSink.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_RewriteStatepointsForGC_cpp = Module["__GLOBAL__sub_I_RewriteStatepointsForGC_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RewriteStatepointsForGC.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ScheduleDAGInstrs_cpp = Module["__GLOBAL__sub_I_ScheduleDAGInstrs_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGInstrs.cpp"].apply(null, arguments) };
 var _memset = Module["_memset"] = function() { return Module["asm"]["memset"].apply(null, arguments) };
 var __GLOBAL__sub_I_ContinuationRecordBuilder_cpp = Module["__GLOBAL__sub_I_ContinuationRecordBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ContinuationRecordBuilder.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_AddressSanitizer_cpp = Module["__GLOBAL__sub_I_AddressSanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AddressSanitizer.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SelectionDAGBuilder_cpp = Module["__GLOBAL__sub_I_SelectionDAGBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SelectionDAGBuilder.cpp"].apply(null, arguments) };
-var ___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = function() { return Module["asm"]["__cxa_is_pointer_type"].apply(null, arguments) };
+var __ZNK5clang4Type4dumpEv = Module["__ZNK5clang4Type4dumpEv"] = function() { return Module["asm"]["_ZNK5clang4Type4dumpEv"].apply(null, arguments) };
+var __ZN5clang12LookupResult4dumpEv = Module["__ZN5clang12LookupResult4dumpEv"] = function() { return Module["asm"]["_ZN5clang12LookupResult4dumpEv"].apply(null, arguments) };
 var setThrew = Module["setThrew"] = function() { return Module["asm"]["setThrew"].apply(null, arguments) };
-var __GLOBAL__sub_I_OptBisect_cpp = Module["__GLOBAL__sub_I_OptBisect_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_OptBisect.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_SimplifyCFG_cpp = Module["__GLOBAL__sub_I_SimplifyCFG_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SimplifyCFG.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_PassBuilder_cpp = Module["__GLOBAL__sub_I_PassBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PassBuilder.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SafeStackLayout_cpp = Module["__GLOBAL__sub_I_SafeStackLayout_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SafeStackLayout.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopAccessAnalysis_cpp = Module["__GLOBAL__sub_I_LoopAccessAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopAccessAnalysis.cpp"].apply(null, arguments) };
-var ___cxa_demangle = Module["___cxa_demangle"] = function() { return Module["asm"]["__cxa_demangle"].apply(null, arguments) };
-var __GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp = Module["__GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AggressiveAntiDepBreaker.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegAllocFast_cpp = Module["__GLOBAL__sub_I_RegAllocFast_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocFast.cpp"].apply(null, arguments) };
-var dynCall_iiiii = Module["dynCall_iiiii"] = function() { return Module["asm"]["dynCall_iiiii"].apply(null, arguments) };
-var ____cxa_is_pointer_type = Module["____cxa_is_pointer_type"] = function() { return Module["asm"]["___cxa_is_pointer_type"].apply(null, arguments) };
-var __GLOBAL__sub_I_CallGraphSCCPass_cpp = Module["__GLOBAL__sub_I_CallGraphSCCPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CallGraphSCCPass.cpp"].apply(null, arguments) };
-var ___gttf2 = Module["___gttf2"] = function() { return Module["asm"]["__gttf2"].apply(null, arguments) };
-var __GLOBAL__sub_I_ScalarEvolution_cpp = Module["__GLOBAL__sub_I_ScalarEvolution_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScalarEvolution.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopInfo_cpp = Module["__GLOBAL__sub_I_LoopInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SelectionDAGISel_cpp = Module["__GLOBAL__sub_I_SelectionDAGISel_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SelectionDAGISel.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DeadStoreElimination_cpp = Module["__GLOBAL__sub_I_DeadStoreElimination_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DeadStoreElimination.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopIdiomRecognize_cpp = Module["__GLOBAL__sub_I_LoopIdiomRecognize_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopIdiomRecognize.cpp"].apply(null, arguments) };
+var __ZNK4llvm8ILPValue5printERNS_11raw_ostreamE = Module["__ZNK4llvm8ILPValue5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm8ILPValue5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __ZNK4llvm9CallGraph4dumpEv = Module["__ZNK4llvm9CallGraph4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9CallGraph4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm16ValueSymbolTable4dumpEv = Module["__ZNK4llvm16ValueSymbolTable4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm16ValueSymbolTable4dumpEv"].apply(null, arguments) };
+var dynCall_viiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiiiii"].apply(null, arguments) };
 var _stackAlloc = Module["_stackAlloc"] = function() { return Module["asm"]["stackAlloc"].apply(null, arguments) };
-var __GLOBAL__sub_I_SampleProfile_cpp = Module["__GLOBAL__sub_I_SampleProfile_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SampleProfile.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DwarfUnit_cpp = Module["__GLOBAL__sub_I_DwarfUnit_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DwarfUnit.cpp"].apply(null, arguments) };
-var __memalign = Module["__memalign"] = function() { return Module["asm"]["_memalign"].apply(null, arguments) };
-var __compile = Module["__compile"] = function() { return Module["asm"]["_compile"].apply(null, arguments) };
 var __GLOBAL__sub_I_LoopRotation_cpp = Module["__GLOBAL__sub_I_LoopRotation_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopRotation.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_Dominators_cpp = Module["__GLOBAL__sub_I_Dominators_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Dominators.cpp"].apply(null, arguments) };
-var dynCall_diii = Module["dynCall_diii"] = function() { return Module["asm"]["dynCall_diii"].apply(null, arguments) };
-var ___eqtf2 = Module["___eqtf2"] = function() { return Module["asm"]["__eqtf2"].apply(null, arguments) };
-var _memalign = Module["_memalign"] = function() { return Module["asm"]["memalign"].apply(null, arguments) };
-var dynCall_fiii = Module["dynCall_fiii"] = function() { return Module["asm"]["dynCall_fiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineSink_cpp = Module["__GLOBAL__sub_I_MachineSink_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineSink.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_ScheduleDAG_cpp = Module["__GLOBAL__sub_I_ScheduleDAG_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAG.cpp"].apply(null, arguments) };
+var __ZNK4llvm12LivePhysRegs4dumpEv = Module["__ZNK4llvm12LivePhysRegs4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12LivePhysRegs4dumpEv"].apply(null, arguments) };
+var __ZNK5clang8QualType4dumpERN4llvm11raw_ostreamE = Module["__ZNK5clang8QualType4dumpERN4llvm11raw_ostreamE"] = function() { return Module["asm"]["_ZNK5clang8QualType4dumpERN4llvm11raw_ostreamE"].apply(null, arguments) };
+var __ZNK5clang7CodeGen14CGRecordLayout4dumpEv = Module["__ZNK5clang7CodeGen14CGRecordLayout4dumpEv"] = function() { return Module["asm"]["_ZNK5clang7CodeGen14CGRecordLayout4dumpEv"].apply(null, arguments) };
 var _free = Module["_free"] = function() { return Module["asm"]["free"].apply(null, arguments) };
-var __GLOBAL__sub_I_DiagnosticHandler_cpp = Module["__GLOBAL__sub_I_DiagnosticHandler_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DiagnosticHandler.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DwarfDebug_cpp = Module["__GLOBAL__sub_I_DwarfDebug_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DwarfDebug.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_GraphWriter_cpp = Module["__GLOBAL__sub_I_GraphWriter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GraphWriter.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SimplifyLibCalls_cpp = Module["__GLOBAL__sub_I_SimplifyLibCalls_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SimplifyLibCalls.cpp"].apply(null, arguments) };
-var dynCall_iiiiiiii = Module["dynCall_iiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiii"].apply(null, arguments) };
-var dynCall_iiiiiiiii = Module["dynCall_iiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiii"].apply(null, arguments) };
-var dynCall_viiii = Module["dynCall_viiii"] = function() { return Module["asm"]["dynCall_viiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopDistribute_cpp = Module["__GLOBAL__sub_I_LoopDistribute_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopDistribute.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SanitizerCoverage_cpp = Module["__GLOBAL__sub_I_SanitizerCoverage_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SanitizerCoverage.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ConstantHoisting_cpp = Module["__GLOBAL__sub_I_ConstantHoisting_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ConstantHoisting.cpp"].apply(null, arguments) };
-var dynCall_iiiiiiiiiiii = Module["dynCall_iiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_PartialInlining_cpp = Module["__GLOBAL__sub_I_PartialInlining_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PartialInlining.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_ThreadSanitizer_cpp = Module["__GLOBAL__sub_I_ThreadSanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ThreadSanitizer.cpp"].apply(null, arguments) };
+var __ZNK4llvm12MachineInstr4dumpEv = Module["__ZNK4llvm12MachineInstr4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12MachineInstr4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_BlockFrequencyInfo_cpp = Module["__GLOBAL__sub_I_BlockFrequencyInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BlockFrequencyInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopUnroll_cpp = Module["__GLOBAL__sub_I_LoopUnroll_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnroll.cpp"].apply(null, arguments) };
-var _malloc = Module["_malloc"] = function() { return Module["asm"]["malloc"].apply(null, arguments) };
-var __GLOBAL__sub_I_TargetPassConfig_cpp = Module["__GLOBAL__sub_I_TargetPassConfig_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetPassConfig.cpp"].apply(null, arguments) };
-var dynCall_iiiiiiiiii = Module["dynCall_iiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_LiveDebugVariables_cpp = Module["__GLOBAL__sub_I_LiveDebugVariables_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LiveDebugVariables.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_BitcodeReader_cpp = Module["__GLOBAL__sub_I_BitcodeReader_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BitcodeReader.cpp"].apply(null, arguments) };
-var ___fixunstfsi = Module["___fixunstfsi"] = function() { return Module["asm"]["__fixunstfsi"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegAllocGreedy_cpp = Module["__GLOBAL__sub_I_RegAllocGreedy_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocGreedy.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_InlineFunction_cpp = Module["__GLOBAL__sub_I_InlineFunction_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InlineFunction.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_CodeGenPGO_cpp = Module["__GLOBAL__sub_I_CodeGenPGO_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeGenPGO.cpp"].apply(null, arguments) };
+var __ZNK4llvm3DIE4dumpEv = Module["__ZNK4llvm3DIE4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm3DIE4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_CalledValuePropagation_cpp = Module["__GLOBAL__sub_I_CalledValuePropagation_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CalledValuePropagation.cpp"].apply(null, arguments) };
+var dynCall_viiiiiiiiiii = Module["dynCall_viiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_InstrProf_cpp = Module["__GLOBAL__sub_I_InstrProf_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InstrProf.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_SelectionDAGDumper_cpp = Module["__GLOBAL__sub_I_SelectionDAGDumper_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SelectionDAGDumper.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_PHIElimination_cpp = Module["__GLOBAL__sub_I_PHIElimination_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PHIElimination.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_BranchProbabilityInfo_cpp = Module["__GLOBAL__sub_I_BranchProbabilityInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BranchProbabilityInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_TargetLoweringBase_cpp = Module["__GLOBAL__sub_I_TargetLoweringBase_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetLoweringBase.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_WinEHPrepare_cpp = Module["__GLOBAL__sub_I_WinEHPrepare_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WinEHPrepare.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_InterleavedAccessPass_cpp = Module["__GLOBAL__sub_I_InterleavedAccessPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InterleavedAccessPass.cpp"].apply(null, arguments) };
+var __ZNK4llvm20MachineJumpTableInfo4dumpEv = Module["__ZNK4llvm20MachineJumpTableInfo4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm20MachineJumpTableInfo4dumpEv"].apply(null, arguments) };
 var _realloc = Module["_realloc"] = function() { return Module["asm"]["realloc"].apply(null, arguments) };
-var __GLOBAL__sub_I_PredicateInfo_cpp = Module["__GLOBAL__sub_I_PredicateInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PredicateInfo.cpp"].apply(null, arguments) };
-var dynCall_viiiiiiiiii = Module["dynCall_viiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiii"].apply(null, arguments) };
-var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiii"].apply(null, arguments) };
-var dynCall_iiiiiiiiiii = Module["dynCall_iiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_LowerExpectIntrinsic_cpp = Module["__GLOBAL__sub_I_LowerExpectIntrinsic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LowerExpectIntrinsic.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp = Module["__GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts.cpp"].apply(null, arguments) };
-var __realloc = Module["__realloc"] = function() { return Module["asm"]["_realloc"].apply(null, arguments) };
-var ___extenddftf2 = Module["___extenddftf2"] = function() { return Module["asm"]["__extenddftf2"].apply(null, arguments) };
-var ___netf2 = Module["___netf2"] = function() { return Module["asm"]["__netf2"].apply(null, arguments) };
-var __GLOBAL__sub_I_Signals_cpp = Module["__GLOBAL__sub_I_Signals_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Signals.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineCombiner_cpp = Module["__GLOBAL__sub_I_MachineCombiner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineCombiner.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_WholeProgramDevirt_cpp = Module["__GLOBAL__sub_I_WholeProgramDevirt_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WholeProgramDevirt.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MergeFunctions_cpp = Module["__GLOBAL__sub_I_MergeFunctions_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MergeFunctions.cpp"].apply(null, arguments) };
-var dynCall_vi = Module["dynCall_vi"] = function() { return Module["asm"]["dynCall_vi"].apply(null, arguments) };
-var ___addtf3 = Module["___addtf3"] = function() { return Module["asm"]["__addtf3"].apply(null, arguments) };
+var __ZNK4llvm4sroa12AllocaSlices4dumpEv = Module["__ZNK4llvm4sroa12AllocaSlices4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm4sroa12AllocaSlices4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm8DIEValue4dumpEv = Module["__ZNK4llvm8DIEValue4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm8DIEValue4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_TargetSchedule_cpp = Module["__GLOBAL__sub_I_TargetSchedule_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetSchedule.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopRerollPass_cpp = Module["__GLOBAL__sub_I_LoopRerollPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopRerollPass.cpp"].apply(null, arguments) };
-var dynCall_iii = Module["dynCall_iii"] = function() { return Module["asm"]["dynCall_iii"].apply(null, arguments) };
-var ___growWasmMemory = Module["___growWasmMemory"] = function() { return Module["asm"]["__growWasmMemory"].apply(null, arguments) };
 var __GLOBAL__sub_I_MachineFunction_cpp = Module["__GLOBAL__sub_I_MachineFunction_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineFunction.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_MemorySanitizer_cpp = Module["__GLOBAL__sub_I_MemorySanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MemorySanitizer.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_GlobalsModRef_cpp = Module["__GLOBAL__sub_I_GlobalsModRef_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GlobalsModRef.cpp"].apply(null, arguments) };
@@ -8889,114 +9822,406 @@ var ___floatunsitf = Module["___floatunsitf"] = function() { return Module["asm"
 var __GLOBAL__sub_I_IRSymtab_cpp = Module["__GLOBAL__sub_I_IRSymtab_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IRSymtab.cpp"].apply(null, arguments) };
 var dynCall_ffii = Module["dynCall_ffii"] = function() { return Module["asm"]["dynCall_ffii"].apply(null, arguments) };
 var __GLOBAL__sub_I_LoopInterchange_cpp = Module["__GLOBAL__sub_I_LoopInterchange_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopInterchange.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_TypeDumpVisitor_cpp = Module["__GLOBAL__sub_I_TypeDumpVisitor_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TypeDumpVisitor.cpp"].apply(null, arguments) };
+var dynCall_viiiiiiiii = Module["dynCall_viiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_GVNHoist_cpp = Module["__GLOBAL__sub_I_GVNHoist_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GVNHoist.cpp"].apply(null, arguments) };
+var dynCall_fiii = Module["dynCall_fiii"] = function() { return Module["asm"]["dynCall_fiii"].apply(null, arguments) };
+var dynCall_viiiiiiiiiiii = Module["dynCall_viiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_LowerGuardIntrinsic_cpp = Module["__GLOBAL__sub_I_LowerGuardIntrinsic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LowerGuardIntrinsic.cpp"].apply(null, arguments) };
+var __ZN4llvmlsERNS_11raw_ostreamERKNS_8ILPValueE = Module["__ZN4llvmlsERNS_11raw_ostreamERKNS_8ILPValueE"] = function() { return Module["asm"]["_ZN4llvmlsERNS_11raw_ostreamERKNS_8ILPValueE"].apply(null, arguments) };
+var __ZNK4llvm12AttributeSet4dumpEv = Module["__ZNK4llvm12AttributeSet4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12AttributeSet4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm5Value4dumpEv = Module["__ZNK4llvm5Value4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm5Value4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm17BranchProbability4dumpEv = Module["__ZNK4llvm17BranchProbability4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm17BranchProbability4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_MCContext_cpp = Module["__GLOBAL__sub_I_MCContext_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MCContext.cpp"].apply(null, arguments) };
+var dynCall_i = Module["dynCall_i"] = function() { return Module["asm"]["dynCall_i"].apply(null, arguments) };
+var ___multf3 = Module["___multf3"] = function() { return Module["asm"]["__multf3"].apply(null, arguments) };
+var __ZNK4llvm13LazyCallGraph4Node4dumpEv = Module["__ZNK4llvm13LazyCallGraph4Node4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13LazyCallGraph4Node4dumpEv"].apply(null, arguments) };
+var ___errno_location = Module["___errno_location"] = function() { return Module["asm"]["__errno_location"].apply(null, arguments) };
+var __malloc = Module["__malloc"] = function() { return Module["asm"]["_malloc"].apply(null, arguments) };
+var dynCall_v = Module["dynCall_v"] = function() { return Module["asm"]["dynCall_v"].apply(null, arguments) };
+var __ZNK5clang11DeclContext15dumpDeclContextEv = Module["__ZNK5clang11DeclContext15dumpDeclContextEv"] = function() { return Module["asm"]["_ZNK5clang11DeclContext15dumpDeclContextEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopAccessAnalysis_cpp = Module["__GLOBAL__sub_I_LoopAccessAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopAccessAnalysis.cpp"].apply(null, arguments) };
+var __ZNK4llvm10sampleprof12LineLocation4dumpEv = Module["__ZNK4llvm10sampleprof12LineLocation4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm10sampleprof12LineLocation4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineDominators_cpp = Module["__GLOBAL__sub_I_MachineDominators_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineDominators.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_SimpleLoopUnswitch_cpp = Module["__GLOBAL__sub_I_SimpleLoopUnswitch_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SimpleLoopUnswitch.cpp"].apply(null, arguments) };
+var ___divtf3 = Module["___divtf3"] = function() { return Module["asm"]["__divtf3"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineScheduler_cpp = Module["__GLOBAL__sub_I_MachineScheduler_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineScheduler.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_ADCE_cpp = Module["__GLOBAL__sub_I_ADCE_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ADCE.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp = Module["__GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ObjCARCAnalysisUtils.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_SafeStackColoring_cpp = Module["__GLOBAL__sub_I_SafeStackColoring_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SafeStackColoring.cpp"].apply(null, arguments) };
+var __ZN4llvm9safestack13StackColoring17dumpBlockLivenessEv = Module["__ZN4llvm9safestack13StackColoring17dumpBlockLivenessEv"] = function() { return Module["asm"]["_ZN4llvm9safestack13StackColoring17dumpBlockLivenessEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_SimplifyCFGPass_cpp = Module["__GLOBAL__sub_I_SimplifyCFGPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SimplifyCFGPass.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LiveDebugVariables_cpp = Module["__GLOBAL__sub_I_LiveDebugVariables_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LiveDebugVariables.cpp"].apply(null, arguments) };
+var __ZNK4llvm6SDNode4dumpEv = Module["__ZNK4llvm6SDNode4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm6SDNode4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegisterUsageInfo_cpp = Module["__GLOBAL__sub_I_RegisterUsageInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegisterUsageInfo.cpp"].apply(null, arguments) };
+var _stackRestore = Module["_stackRestore"] = function() { return Module["asm"]["stackRestore"].apply(null, arguments) };
+var __ZNK5clang14SourceLocation4dumpERKNS_13SourceManagerE = Module["__ZNK5clang14SourceLocation4dumpERKNS_13SourceManagerE"] = function() { return Module["asm"]["_ZNK5clang14SourceLocation4dumpERKNS_13SourceManagerE"].apply(null, arguments) };
+var __ZNK5clang13SourceManager4dumpEv = Module["__ZNK5clang13SourceManager4dumpEv"] = function() { return Module["asm"]["_ZNK5clang13SourceManager4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm3opt3Arg4dumpEv = Module["__ZNK4llvm3opt3Arg4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm3opt3Arg4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_MIRCanonicalizerPass_cpp = Module["__GLOBAL__sub_I_MIRCanonicalizerPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MIRCanonicalizerPass.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_Statistic_cpp = Module["__GLOBAL__sub_I_Statistic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Statistic.cpp"].apply(null, arguments) };
+var ___trunctfsf2 = Module["___trunctfsf2"] = function() { return Module["asm"]["__trunctfsf2"].apply(null, arguments) };
+var __ZNK5clang9MacroInfo4dumpEv = Module["__ZNK5clang9MacroInfo4dumpEv"] = function() { return Module["asm"]["_ZNK5clang9MacroInfo4dumpEv"].apply(null, arguments) };
+var dynCall_ii = Module["dynCall_ii"] = function() { return Module["asm"]["dynCall_ii"].apply(null, arguments) };
+var __ZNK4llvm10ReadyQueue4dumpEv = Module["__ZNK4llvm10ReadyQueue4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm10ReadyQueue4dumpEv"].apply(null, arguments) };
+var __ZNK5clang17InitializedEntity4dumpEv = Module["__ZNK5clang17InitializedEntity4dumpEv"] = function() { return Module["asm"]["_ZNK5clang17InitializedEntity4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm6MCInst4dumpEv = Module["__ZNK4llvm6MCInst4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm6MCInst4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm19MachineRegisterInfo8dumpUsesEj = Module["__ZNK4llvm19MachineRegisterInfo8dumpUsesEj"] = function() { return Module["asm"]["_ZNK4llvm19MachineRegisterInfo8dumpUsesEj"].apply(null, arguments) };
+var __ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamE = Module["__ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamE"] = function() { return Module["asm"]["_ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamE"].apply(null, arguments) };
+var ___cxa_can_catch = Module["___cxa_can_catch"] = function() { return Module["asm"]["__cxa_can_catch"].apply(null, arguments) };
+var __GLOBAL__sub_I_AddDiscriminators_cpp = Module["__GLOBAL__sub_I_AddDiscriminators_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AddDiscriminators.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_AliasAnalysisEvaluator_cpp = Module["__GLOBAL__sub_I_AliasAnalysisEvaluator_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AliasAnalysisEvaluator.cpp"].apply(null, arguments) };
+var __ZNK4llvm16LiveRangeUpdater4dumpEv = Module["__ZNK4llvm16LiveRangeUpdater4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm16LiveRangeUpdater4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm10bfi_detail9BlockMass4dumpEv = Module["__ZNK4llvm10bfi_detail9BlockMass4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm10bfi_detail9BlockMass4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm7PMStack4dumpEv = Module["__ZNK4llvm7PMStack4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm7PMStack4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegAllocBasic_cpp = Module["__GLOBAL__sub_I_RegAllocBasic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocBasic.cpp"].apply(null, arguments) };
+var ___extendsftf2 = Module["___extendsftf2"] = function() { return Module["asm"]["__extendsftf2"].apply(null, arguments) };
+var __ZN4llvm9safestack13StackColoring14dumpLiveRangesEv = Module["__ZN4llvm9safestack13StackColoring14dumpLiveRangesEv"] = function() { return Module["asm"]["_ZN4llvm9safestack13StackColoring14dumpLiveRangesEv"].apply(null, arguments) };
+var __ZNK4llvm9MCSection4dumpEv = Module["__ZNK4llvm9MCSection4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9MCSection4dumpEv"].apply(null, arguments) };
+var ____cxa_demangle = Module["____cxa_demangle"] = function() { return Module["asm"]["___cxa_demangle"].apply(null, arguments) };
+var __ZNK5clang4Decl4dumpERN4llvm11raw_ostreamEb = Module["__ZNK5clang4Decl4dumpERN4llvm11raw_ostreamEb"] = function() { return Module["asm"]["_ZNK5clang4Decl4dumpERN4llvm11raw_ostreamEb"].apply(null, arguments) };
+var __GLOBAL__sub_I_JumpThreading_cpp = Module["__GLOBAL__sub_I_JumpThreading_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_JumpThreading.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_DIBuilder_cpp = Module["__GLOBAL__sub_I_DIBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DIBuilder.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegisterCoalescer_cpp = Module["__GLOBAL__sub_I_RegisterCoalescer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegisterCoalescer.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_InlineSpiller_cpp = Module["__GLOBAL__sub_I_InlineSpiller_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InlineSpiller.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_InstructionCombining_cpp = Module["__GLOBAL__sub_I_InstructionCombining_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InstructionCombining.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineLICM_cpp = Module["__GLOBAL__sub_I_MachineLICM_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineLICM.cpp"].apply(null, arguments) };
+var _main = Module["_main"] = function() { return Module["asm"]["main"].apply(null, arguments) };
+var __ZNK4llvm20CallGraphWrapperPass4dumpEv = Module["__ZNK4llvm20CallGraphWrapperPass4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm20CallGraphWrapperPass4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_RandomNumberGenerator_cpp = Module["__GLOBAL__sub_I_RandomNumberGenerator_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RandomNumberGenerator.cpp"].apply(null, arguments) };
+var __ZNK4llvm15MachineFunction4dumpEv = Module["__ZNK4llvm15MachineFunction4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm15MachineFunction4dumpEv"].apply(null, arguments) };
+var __ZN5clang17GlobalModuleIndex4dumpEv = Module["__ZN5clang17GlobalModuleIndex4dumpEv"] = function() { return Module["asm"]["_ZN5clang17GlobalModuleIndex4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_AsmParser_cpp = Module["__GLOBAL__sub_I_AsmParser_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AsmParser.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp = Module["__GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IndirectCallPromotionAnalysis.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_MemoryDependenceAnalysis_cpp = Module["__GLOBAL__sub_I_MemoryDependenceAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MemoryDependenceAnalysis.cpp"].apply(null, arguments) };
+var dynCall_iiiiiiiiiiii = Module["dynCall_iiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_ImplicitNullChecks_cpp = Module["__GLOBAL__sub_I_ImplicitNullChecks_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ImplicitNullChecks.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_MIRPrinter_cpp = Module["__GLOBAL__sub_I_MIRPrinter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MIRPrinter.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_TypeHashing_cpp = Module["__GLOBAL__sub_I_TypeHashing_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TypeHashing.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_DwarfDebug_cpp = Module["__GLOBAL__sub_I_DwarfDebug_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DwarfDebug.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_SROA_cpp = Module["__GLOBAL__sub_I_SROA_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SROA.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_StackProtector_cpp = Module["__GLOBAL__sub_I_StackProtector_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackProtector.cpp"].apply(null, arguments) };
+var __ZN5clang9ASTReader4dumpEv = Module["__ZN5clang9ASTReader4dumpEv"] = function() { return Module["asm"]["_ZN5clang9ASTReader4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm8ILPValue4dumpEv = Module["__ZNK4llvm8ILPValue4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm8ILPValue4dumpEv"].apply(null, arguments) };
+var __ZN5clang13serialization10ModuleFile4dumpEv = Module["__ZN5clang13serialization10ModuleFile4dumpEv"] = function() { return Module["asm"]["_ZN5clang13serialization10ModuleFile4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegionPrinter_cpp = Module["__GLOBAL__sub_I_RegionPrinter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegionPrinter.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp = Module["__GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineBranchProbabilityInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_AddressSanitizer_cpp = Module["__GLOBAL__sub_I_AddressSanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AddressSanitizer.cpp"].apply(null, arguments) };
+var ___cxa_is_pointer_type = Module["___cxa_is_pointer_type"] = function() { return Module["asm"]["__cxa_is_pointer_type"].apply(null, arguments) };
+var __GLOBAL__sub_I_PassBuilder_cpp = Module["__GLOBAL__sub_I_PassBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PassBuilder.cpp"].apply(null, arguments) };
+var dynCall_iiiii = Module["dynCall_iiiii"] = function() { return Module["asm"]["dynCall_iiiii"].apply(null, arguments) };
+var __ZNK4llvm6Comdat4dumpEv = Module["__ZNK4llvm6Comdat4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm6Comdat4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_CallGraphSCCPass_cpp = Module["__GLOBAL__sub_I_CallGraphSCCPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CallGraphSCCPass.cpp"].apply(null, arguments) };
+var __ZNK5clang11DeclContext11dumpLookupsERN4llvm11raw_ostreamEbb = Module["__ZNK5clang11DeclContext11dumpLookupsERN4llvm11raw_ostreamEbb"] = function() { return Module["asm"]["_ZNK5clang11DeclContext11dumpLookupsERN4llvm11raw_ostreamEbb"].apply(null, arguments) };
+var __GLOBAL__sub_I_SampleProfile_cpp = Module["__GLOBAL__sub_I_SampleProfile_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SampleProfile.cpp"].apply(null, arguments) };
+var __ZNK4llvm10DIEInteger5printERNS_11raw_ostreamE = Module["__ZNK4llvm10DIEInteger5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm10DIEInteger5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var ___eqtf2 = Module["___eqtf2"] = function() { return Module["asm"]["__eqtf2"].apply(null, arguments) };
+var ___unordtf2 = Module["___unordtf2"] = function() { return Module["asm"]["__unordtf2"].apply(null, arguments) };
+var __ZNK5clang14SourceLocation13printToStringERKNS_13SourceManagerE = Module["__ZNK5clang14SourceLocation13printToStringERKNS_13SourceManagerE"] = function() { return Module["asm"]["_ZNK5clang14SourceLocation13printToStringERKNS_13SourceManagerE"].apply(null, arguments) };
+var __ZNK5clang4Stmt4dumpEv = Module["__ZNK5clang4Stmt4dumpEv"] = function() { return Module["asm"]["_ZNK5clang4Stmt4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_CorrelatedValuePropagation_cpp = Module["__GLOBAL__sub_I_CorrelatedValuePropagation_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CorrelatedValuePropagation.cpp"].apply(null, arguments) };
+var __ZNK4llvm13LazyCallGraph6RefSCC4dumpEv = Module["__ZNK4llvm13LazyCallGraph6RefSCC4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13LazyCallGraph6RefSCC4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm28DominanceFrontierWrapperPass4dumpEv = Module["__ZNK4llvm28DominanceFrontierWrapperPass4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm28DominanceFrontierWrapperPass4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_GraphWriter_cpp = Module["__GLOBAL__sub_I_GraphWriter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GraphWriter.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_SimplifyLibCalls_cpp = Module["__GLOBAL__sub_I_SimplifyLibCalls_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SimplifyLibCalls.cpp"].apply(null, arguments) };
+var __ZNK4llvm12SelectionDAG4dumpEv = Module["__ZNK4llvm12SelectionDAG4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12SelectionDAG4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopDistribute_cpp = Module["__GLOBAL__sub_I_LoopDistribute_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopDistribute.cpp"].apply(null, arguments) };
+var __ZNK4llvm15AliasSetTracker4dumpEv = Module["__ZNK4llvm15AliasSetTracker4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm15AliasSetTracker4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm5Twine8dumpReprEv = Module["__ZNK4llvm5Twine8dumpReprEv"] = function() { return Module["asm"]["_ZNK4llvm5Twine8dumpReprEv"].apply(null, arguments) };
+var __ZNK4llvm6SDNode14dumprWithDepthEPKNS_12SelectionDAGEj = Module["__ZNK4llvm6SDNode14dumprWithDepthEPKNS_12SelectionDAGEj"] = function() { return Module["asm"]["_ZNK4llvm6SDNode14dumprWithDepthEPKNS_12SelectionDAGEj"].apply(null, arguments) };
+var __GLOBAL__sub_I_CodeGenPGO_cpp = Module["__GLOBAL__sub_I_CodeGenPGO_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeGenPGO.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_StackSlotColoring_cpp = Module["__GLOBAL__sub_I_StackSlotColoring_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackSlotColoring.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_WinEHPrepare_cpp = Module["__GLOBAL__sub_I_WinEHPrepare_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WinEHPrepare.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_InterleavedAccessPass_cpp = Module["__GLOBAL__sub_I_InterleavedAccessPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InterleavedAccessPass.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_PredicateInfo_cpp = Module["__GLOBAL__sub_I_PredicateInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PredicateInfo.cpp"].apply(null, arguments) };
+var __ZNK4llvm12LiveInterval4dumpEv = Module["__ZNK4llvm12LiveInterval4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12LiveInterval4dumpEv"].apply(null, arguments) };
+var __realloc = Module["__realloc"] = function() { return Module["asm"]["_realloc"].apply(null, arguments) };
+var __ZNK5clang15LocationContext9dumpStackEv = Module["__ZNK5clang15LocationContext9dumpStackEv"] = function() { return Module["asm"]["_ZNK5clang15LocationContext9dumpStackEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_Signals_cpp = Module["__GLOBAL__sub_I_Signals_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Signals.cpp"].apply(null, arguments) };
+var __ZNK4llvm11NamedMDNode4dumpEv = Module["__ZNK4llvm11NamedMDNode4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm11NamedMDNode4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_MergeFunctions_cpp = Module["__GLOBAL__sub_I_MergeFunctions_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MergeFunctions.cpp"].apply(null, arguments) };
+var __ZNK4llvm13ScheduleDAGMI12dumpScheduleEv = Module["__ZNK4llvm13ScheduleDAGMI12dumpScheduleEv"] = function() { return Module["asm"]["_ZNK4llvm13ScheduleDAGMI12dumpScheduleEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_SanitizerCoverage_cpp = Module["__GLOBAL__sub_I_SanitizerCoverage_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SanitizerCoverage.cpp"].apply(null, arguments) };
+var __ZNK4llvm14DependenceInfo10Constraint4dumpERNS_11raw_ostreamE = Module["__ZNK4llvm14DependenceInfo10Constraint4dumpERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm14DependenceInfo10Constraint4dumpERNS_11raw_ostreamE"].apply(null, arguments) };
+var __GLOBAL__sub_I_BranchProbabilityInfo_cpp = Module["__GLOBAL__sub_I_BranchProbabilityInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BranchProbabilityInfo.cpp"].apply(null, arguments) };
+var __ZNK4llvm8DebugLoc4dumpEv = Module["__ZNK4llvm8DebugLoc4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm8DebugLoc4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_ScheduleDAGInstrs_cpp = Module["__GLOBAL__sub_I_ScheduleDAGInstrs_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGInstrs.cpp"].apply(null, arguments) };
+var setTempRet0 = Module["setTempRet0"] = function() { return Module["asm"]["setTempRet0"].apply(null, arguments) };
+var dynCall_viiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiiiiiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopStrengthReduce_cpp = Module["__GLOBAL__sub_I_LoopStrengthReduce_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopStrengthReduce.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_HWAddressSanitizer_cpp = Module["__GLOBAL__sub_I_HWAddressSanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_HWAddressSanitizer.cpp"].apply(null, arguments) };
+var __ZNK5clang12TemplateName4dumpEv = Module["__ZNK5clang12TemplateName4dumpEv"] = function() { return Module["asm"]["_ZNK5clang12TemplateName4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_BitcodeReader_cpp = Module["__GLOBAL__sub_I_BitcodeReader_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BitcodeReader.cpp"].apply(null, arguments) };
+var __ZNK4llvm21MachineRegionInfoPass4dumpEv = Module["__ZNK4llvm21MachineRegionInfoPass4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm21MachineRegionInfoPass4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineRegisterInfo_cpp = Module["__GLOBAL__sub_I_MachineRegisterInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineRegisterInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_AsmPrinter_cpp = Module["__GLOBAL__sub_I_AsmPrinter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AsmPrinter.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_PrologEpilogInserter_cpp = Module["__GLOBAL__sub_I_PrologEpilogInserter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PrologEpilogInserter.cpp"].apply(null, arguments) };
+var __ZNK4llvm3GVN4dumpERNS_8DenseMapIjPNS_5ValueENS_12DenseMapInfoIjEENS_6detail12DenseMapPairIjS3_EEEE = Module["__ZNK4llvm3GVN4dumpERNS_8DenseMapIjPNS_5ValueENS_12DenseMapInfoIjEENS_6detail12DenseMapPairIjS3_EEEE"] = function() { return Module["asm"]["_ZNK4llvm3GVN4dumpERNS_8DenseMapIjPNS_5ValueENS_12DenseMapInfoIjEENS_6detail12DenseMapPairIjS3_EEEE"].apply(null, arguments) };
+var __free = Module["__free"] = function() { return Module["asm"]["_free"].apply(null, arguments) };
+var __GLOBAL__sub_I_LowerTypeTests_cpp = Module["__GLOBAL__sub_I_LowerTypeTests_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LowerTypeTests.cpp"].apply(null, arguments) };
+var __ZNK4llvm5SUnit4dumpEPKNS_11ScheduleDAGE = Module["__ZNK4llvm5SUnit4dumpEPKNS_11ScheduleDAGE"] = function() { return Module["asm"]["_ZNK4llvm5SUnit4dumpEPKNS_11ScheduleDAGE"].apply(null, arguments) };
+var dynCall_vii = Module["dynCall_vii"] = function() { return Module["asm"]["dynCall_vii"].apply(null, arguments) };
+var __ZN4llvm9safestack11StackLayout5printERNS_11raw_ostreamE = Module["__ZN4llvm9safestack11StackLayout5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZN4llvm9safestack11StackLayout5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __fflush = Module["__fflush"] = function() { return Module["asm"]["_fflush"].apply(null, arguments) };
+var ___floatsitf = Module["___floatsitf"] = function() { return Module["asm"]["__floatsitf"].apply(null, arguments) };
+var __GLOBAL__sub_I_ExpandMemCmp_cpp = Module["__GLOBAL__sub_I_ExpandMemCmp_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ExpandMemCmp.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_Inliner_cpp = Module["__GLOBAL__sub_I_Inliner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Inliner.cpp"].apply(null, arguments) };
+var __ZNK4llvm9LiveRange4dumpEv = Module["__ZNK4llvm9LiveRange4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9LiveRange4dumpEv"].apply(null, arguments) };
+var __ZNK5clang15DeclarationName4dumpEv = Module["__ZNK5clang15DeclarationName4dumpEv"] = function() { return Module["asm"]["_ZNK5clang15DeclarationName4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm18LiveDebugVariables4dumpEv = Module["__ZNK4llvm18LiveDebugVariables4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm18LiveDebugVariables4dumpEv"].apply(null, arguments) };
+var __ZNK5clang4Decl4dumpEv = Module["__ZNK5clang4Decl4dumpEv"] = function() { return Module["asm"]["_ZNK5clang4Decl4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_CommandLine_cpp = Module["__GLOBAL__sub_I_CommandLine_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CommandLine.cpp"].apply(null, arguments) };
+var __ZNK4llvm17AttributeListImpl4dumpEv = Module["__ZNK4llvm17AttributeListImpl4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm17AttributeListImpl4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_MCSymbol_cpp = Module["__GLOBAL__sub_I_MCSymbol_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MCSymbol.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_DebugCounter_cpp = Module["__GLOBAL__sub_I_DebugCounter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DebugCounter.cpp"].apply(null, arguments) };
+var __ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKS0_S4_ = Module["__ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKS0_S4_"] = function() { return Module["asm"]["_ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKS0_S4_"].apply(null, arguments) };
+var __GLOBAL__sub_I_WholeProgramDevirt_cpp = Module["__GLOBAL__sub_I_WholeProgramDevirt_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WholeProgramDevirt.cpp"].apply(null, arguments) };
+var ____errno_location = Module["____errno_location"] = function() { return Module["asm"]["___errno_location"].apply(null, arguments) };
+var __ZNK4llvm6Module4dumpEv = Module["__ZNK4llvm6Module4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm6Module4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm12PHITransAddr4dumpEv = Module["__ZNK4llvm12PHITransAddr4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12PHITransAddr4dumpEv"].apply(null, arguments) };
+var ___subtf3 = Module["___subtf3"] = function() { return Module["asm"]["__subtf3"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopUnrollPass_cpp = Module["__GLOBAL__sub_I_LoopUnrollPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnrollPass.cpp"].apply(null, arguments) };
+var __ZN4llvm18TargetRegisterInfo7dumpRegEjjPKS0_ = Module["__ZN4llvm18TargetRegisterInfo7dumpRegEjjPKS0_"] = function() { return Module["asm"]["_ZN4llvm18TargetRegisterInfo7dumpRegEjjPKS0_"].apply(null, arguments) };
+var __ZNK4llvm7IVUsers4dumpEv = Module["__ZNK4llvm7IVUsers4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm7IVUsers4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_ScheduleDAGRRList_cpp = Module["__GLOBAL__sub_I_ScheduleDAGRRList_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGRRList.cpp"].apply(null, arguments) };
+var __ZNK4llvm8DIEBlock5printERNS_11raw_ostreamE = Module["__ZNK4llvm8DIEBlock5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm8DIEBlock5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __GLOBAL__sub_I_Timer_cpp = Module["__GLOBAL__sub_I_Timer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Timer.cpp"].apply(null, arguments) };
+var ___trunctfdf2 = Module["___trunctfdf2"] = function() { return Module["asm"]["__trunctfdf2"].apply(null, arguments) };
+var __GLOBAL__sub_I_PassManagerBuilder_cpp = Module["__GLOBAL__sub_I_PassManagerBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PassManagerBuilder.cpp"].apply(null, arguments) };
+var __ZNK4llvm10VirtRegMap4dumpEv = Module["__ZNK4llvm10VirtRegMap4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm10VirtRegMap4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_WebAssemblyPeephole_cpp = Module["__GLOBAL__sub_I_WebAssemblyPeephole_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyPeephole.cpp"].apply(null, arguments) };
+var __ZNK4llvm6MCExpr4dumpEv = Module["__ZNK4llvm6MCExpr4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm6MCExpr4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopLoadElimination_cpp = Module["__GLOBAL__sub_I_LoopLoadElimination_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopLoadElimination.cpp"].apply(null, arguments) };
+var __ZNK4llvm3opt7ArgList4dumpEv = Module["__ZNK4llvm3opt7ArgList4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm3opt7ArgList4dumpEv"].apply(null, arguments) };
+var ___growWasmMemory = Module["___growWasmMemory"] = function() { return Module["asm"]["__growWasmMemory"].apply(null, arguments) };
+var __ZNK4llvm10sampleprof15FunctionSamples4dumpEv = Module["__ZNK4llvm10sampleprof15FunctionSamples4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm10sampleprof15FunctionSamples4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_TailDuplicator_cpp = Module["__GLOBAL__sub_I_TailDuplicator_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TailDuplicator.cpp"].apply(null, arguments) };
+var __ZNK4llvm4Loop4dumpEv = Module["__ZNK4llvm4Loop4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm4Loop4dumpEv"].apply(null, arguments) };
+var dynCall_diii = Module["dynCall_diii"] = function() { return Module["asm"]["dynCall_diii"].apply(null, arguments) };
+var __GLOBAL__sub_I_ScheduleDAGVLIW_cpp = Module["__GLOBAL__sub_I_ScheduleDAGVLIW_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGVLIW.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopPredication_cpp = Module["__GLOBAL__sub_I_LoopPredication_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopPredication.cpp"].apply(null, arguments) };
+var __ZNK5clang11DeclContext11dumpLookupsEv = Module["__ZNK5clang11DeclContext11dumpLookupsEv"] = function() { return Module["asm"]["_ZNK5clang11DeclContext11dumpLookupsEv"].apply(null, arguments) };
+var dynCall_viiiiiiii = Module["dynCall_viiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_CodeGenPrepare_cpp = Module["__GLOBAL__sub_I_CodeGenPrepare_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeGenPrepare.cpp"].apply(null, arguments) };
+var dynCall_iiiiid = Module["dynCall_iiiiid"] = function() { return Module["asm"]["dynCall_iiiiid"].apply(null, arguments) };
+var __GLOBAL__sub_I_LICM_cpp = Module["__GLOBAL__sub_I_LICM_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LICM.cpp"].apply(null, arguments) };
+var dynCall_iiiiii = Module["dynCall_iiiiii"] = function() { return Module["asm"]["dynCall_iiiiii"].apply(null, arguments) };
+var _memcpy = Module["_memcpy"] = function() { return Module["asm"]["memcpy"].apply(null, arguments) };
+var __ZNK4llvm8Metadata4dumpEv = Module["__ZNK4llvm8Metadata4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm8Metadata4dumpEv"].apply(null, arguments) };
+var dynCall_viiiiii = Module["dynCall_viiiiii"] = function() { return Module["asm"]["dynCall_viiiiii"].apply(null, arguments) };
+var __ZNK4llvm8DIEDelta5printERNS_11raw_ostreamE = Module["__ZNK4llvm8DIEDelta5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm8DIEDelta5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __GLOBAL__sub_I_EfficiencySanitizer_cpp = Module["__GLOBAL__sub_I_EfficiencySanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_EfficiencySanitizer.cpp"].apply(null, arguments) };
+var ___extenddftf2 = Module["___extenddftf2"] = function() { return Module["asm"]["__extenddftf2"].apply(null, arguments) };
+var __ZNK4llvm15ValueEnumerator4dumpEv = Module["__ZNK4llvm15ValueEnumerator4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm15ValueEnumerator4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_Debug_cpp = Module["__GLOBAL__sub_I_Debug_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Debug.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_ScheduleDAGSDNodes_cpp = Module["__GLOBAL__sub_I_ScheduleDAGSDNodes_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGSDNodes.cpp"].apply(null, arguments) };
+var __memalign = Module["__memalign"] = function() { return Module["asm"]["_memalign"].apply(null, arguments) };
+var __GLOBAL__sub_I_MetadataLoader_cpp = Module["__GLOBAL__sub_I_MetadataLoader_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MetadataLoader.cpp"].apply(null, arguments) };
+var __ZNK4llvm7DIEExpr5printERNS_11raw_ostreamE = Module["__ZNK4llvm7DIEExpr5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm7DIEExpr5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __ZNK4llvm11MachineLoop4dumpEv = Module["__ZNK4llvm11MachineLoop4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm11MachineLoop4dumpEv"].apply(null, arguments) };
+var ___fixunstfsi = Module["___fixunstfsi"] = function() { return Module["asm"]["__fixunstfsi"].apply(null, arguments) };
+var dynCall_iiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiiiii"].apply(null, arguments) };
+var __ZNK4llvm18RegPressureTracker4dumpEv = Module["__ZNK4llvm18RegPressureTracker4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm18RegPressureTracker4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_RewriteStatepointsForGC_cpp = Module["__GLOBAL__sub_I_RewriteStatepointsForGC_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RewriteStatepointsForGC.cpp"].apply(null, arguments) };
+var __ZNK5clang13HeaderMapImpl4dumpEv = Module["__ZNK5clang13HeaderMapImpl4dumpEv"] = function() { return Module["asm"]["_ZNK5clang13HeaderMapImpl4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_SelectionDAGBuilder_cpp = Module["__GLOBAL__sub_I_SelectionDAGBuilder_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SelectionDAGBuilder.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_BranchFolding_cpp = Module["__GLOBAL__sub_I_BranchFolding_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BranchFolding.cpp"].apply(null, arguments) };
+var __ZNK4llvm9SlotIndex4dumpEv = Module["__ZNK4llvm9SlotIndex4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9SlotIndex4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm15DIEInlineString5printERNS_11raw_ostreamE = Module["__ZNK4llvm15DIEInlineString5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm15DIEInlineString5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var ___cxa_demangle = Module["___cxa_demangle"] = function() { return Module["asm"]["__cxa_demangle"].apply(null, arguments) };
+var __ZNK4llvm8MCSymbol4dumpEv = Module["__ZNK4llvm8MCSymbol4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm8MCSymbol4dumpEv"].apply(null, arguments) };
+var __ZNK5clang6driver11MultilibSet4dumpEv = Module["__ZNK5clang6driver11MultilibSet4dumpEv"] = function() { return Module["asm"]["_ZNK5clang6driver11MultilibSet4dumpEv"].apply(null, arguments) };
+var ____cxa_is_pointer_type = Module["____cxa_is_pointer_type"] = function() { return Module["asm"]["___cxa_is_pointer_type"].apply(null, arguments) };
+var __ZNK4llvm4Pass4dumpEv = Module["__ZNK4llvm4Pass4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm4Pass4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm13LazyCallGraph3SCC4dumpEv = Module["__ZNK4llvm13LazyCallGraph3SCC4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13LazyCallGraph3SCC4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopIdiomRecognize_cpp = Module["__GLOBAL__sub_I_LoopIdiomRecognize_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopIdiomRecognize.cpp"].apply(null, arguments) };
+var dynCall_vi = Module["dynCall_vi"] = function() { return Module["asm"]["dynCall_vi"].apply(null, arguments) };
+var __GLOBAL__sub_I_DwarfUnit_cpp = Module["__GLOBAL__sub_I_DwarfUnit_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DwarfUnit.cpp"].apply(null, arguments) };
+var __ZNK5clang19NestedNameSpecifier4dumpEv = Module["__ZNK5clang19NestedNameSpecifier4dumpEv"] = function() { return Module["asm"]["_ZNK5clang19NestedNameSpecifier4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_OptBisect_cpp = Module["__GLOBAL__sub_I_OptBisect_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_OptBisect.cpp"].apply(null, arguments) };
+var _memalign = Module["_memalign"] = function() { return Module["asm"]["memalign"].apply(null, arguments) };
+var __ZNK5clang13FullSourceLoc4dumpEv = Module["__ZNK5clang13FullSourceLoc4dumpEv"] = function() { return Module["asm"]["_ZNK5clang13FullSourceLoc4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_PartialInlining_cpp = Module["__GLOBAL__sub_I_PartialInlining_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PartialInlining.cpp"].apply(null, arguments) };
+var __ZNK4llvm11SplitEditor4dumpEv = Module["__ZNK4llvm11SplitEditor4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm11SplitEditor4dumpEv"].apply(null, arguments) };
+var __ZNK5clang4Stmt9dumpColorEv = Module["__ZNK5clang4Stmt9dumpColorEv"] = function() { return Module["asm"]["_ZNK5clang4Stmt9dumpColorEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_TargetPassConfig_cpp = Module["__GLOBAL__sub_I_TargetPassConfig_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetPassConfig.cpp"].apply(null, arguments) };
+var __ZNK4llvm9DIEAbbrev5printERNS_11raw_ostreamE = Module["__ZNK4llvm9DIEAbbrev5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm9DIEAbbrev5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __ZNK5clang26StandardConversionSequence4dumpEv = Module["__ZNK5clang26StandardConversionSequence4dumpEv"] = function() { return Module["asm"]["_ZNK5clang26StandardConversionSequence4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegAllocGreedy_cpp = Module["__GLOBAL__sub_I_RegAllocGreedy_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocGreedy.cpp"].apply(null, arguments) };
+var __ZNK4llvm14RegionInfoPass4dumpEv = Module["__ZNK4llvm14RegionInfoPass4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm14RegionInfoPass4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm9DIEString5printERNS_11raw_ostreamE = Module["__ZNK4llvm9DIEString5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm9DIEString5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __GLOBAL__sub_I_DependenceAnalysis_cpp = Module["__GLOBAL__sub_I_DependenceAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DependenceAnalysis.cpp"].apply(null, arguments) };
+var __ZNK5clang7APValue4dumpEv = Module["__ZNK5clang7APValue4dumpEv"] = function() { return Module["asm"]["_ZNK5clang7APValue4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm4SDep5printERNS_11raw_ostreamEPKNS_18TargetRegisterInfoE = Module["__ZNK4llvm4SDep5printERNS_11raw_ostreamEPKNS_18TargetRegisterInfoE"] = function() { return Module["asm"]["_ZNK4llvm4SDep5printERNS_11raw_ostreamEPKNS_18TargetRegisterInfoE"].apply(null, arguments) };
+var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiii"].apply(null, arguments) };
+var __ZNK4llvm16RegisterPressure4dumpEPKNS_18TargetRegisterInfoE = Module["__ZNK4llvm16RegisterPressure4dumpEPKNS_18TargetRegisterInfoE"] = function() { return Module["asm"]["_ZNK4llvm16RegisterPressure4dumpEPKNS_18TargetRegisterInfoE"].apply(null, arguments) };
+var __ZNK4llvm12LiveInterval8SubRange4dumpEv = Module["__ZNK4llvm12LiveInterval8SubRange4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12LiveInterval8SubRange4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_ValueTracking_cpp = Module["__GLOBAL__sub_I_ValueTracking_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ValueTracking.cpp"].apply(null, arguments) };
+var ___netf2 = Module["___netf2"] = function() { return Module["asm"]["__netf2"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineCombiner_cpp = Module["__GLOBAL__sub_I_MachineCombiner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineCombiner.cpp"].apply(null, arguments) };
+var ___addtf3 = Module["___addtf3"] = function() { return Module["asm"]["__addtf3"].apply(null, arguments) };
+var dynCall_iid = Module["dynCall_iid"] = function() { return Module["asm"]["dynCall_iid"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopRerollPass_cpp = Module["__GLOBAL__sub_I_LoopRerollPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopRerollPass.cpp"].apply(null, arguments) };
+var dynCall_iii = Module["dynCall_iii"] = function() { return Module["asm"]["dynCall_iii"].apply(null, arguments) };
+var __ZNK4llvm4Type4dumpEv = Module["__ZNK4llvm4Type4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm4Type4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm4Loop11dumpVerboseEv = Module["__ZNK4llvm4Loop11dumpVerboseEv"] = function() { return Module["asm"]["_ZNK4llvm4Loop11dumpVerboseEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_BasicTargetTransformInfo_cpp = Module["__GLOBAL__sub_I_BasicTargetTransformInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BasicTargetTransformInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp = Module["__GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TypeBasedAliasAnalysis.cpp"].apply(null, arguments) };
+var __ZNK4llvm5APInt4dumpEv = Module["__ZNK4llvm5APInt4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm5APInt4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_ForceFunctionAttrs_cpp = Module["__GLOBAL__sub_I_ForceFunctionAttrs_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ForceFunctionAttrs.cpp"].apply(null, arguments) };
+var dynCall_iiiiiiii = Module["dynCall_iiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiii"].apply(null, arguments) };
+var __ZNK4llvm17MachineBasicBlock4dumpEv = Module["__ZNK4llvm17MachineBasicBlock4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm17MachineBasicBlock4dumpEv"].apply(null, arguments) };
+var __ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamERNS_13SourceManagerE = Module["__ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamERNS_13SourceManagerE"] = function() { return Module["asm"]["_ZNK5clang4Stmt4dumpERN4llvm11raw_ostreamERNS_13SourceManagerE"].apply(null, arguments) };
+var _compile = Module["_compile"] = function() { return Module["asm"]["compile"].apply(null, arguments) };
+var __GLOBAL__sub_I_MemorySSA_cpp = Module["__GLOBAL__sub_I_MemorySSA_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MemorySSA.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_FunctionImport_cpp = Module["__GLOBAL__sub_I_FunctionImport_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_FunctionImport.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopVectorize_cpp = Module["__GLOBAL__sub_I_LoopVectorize_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopVectorize.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_ProfileSummaryInfo_cpp = Module["__GLOBAL__sub_I_ProfileSummaryInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ProfileSummaryInfo.cpp"].apply(null, arguments) };
+var __ZNK4llvm8DIEEntry5printERNS_11raw_ostreamE = Module["__ZNK4llvm8DIEEntry5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm8DIEEntry5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __GLOBAL__sub_I_StackColoring_cpp = Module["__GLOBAL__sub_I_StackColoring_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackColoring.cpp"].apply(null, arguments) };
+var _malloc = Module["_malloc"] = function() { return Module["asm"]["malloc"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegisterClassInfo_cpp = Module["__GLOBAL__sub_I_RegisterClassInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegisterClassInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_DAGCombiner_cpp = Module["__GLOBAL__sub_I_DAGCombiner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DAGCombiner.cpp"].apply(null, arguments) };
+var __ZNK4llvm7APFloat4dumpEv = Module["__ZNK4llvm7APFloat4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm7APFloat4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_DiagnosticHandler_cpp = Module["__GLOBAL__sub_I_DiagnosticHandler_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DiagnosticHandler.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LiveIntervals_cpp = Module["__GLOBAL__sub_I_LiveIntervals_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LiveIntervals.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_TargetTransformInfo_cpp = Module["__GLOBAL__sub_I_TargetTransformInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetTransformInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_DFAPacketizer_cpp = Module["__GLOBAL__sub_I_DFAPacketizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DFAPacketizer.cpp"].apply(null, arguments) };
+var __ZNK5clang8comments7Comment4dumpERKNS_10ASTContextE = Module["__ZNK5clang8comments7Comment4dumpERKNS_10ASTContextE"] = function() { return Module["asm"]["_ZNK5clang8comments7Comment4dumpERKNS_10ASTContextE"].apply(null, arguments) };
+var __GLOBAL__sub_I_GCOVProfiling_cpp = Module["__GLOBAL__sub_I_GCOVProfiling_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GCOVProfiling.cpp"].apply(null, arguments) };
+var __ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKNS_11ScheduleDAGE = Module["__ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKNS_11ScheduleDAGE"] = function() { return Module["asm"]["_ZNK4llvm5SUnit5printERNS_11raw_ostreamEPKNS_11ScheduleDAGE"].apply(null, arguments) };
+var dynCall_iiiiiiiiiii = Module["dynCall_iiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_TargetLibraryInfo_cpp = Module["__GLOBAL__sub_I_TargetLibraryInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetLibraryInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LegalizeTypes_cpp = Module["__GLOBAL__sub_I_LegalizeTypes_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LegalizeTypes.cpp"].apply(null, arguments) };
+var __ZNK4llvm13ConstantRange4dumpEv = Module["__ZNK4llvm13ConstantRange4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13ConstantRange4dumpEv"].apply(null, arguments) };
+var ____cxa_can_catch = Module["____cxa_can_catch"] = function() { return Module["asm"]["___cxa_can_catch"].apply(null, arguments) };
+var __ZNK5clang7CodeGen10ABIArgInfo4dumpEv = Module["__ZNK5clang7CodeGen10ABIArgInfo4dumpEv"] = function() { return Module["asm"]["_ZNK5clang7CodeGen10ABIArgInfo4dumpEv"].apply(null, arguments) };
+var ___lttf2 = Module["___lttf2"] = function() { return Module["asm"]["__lttf2"].apply(null, arguments) };
+var __GLOBAL__sub_I_BasicAliasAnalysis_cpp = Module["__GLOBAL__sub_I_BasicAliasAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BasicAliasAnalysis.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp = Module["__GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyLowerEmscriptenEHSjLj.cpp"].apply(null, arguments) };
+var __ZNK4llvm6SDNode5dumprEv = Module["__ZNK4llvm6SDNode5dumprEv"] = function() { return Module["asm"]["_ZNK4llvm6SDNode5dumprEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_GVN_cpp = Module["__GLOBAL__sub_I_GVN_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GVN.cpp"].apply(null, arguments) };
+var __ZNK4llvm17SubtargetFeatures4dumpEv = Module["__ZNK4llvm17SubtargetFeatures4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm17SubtargetFeatures4dumpEv"].apply(null, arguments) };
+var _fflush = Module["_fflush"] = function() { return Module["asm"]["fflush"].apply(null, arguments) };
+var __GLOBAL__sub_I_BoundsChecking_cpp = Module["__GLOBAL__sub_I_BoundsChecking_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BoundsChecking.cpp"].apply(null, arguments) };
+var __ZNK4llvm12LexicalScope4dumpEj = Module["__ZNK4llvm12LexicalScope4dumpEj"] = function() { return Module["asm"]["_ZNK4llvm12LexicalScope4dumpEj"].apply(null, arguments) };
+var __ZNK4llvm10DIELocList5printERNS_11raw_ostreamE = Module["__ZNK4llvm10DIELocList5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm10DIELocList5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __GLOBAL__sub_I_InlineFunction_cpp = Module["__GLOBAL__sub_I_InlineFunction_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InlineFunction.cpp"].apply(null, arguments) };
+var __ZNK4llvm11MCAssembler4dumpEv = Module["__ZNK4llvm11MCAssembler4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm11MCAssembler4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm13LiveIntervals10dumpInstrsEv = Module["__ZNK4llvm13LiveIntervals10dumpInstrsEv"] = function() { return Module["asm"]["_ZNK4llvm13LiveIntervals10dumpInstrsEv"].apply(null, arguments) };
+var ___letf2 = Module["___letf2"] = function() { return Module["asm"]["__letf2"].apply(null, arguments) };
+var ___multi3 = Module["___multi3"] = function() { return Module["asm"]["__multi3"].apply(null, arguments) };
+var __ZNK4llvm4SCEV4dumpEv = Module["__ZNK4llvm4SCEV4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm4SCEV4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm3DIE5printERNS_11raw_ostreamEj = Module["__ZNK4llvm3DIE5printERNS_11raw_ostreamEj"] = function() { return Module["asm"]["_ZNK4llvm3DIE5printERNS_11raw_ostreamEj"].apply(null, arguments) };
+var __GLOBAL__sub_I_PGOMemOPSizeOpt_cpp = Module["__GLOBAL__sub_I_PGOMemOPSizeOpt_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PGOMemOPSizeOpt.cpp"].apply(null, arguments) };
+var ___fixtfsi = Module["___fixtfsi"] = function() { return Module["asm"]["__fixtfsi"].apply(null, arguments) };
+var __ZNK5clang8comments7Comment4dumpEv = Module["__ZNK5clang8comments7Comment4dumpEv"] = function() { return Module["asm"]["_ZNK5clang8comments7Comment4dumpEv"].apply(null, arguments) };
+var ___getf2 = Module["___getf2"] = function() { return Module["asm"]["__getf2"].apply(null, arguments) };
+var dynCall_iiii = Module["dynCall_iiii"] = function() { return Module["asm"]["dynCall_iiii"].apply(null, arguments) };
+var __ZNK5clang14MacroDirective4dumpEv = Module["__ZNK5clang14MacroDirective4dumpEv"] = function() { return Module["asm"]["_ZNK5clang14MacroDirective4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopUnrollPeel_cpp = Module["__GLOBAL__sub_I_LoopUnrollPeel_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnrollPeel.cpp"].apply(null, arguments) };
+var __ZNK5clang4Stmt4dumpERNS_13SourceManagerE = Module["__ZNK5clang4Stmt4dumpERNS_13SourceManagerE"] = function() { return Module["asm"]["_ZNK5clang4Stmt4dumpERNS_13SourceManagerE"].apply(null, arguments) };
+var __ZNK4llvm10sampleprof12SampleRecord4dumpEv = Module["__ZNK4llvm10sampleprof12SampleRecord4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm10sampleprof12SampleRecord4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_AliasSetTracker_cpp = Module["__GLOBAL__sub_I_AliasSetTracker_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AliasSetTracker.cpp"].apply(null, arguments) };
+var __ZNK4llvm26ScoreboardHazardRecognizer10Scoreboard4dumpEv = Module["__ZNK4llvm26ScoreboardHazardRecognizer10Scoreboard4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm26ScoreboardHazardRecognizer10Scoreboard4dumpEv"].apply(null, arguments) };
+var dynCall_viiiii = Module["dynCall_viiiii"] = function() { return Module["asm"]["dynCall_viiiii"].apply(null, arguments) };
+var _memmove = Module["_memmove"] = function() { return Module["asm"]["memmove"].apply(null, arguments) };
+var __GLOBAL__sub_I_NewGVN_cpp = Module["__GLOBAL__sub_I_NewGVN_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_NewGVN.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineOperand_cpp = Module["__GLOBAL__sub_I_MachineOperand_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineOperand.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_StackMaps_cpp = Module["__GLOBAL__sub_I_StackMaps_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackMaps.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegionInfo_cpp = Module["__GLOBAL__sub_I_RegionInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegionInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_IndVarSimplify_cpp = Module["__GLOBAL__sub_I_IndVarSimplify_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IndVarSimplify.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp = Module["__GLOBAL__sub_I_MachineBlockFrequencyInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineBlockFrequencyInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_CodeViewDebug_cpp = Module["__GLOBAL__sub_I_CodeViewDebug_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CodeViewDebug.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopSink_cpp = Module["__GLOBAL__sub_I_LoopSink_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopSink.cpp"].apply(null, arguments) };
+var __ZNK4llvm3opt6Option4dumpEv = Module["__ZNK4llvm3opt6Option4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm3opt6Option4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_SafeStackLayout_cpp = Module["__GLOBAL__sub_I_SafeStackLayout_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SafeStackLayout.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp = Module["__GLOBAL__sub_I_AggressiveAntiDepBreaker_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AggressiveAntiDepBreaker.cpp"].apply(null, arguments) };
+var __ZNK4llvm10MCFragment4dumpEv = Module["__ZNK4llvm10MCFragment4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm10MCFragment4dumpEv"].apply(null, arguments) };
+var dynCall_iiiiiiiiii = Module["dynCall_iiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiii"].apply(null, arguments) };
+var __ZNK5clang8QualType4dumpEv = Module["__ZNK5clang8QualType4dumpEv"] = function() { return Module["asm"]["_ZNK5clang8QualType4dumpEv"].apply(null, arguments) };
+var ___gttf2 = Module["___gttf2"] = function() { return Module["asm"]["__gttf2"].apply(null, arguments) };
+var __GLOBAL__sub_I_ScalarEvolution_cpp = Module["__GLOBAL__sub_I_ScalarEvolution_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScalarEvolution.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopInfo_cpp = Module["__GLOBAL__sub_I_LoopInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopInfo.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_SelectionDAGISel_cpp = Module["__GLOBAL__sub_I_SelectionDAGISel_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SelectionDAGISel.cpp"].apply(null, arguments) };
+var __ZNK5clang8comments7Comment9dumpColorEv = Module["__ZNK5clang8comments7Comment9dumpColorEv"] = function() { return Module["asm"]["_ZNK5clang8comments7Comment9dumpColorEv"].apply(null, arguments) };
+var __ZNK4llvm13AttributeList4dumpEv = Module["__ZNK4llvm13AttributeList4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13AttributeList4dumpEv"].apply(null, arguments) };
+var __compile = Module["__compile"] = function() { return Module["asm"]["_compile"].apply(null, arguments) };
+var __GLOBAL__sub_I_Dominators_cpp = Module["__GLOBAL__sub_I_Dominators_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Dominators.cpp"].apply(null, arguments) };
+var __ZN4llvm9safestack13StackColoring11dumpAllocasEv = Module["__ZN4llvm9safestack13StackColoring11dumpAllocasEv"] = function() { return Module["asm"]["_ZN4llvm9safestack13StackColoring11dumpAllocasEv"].apply(null, arguments) };
+var __ZNK4llvm5Twine4dumpEv = Module["__ZNK4llvm5Twine4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm5Twine4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm8DIEValue5printERNS_11raw_ostreamE = Module["__ZNK4llvm8DIEValue5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm8DIEValue5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachineSink_cpp = Module["__GLOBAL__sub_I_MachineSink_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineSink.cpp"].apply(null, arguments) };
+var __ZNK4llvm13CallGraphNode4dumpEv = Module["__ZNK4llvm13CallGraphNode4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13CallGraphNode4dumpEv"].apply(null, arguments) };
+var dynCall_iiiiiiiii = Module["dynCall_iiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiii"].apply(null, arguments) };
+var dynCall_viiii = Module["dynCall_viiii"] = function() { return Module["asm"]["dynCall_viiii"].apply(null, arguments) };
+var __GLOBAL__sub_I_SLPVectorizer_cpp = Module["__GLOBAL__sub_I_SLPVectorizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SLPVectorizer.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_ConstantHoisting_cpp = Module["__GLOBAL__sub_I_ConstantHoisting_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ConstantHoisting.cpp"].apply(null, arguments) };
+var __ZNK4llvm9MemorySSA4dumpEv = Module["__ZNK4llvm9MemorySSA4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9MemorySSA4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopUnroll_cpp = Module["__GLOBAL__sub_I_LoopUnroll_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnroll.cpp"].apply(null, arguments) };
+var __ZNK4llvm6SDNode5dumprEPKNS_12SelectionDAGE = Module["__ZNK4llvm6SDNode5dumprEPKNS_12SelectionDAGE"] = function() { return Module["asm"]["_ZNK4llvm6SDNode5dumprEPKNS_12SelectionDAGE"].apply(null, arguments) };
+var __ZNK4llvm8AliasSet4dumpEv = Module["__ZNK4llvm8AliasSet4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm8AliasSet4dumpEv"].apply(null, arguments) };
+var __ZNK5clang6driver8Multilib4dumpEv = Module["__ZNK5clang6driver8Multilib4dumpEv"] = function() { return Module["asm"]["_ZNK5clang6driver8Multilib4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_LegacyPassManager_cpp = Module["__GLOBAL__sub_I_LegacyPassManager_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LegacyPassManager.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_TargetLoweringBase_cpp = Module["__GLOBAL__sub_I_TargetLoweringBase_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetLoweringBase.cpp"].apply(null, arguments) };
+var __ZNK4llvm12DebugCounter4dumpEv = Module["__ZNK4llvm12DebugCounter4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm12DebugCounter4dumpEv"].apply(null, arguments) };
+var __ZNK5clang4Type4dumpERN4llvm11raw_ostreamE = Module["__ZNK5clang4Type4dumpERN4llvm11raw_ostreamE"] = function() { return Module["asm"]["_ZNK5clang4Type4dumpERN4llvm11raw_ostreamE"].apply(null, arguments) };
+var __ZNK4llvm13SchedBoundary18dumpScheduledStateEv = Module["__ZNK4llvm13SchedBoundary18dumpScheduledStateEv"] = function() { return Module["asm"]["_ZNK4llvm13SchedBoundary18dumpScheduledStateEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_SpeculativeExecution_cpp = Module["__GLOBAL__sub_I_SpeculativeExecution_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SpeculativeExecution.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LowerExpectIntrinsic_cpp = Module["__GLOBAL__sub_I_LowerExpectIntrinsic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LowerExpectIntrinsic.cpp"].apply(null, arguments) };
+var __ZNK5clang8CFGBlock4dumpEv = Module["__ZNK5clang8CFGBlock4dumpEv"] = function() { return Module["asm"]["_ZNK5clang8CFGBlock4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp = Module["__GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyFixFunctionBitcasts.cpp"].apply(null, arguments) };
+var __ZNK4llvm8Metadata4dumpEPKNS_6ModuleE = Module["__ZNK4llvm8Metadata4dumpEPKNS_6ModuleE"] = function() { return Module["asm"]["_ZNK4llvm8Metadata4dumpEPKNS_6ModuleE"].apply(null, arguments) };
+var __ZNK5clang4Decl9dumpColorEv = Module["__ZNK5clang4Decl9dumpColorEv"] = function() { return Module["asm"]["_ZNK5clang4Decl9dumpColorEv"].apply(null, arguments) };
+var __ZNK4llvm11SlotIndexes4dumpEv = Module["__ZNK4llvm11SlotIndexes4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm11SlotIndexes4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_TargetInstrInfo_cpp = Module["__GLOBAL__sub_I_TargetInstrInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetInstrInfo.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_LoopVersioningLICM_cpp = Module["__GLOBAL__sub_I_LoopVersioningLICM_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopVersioningLICM.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_GVNHoist_cpp = Module["__GLOBAL__sub_I_GVNHoist_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GVNHoist.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_BasicTargetTransformInfo_cpp = Module["__GLOBAL__sub_I_BasicTargetTransformInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BasicTargetTransformInfo.cpp"].apply(null, arguments) };
 var dynCall_viiiiiii = Module["dynCall_viiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp = Module["__GLOBAL__sub_I_MachineBranchProbabilityInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineBranchProbabilityInfo.cpp"].apply(null, arguments) };
-var setTempRet0 = Module["setTempRet0"] = function() { return Module["asm"]["setTempRet0"].apply(null, arguments) };
+var __ZNK4llvm9LiveRange7Segment4dumpEv = Module["__ZNK4llvm9LiveRange7Segment4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9LiveRange7Segment4dumpEv"].apply(null, arguments) };
 var ___ashlti3 = Module["___ashlti3"] = function() { return Module["asm"]["__ashlti3"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopStrengthReduce_cpp = Module["__GLOBAL__sub_I_LoopStrengthReduce_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopStrengthReduce.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_TwoAddressInstructionPass_cpp = Module["__GLOBAL__sub_I_TwoAddressInstructionPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TwoAddressInstructionPass.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp = Module["__GLOBAL__sub_I_TypeBasedAliasAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TypeBasedAliasAnalysis.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_ResourcePriorityQueue_cpp = Module["__GLOBAL__sub_I_ResourcePriorityQueue_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ResourcePriorityQueue.cpp"].apply(null, arguments) };
+var __ZNK4llvm5SUnit7dumpAllEPKNS_11ScheduleDAGE = Module["__ZNK4llvm5SUnit7dumpAllEPKNS_11ScheduleDAGE"] = function() { return Module["asm"]["_ZNK4llvm5SUnit7dumpAllEPKNS_11ScheduleDAGE"].apply(null, arguments) };
 var __GLOBAL__sub_I_InstCombineCalls_cpp = Module["__GLOBAL__sub_I_InstCombineCalls_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InstCombineCalls.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_EdgeBundles_cpp = Module["__GLOBAL__sub_I_EdgeBundles_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_EdgeBundles.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_HWAddressSanitizer_cpp = Module["__GLOBAL__sub_I_HWAddressSanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_HWAddressSanitizer.cpp"].apply(null, arguments) };
+var __ZNK4llvm13LiveVariables7VarInfo4dumpEv = Module["__ZNK4llvm13LiveVariables7VarInfo4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13LiveVariables7VarInfo4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_Loads_cpp = Module["__GLOBAL__sub_I_Loads_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Loads.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_LoopVersioning_cpp = Module["__GLOBAL__sub_I_LoopVersioning_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopVersioning.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_WebAssemblyExplicitLocals_cpp = Module["__GLOBAL__sub_I_WebAssemblyExplicitLocals_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_WebAssemblyExplicitLocals.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_MachineBlockPlacement_cpp = Module["__GLOBAL__sub_I_MachineBlockPlacement_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineBlockPlacement.cpp"].apply(null, arguments) };
+var __ZNK4llvm19MachineConstantPool4dumpEv = Module["__ZNK4llvm19MachineConstantPool4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm19MachineConstantPool4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_InlineCost_cpp = Module["__GLOBAL__sub_I_InlineCost_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InlineCost.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MCContext_cpp = Module["__GLOBAL__sub_I_MCContext_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MCContext.cpp"].apply(null, arguments) };
-var dynCall_i = Module["dynCall_i"] = function() { return Module["asm"]["dynCall_i"].apply(null, arguments) };
-var ___multf3 = Module["___multf3"] = function() { return Module["asm"]["__multf3"].apply(null, arguments) };
-var __GLOBAL__sub_I_BranchFolding_cpp = Module["__GLOBAL__sub_I_BranchFolding_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BranchFolding.cpp"].apply(null, arguments) };
-var ___errno_location = Module["___errno_location"] = function() { return Module["asm"]["__errno_location"].apply(null, arguments) };
+var __GLOBAL__sub_I_DeadStoreElimination_cpp = Module["__GLOBAL__sub_I_DeadStoreElimination_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DeadStoreElimination.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_Float2Int_cpp = Module["__GLOBAL__sub_I_Float2Int_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Float2Int.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_IfConversion_cpp = Module["__GLOBAL__sub_I_IfConversion_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IfConversion.cpp"].apply(null, arguments) };
-var _compile = Module["_compile"] = function() { return Module["asm"]["compile"].apply(null, arguments) };
-var __GLOBAL__sub_I_MemorySSA_cpp = Module["__GLOBAL__sub_I_MemorySSA_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MemorySSA.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegAllocFast_cpp = Module["__GLOBAL__sub_I_RegAllocFast_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocFast.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_Internalize_cpp = Module["__GLOBAL__sub_I_Internalize_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Internalize.cpp"].apply(null, arguments) };
-var __fflush = Module["__fflush"] = function() { return Module["asm"]["_fflush"].apply(null, arguments) };
-var __GLOBAL__sub_I_FunctionImport_cpp = Module["__GLOBAL__sub_I_FunctionImport_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_FunctionImport.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineRegisterInfo_cpp = Module["__GLOBAL__sub_I_MachineRegisterInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineRegisterInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopVectorize_cpp = Module["__GLOBAL__sub_I_LoopVectorize_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopVectorize.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_AsmPrinter_cpp = Module["__GLOBAL__sub_I_AsmPrinter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AsmPrinter.cpp"].apply(null, arguments) };
-var dynCall_v = Module["dynCall_v"] = function() { return Module["asm"]["dynCall_v"].apply(null, arguments) };
-var __GLOBAL__sub_I_ProfileSummaryInfo_cpp = Module["__GLOBAL__sub_I_ProfileSummaryInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ProfileSummaryInfo.cpp"].apply(null, arguments) };
 var __GLOBAL__sub_I_BitcodeWriter_cpp = Module["__GLOBAL__sub_I_BitcodeWriter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BitcodeWriter.cpp"].apply(null, arguments) };
-var dynCall_viiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiiiii"].apply(null, arguments) };
-var __GLOBAL__sub_I_StackColoring_cpp = Module["__GLOBAL__sub_I_StackColoring_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_StackColoring.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_PrologEpilogInserter_cpp = Module["__GLOBAL__sub_I_PrologEpilogInserter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PrologEpilogInserter.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_BasicAliasAnalysis_cpp = Module["__GLOBAL__sub_I_BasicAliasAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_BasicAliasAnalysis.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegisterClassInfo_cpp = Module["__GLOBAL__sub_I_RegisterClassInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegisterClassInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DAGCombiner_cpp = Module["__GLOBAL__sub_I_DAGCombiner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DAGCombiner.cpp"].apply(null, arguments) };
-var __free = Module["__free"] = function() { return Module["asm"]["_free"].apply(null, arguments) };
-var __GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp = Module["__GLOBAL__sub_I_IndirectCallPromotionAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_IndirectCallPromotionAnalysis.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LowerTypeTests_cpp = Module["__GLOBAL__sub_I_LowerTypeTests_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LowerTypeTests.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineDominators_cpp = Module["__GLOBAL__sub_I_MachineDominators_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineDominators.cpp"].apply(null, arguments) };
-var dynCall_vii = Module["dynCall_vii"] = function() { return Module["asm"]["dynCall_vii"].apply(null, arguments) };
-var ___divtf3 = Module["___divtf3"] = function() { return Module["asm"]["__divtf3"].apply(null, arguments) };
-var __GLOBAL__sub_I_RegisterUsageInfo_cpp = Module["__GLOBAL__sub_I_RegisterUsageInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegisterUsageInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopUnrollRuntime_cpp = Module["__GLOBAL__sub_I_LoopUnrollRuntime_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnrollRuntime.cpp"].apply(null, arguments) };
-var ___floatsitf = Module["___floatsitf"] = function() { return Module["asm"]["__floatsitf"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachinePipeliner_cpp = Module["__GLOBAL__sub_I_MachinePipeliner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachinePipeliner.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_CalledValuePropagation_cpp = Module["__GLOBAL__sub_I_CalledValuePropagation_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CalledValuePropagation.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MachineScheduler_cpp = Module["__GLOBAL__sub_I_MachineScheduler_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachineScheduler.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LiveIntervals_cpp = Module["__GLOBAL__sub_I_LiveIntervals_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LiveIntervals.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LowerGuardIntrinsic_cpp = Module["__GLOBAL__sub_I_LowerGuardIntrinsic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LowerGuardIntrinsic.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ADCE_cpp = Module["__GLOBAL__sub_I_ADCE_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ADCE.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_TargetTransformInfo_cpp = Module["__GLOBAL__sub_I_TargetTransformInfo_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TargetTransformInfo.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp = Module["__GLOBAL__sub_I_ObjCARCAnalysisUtils_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ObjCARCAnalysisUtils.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DFAPacketizer_cpp = Module["__GLOBAL__sub_I_DFAPacketizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DFAPacketizer.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ExpandMemCmp_cpp = Module["__GLOBAL__sub_I_ExpandMemCmp_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ExpandMemCmp.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_Inliner_cpp = Module["__GLOBAL__sub_I_Inliner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Inliner.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SafeStackColoring_cpp = Module["__GLOBAL__sub_I_SafeStackColoring_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SafeStackColoring.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SpeculativeExecution_cpp = Module["__GLOBAL__sub_I_SpeculativeExecution_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SpeculativeExecution.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopAnalysisManager_cpp = Module["__GLOBAL__sub_I_LoopAnalysisManager_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopAnalysisManager.cpp"].apply(null, arguments) };
-var _fmodl = Module["_fmodl"] = function() { return Module["asm"]["fmodl"].apply(null, arguments) };
+var __ZNK5clang6Module4dumpEv = Module["__ZNK5clang6Module4dumpEv"] = function() { return Module["asm"]["_ZNK5clang6Module4dumpEv"].apply(null, arguments) };
+var dynCall_viiiiiiiiii = Module["dynCall_viiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiii"].apply(null, arguments) };
+var __ZN5clang9ModuleMap4dumpEv = Module["__ZN5clang9ModuleMap4dumpEv"] = function() { return Module["asm"]["_ZN5clang9ModuleMap4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm9MCOperand4dumpEv = Module["__ZNK4llvm9MCOperand4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9MCOperand4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_LoopDataPrefetch_cpp = Module["__GLOBAL__sub_I_LoopDataPrefetch_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopDataPrefetch.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_SimplifyCFGPass_cpp = Module["__GLOBAL__sub_I_SimplifyCFGPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SimplifyCFGPass.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_LoopUnrollRuntime_cpp = Module["__GLOBAL__sub_I_LoopUnrollRuntime_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnrollRuntime.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_MachinePipeliner_cpp = Module["__GLOBAL__sub_I_MachinePipeliner_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MachinePipeliner.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_AliasAnalysis_cpp = Module["__GLOBAL__sub_I_AliasAnalysis_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AliasAnalysis.cpp"].apply(null, arguments) };
+var __GLOBAL__sub_I_RegAllocBase_cpp = Module["__GLOBAL__sub_I_RegAllocBase_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_RegAllocBase.cpp"].apply(null, arguments) };
+var __ZNK4llvm9DIEAbbrev4dumpEv = Module["__ZNK4llvm9DIEAbbrev4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm9DIEAbbrev4dumpEv"].apply(null, arguments) };
+var __ZNK4llvm6SDNode4dumpEPKNS_12SelectionDAGE = Module["__ZNK4llvm6SDNode4dumpEPKNS_12SelectionDAGE"] = function() { return Module["asm"]["_ZNK4llvm6SDNode4dumpEPKNS_12SelectionDAGE"].apply(null, arguments) };
+var __ZN4llvm18dumpRegSetPressureENS_8ArrayRefIjEEPKNS_18TargetRegisterInfoE = Module["__ZN4llvm18dumpRegSetPressureENS_8ArrayRefIjEEPKNS_18TargetRegisterInfoE"] = function() { return Module["asm"]["_ZN4llvm18dumpRegSetPressureENS_8ArrayRefIjEEPKNS_18TargetRegisterInfoE"].apply(null, arguments) };
+var __ZNK4llvm13GVNExpression10Expression4dumpEv = Module["__ZNK4llvm13GVNExpression10Expression4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm13GVNExpression10Expression4dumpEv"].apply(null, arguments) };
+var _fmodl = Module["_fmodl"] = function() { return Module["asm"]["fmodl"].apply(null, arguments) };
 var __GLOBAL__sub_I_SymbolRewriter_cpp = Module["__GLOBAL__sub_I_SymbolRewriter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SymbolRewriter.cpp"].apply(null, arguments) };
-var dynCall_iid = Module["dynCall_iid"] = function() { return Module["asm"]["dynCall_iid"].apply(null, arguments) };
-var __GLOBAL__sub_I_PGOInstrumentation_cpp = Module["__GLOBAL__sub_I_PGOInstrumentation_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_PGOInstrumentation.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_CommandLine_cpp = Module["__GLOBAL__sub_I_CommandLine_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_CommandLine.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_GCOVProfiling_cpp = Module["__GLOBAL__sub_I_GCOVProfiling_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_GCOVProfiling.cpp"].apply(null, arguments) };
-var ___lshrti3 = Module["___lshrti3"] = function() { return Module["asm"]["__lshrti3"].apply(null, arguments) };
-var _stackRestore = Module["_stackRestore"] = function() { return Module["asm"]["stackRestore"].apply(null, arguments) };
-var __GLOBAL__sub_I_SLPVectorizer_cpp = Module["__GLOBAL__sub_I_SLPVectorizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_SLPVectorizer.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_MCSymbol_cpp = Module["__GLOBAL__sub_I_MCSymbol_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MCSymbol.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_DebugCounter_cpp = Module["__GLOBAL__sub_I_DebugCounter_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DebugCounter.cpp"].apply(null, arguments) };
-var dynCall_viii = Module["dynCall_viii"] = function() { return Module["asm"]["dynCall_viii"].apply(null, arguments) };
-var __GLOBAL__sub_I_MIRCanonicalizerPass_cpp = Module["__GLOBAL__sub_I_MIRCanonicalizerPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MIRCanonicalizerPass.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_AssumptionCache_cpp = Module["__GLOBAL__sub_I_AssumptionCache_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AssumptionCache.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LegalizeTypes_cpp = Module["__GLOBAL__sub_I_LegalizeTypes_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LegalizeTypes.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_InstrProfiling_cpp = Module["__GLOBAL__sub_I_InstrProfiling_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InstrProfiling.cpp"].apply(null, arguments) };
-var ____errno_location = Module["____errno_location"] = function() { return Module["asm"]["___errno_location"].apply(null, arguments) };
-var __GLOBAL__sub_I_Statistic_cpp = Module["__GLOBAL__sub_I_Statistic_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_Statistic.cpp"].apply(null, arguments) };
-var ___trunctfsf2 = Module["___trunctfsf2"] = function() { return Module["asm"]["__trunctfsf2"].apply(null, arguments) };
-var dynCall_viiiiiiiiiii = Module["dynCall_viiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiii"].apply(null, arguments) };
-var dynCall_ii = Module["dynCall_ii"] = function() { return Module["asm"]["dynCall_ii"].apply(null, arguments) };
-var __GLOBAL__sub_I_MetadataLoader_cpp = Module["__GLOBAL__sub_I_MetadataLoader_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_MetadataLoader.cpp"].apply(null, arguments) };
-var ___subtf3 = Module["___subtf3"] = function() { return Module["asm"]["__subtf3"].apply(null, arguments) };
-var __GLOBAL__sub_I_ShrinkWrap_cpp = Module["__GLOBAL__sub_I_ShrinkWrap_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ShrinkWrap.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopUnrollPass_cpp = Module["__GLOBAL__sub_I_LoopUnrollPass_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnrollPass.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_InstrProf_cpp = Module["__GLOBAL__sub_I_InstrProf_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InstrProf.cpp"].apply(null, arguments) };
-var __malloc = Module["__malloc"] = function() { return Module["asm"]["_malloc"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopPredication_cpp = Module["__GLOBAL__sub_I_LoopPredication_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopPredication.cpp"].apply(null, arguments) };
-var dynCall_viiiiii = Module["dynCall_viiiiii"] = function() { return Module["asm"]["dynCall_viiiiii"].apply(null, arguments) };
-var dynCall_viiiiiiiii = Module["dynCall_viiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiii"].apply(null, arguments) };
+var __ZNK4llvm6DIELoc5printERNS_11raw_ostreamE = Module["__ZNK4llvm6DIELoc5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm6DIELoc5printERNS_11raw_ostreamE"].apply(null, arguments) };
 var __GLOBAL__sub_I_ARMAttributeParser_cpp = Module["__GLOBAL__sub_I_ARMAttributeParser_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ARMAttributeParser.cpp"].apply(null, arguments) };
+var __ZNK4llvm14MachineOperand4dumpEv = Module["__ZNK4llvm14MachineOperand4dumpEv"] = function() { return Module["asm"]["_ZNK4llvm14MachineOperand4dumpEv"].apply(null, arguments) };
+var ___lshrti3 = Module["___lshrti3"] = function() { return Module["asm"]["__lshrti3"].apply(null, arguments) };
+var __GLOBAL__sub_I_TypeDumpVisitor_cpp = Module["__GLOBAL__sub_I_TypeDumpVisitor_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_TypeDumpVisitor.cpp"].apply(null, arguments) };
+var __ZNK4llvm8DIELabel5printERNS_11raw_ostreamE = Module["__ZNK4llvm8DIELabel5printERNS_11raw_ostreamE"] = function() { return Module["asm"]["_ZNK4llvm8DIELabel5printERNS_11raw_ostreamE"].apply(null, arguments) };
+var dynCall_viii = Module["dynCall_viii"] = function() { return Module["asm"]["dynCall_viii"].apply(null, arguments) };
+var __GLOBAL__sub_I_InstrProfiling_cpp = Module["__GLOBAL__sub_I_InstrProfiling_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_InstrProfiling.cpp"].apply(null, arguments) };
+var __ZNK5clang7CodeGen14CGBitFieldInfo4dumpEv = Module["__ZNK5clang7CodeGen14CGBitFieldInfo4dumpEv"] = function() { return Module["asm"]["_ZNK5clang7CodeGen14CGBitFieldInfo4dumpEv"].apply(null, arguments) };
+var __GLOBAL__sub_I_ShrinkWrap_cpp = Module["__GLOBAL__sub_I_ShrinkWrap_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ShrinkWrap.cpp"].apply(null, arguments) };
+var __ZN5clang20LayoutOverrideSource4dumpEv = Module["__ZN5clang20LayoutOverrideSource4dumpEv"] = function() { return Module["asm"]["_ZN5clang20LayoutOverrideSource4dumpEv"].apply(null, arguments) };
 var __GLOBAL__sub_I_DataFlowSanitizer_cpp = Module["__GLOBAL__sub_I_DataFlowSanitizer_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_DataFlowSanitizer.cpp"].apply(null, arguments) };
-var ___cxa_can_catch = Module["___cxa_can_catch"] = function() { return Module["asm"]["__cxa_can_catch"].apply(null, arguments) };
-var __GLOBAL__sub_I_ValueTracking_cpp = Module["__GLOBAL__sub_I_ValueTracking_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ValueTracking.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_ScheduleDAGRRList_cpp = Module["__GLOBAL__sub_I_ScheduleDAGRRList_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_ScheduleDAGRRList.cpp"].apply(null, arguments) };
-var __GLOBAL__sub_I_AddDiscriminators_cpp = Module["__GLOBAL__sub_I_AddDiscriminators_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_AddDiscriminators.cpp"].apply(null, arguments) };
-var ___lttf2 = Module["___lttf2"] = function() { return Module["asm"]["__lttf2"].apply(null, arguments) };
-var __GLOBAL__sub_I_LoopUnrollPeel_cpp = Module["__GLOBAL__sub_I_LoopUnrollPeel_cpp"] = function() { return Module["asm"]["_GLOBAL__sub_I_LoopUnrollPeel.cpp"].apply(null, arguments) };
 ;
 
 STACKTOP = STACK_BASE + TOTAL_STACK;
