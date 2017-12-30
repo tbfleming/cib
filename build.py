@@ -133,7 +133,7 @@ def bash():
 
 def format():
     run('clang-format -i src/*.cpp')
-    run('chmod a-x src/*.cpp src/*.js src/*.html src/*.txt')
+    run('chmod a-x *.md .gitignore src/*.cpp src/*.js src/*.html src/*.txt')
 
 def clone():
     for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:

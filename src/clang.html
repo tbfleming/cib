@@ -123,23 +123,22 @@
     <script src="monaco-editor/min/vs/loader.js"></script>
     <script type='text/javascript' src='process-manager.js'></script>
     <script type='text/javascript'>
-        let exampleCode = `#include <algorithm>
-#include <stdio.h>
+        let exampleCode = `// clang runs in the browser and compiles C++
+// to WebAssembly, which the browser then runs.
+// See https://github.com/tbfleming/cib for known issues.
 
+#include <algorithm>
+#include <array>
+#include <stdio.h>
 using namespace std;
 
 int main() {
-    const char* strs[] = {
-        "but this demo is real.",
-        "3", "2", "📜", "1", "4",
-        "The 🍰 is a lie,"};
+    auto strs = array<const char*, 6>{"3", "2", "1", "4", "but this demo is real.", "The 🍰 is a lie,"};
     sort(begin(strs), end(strs), [](auto a, auto b) {
         return strcmp(a, b) < 0;
     });
     for (auto s: strs)
         puts(s);
-    for (int i = 0; i < 256; ++i)
-        printf("hex:%02x dec:%3d\\n", i, i);
 }
 `
 

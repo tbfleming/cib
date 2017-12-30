@@ -1,15 +1,22 @@
-## Clang tools In Browser (cib)
+## Clang In Browser (cib)
 
 Try it at https://tbfleming.github.io/cib/
 
 I'm trying to see how far wasm can go. Is it possible to compile clang to wasm and have it generate code within the browser?
 
 Current status:
+* Works in Firefox 57 and Chrome 63
 * ```clang-format```: working
 * ```clang```: working for simple cases
 * Running generated wasm: working for simple cases
 
-## VM for building WASM binaries
+Currently missing:
+* Global constructors and destructors
+* operator new() (aka ```_Znwj```)
+* Most non-inline standard library functions
+* Standard library globals (e.g. ```cin```, ```cout```)
+
+## VM for building clang
 
 * Create a fresh VM to build with. The build will probably fail if you already have emscripten or clang installed.
 * Consider using a high thread-count VM; e.g. an EC2 c5.9xlarge.
