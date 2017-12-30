@@ -35,6 +35,7 @@
             background-color: black;
             color: white;
             font-family: 'Lucida Console', Monaco, monospace;
+            white-space: pre-wrap;
         }
 
         .controls {
@@ -122,23 +123,21 @@
     <script src="monaco-editor/min/vs/loader.js"></script>
     <script type='text/javascript' src='process-manager.js'></script>
     <script type='text/javascript'>
-        let exampleCode = `// Enter code here (C only for now)
-#include<alloca.h>
-#include<stdio.h>
+        let exampleCode = `#include <algorithm>
+#include <stdio.h>
 
-extern void* __info_stack_begin(void);
-extern void* __info_stack_end(void);
-extern void* __info_data_begin(void);
-extern void* __info_data_end(void);
+using namespace std;
 
 int main() {
-    void* dummy1 = alloca(0x100);
-    void* dummy2 = alloca(0x100);
-    void* dummy3 = alloca(0x100);
-    printf("stack:  [%p-%p), size:%04x\\n", __info_stack_begin(), __info_stack_end(), __info_stack_end() - __info_stack_begin());
-    printf("alloca: [%p-%p) [%p-%p) [%p-%p)\\n", dummy1, dummy1 + 0x100, dummy2, dummy2 + 0x100, dummy3, dummy3 + 0x100);
-    printf("data:   [%p-%p), size:%04x\\n", __info_data_begin(), __info_data_end(), __info_data_end() - __info_data_begin());
-
+    const char* strs[] = {
+        "but this demo is real.",
+        "3", "2", "📜", "1", "4",
+        "The 🍰 is a lie,"};
+    sort(begin(strs), end(strs), [](auto a, auto b) {
+        return strcmp(a, b) < 0;
+    });
+    for (auto s: strs)
+        puts(s);
     for (int i = 0; i < 256; ++i)
         printf("hex:%02x dec:%3d\\n", i, i);
 }

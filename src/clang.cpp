@@ -4,6 +4,7 @@
 #include "clang/Frontend/CompilerInstance.h"
 #include "clang/Frontend/FrontendDiagnostic.h"
 #include "clang/Frontend/TextDiagnosticBuffer.h"
+#include "clang/Lex/PreprocessorOptions.h"
 #include "llvm/Support/TargetSelect.h"
 
 using namespace llvm;
@@ -16,6 +17,8 @@ template <typename T, typename... A> IntrusiveRefCntPtr<T> make_intr(A&&... a) {
     return {new T{std::forward<A>(a)...}};
 }
 
+static auto triple = "wasm32-unknown-unknown-wasm";
+
 #ifndef FAKE_COMPILE
 extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
     llvm::InitializeAllTargets();
@@ -25,6 +28,11 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
 
     auto compiler = std::make_unique<CompilerInstance>();
     compiler->createDiagnostics();
+
+    CompilerInvocation::setLangDefaults(
+        compiler->getLangOpts(), InputKind{InputKind::CXX, InputKind::Source},
+        Triple{triple}, compiler->getPreprocessorOpts(),
+        LangStandard::lang_cxx2a);
 
     compiler->getFrontendOpts().Inputs.push_back(FrontendInputFile{
         inputFilename, InputKind{InputKind::CXX, InputKind::Source}});
@@ -48,14 +56,37 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
     sOpts.AddPath(STRX(LIB_PREFIX) "lib/libc/musl/arch/emscripten",
                   frontend::System, false, true);
 
+    compiler->getPreprocessorOpts().addMacroDef("__EMSCRIPTEN__");
+    compiler->getPreprocessorOpts().addMacroDef("__EMSCRIPTEN_major__=1");
+    compiler->getPreprocessorOpts().addMacroDef("__EMSCRIPTEN_minor__=37");
+    compiler->getPreprocessorOpts().addMacroDef("__EMSCRIPTEN_tiny__=27");
+    compiler->getPreprocessorOpts().addMacroDef("_LIBCPP_ABI_VERSION=2");
+    compiler->getPreprocessorOpts().addMacroDef("unix");
+    compiler->getPreprocessorOpts().addMacroDef("__unix");
+    compiler->getPreprocessorOpts().addMacroDef("__unix__");
+
     compiler->getCodeGenOpts().CodeModel = "default";
-    compiler->getCodeGenOpts().RelocationModel = "pic";
+    compiler->getCodeGenOpts().RelocationModel = "static";
     compiler->getCodeGenOpts().ThreadModel = "single";
     compiler->getCodeGenOpts().OptimizationLevel = 2; // -Os
     compiler->getCodeGenOpts().OptimizeSize = 1;      // -Os
+    compiler->getLangOpts().Optimize = 1;
+    compiler->getLangOpts().OptimizeSize = 1;
 
-    compiler->getTargetOpts().Triple = "wasm32-unknown-unknown-wasm";
-    compiler->getTargetOpts().HostTriple = "wasm32-unknown-unknown-wasm";
+    compiler->getLangOpts().DollarIdents = false;
+    compiler->getLangOpts().Exceptions = true;
+    compiler->getLangOpts().CXXExceptions = true;
+    compiler->getLangOpts().CoroutinesTS = true;
+    compiler->getLangOpts().DoubleSquareBracketAttributes = true;
+    compiler->getLangOpts().WCharIsSigned = true;
+    compiler->getLangOpts().ConceptsTS = true;
+    compiler->getLangOpts().MathErrno = false;
+    compiler->getLangOpts().Deprecated = true;
+    compiler->getLangOpts().setValueVisibilityMode(HiddenVisibility);
+    compiler->getLangOpts().setTypeVisibilityMode(HiddenVisibility);
+
+    compiler->getTargetOpts().Triple = triple;
+    compiler->getTargetOpts().HostTriple = triple;
 
     auto act = std::make_unique<EmitObjAction>();
     return compiler->ExecuteAction(*act);
