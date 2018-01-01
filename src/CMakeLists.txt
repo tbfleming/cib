@@ -78,7 +78,7 @@ add_compile_options(-std=c++17)
 add_executable (combine-data combine-data.cpp)
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp)
-add_executable (runtime runtime.cpp)
+add_executable (runtime runtime.cpp cxa_new_delete.cpp)
 
 target_include_directories(clang-format PRIVATE ${LLVM_INCLUDE})
 target_link_libraries(clang-format PRIVATE ${LLVM_LIBRARIES})

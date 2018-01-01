@@ -128,17 +128,16 @@
 // See https://github.com/tbfleming/cib for known issues.
 
 #include <algorithm>
-#include <array>
 #include <stdio.h>
+#include <string>
+#include <vector>
 using namespace std;
 
 int main() {
-    auto strs = array<const char*, 6>{"3", "2", "1", "4", "but this demo is real.", "The 🍰 is a lie,"};
-    sort(begin(strs), end(strs), [](auto a, auto b) {
-        return strcmp(a, b) < 0;
-    });
+    auto strs = vector{"3"s, "2"s, "1"s, "4"s, "but this demo is real."s, "The 🍰 is a lie,"s};
+    sort(begin(strs), end(strs));
     for (auto s: strs)
-        puts(s);
+        puts(s.c_str());
 }
 `
 

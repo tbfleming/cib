@@ -2,8 +2,8 @@
 
 import argparse, os, subprocess, sys
 
-useTag = 'cib-002'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-002'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
 
 useFastcomp = False
 
@@ -119,7 +119,7 @@ def getOutput(args):
 
 repos = [
     ('repos/llvm', 'git@github.com:tbfleming/cib-llvm.git', 'git@github.com:llvm-mirror/llvm.git', True, 'master', 'cib'),
-    ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git', 'git@github.com:llvm-mirror/clang.git', True, 'master', 'master'),
+    ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git', 'git@github.com:llvm-mirror/clang.git', True, 'master', 'cib'),
     ('repos/llvm/tools/lld', 'git@github.com:tbfleming/cib-lld.git', 'git@github.com:llvm-mirror/lld.git', True, 'master', 'master'),
     # ('repos/fastcomp', 'git@github.com:tbfleming/cib-emscripten-fastcomp.git', 'git@github.com:kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
     # ('repos/fastcomp/tools/clang', 'git@github.com:tbfleming/cib-emscripten-fastcomp-clang.git', 'git@github.com:kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),

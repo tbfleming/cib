@@ -12,9 +12,8 @@ Current status:
 
 Currently missing:
 * Global constructors and destructors
-* operator new() (aka ```_Znwj```)
-* Most non-inline standard library functions
 * Standard library globals (e.g. ```cin```, ```cout```)
+* RTTI, exception handling
 
 ## VM for building clang
 
