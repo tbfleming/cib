@@ -114,7 +114,8 @@ let emModule = {
         try {
             this.instanciating = true;
             await setStatusAsync('init', 'Instanciating ' + this.moduleName + '.wasm');
-            imports.env.__environ = emModule._environ; // It looks like emscripten forgot to set this
+            imports.env.__environ = emModule._environ; // emscripten sometimes forgots to set some things
+            imports.env.__dso_handle = imports.env.__dso_handle || emModule.___dso_handle;
             this.wasmInstance = await WebAssembly.instantiate(this.wasmModule, imports);
             this.instanciating = false;
             await setStatusAsync('init', 'Initializing');

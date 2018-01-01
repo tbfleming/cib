@@ -29,8 +29,14 @@ commands.run = async function ({ wasmBinary }) {
         let newBinary = replaceSections(binary, standardSections, bodies, dataSegments, globals, memoryBase, tableBase);
         //postMessage({ function: 'workerDebugReplaceBinary', newBinary });
 
+        let adjustedImports = {};
+        for(let name in emModule.asmLibraryArg)
+            if(name.substr(0,3) === '___')
+                adjustedImports[name.substr(1)] = emModule.asmLibraryArg[name];
         let imports = {
             env: {
+                ...adjustedImports,
+                ...emModule.asmLibraryArg,
                 ...mainExports,
                 __linear_memory: memory,
                 __indirect_function_table: table,
