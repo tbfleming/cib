@@ -166,8 +166,20 @@ struct Global {
     uint32_t initU32{};
 };
 
+struct Export {
+    std::string_view name{};
+    uint8_t kind{};
+    uint32_t index{};
+};
+
+struct Element {
+    bool valid{};
+    uint32_t fIndex{};
+};
+
 struct Module {
-    Section sections[num_sections];
+    std::vector<uint8_t> binary;
+    Section sections[num_sections]{};
     CustomSection linking{};
     std::vector<CustomSection> reloc{};
 
@@ -178,6 +190,8 @@ struct Module {
     std::vector<FunctionType> functionTypes{};
     uint32_t numImportedFunctions{};
     std::vector<Function> functions{};
+    std::vector<Export> exports{};
+    std::vector<Element> elements{};
 };
 
 inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
@@ -190,23 +204,22 @@ inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
     return {true, max_present, initial, maximum};
 }
 
-inline void read_sec_type(Module& module, const std::vector<uint8_t>& binary,
-                          size_t& pos, size_t sEnd) {
+inline void read_sec_type(Module& module, size_t& pos, size_t sEnd) {
     printf("type\n");
-    auto count = readLeb(binary, pos);
+    auto count = readLeb(module.binary, pos);
     for (uint32_t i = 0; i < count; ++i) {
         FunctionType functionType;
-        check(binary[pos++] == type_func, "invalid form in type");
+        check(module.binary[pos++] == type_func, "invalid form in type");
         printf("    [%03d] type (", i);
-        auto param_count = readLeb(binary, pos);
+        auto param_count = readLeb(module.binary, pos);
         for (uint32_t j = 0; j < param_count; ++j) {
-            functionType.argTypes.push_back(binary[pos++]);
+            functionType.argTypes.push_back(module.binary[pos++]);
             printf("%s ", type_str(functionType.argTypes.back()));
         }
         printf(") ==> (");
-        auto return_count = readLeb(binary, pos);
+        auto return_count = readLeb(module.binary, pos);
         for (uint32_t j = 0; j < return_count; ++j) {
-            functionType.returnTypes.push_back(binary[pos++]);
+            functionType.returnTypes.push_back(module.binary[pos++]);
             printf("%s ", type_str(functionType.returnTypes.back()));
         }
         check(functionType.returnTypes.size() <= 1, "multiple return types");
@@ -215,17 +228,16 @@ inline void read_sec_type(Module& module, const std::vector<uint8_t>& binary,
     }
 }
 
-inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
-                            size_t& pos, size_t sEnd) {
+inline void read_sec_import(Module& module, size_t& pos, size_t sEnd) {
     printf("import\n");
-    auto count = readLeb(binary, pos);
+    auto count = readLeb(module.binary, pos);
     for (uint32_t i = 0; i < count; ++i) {
-        auto moduleName = readStr(binary, pos);
-        auto fieldName = readStr(binary, pos);
-        auto kind = binary[pos++];
+        auto moduleName = readStr(module.binary, pos);
+        auto fieldName = readStr(module.binary, pos);
+        auto kind = module.binary[pos++];
         switch (kind) {
         case external_function: {
-            auto type = readLeb(binary, pos);
+            auto type = readLeb(module.binary, pos);
             check(type < module.functionTypes.size(),
                   "function type doesn't exist");
             printf("    [%03zu] func   %s.%s type %d\n",
@@ -236,9 +248,10 @@ inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
             break;
         }
         case external_table: {
-            check(binary[pos++] == type_anyfunc, "import table is not anyfunc");
+            check(module.binary[pos++] == type_anyfunc,
+                  "import table is not anyfunc");
             check(!module.tables.size(), "multiple tables");
-            auto limits = read_resizable_limits(binary, pos);
+            auto limits = read_resizable_limits(module.binary, pos);
             printf("    [000] table  %s.%s max_present:%u initial:%u max:%u\n",
                    std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), limits.max_present,
@@ -248,7 +261,7 @@ inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
         }
         case external_memory: {
             check(!module.memories.size(), "multiple memories");
-            auto limits = read_resizable_limits(binary, pos);
+            auto limits = read_resizable_limits(module.binary, pos);
             printf("    [000] memory %s.%s max_present:%u initial:%u max:%u\n",
                    std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), limits.max_present,
@@ -257,12 +270,12 @@ inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
             break;
         }
         case external_global: {
-            auto value_type = binary[pos++];
+            auto value_type = module.binary[pos++];
             if (value_type != type_i32 && value_type != type_i64 &&
                 value_type != type_f32 && value_type != type_f64)
                 check(false, "invalid external value_type " +
                                  std::to_string(value_type));
-            auto mutability = binary[pos++];
+            auto mutability = module.binary[pos++];
             printf("    [%03zu] global %s.%s %s %s\n", module.globals.size(),
                    std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), type_str(value_type),
@@ -278,13 +291,11 @@ inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
     check(pos == sEnd, "import section malformed");
 } // read_sec_import
 
-inline void read_sec_function(Module& module,
-                              const std::vector<uint8_t>& binary, size_t& pos,
-                              size_t sEnd) {
+inline void read_sec_function(Module& module, size_t& pos, size_t sEnd) {
     printf("function\n");
-    auto count = readLeb(binary, pos);
+    auto count = readLeb(module.binary, pos);
     for (uint32_t i = 0; i < count; ++i) {
-        auto type = readLeb(binary, pos);
+        auto type = readLeb(module.binary, pos);
         check(type < module.functionTypes.size(),
               "function type doesn't exist");
         printf("    [%03zu] func type=%d\n", module.functions.size(), type);
@@ -293,39 +304,36 @@ inline void read_sec_function(Module& module,
     check(pos == sEnd, "function section malformed");
 } // read_sec_function
 
-inline void read_sec_table(Module& module, const std::vector<uint8_t>& binary,
-                           size_t& pos, size_t sEnd) {
-    check(binary[pos++] == type_anyfunc, "import table is not anyfunc");
+inline void read_sec_table(Module& module, size_t& pos, size_t sEnd) {
+    check(module.binary[pos++] == type_anyfunc, "import table is not anyfunc");
     check(!module.tables.size(), "multiple tables");
-    auto limits = read_resizable_limits(binary, pos);
+    auto limits = read_resizable_limits(module.binary, pos);
     printf("    [000] table  max_present:%u initial:%u max:%u\n",
            limits.max_present, limits.initial, limits.maximum);
     module.tables.push_back(limits);
     check(pos == sEnd, "table section malformed");
 }
 
-inline void read_sec_memory(Module& module, const std::vector<uint8_t>& binary,
-                            size_t& pos, size_t sEnd) {
+inline void read_sec_memory(Module& module, size_t& pos, size_t sEnd) {
     check(!module.memories.size(), "multiple memories");
-    auto limits = read_resizable_limits(binary, pos);
+    auto limits = read_resizable_limits(module.binary, pos);
     printf("    [000] memory max_present:%u initial:%u max:%u\n",
            limits.max_present, limits.initial, limits.maximum);
     module.memories.push_back(limits);
     check(pos == sEnd, "memory section malformed");
 }
 
-inline void read_sec_global(Module& module, const std::vector<uint8_t>& binary,
-                            size_t& pos, size_t sEnd) {
+inline void read_sec_global(Module& module, size_t& pos, size_t sEnd) {
     printf("global\n");
-    auto count = readLeb(binary, pos);
+    auto count = readLeb(module.binary, pos);
     for (uint32_t i = 0; i < count; ++i) {
-        auto value_type = binary[pos++];
+        auto value_type = module.binary[pos++];
         if (value_type != type_i32 && value_type != type_i64 &&
             value_type != type_f32 && value_type != type_f64)
             check(false,
                   "invalid global value_type " + std::to_string(value_type));
-        auto mutability = binary[pos++];
-        auto initU32 = getInitExpr32(binary, pos);
+        auto mutability = module.binary[pos++];
+        auto initU32 = getInitExpr32(module.binary, pos);
         printf("    [%03zu] global %s %s = %u\n", module.globals.size(),
                type_str(value_type), mutability ? "mut" : "", initU32);
         module.globals.push_back({value_type, initU32});
@@ -333,33 +341,82 @@ inline void read_sec_global(Module& module, const std::vector<uint8_t>& binary,
     check(pos == sEnd, "global section malformed");
 }
 
-inline void read_sec_export(Module&, const std::vector<uint8_t>& binary,
-                            size_t& pos, size_t sEnd) {}
-inline void read_sec_start(Module&, const std::vector<uint8_t>& binary,
-                           size_t& pos, size_t sEnd) {}
-inline void read_sec_elem(Module&, const std::vector<uint8_t>& binary,
-                          size_t& pos, size_t sEnd) {}
-inline void read_sec_code(Module&, const std::vector<uint8_t>& binary,
-                          size_t& pos, size_t sEnd) {}
-inline void read_sec_data(Module&, const std::vector<uint8_t>& binary,
-                          size_t& pos, size_t sEnd) {}
+inline void read_sec_export(Module& module, size_t& pos, size_t sEnd) {
+    printf("export\n");
+    auto count = readLeb(module.binary, pos);
+    for (uint32_t i = 0; i < count; ++i) {
+        auto name = readStr(module.binary, pos);
+        auto kind = module.binary[pos++];
+        auto index = readLeb(module.binary, pos);
+        if (kind == external_function) {
+            check(index >= module.numImportedFunctions &&
+                      index < module.functions.size(),
+                  "export has invalid function index");
+            module.exports.push_back({name, kind, index});
+            printf("    [%03u] func   %s\n", index, std::string{name}.c_str());
+        } else if (kind == external_global) {
+            check(index >= module.numImportedGlobals &&
+                      index < module.globals.size(),
+                  "export has invalid global index");
+            module.exports.push_back({name, kind, index});
+            printf("    [%03u] global %s\n", index, std::string{name}.c_str());
+        } else {
+            printf("    [---] skipped\n");
+        }
+    }
+    check(pos == sEnd, "export section malformed");
+}
 
-inline void read_sec_name(Module& module, const std::vector<uint8_t>& binary,
-                          size_t& pos, size_t sEnd) {
+inline void read_sec_start(Module& module, size_t& pos, size_t sEnd) {
+    check(false, "start section unsupported");
+}
+
+inline void read_sec_elem(Module& module, size_t& pos, size_t sEnd) {
+    printf("elem\n");
+    auto count = readLeb(module.binary, pos);
+    for (uint32_t i = 0; i < count; ++i) {
+        check(readLeb(module.binary, pos) == 0, "elem table index not 0");
+        auto offset = getInitExpr32(module.binary, pos);
+        auto num = readLeb(module.binary, pos);
+        for (uint32_t j = 0; j < num; ++j) {
+            auto eIndex = offset + j;
+            auto fIndex = readLeb(module.binary, pos);
+            check(fIndex < module.functions.size(),
+                  "elem has invalid function index");
+            printf("    [%03u] = [%03u] func\n", eIndex, fIndex);
+            if (eIndex >= module.elements.size())
+                module.elements.resize(eIndex + 1);
+            module.elements[eIndex] = {Element{true, fIndex}};
+        }
+    }
+    for (size_t i = 0; i < module.elements.size(); ++i)
+        if (!module.elements[i].valid)
+            check(false, "hole in table at index " + std::to_string(i));
+    check(pos == sEnd, "elem section malformed");
+}
+
+inline void read_sec_code(Module& module, size_t& pos, size_t sEnd) {
+    printf("code\n");
+}
+
+inline void read_sec_data(Module& module, size_t& pos, size_t sEnd) {
+    printf("data\n");
+}
+
+inline void read_sec_name(Module& module, size_t& pos, size_t sEnd) {
     while (pos < sEnd) {
-        auto type = binary[pos++];
-        auto subLen = readLeb(binary, pos);
+        auto type = module.binary[pos++];
+        auto subLen = readLeb(module.binary, pos);
         auto subEnd = pos + subLen;
         printf("    type %d\n", type);
         if (type == name_function) {
-            auto count = readLeb(binary, pos);
+            auto count = readLeb(module.binary, pos);
             for (uint32_t i = 0; i < count; ++i) {
-                auto index = readLeb(binary, pos);
-                auto name = readStr(binary, pos);
+                auto index = readLeb(module.binary, pos);
+                auto name = readStr(module.binary, pos);
                 printf("        %d %s\n", index, std::string{name}.c_str());
                 check(index < module.functions.size(),
                       "invalid function index in name");
-                module.functions[index].name = name;
             }
         } else {
             pos = subEnd;
@@ -368,62 +425,63 @@ inline void read_sec_name(Module& module, const std::vector<uint8_t>& binary,
     check(pos == sEnd, "name section malformed");
 }
 
-inline Module read_module(const std::vector<uint8_t>& binary) {
-    auto module = Module{};
-    check(binary.size() >= 8 && *(uint32_t*)(&binary[0]) == 0x6d736100,
+inline Module read_module(std::vector<uint8_t> bin) {
+    auto module = Module{std::move(bin)};
+    check(module.binary.size() >= 8 &&
+              *(uint32_t*)(&module.binary[0]) == 0x6d736100,
           "not a wasm file");
     auto pos = size_t{8};
-    auto end = binary.size();
+    auto end = module.binary.size();
     while (pos != end) {
-        auto id = binary[pos++];
+        auto id = module.binary[pos++];
         check(id < num_sections, "invalid section id");
-        auto payloadLen = readLeb(binary, pos);
+        auto payloadLen = readLeb(module.binary, pos);
         auto sEnd = pos + payloadLen;
-        check(sEnd <= binary.size(), "section extends past file end");
+        check(sEnd <= module.binary.size(), "section extends past file end");
         if (id) {
             module.sections[id] = {true, pos, sEnd};
             switch (id) {
             case wasm_sec_type:
-                read_sec_type(module, binary, pos, sEnd);
+                read_sec_type(module, pos, sEnd);
                 break;
             case wasm_sec_import:
-                read_sec_import(module, binary, pos, sEnd);
+                read_sec_import(module, pos, sEnd);
                 break;
             case wasm_sec_function:
-                read_sec_function(module, binary, pos, sEnd);
+                read_sec_function(module, pos, sEnd);
                 break;
             case wasm_sec_table:
-                read_sec_table(module, binary, pos, sEnd);
+                read_sec_table(module, pos, sEnd);
                 break;
             case wasm_sec_memory:
-                read_sec_memory(module, binary, pos, sEnd);
+                read_sec_memory(module, pos, sEnd);
                 break;
             case wasm_sec_global:
-                read_sec_global(module, binary, pos, sEnd);
+                read_sec_global(module, pos, sEnd);
                 break;
             case wasm_sec_export:
-                read_sec_export(module, binary, pos, sEnd);
+                read_sec_export(module, pos, sEnd);
                 break;
             case wasm_sec_start:
-                read_sec_start(module, binary, pos, sEnd);
+                read_sec_start(module, pos, sEnd);
                 break;
             case wasm_sec_elem:
-                read_sec_elem(module, binary, pos, sEnd);
+                read_sec_elem(module, pos, sEnd);
                 break;
             case wasm_sec_code:
-                read_sec_code(module, binary, pos, sEnd);
+                read_sec_code(module, pos, sEnd);
                 break;
             case wasm_sec_data:
-                read_sec_data(module, binary, pos, sEnd);
+                read_sec_data(module, pos, sEnd);
                 break;
             default:
                 check(false, "unknown section id");
             }
         } else {
-            auto name = readStr(binary, pos);
+            auto name = readStr(module.binary, pos);
             printf("%s\n", std::string{name}.c_str());
             if (name == "name") {
-                read_sec_name(module, binary, pos, sEnd);
+                // read_sec_name(module, pos, sEnd);
             } else if (name == "linking")
                 module.linking = CustomSection{true, name, pos, sEnd};
             else if (name.starts_with("reloc."))
