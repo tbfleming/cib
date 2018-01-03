@@ -149,17 +149,35 @@ struct FunctionType {
     std::vector<uint8_t> returnTypes{};
 };
 
+struct Function {
+    uint32_t type{};
+    std::string_view name{};
+};
+
 struct ResizableLimits {
+    bool valid{};
     bool max_present{};
     uint32_t initial{};
     uint32_t maximum{};
+};
+
+struct Global {
+    uint8_t type{};
+    uint32_t initU32{};
 };
 
 struct Module {
     Section sections[num_sections];
     CustomSection linking{};
     std::vector<CustomSection> reloc{};
+
+    std::vector<ResizableLimits> tables{};
+    std::vector<ResizableLimits> memories{};
+    uint32_t numImportedGlobals{};
+    std::vector<Global> globals{};
     std::vector<FunctionType> functionTypes{};
+    uint32_t numImportedFunctions{};
+    std::vector<Function> functions{};
 };
 
 inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
@@ -169,7 +187,7 @@ inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
     uint32_t maximum{};
     if (max_present)
         maximum = readLeb(binary, pos);
-    return {max_present, initial, maximum};
+    return {true, max_present, initial, maximum};
 }
 
 inline void read_sec_type(Module& module, const std::vector<uint8_t>& binary,
@@ -179,7 +197,7 @@ inline void read_sec_type(Module& module, const std::vector<uint8_t>& binary,
     for (uint32_t i = 0; i < count; ++i) {
         FunctionType functionType;
         check(binary[pos++] == type_func, "invalid form in type");
-        printf("    [%03d] func (", i);
+        printf("    [%03d] type (", i);
         auto param_count = readLeb(binary, pos);
         for (uint32_t j = 0; j < param_count; ++j) {
             functionType.argTypes.push_back(binary[pos++]);
@@ -210,21 +228,32 @@ inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
             auto type = readLeb(binary, pos);
             check(type < module.functionTypes.size(),
                   "function type doesn't exist");
-            printf("    func %s.%s type %d\n", std::string{moduleName}.c_str(),
+            printf("    [%03zu] func   %s.%s type %d\n",
+                   module.functions.size(), std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), type);
+            ++module.numImportedFunctions;
+            module.functions.push_back({type});
             break;
         }
         case external_table: {
             check(binary[pos++] == type_anyfunc, "import table is not anyfunc");
+            check(!module.tables.size(), "multiple tables");
             auto limits = read_resizable_limits(binary, pos);
-            printf("    table  max_present:%u initial:%u max:%u\n",
-                   limits.max_present, limits.initial, limits.maximum);
+            printf("    [000] table  %s.%s max_present:%u initial:%u max:%u\n",
+                   std::string{moduleName}.c_str(),
+                   std::string{fieldName}.c_str(), limits.max_present,
+                   limits.initial, limits.maximum);
+            module.tables.push_back(limits);
             break;
         }
         case external_memory: {
+            check(!module.memories.size(), "multiple memories");
             auto limits = read_resizable_limits(binary, pos);
-            printf("    memory max_present:%u initial:%u max:%u\n",
-                   limits.max_present, limits.initial, limits.maximum);
+            printf("    [000] memory %s.%s max_present:%u initial:%u max:%u\n",
+                   std::string{moduleName}.c_str(),
+                   std::string{fieldName}.c_str(), limits.max_present,
+                   limits.initial, limits.maximum);
+            module.memories.push_back(limits);
             break;
         }
         case external_global: {
@@ -234,8 +263,12 @@ inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
                 check(false, "invalid external value_type " +
                                  std::to_string(value_type));
             auto mutability = binary[pos++];
-            printf("    global %s %s\n", type_str(value_type),
+            printf("    [%03zu] global %s.%s %s %s\n", module.globals.size(),
+                   std::string{moduleName}.c_str(),
+                   std::string{fieldName}.c_str(), type_str(value_type),
                    mutability ? "mut" : "");
+            ++module.numImportedGlobals;
+            module.globals.push_back({value_type});
             break;
         }
         default:
@@ -245,14 +278,61 @@ inline void read_sec_import(Module& module, const std::vector<uint8_t>& binary,
     check(pos == sEnd, "import section malformed");
 } // read_sec_import
 
-inline void read_sec_function(Module&, const std::vector<uint8_t>& binary,
-                              size_t& pos, size_t sEnd) {}
-inline void read_sec_table(Module&, const std::vector<uint8_t>& binary,
-                           size_t& pos, size_t sEnd) {}
-inline void read_sec_memory(Module&, const std::vector<uint8_t>& binary,
-                            size_t& pos, size_t sEnd) {}
-inline void read_sec_global(Module&, const std::vector<uint8_t>& binary,
-                            size_t& pos, size_t sEnd) {}
+inline void read_sec_function(Module& module,
+                              const std::vector<uint8_t>& binary, size_t& pos,
+                              size_t sEnd) {
+    printf("function\n");
+    auto count = readLeb(binary, pos);
+    for (uint32_t i = 0; i < count; ++i) {
+        auto type = readLeb(binary, pos);
+        check(type < module.functionTypes.size(),
+              "function type doesn't exist");
+        printf("    [%03zu] func type=%d\n", module.functions.size(), type);
+        module.functions.push_back({type});
+    }
+    check(pos == sEnd, "function section malformed");
+} // read_sec_function
+
+inline void read_sec_table(Module& module, const std::vector<uint8_t>& binary,
+                           size_t& pos, size_t sEnd) {
+    check(binary[pos++] == type_anyfunc, "import table is not anyfunc");
+    check(!module.tables.size(), "multiple tables");
+    auto limits = read_resizable_limits(binary, pos);
+    printf("    [000] table  max_present:%u initial:%u max:%u\n",
+           limits.max_present, limits.initial, limits.maximum);
+    module.tables.push_back(limits);
+    check(pos == sEnd, "table section malformed");
+}
+
+inline void read_sec_memory(Module& module, const std::vector<uint8_t>& binary,
+                            size_t& pos, size_t sEnd) {
+    check(!module.memories.size(), "multiple memories");
+    auto limits = read_resizable_limits(binary, pos);
+    printf("    [000] memory max_present:%u initial:%u max:%u\n",
+           limits.max_present, limits.initial, limits.maximum);
+    module.memories.push_back(limits);
+    check(pos == sEnd, "memory section malformed");
+}
+
+inline void read_sec_global(Module& module, const std::vector<uint8_t>& binary,
+                            size_t& pos, size_t sEnd) {
+    printf("global\n");
+    auto count = readLeb(binary, pos);
+    for (uint32_t i = 0; i < count; ++i) {
+        auto value_type = binary[pos++];
+        if (value_type != type_i32 && value_type != type_i64 &&
+            value_type != type_f32 && value_type != type_f64)
+            check(false,
+                  "invalid global value_type " + std::to_string(value_type));
+        auto mutability = binary[pos++];
+        auto initU32 = getInitExpr32(binary, pos);
+        printf("    [%03zu] global %s %s = %u\n", module.globals.size(),
+               type_str(value_type), mutability ? "mut" : "", initU32);
+        module.globals.push_back({value_type, initU32});
+    }
+    check(pos == sEnd, "global section malformed");
+}
+
 inline void read_sec_export(Module&, const std::vector<uint8_t>& binary,
                             size_t& pos, size_t sEnd) {}
 inline void read_sec_start(Module&, const std::vector<uint8_t>& binary,
@@ -264,7 +344,7 @@ inline void read_sec_code(Module&, const std::vector<uint8_t>& binary,
 inline void read_sec_data(Module&, const std::vector<uint8_t>& binary,
                           size_t& pos, size_t sEnd) {}
 
-inline void read_sec_name(Module&, const std::vector<uint8_t>& binary,
+inline void read_sec_name(Module& module, const std::vector<uint8_t>& binary,
                           size_t& pos, size_t sEnd) {
     while (pos < sEnd) {
         auto type = binary[pos++];
@@ -277,6 +357,9 @@ inline void read_sec_name(Module&, const std::vector<uint8_t>& binary,
                 auto index = readLeb(binary, pos);
                 auto name = readStr(binary, pos);
                 printf("        %d %s\n", index, std::string{name}.c_str());
+                check(index < module.functions.size(),
+                      "invalid function index in name");
+                module.functions[index].name = name;
             }
         } else {
             pos = subEnd;
