@@ -352,6 +352,18 @@ def dist():
     run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
+def rtl():
+    if not os.path.isdir(rtlBuildDir):
+        run('mkdir -p ' + rtlBuildDir)
+        run('cd ' + rtlBuildDir + ' &&' +
+            ' cmake -G "Ninja"' +
+            ' -DLLVM_INSTALL=' + llvmBuild +
+            ' -DCMAKE_C_COMPILER=' + llvmBuild + 'bin/clang' +
+            ' -DCMAKE_CXX_COMPILER=' + llvmBuild + 'bin/clang++' +
+            ' ../../src/rtl')
+    run('cd ' + rtlBuildDir + ' && ninja')
+    #run('cd ' + rtlBuildDir + ' && ninja -v -j1 2>&1 | tee ../../x.txt')
+
 def app(name, buildType, buildDir, prepBuildDir=None):
     if not os.path.isdir(buildDir):
         run('mkdir -p ' + buildDir)
@@ -443,6 +455,7 @@ commands = [
     ('t', 'tools',          tools,          'store_true',   True,   "Build tools if not already built"),
     ('b', 'llvm-browser',   llvmBrowser,    'store_true',   True,   "Build llvm in-browser components"),
     ('d', 'dist',           dist,           'store_true',   True,   "Fill dist/"),
+    ('r', 'rtl',            rtl,            'store_true',   False,   "Build RTL"),
     ('1', 'app-1',          appClangFormat, 'store_true',   True,   "Build app 1: clang-format"),
     ('2', 'app-2',          appClang,       'store_true',   True,   "Build app 2: clang"),
     ('n', 'app-n',          appClangNative, 'store_true',   False,  "Build app 2: clang, native"),
