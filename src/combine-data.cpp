@@ -1,73 +1,7 @@
-#include <stdexcept>
-#include <stdint.h>
-#include <stdio.h>
-#include <vector>
+#include "wasm-tools.h"
 
 using namespace std;
-
-static const uint8_t wasm_sec_data = 11;
-
-struct File {
-    FILE* file;
-    File(const char* name, const char* mode) {
-        file = fopen(name, mode);
-        if (!file)
-            throw runtime_error{("can not open "s + name).c_str()};
-    }
-    ~File() { fclose(file); }
-
-    size_t size() {
-        fseek(file, 0, SEEK_END);
-        auto result = ftell(file);
-        fseek(file, 0, SEEK_SET);
-        return result;
-    }
-
-    auto read() {
-        auto s = size();
-        auto buffer = vector<uint8_t>(s);
-        if (fread(&buffer[0], s, 1, file) != 1)
-            throw runtime_error{"Read failed"};
-        return buffer;
-    }
-
-    void write(const vector<uint8_t>& buffer) {
-        if (fwrite(&buffer[0], buffer.size(), 1, file) != 1)
-            throw runtime_error{"Write failed"};
-    }
-};
-
-auto readLeb(const vector<uint8_t>& binary, size_t& pos) {
-    auto result = uint32_t{0};
-    auto shift = 0;
-    while (true) {
-        auto b = binary[pos++];
-        result |= (uint32_t{b} & 0x7f) << shift;
-        shift += 7;
-        if (!(b & 0x80))
-            return result;
-    }
-}
-
-void pushLeb5(vector<uint8_t>& binary, uint32_t value) {
-    binary.push_back(((value >> 0) & 0x7f) | 0x80);
-    binary.push_back(((value >> 7) & 0x7f) | 0x80);
-    binary.push_back(((value >> 14) & 0x7f) | 0x80);
-    binary.push_back(((value >> 21) & 0x7f) | 0x80);
-    binary.push_back(((value >> 28) & 0x1f) | 0);
-}
-
-void check(bool cond, const char* msg) {
-    if (!cond)
-        throw runtime_error(msg);
-}
-
-auto getInitExpr32(const vector<uint8_t>& binary, size_t& pos) {
-    check(binary[pos++] == 0x41, "init_expr is not i32.const");
-    auto offset = readLeb(binary, pos);
-    check(binary[pos++] == 0x0b, "init_expr missing end");
-    return offset;
-}
+using namespace WasmTools;
 
 auto transform(const vector<uint8_t>& binary) {
     if (binary.size() < 8 || *(uint32_t*)(&binary[0]) != 0x6d736100)

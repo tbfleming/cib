@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import argparse, os, subprocess, sys
+from urllib.parse import urlparse
 
-useTag = 'cib-003'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-003'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
 
 useFastcomp = False
 
@@ -31,6 +32,7 @@ binaryenBuild = root + 'build/binaryen-' + binaryenBuildType + '/'
 binaryenInstall = root + 'install/binaryen-' + binaryenBuildType + '/'
 wabtInstall = root + 'repos/wabt/bin/'
 optimizerBuild = root + 'build/optimizer-' + optimizerBuildType + '/'
+rtlBuildDir = root + 'build/rtl/'
 browserClangFormatBuild = root + 'build/clang-format-browser-' + browserClangFormatBuildType + '/'
 browserClangBuild = root + 'build/clang-browser-' + browserClangBuildType + '/'
 browserRuntimeBuild = root + 'build/runtime-browser-' + browserRuntimeBuildType + '/'
@@ -101,6 +103,7 @@ os.environ["PATH"] = os.pathsep.join([
 ])
 os.environ['BINARYEN'] = binaryenInstall
 os.environ['EMSCRIPTEN_NATIVE_OPTIMIZER'] = optimizerBuild + 'optimizer'
+os.environ['LD_LIBRARY_PATH'] = llvmInstall + 'lib'
 
 def run(args):
     print('build.py:', args)
@@ -117,10 +120,18 @@ def getOutput(args):
     print(result.stdout.decode("utf-8"), end='')
     return result.stdout
 
+def download(url):
+    if not os.path.exists('download/' + os.path.basename(urlparse(url).path)):
+        run('mkdir -p download')
+        run('cd download && wget ' + url)
+
 repos = [
     ('repos/llvm', 'git@github.com:tbfleming/cib-llvm.git', 'git@github.com:llvm-mirror/llvm.git', True, 'master', 'cib'),
     ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git', 'git@github.com:llvm-mirror/clang.git', True, 'master', 'cib'),
     ('repos/llvm/tools/lld', 'git@github.com:tbfleming/cib-lld.git', 'git@github.com:llvm-mirror/lld.git', True, 'master', 'master'),
+    ('repos/llvm/projects/compiler-rt', 'git@github.com:tbfleming/cib-compiler-rt.git', 'git@github.com:llvm-mirror/compiler-rt.git', True, 'master', 'master'),
+    ('repos/llvm/projects/libcxx', 'git@github.com:tbfleming/cib-libcxx.git', 'git@github.com:llvm-mirror/libcxx.git', True, 'master', 'master'),
+    ('repos/llvm/projects/libcxxabi', 'git@github.com:tbfleming/cib-libcxxabi.git', 'git@github.com:llvm-mirror/libcxxabi.git', True, 'master', 'master'),
     # ('repos/fastcomp', 'git@github.com:tbfleming/cib-emscripten-fastcomp.git', 'git@github.com:kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
     # ('repos/fastcomp/tools/clang', 'git@github.com:tbfleming/cib-emscripten-fastcomp-clang.git', 'git@github.com:kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),
     ('repos/emscripten', 'git@github.com:tbfleming/cib-emscripten.git', 'git@github.com:kripken/emscripten.git', True, 'incoming', 'cib'),
@@ -196,9 +207,7 @@ def push():
                 run('cd ' + path + ' && git push')
 
 def cmake():
-    if not os.path.exists('download/cmake-3.10.1.tar.gz'):
-        run('mkdir -p download')
-        run('cd download && wget https://cmake.org/files/v3.10/cmake-3.10.1.tar.gz')
+    download('https://cmake.org/files/v3.10/cmake-3.10.1.tar.gz')
     if not os.path.exists('build/cmake-3.10.1'):
         run('mkdir -p build')
         run('cd build && tar xf ../download/cmake-3.10.1.tar.gz')
@@ -218,7 +227,7 @@ def llvm():
     run('cd ' + llvmBuild + ' && time -p ninja')
     if not os.path.isdir(llvmInstall):
         run('mkdir -p ' + llvmInstall)
-        run('cd ' + llvmBuild + ' && time -p ninja ' + parallel + ' install')
+        run('cd ' + llvmBuild + ' && time -p ninja install install-cxx install-cxxabi install-compiler-rt')
 
 def fastcomp():
     if not os.path.isdir(fastcompBuild):
@@ -235,7 +244,7 @@ def fastcomp():
     run('cd ' + fastcompBuild + ' && time -p ninja')
     if not os.path.isdir(fastcompInstall):
         run('mkdir -p ' + fastcompInstall)
-        run('cd ' + fastcompBuild + ' && time -p ninja ' + parallel + ' install')
+        run('cd ' + fastcompBuild + ' && time -p ninja install')
 
 def llvmNo86():
     if not os.path.isdir(llvmNo86Build):
@@ -249,7 +258,7 @@ def llvmNo86():
     run('cd ' + llvmNo86Build + ' && time -p ninja')
     if not os.path.isdir(llvmNo86Install):
         run('mkdir -p ' + llvmNo86Install)
-        run('cd ' + llvmNo86Build + ' && time -p ninja ' + parallel + ' install')
+        run('cd ' + llvmNo86Build + ' && time -p ninja install')
 
 def wabt():
     if not os.path.isdir(wabtInstall):
@@ -265,7 +274,7 @@ def binaryen():
     run('cd ' + binaryenBuild + ' && time -p ninja')
     if not os.path.isdir(binaryenInstall):
         run('mkdir -p ' + binaryenInstall)
-        run('cd ' + binaryenBuild + ' && time -p ninja ' + parallel + ' install')
+        run('cd ' + binaryenBuild + ' && time -p ninja install')
 
 def emscripten():
     configFile = os.path.expanduser('~') + '/.emscripten'
@@ -274,7 +283,7 @@ def emscripten():
         run('cd ' + optimizerBuild + ' && time -p cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=' + optimizerBuildType +
             ' ' + root + 'repos/emscripten/tools/optimizer')
-    run('cd ' + optimizerBuild + ' && time -p ninja ' + parallel)
+    run('cd ' + optimizerBuild + ' && time -p ninja')
     if not os.path.exists(configFile):
         run('em++')
         with open(configFile, "a") as file:
@@ -290,7 +299,7 @@ def tools():
             ' cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=Debug' +
             ' ../../src')
-    run('cd build/tools && ninja combine-data')
+    run('cd build/tools && ninja cib-link combine-data')
 
 def llvmBrowser():
     if not os.path.isdir(llvmBrowserBuild):
@@ -302,6 +311,7 @@ def llvmBrowser():
             #' -s STACK_OVERFLOW_CHECK=2' +
             #' -s SAFE_HEAP=1' +
             '"' +
+            ' -DLIBCXXABI_LIBCXX_INCLUDES=' + llvmInstall + 'include/c++/v1' +
             #' -DLLVM_ENABLE_DUMP=ON' +
             ' -DLLVM_ENABLE_ASSERTIONS=ON' +
             #' -DLLVM_ENABLE_EXPENSIVE_CHECKS=ON' +
@@ -317,12 +327,10 @@ def llvmBrowser():
             ' -DLLVM_TABLEGEN=' + llvmInstall + 'bin/llvm-tblgen' +
             ' -DCLANG_TABLEGEN=' + llvmBuild + 'bin/clang-tblgen' +
             ' ' + root + 'repos/llvm')
-    run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + parallel + ' ' + ' '.join(llvmBrowserTargets))
+    run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + ' '.join(llvmBrowserTargets))
 
 def dist():
-    if not os.path.exists('download/monaco-editor-0.10.1.tgz'):
-        run('mkdir -p download')
-        run('cd download && wget https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.10.1.tgz')
+    download('https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.10.1.tgz')
     if not os.path.exists('download/monaco-editor-0.10.1'):
         run('mkdir -p download/monaco-editor-0.10.1')
         run('cd download/monaco-editor-0.10.1 && tar -xf ../monaco-editor-0.10.1.tgz')
@@ -331,8 +339,7 @@ def dist():
     run('cp -au download/monaco-editor-0.10.1/package/README.md dist/monaco-editor')
     run('cp -au download/monaco-editor-0.10.1/package/ThirdPartyNotices.txt dist/monaco-editor')
     run('cp -auv download/monaco-editor-0.10.1/package/min dist/monaco-editor')
-    if not os.path.exists('download/split.js-1.3.5.tgz'):
-        run('cd download && wget https://registry.npmjs.org/split.js/-/split.js-1.3.5.tgz')
+    download('https://registry.npmjs.org/split.js/-/split.js-1.3.5.tgz')
     if not os.path.exists('download/Split.js-1.3.5'):
         run('mkdir -p download/Split.js-1.3.5')
         run('cd download/Split.js-1.3.5 && tar -xf ../split.js-1.3.5.tgz')

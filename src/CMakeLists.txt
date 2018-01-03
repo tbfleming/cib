@@ -73,12 +73,19 @@ IF(EMSCRIPTEN)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s SAFE_HEAP=1 -s DEMANGLE_SUPPORT=1")
 ENDIF(EMSCRIPTEN)
 
-add_compile_options(-std=c++17)
+add_compile_options(-std=c++2a -fcolor-diagnostics -Wall -Wextra -Wpedantic -Wno-unused-parameter)
 
+add_executable (cib-link cib-link.cpp)
 add_executable (combine-data combine-data.cpp)
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp)
 add_executable (runtime runtime.cpp cxa_new_delete.cpp)
+
+target_compile_options(cib-link PRIVATE -stdlib=libc++)
+target_link_libraries(cib-link PRIVATE -stdlib=libc++)
+
+target_compile_options(combine-data PRIVATE -stdlib=libc++)
+target_link_libraries(combine-data PRIVATE -stdlib=libc++)
 
 target_include_directories(clang-format PRIVATE ${LLVM_INCLUDE})
 target_link_libraries(clang-format PRIVATE ${LLVM_LIBRARIES})
