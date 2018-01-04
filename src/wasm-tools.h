@@ -1,3 +1,4 @@
+#include <map>
 #include <stdexcept>
 #include <stdint.h>
 #include <stdio.h>
@@ -44,6 +45,11 @@ inline const uint8_t r_webassembly_memory_addr_sleb = 4;
 inline const uint8_t r_webassembly_memory_addr_i32 = 5;
 inline const uint8_t r_webassembly_type_index_leb = 6;
 inline const uint8_t r_webassembly_global_index_leb = 7;
+
+inline const uint8_t wasm_symbol_info = 0x2;
+inline const uint8_t wasm_data_size = 0x3;
+inline const uint8_t wasm_data_alignment = 0x4;
+inline const uint8_t wasm_segment_info = 0x5;
 
 auto type_str(uint8_t type) {
     switch (type) {
@@ -153,6 +159,12 @@ struct CustomSection {
     size_t end{};
 };
 
+struct Import {
+    std::string_view name{};
+    uint8_t kind{};
+    uint32_t index{};
+};
+
 struct FunctionType {
     std::vector<uint8_t> argTypes{};
     std::vector<uint8_t> returnTypes{};
@@ -160,7 +172,6 @@ struct FunctionType {
 
 struct Function {
     uint32_t type{};
-    std::string_view name{};
 };
 
 struct ResizableLimits {
@@ -200,12 +211,17 @@ struct Reloc {
     uint32_t addend{};
 };
 
+struct Symbol {
+    uint32_t flags{};
+    std::vector<uint32_t> imports{};
+    std::vector<uint32_t> exports{};
+    bool inLinking{};
+};
+
 struct Module {
     std::vector<uint8_t> binary;
     Section sections[num_sections]{};
-    CustomSection linking{};
-    std::vector<CustomSection> reloc{};
-
+    std::vector<Import> imports{};
     std::vector<ResizableLimits> tables{};
     std::vector<ResizableLimits> memories{};
     uint32_t numImportedGlobals{};
@@ -217,6 +233,8 @@ struct Module {
     std::vector<Element> elements{};
     std::vector<DataSegment> dataSegments{};
     std::vector<Reloc> relocs{};
+    std::map<std::string_view, Symbol> symbols{};
+    uint32_t dataSize{};
 };
 
 inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
@@ -269,6 +287,10 @@ inline void read_sec_import(Module& module, size_t& pos, size_t sEnd) {
                    module.functions.size(), std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), type);
             ++module.numImportedFunctions;
+            module.symbols[fieldName].imports.push_back(
+                uint32_t(module.imports.size()));
+            module.imports.push_back(
+                Import{fieldName, kind, (uint32_t)module.functions.size()});
             module.functions.push_back({type});
             break;
         }
@@ -281,6 +303,10 @@ inline void read_sec_import(Module& module, size_t& pos, size_t sEnd) {
                    std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), limits.max_present,
                    limits.initial, limits.maximum);
+            module.symbols[fieldName].imports.push_back(
+                uint32_t(module.imports.size()));
+            module.imports.push_back(
+                Import{fieldName, kind, (uint32_t)module.tables.size()});
             module.tables.push_back(limits);
             break;
         }
@@ -291,6 +317,10 @@ inline void read_sec_import(Module& module, size_t& pos, size_t sEnd) {
                    std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), limits.max_present,
                    limits.initial, limits.maximum);
+            module.symbols[fieldName].imports.push_back(
+                uint32_t(module.imports.size()));
+            module.imports.push_back(
+                Import{fieldName, kind, (uint32_t)module.memories.size()});
             module.memories.push_back(limits);
             break;
         }
@@ -302,6 +332,10 @@ inline void read_sec_import(Module& module, size_t& pos, size_t sEnd) {
                    std::string{moduleName}.c_str(),
                    std::string{fieldName}.c_str(), mutability ? "mut" : "");
             ++module.numImportedGlobals;
+            module.symbols[fieldName].imports.push_back(
+                uint32_t(module.imports.size()));
+            module.imports.push_back(
+                Import{fieldName, kind, (uint32_t)module.globals.size()});
             module.globals.push_back({fieldName == "__stack_pointer"});
             break;
         }
@@ -369,12 +403,16 @@ inline void read_sec_export(Module& module, size_t& pos, size_t sEnd) {
             check(index >= module.numImportedFunctions &&
                       index < module.functions.size(),
                   "export has invalid function index");
+            module.symbols[name].exports.push_back(
+                uint32_t(module.exports.size()));
             module.exports.push_back({name, kind, index});
             printf("    [%03u] func   %s\n", index, std::string{name}.c_str());
         } else if (kind == external_global) {
             check(index >= module.numImportedGlobals &&
                       index < module.globals.size(),
                   "export has invalid global index");
+            module.symbols[name].exports.push_back(
+                uint32_t(module.exports.size()));
             module.exports.push_back({name, kind, index});
             printf("    [%03u] global %s\n", index, std::string{name}.c_str());
         } else {
@@ -480,6 +518,46 @@ inline void read_reloc(Module& module, std::string_view name, size_t& pos,
     check(pos == sEnd, "reloc section malformed");
 }
 
+inline void read_linking(Module& module, size_t& pos, size_t sEnd) {
+    printf("linking\n");
+    while (pos < sEnd) {
+        auto type = module.binary[pos++];
+        readLeb(module.binary, pos); // len
+        if (type == wasm_symbol_info) {
+            auto count = readLeb(module.binary, pos);
+            for (uint32_t i = 0; i < count; ++i) {
+                auto name = readStr(module.binary, pos);
+                auto flags = readLeb(module.binary, pos);
+                printf("    symbol  %s flags=%d\n", std::string{name}.c_str(),
+                       flags);
+                auto& symbol = module.symbols[name];
+                symbol.flags = flags;
+                symbol.inLinking = true;
+            }
+        } else if (type == wasm_data_size) {
+            module.dataSize = readLeb(module.binary, pos);
+            printf("    dataSize: %d\n", module.dataSize);
+        } else if (type == wasm_segment_info) {
+            auto count = readLeb(module.binary, pos);
+            for (uint32_t i = 0; i < count; ++i) {
+                auto name = readStr(module.binary, pos);
+                auto alignment = readLeb(module.binary, pos);
+                auto flags = readLeb(module.binary, pos);
+                printf("    segment %s alignment=%d flags=%d\n",
+                       std::string{name}.c_str(), alignment, flags);
+            }
+        } else {
+            check(false,
+                  "unhandled linking subsection " + std::to_string(type));
+        }
+    }
+    check(pos == sEnd, "linking section malformed");
+    for (auto& [name, symbol] : module.symbols)
+        if (!symbol.inLinking && !symbol.exports.empty())
+            check(false, "symbol " + std::string{name} +
+                             " is exported, but not in linking section");
+}
+
 inline Module read_module(std::vector<uint8_t> bin) {
     auto module = Module{std::move(bin)};
     check(module.binary.size() >= 8 &&
@@ -537,7 +615,7 @@ inline Module read_module(std::vector<uint8_t> bin) {
             if (name.starts_with("reloc."))
                 read_reloc(module, name, pos, sEnd);
             else if (name == "linking")
-                module.linking = CustomSection{true, name, pos, sEnd};
+                read_linking(module, pos, sEnd);
         }
         pos = sEnd;
     }
