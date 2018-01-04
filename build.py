@@ -373,7 +373,8 @@ def appClang():
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
     app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
-    run('cd ' + browserClangBuild + ' && ../tools/combine-data clang.wasm clang-combined.wasm')
+    run('cd ' + browserClangBuild + ' && wasm-opt -Os clang.wasm -o clang-opt.wasm')
+    run('cd ' + browserClangBuild + ' && ../tools/combine-data clang-opt.wasm clang-combined.wasm')
     run('cp -au ' + browserClangBuild + 'clang.js ' + browserClangBuild + 'clang.data dist')
     run('cp -au ' + browserClangBuild + 'clang-combined.wasm dist/clang.wasm')
 
