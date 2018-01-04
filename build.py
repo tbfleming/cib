@@ -118,14 +118,14 @@ def getOutput(args):
     return result.stdout
 
 repos = [
-    ('repos/llvm', 'git@github.com:tbfleming/cib-llvm.git', 'git@github.com:llvm-mirror/llvm.git', True, 'master', 'cib'),
-    ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git', 'git@github.com:llvm-mirror/clang.git', True, 'master', 'cib'),
-    ('repos/llvm/tools/lld', 'git@github.com:tbfleming/cib-lld.git', 'git@github.com:llvm-mirror/lld.git', True, 'master', 'master'),
-    # ('repos/fastcomp', 'git@github.com:tbfleming/cib-emscripten-fastcomp.git', 'git@github.com:kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
-    # ('repos/fastcomp/tools/clang', 'git@github.com:tbfleming/cib-emscripten-fastcomp-clang.git', 'git@github.com:kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),
-    ('repos/emscripten', 'git@github.com:tbfleming/cib-emscripten.git', 'git@github.com:kripken/emscripten.git', True, 'incoming', 'cib'),
-    ('repos/wabt', 'git@github.com:WebAssembly/wabt.git', 'git@github.com:WebAssembly/wabt.git', False, 'master', 'master'),
-    ('repos/binaryen', 'git@github.com:tbfleming/cib-binaryen.git', 'git@github.com:WebAssembly/binaryen.git', True, 'master', 'cib'),
+    ('repos/llvm', 'https://github.com/tbfleming/cib-llvm.git', 'https://github.com/llvm-mirror/llvm.git', True, 'master', 'cib'),
+    ('repos/llvm/tools/clang', 'https://github.com/tbfleming/cib-clang.git', 'https://github.com/llvm-mirror/clang.git', True, 'master', 'cib'),
+    ('repos/llvm/tools/lld', 'https://github.com/tbfleming/cib-lld.git', 'https://github.com/llvm-mirror/lld.git', True, 'master', 'master'),
+    # ('repos/fastcomp', 'https://github.com/tbfleming/cib-emscripten-fastcomp.git', 'https://github.com/kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
+    # ('repos/fastcomp/tools/clang', 'https://github.com/tbfleming/cib-emscripten-fastcomp-clang.git', 'https://github.com/kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),
+    ('repos/emscripten', 'https://github.com/tbfleming/cib-emscripten.git', 'https://github.com/kripken/emscripten.git', True, 'incoming', 'cib'),
+    ('repos/wabt', 'https://github.com/WebAssembly/wabt.git', 'https://github.com/WebAssembly/wabt.git', False, 'master', 'master'),
+    ('repos/binaryen', 'https://github.com/tbfleming/cib-binaryen.git', 'https://github.com/WebAssembly/binaryen.git', True, 'master', 'cib'),
 ]
 
 def bash():
