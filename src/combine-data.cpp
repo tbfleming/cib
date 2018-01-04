@@ -59,7 +59,7 @@ int main(int argc, const char* argv[]) {
         }
         auto binary = File{argv[1], "rb"}.read();
         auto result = transform(binary);
-        File{argv[2], "w"}.write(result);
+        File{argv[2], "wb"}.write(result);
     } catch (exception& e) {
         printf("error: %s\n", e.what());
         return 1;
