@@ -14,7 +14,7 @@ fastcompBuildType = 'RelWithDebInfo'
 binaryenBuildType = 'RelWithDebInfo'
 optimizerBuildType = 'RelWithDebInfo'
 browserClangFormatBuildType = 'Release'
-browserClangBuildType = 'Debug'
+browserClangBuildType = 'Release'
 browserRuntimeBuildType = 'Debug'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'

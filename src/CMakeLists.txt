@@ -70,7 +70,7 @@ set(LLVM_LIBRARIES
 
 IF(EMSCRIPTEN)
     # https://gitlab.kitware.com/cmake/cmake/issues/15826
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s SAFE_HEAP=1 -s DEMANGLE_SUPPORT=1")
+    # SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s SAFE_HEAP=1 -s DEMANGLE_SUPPORT=1")
 ENDIF(EMSCRIPTEN)
 
 add_compile_options(-std=c++17)
@@ -89,11 +89,11 @@ target_link_libraries(clang PRIVATE ${LLVM_LIBRARIES})
 IF(EMSCRIPTEN)
     target_link_libraries(clang-format PRIVATE
         "-s MODULARIZE=1"
-        "-s SAFE_HEAP=1"
-        "-s ASSERTIONS=1"
+        #"-s SAFE_HEAP=1"
+        #"-s ASSERTIONS=1"
         "-s ALLOW_MEMORY_GROWTH=1"
-        "-s DEMANGLE_SUPPORT=1"
-        "-s NO_EXIT_RUNTIME=1"
+        #"-s DEMANGLE_SUPPORT=1"
+        #"-s NO_EXIT_RUNTIME=1"
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_formatCode\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
     )
@@ -107,8 +107,8 @@ IF(EMSCRIPTEN)
         "--no-heap-copy"
         "-s MODULARIZE=1"
         "-s ALLOW_MEMORY_GROWTH=1"
-        "-s DEMANGLE_SUPPORT=1"
-        "-s NO_EXIT_RUNTIME=1"
+        #"-s DEMANGLE_SUPPORT=1"
+        #"-s NO_EXIT_RUNTIME=1"
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
         #"-s ASSERTIONS=2"
@@ -119,8 +119,8 @@ IF(EMSCRIPTEN)
     target_link_libraries(runtime PRIVATE
         "-s MODULARIZE=1"
         "-s ALLOW_MEMORY_GROWTH=1"
-        "-s DEMANGLE_SUPPORT=1"
-        "-s NO_EXIT_RUNTIME=1"
+        #"-s DEMANGLE_SUPPORT=1"
+        #"-s NO_EXIT_RUNTIME=1"
         "-s MAIN_MODULE=1"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"FS\"]'"
     )
