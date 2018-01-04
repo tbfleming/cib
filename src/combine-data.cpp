@@ -6,22 +6,22 @@ using namespace WasmTools;
 auto transform(const vector<uint8_t>& binary) {
     if (binary.size() < 8 || *(uint32_t*)(&binary[0]) != 0x6d736100)
         throw runtime_error("not a wasm file");
-    auto newBinary = vector<uint8_t>(binary.begin(), binary.begin() + 8);
+    auto new_binary = vector<uint8_t>(binary.begin(), binary.begin() + 8);
     auto pos = size_t{8};
     auto end = binary.size();
     while (pos != end) {
-        auto sBegin = pos;
+        auto s_begin = pos;
         auto id = binary[pos++];
-        auto payloadLen = readLeb(binary, pos);
-        auto sEnd = pos + payloadLen;
+        auto payload_len = read_leb(binary, pos);
+        auto s_end = pos + payload_len;
 
-        if (id == wasm_sec_data) {
+        if (id == sec_data) {
             auto data = vector<uint8_t>{};
-            auto count = readLeb(binary, pos);
+            auto count = read_leb(binary, pos);
             for (uint32_t i = 0; i < count; ++i) {
-                check(readLeb(binary, pos) == 0, "data is not for memory 0");
-                auto offset = getInitExpr32(binary, pos);
-                auto size = readLeb(binary, pos);
+                check(read_leb(binary, pos) == 0, "data is not for memory 0");
+                auto offset = get_init_expr32(binary, pos);
+                auto size = read_leb(binary, pos);
                 if (data.size() < offset + size)
                     data.resize(offset + size);
                 copy(binary.begin() + pos, binary.begin() + pos + size,
@@ -31,24 +31,24 @@ auto transform(const vector<uint8_t>& binary) {
             auto skip = size_t{0};
             while (skip < data.size() && !data[skip])
                 ++skip;
-            newBinary.push_back(wasm_sec_data);
-            pushLeb5(newBinary, 18 + data.size() - skip); // payload_len
-            pushLeb5(newBinary, 1);                       // count
-            newBinary.push_back(0);                       // index
-            newBinary.push_back(0x41);                    // i32.const
-            pushLeb5(newBinary, skip);                    // offset
-            newBinary.push_back(0x0b);                    // end
-            pushLeb5(newBinary, data.size() - skip);      // size
-            newBinary.insert(                             // data
-                newBinary.end(), data.begin() + skip, data.end());
+            new_binary.push_back(sec_data);
+            push_leb5(new_binary, 18 + data.size() - skip); // payload_len
+            push_leb5(new_binary, 1);                       // count
+            new_binary.push_back(0);                        // index
+            new_binary.push_back(0x41);                     // i32.const
+            push_leb5(new_binary, skip);                    // offset
+            new_binary.push_back(0x0b);                     // end
+            push_leb5(new_binary, data.size() - skip);      // size
+            new_binary.insert(                              // data
+                new_binary.end(), data.begin() + skip, data.end());
         } else {
-            newBinary.insert( //
-                newBinary.end(), binary.begin() + sBegin,
-                binary.begin() + sEnd);
-            pos = sEnd;
+            new_binary.insert( //
+                new_binary.end(), binary.begin() + s_begin,
+                binary.begin() + s_end);
+            pos = s_end;
         }
     } // while(pos < end)
-    return newBinary;
+    return new_binary;
 }
 
 int main(int argc, const char* argv[]) {
