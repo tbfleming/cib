@@ -36,6 +36,15 @@ inline const uint8_t type_anyfunc = 0x70;
 inline const uint8_t type_func = 0x60;
 inline const uint8_t type_block = 0x40;
 
+inline const uint8_t r_webassembly_function_index_leb = 0;
+inline const uint8_t r_webassembly_table_index_sleb = 1;
+inline const uint8_t r_webassembly_table_index_i32 = 2;
+inline const uint8_t r_webassembly_memory_addr_leb = 3;
+inline const uint8_t r_webassembly_memory_addr_sleb = 4;
+inline const uint8_t r_webassembly_memory_addr_i32 = 5;
+inline const uint8_t r_webassembly_type_index_leb = 6;
+inline const uint8_t r_webassembly_global_index_leb = 7;
+
 auto type_str(uint8_t type) {
     switch (type) {
     case type_i32:
@@ -162,7 +171,7 @@ struct ResizableLimits {
 };
 
 struct Global {
-    uint8_t type{};
+    bool isStack{};
     uint32_t initU32{};
 };
 
@@ -175,6 +184,20 @@ struct Export {
 struct Element {
     bool valid{};
     uint32_t fIndex{};
+};
+
+struct DataSegment {
+    uint32_t offset;
+    uint32_t size;
+    uint32_t dataBegin;
+};
+
+struct Reloc {
+    uint32_t section_id{};
+    uint32_t type{};
+    uint32_t offset{};
+    uint32_t index{};
+    uint32_t addend{};
 };
 
 struct Module {
@@ -192,6 +215,8 @@ struct Module {
     std::vector<Function> functions{};
     std::vector<Export> exports{};
     std::vector<Element> elements{};
+    std::vector<DataSegment> dataSegments{};
+    std::vector<Reloc> relocs{};
 };
 
 inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
@@ -270,18 +295,14 @@ inline void read_sec_import(Module& module, size_t& pos, size_t sEnd) {
             break;
         }
         case external_global: {
-            auto value_type = module.binary[pos++];
-            if (value_type != type_i32 && value_type != type_i64 &&
-                value_type != type_f32 && value_type != type_f64)
-                check(false, "invalid external value_type " +
-                                 std::to_string(value_type));
+            check(module.binary[pos++] == type_i32,
+                  "imported global is not i32");
             auto mutability = module.binary[pos++];
-            printf("    [%03zu] global %s.%s %s %s\n", module.globals.size(),
+            printf("    [%03zu] global %s.%s %s\n", module.globals.size(),
                    std::string{moduleName}.c_str(),
-                   std::string{fieldName}.c_str(), type_str(value_type),
-                   mutability ? "mut" : "");
+                   std::string{fieldName}.c_str(), mutability ? "mut" : "");
             ++module.numImportedGlobals;
-            module.globals.push_back({value_type});
+            module.globals.push_back({fieldName == "__stack_pointer"});
             break;
         }
         default:
@@ -327,16 +348,12 @@ inline void read_sec_global(Module& module, size_t& pos, size_t sEnd) {
     printf("global\n");
     auto count = readLeb(module.binary, pos);
     for (uint32_t i = 0; i < count; ++i) {
-        auto value_type = module.binary[pos++];
-        if (value_type != type_i32 && value_type != type_i64 &&
-            value_type != type_f32 && value_type != type_f64)
-            check(false,
-                  "invalid global value_type " + std::to_string(value_type));
+        check(module.binary[pos++] == type_i32, "global is not i32");
         auto mutability = module.binary[pos++];
         auto initU32 = getInitExpr32(module.binary, pos);
-        printf("    [%03zu] global %s %s = %u\n", module.globals.size(),
-               type_str(value_type), mutability ? "mut" : "", initU32);
-        module.globals.push_back({value_type, initU32});
+        printf("    [%03zu] global %s = %u\n", module.globals.size(),
+               mutability ? "mut" : "", initU32);
+        module.globals.push_back({false, initU32});
     }
     check(pos == sEnd, "global section malformed");
 }
@@ -401,9 +418,25 @@ inline void read_sec_code(Module& module, size_t& pos, size_t sEnd) {
 
 inline void read_sec_data(Module& module, size_t& pos, size_t sEnd) {
     printf("data\n");
+    auto count = readLeb(module.binary, pos);
+    for (uint32_t i = 0; i < count; ++i) {
+        check(readLeb(module.binary, pos) == 0, "data memory index not 0");
+        auto offset = getInitExpr32(module.binary, pos);
+        auto size = readLeb(module.binary, pos);
+        printf("    offset:%d size=%d\n", offset, size);
+        module.dataSegments.push_back(DataSegment{offset, size, uint32_t(pos)});
+        pos += size;
+    }
+    auto lastUsed = uint32_t{0};
+    for (auto& seg : module.dataSegments) {
+        check(seg.offset == lastUsed, "segments not contiguous");
+        lastUsed += seg.size;
+    }
+    check(pos == sEnd, "data section malformed");
 }
 
 inline void read_sec_name(Module& module, size_t& pos, size_t sEnd) {
+    printf("name\n");
     while (pos < sEnd) {
         auto type = module.binary[pos++];
         auto subLen = readLeb(module.binary, pos);
@@ -423,6 +456,28 @@ inline void read_sec_name(Module& module, size_t& pos, size_t sEnd) {
         }
     }
     check(pos == sEnd, "name section malformed");
+}
+
+inline void read_reloc(Module& module, std::string_view name, size_t& pos,
+                       size_t sEnd) {
+    printf("%s\n", std::string{name}.c_str());
+    auto section_id = readLeb(module.binary, pos);
+    check(section_id == wasm_sec_code || section_id == wasm_sec_data,
+          "unsupported reloc section id");
+    auto count = readLeb(module.binary, pos);
+    printf("    %d relocs\n", count);
+    for (uint32_t i = 0; i < count; ++i) {
+        auto type = readLeb(module.binary, pos);
+        auto offset = readLeb(module.binary, pos);
+        auto index = readLeb(module.binary, pos);
+        auto addend = uint32_t{0};
+        if (type == r_webassembly_memory_addr_leb ||
+            type == r_webassembly_memory_addr_sleb ||
+            type == r_webassembly_memory_addr_i32)
+            addend = readLeb(module.binary, pos);
+        module.relocs.push_back({section_id, type, offset, index, addend});
+    }
+    check(pos == sEnd, "reloc section malformed");
 }
 
 inline Module read_module(std::vector<uint8_t> bin) {
@@ -479,13 +534,10 @@ inline Module read_module(std::vector<uint8_t> bin) {
             }
         } else {
             auto name = readStr(module.binary, pos);
-            printf("%s\n", std::string{name}.c_str());
-            if (name == "name") {
-                // read_sec_name(module, pos, sEnd);
-            } else if (name == "linking")
+            if (name.starts_with("reloc."))
+                read_reloc(module, name, pos, sEnd);
+            else if (name == "linking")
                 module.linking = CustomSection{true, name, pos, sEnd};
-            else if (name.starts_with("reloc."))
-                module.reloc.push_back(CustomSection{true, name, pos, sEnd});
         }
         pos = sEnd;
     }
