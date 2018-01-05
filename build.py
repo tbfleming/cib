@@ -264,7 +264,7 @@ def llvmNo86():
 
 def wabt():
     if not os.path.isdir(wabtInstall):
-        run('cd repos/wabt && time make clang-release-no-tests ' + parallel)
+        run('cd repos/wabt && time -p make clang-release-no-tests ' + parallel)
 
 def binaryen():
     if not os.path.isdir(binaryenBuild):

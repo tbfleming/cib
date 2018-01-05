@@ -12,7 +12,7 @@ namespace WasmTools {
 
 using std::operator""s;
 
-inline const bool debug_read = true;
+inline const bool debug_read = false;
 
 inline const uint8_t sec_custom = 0;
 inline const uint8_t sec_type = 1;
@@ -52,8 +52,12 @@ inline const uint8_t reloc_global_index_leb = 7;
 
 inline const uint8_t link_symbol_info = 0x2;
 inline const uint8_t link_data_size = 0x3;
-inline const uint8_t link_data_alignment = 0x4;
 inline const uint8_t link_segment_info = 0x5;
+inline const uint8_t link_init_funcs = 0x6;
+
+inline const uint8_t sym_binding_weak = 1;
+inline const uint8_t sym_binding_local = 2;
+inline const uint8_t sym_visibility_hidden = 4;
 
 auto type_str(uint8_t type) {
     switch (type) {
@@ -176,7 +180,6 @@ struct FunctionType {
 
 struct Function {
     uint32_t type{};
-    struct Symbol* symbol{};
 };
 
 struct ResizableLimits {
@@ -188,7 +191,7 @@ struct ResizableLimits {
 
 struct Global {
     uint32_t init_u32{};
-    struct Symbol* symbol{};
+    bool has_symbols{};
 };
 
 struct Export {
@@ -217,17 +220,21 @@ struct Reloc {
 };
 
 struct Symbol {
+    struct Module* module{};
     uint32_t flags{};
     std::optional<uint32_t> import_index{};
     std::optional<uint32_t> export_index{};
-    std::optional<uint32_t> global_index{};
-    std::optional<uint32_t> function_index{};
+    std::optional<uint32_t> import_global_index{};
+    std::optional<uint32_t> export_global_index{};
+    std::optional<uint32_t> import_function_index{};
+    std::optional<uint32_t> export_function_index{};
     struct LinkedSymbol* linked_symbol{};
     bool is_stack_ptr{};
     bool in_linking{};
 };
 
 struct Module {
+    std::string filename{};
     std::vector<uint8_t> binary{};
     Section sections[num_sections]{};
     std::vector<Import> imports{};
@@ -247,7 +254,8 @@ struct Module {
 };
 
 struct LinkedSymbol {
-    std::vector<Symbol*> symbols;
+    std::vector<Symbol*> symbols{};
+    Symbol* definition{};
     bool is_stack_ptr{};
     bool is_global{};
     bool is_function{};
@@ -303,6 +311,7 @@ inline void read_sec_import(Module& module, size_t& pos, size_t s_end) {
         printf("import\n");
     auto add = [&](auto name, auto kind, auto& container, auto&& value) {
         auto& symbol = module.symbols[name];
+        symbol.module = &module;
         if (symbol.import_index)
             check(false,
                   "symbol " + std::string{name} + " has multiple imports");
@@ -433,6 +442,7 @@ inline void read_sec_export(Module& module, size_t& pos, size_t s_end) {
         printf("export\n");
     auto add = [&](auto name, auto kind, auto index) {
         auto& symbol = module.symbols[name];
+        symbol.module = &module;
         if (symbol.export_index)
             check(false,
                   "symbol " + std::string{name} + " has multiple exports");
@@ -519,7 +529,7 @@ inline void read_sec_data(Module& module, size_t& pos, size_t s_end) {
     }
     auto last_used = uint32_t{0};
     for (auto& seg : module.data_segments) {
-        check(seg.offset == last_used, "segments not contiguous");
+        check(seg.offset >= last_used, "segments not ordered");
         last_used += seg.size;
     }
     check(pos == s_end, "data section malformed");
@@ -589,6 +599,7 @@ inline void read_linking(Module& module, size_t& pos, size_t s_end) {
                     printf("    symbol  %s flags=%d\n",
                            std::string{name}.c_str(), flags);
                 auto& symbol = module.symbols[name];
+                symbol.module = &module;
                 symbol.flags = flags;
                 symbol.in_linking = true;
             }
@@ -606,6 +617,17 @@ inline void read_linking(Module& module, size_t& pos, size_t s_end) {
                     printf("    segment %s alignment=%d flags=%d\n",
                            std::string{name}.c_str(), alignment, flags);
             }
+        } else if (type == link_init_funcs) {
+            auto count = read_leb(module.binary, pos);
+            for (uint32_t i = 0; i < count; ++i) {
+                auto priority = read_leb(module.binary, pos);
+                auto index = read_leb(module.binary, pos);
+                if (index >= module.functions.size())
+                    check(false, "init function " + std::to_string(index) +
+                                     " out of range");
+                printf("    init    [%03d] func priority=%d\n", index,
+                       priority);
+            }
         } else {
             check(false,
                   "unhandled linking subsection " + std::to_string(type));
@@ -615,53 +637,41 @@ inline void read_linking(Module& module, size_t& pos, size_t s_end) {
 } // read_linking
 
 inline void prepare_symbols(Module& module) {
-    module.symbols["__stack_pointer"].is_stack_ptr = true;
+    auto& sp = module.symbols["__stack_pointer"];
+    sp.is_stack_ptr = true;
+    sp.module = &module;
     for (auto& [name, symbol] : module.symbols) {
-        if (!symbol.in_linking && symbol.export_index)
-            check(false, "symbol " + std::string{name} +
+        if (!symbol.in_linking && symbol.export_index &&
+            (symbol.import_global_index || symbol.export_global_index))
+            check(false, "global symbol " + std::string{name} +
                              " is exported, but not in linking section");
         if (symbol.in_linking && !symbol.import_index && !symbol.export_index)
             check(false, "symbol " + std::string{name} +
-                             " is in linking, but is not an inport or export");
-        if (symbol.import_index && symbol.export_index)
-            check(false, "symbol " + std::string{name} +
-                             " has both an inport and an export");
+                             " is in linking, but is not an import or export");
         if (symbol.import_index) {
             auto& import = module.imports[*symbol.import_index];
-            if (import.kind == external_global)
-                symbol.global_index = import.index;
-            else if (import.kind == external_function)
-                symbol.function_index = import.index;
+            if (import.kind == external_global) {
+                module.globals[import.index].has_symbols = true;
+                symbol.import_global_index = import.index;
+            } else if (import.kind == external_function)
+                symbol.import_function_index = import.index;
         }
         if (symbol.export_index) {
             auto& exp = module.exports[*symbol.export_index];
-            if (exp.kind == external_global)
-                symbol.global_index = exp.index;
-            else if (exp.kind == external_function)
-                symbol.function_index = exp.index;
+            if (exp.kind == external_global) {
+                module.globals[exp.index].has_symbols = true;
+                symbol.export_global_index = exp.index;
+            } else if (exp.kind == external_function)
+                symbol.export_function_index = exp.index;
         }
-        if (symbol.global_index && symbol.function_index)
+        if ((symbol.import_global_index || symbol.export_global_index) &&
+            (symbol.import_function_index || symbol.export_function_index))
             check(false,
                   "symbol " + std::string{name} + " has incompatable types");
-        if (symbol.global_index) {
-            auto& global = module.globals[*symbol.global_index];
-            if (global.symbol)
-                check(false, "global " + std::to_string(*symbol.global_index) +
-                                 " is tied to multiple symbols");
-            global.symbol = &symbol;
-        }
-        if (symbol.function_index) {
-            auto& function = module.functions[*symbol.function_index];
-            if (function.symbol)
-                check(false, "function " +
-                                 std::to_string(*symbol.function_index) +
-                                 " is tied to multiple symbols");
-            function.symbol = &symbol;
-        }
     } // for(symbols)
 
     for (auto& global : module.globals)
-        if (!global.symbol)
+        if (!global.has_symbols)
             check(false, "global " +
                              std::to_string(&global - &module.globals[0]) +
                              " does not have a symbol");
@@ -734,15 +744,19 @@ void read_module(Module& module) {
 inline void link_symbols(Linked& linked) {
     for (auto& module : linked.modules) {
         for (auto& [name, symbol] : module->symbols) {
-            if (!symbol.global_index && !symbol.function_index)
+            if (!symbol.import_global_index && !symbol.export_global_index &&
+                !symbol.import_function_index && !symbol.export_function_index)
                 continue;
+            if (symbol.flags & sym_binding_local)
+                continue; // !!!
             auto& linked_symbol = linked.linked_symbols[name];
             symbol.linked_symbol = &linked_symbol;
+            linked_symbol.symbols.push_back(&symbol);
             if (symbol.is_stack_ptr)
                 linked_symbol.is_stack_ptr = true;
-            if (symbol.global_index)
+            if (symbol.import_global_index || symbol.export_global_index)
                 linked_symbol.is_global = true;
-            if (symbol.function_index)
+            if (symbol.import_function_index || symbol.export_function_index)
                 linked_symbol.is_function = true;
         }
     }
@@ -750,6 +764,31 @@ inline void link_symbols(Linked& linked) {
         if (linked_symbol.is_global && linked_symbol.is_function)
             check(false, "symbol " + std::string{name} +
                              " types differ between modules");
+        for (auto symbol : linked_symbol.symbols) {
+            if ((symbol->flags & sym_binding_weak) ||
+                (!symbol->export_global_index &&
+                 !symbol->export_function_index))
+                continue;
+            if (linked_symbol.definition) {
+                check(false, "symbol " + std::string{name} +
+                                 " has multiple definitions" +
+                                 "\n   found in: " +
+                                 linked_symbol.definition->module->filename +
+                                 "\n   found in: " + symbol->module->filename);
+            }
+            linked_symbol.definition = symbol;
+        }
+        if (!linked_symbol.definition) {
+            for (auto symbol : linked_symbol.symbols) {
+                if (symbol->export_global_index ||
+                    symbol->export_function_index) {
+                    linked_symbol.definition = symbol;
+                    break;
+                }
+            }
+        }
+        if (!linked_symbol.definition)
+            printf("unresolved import: %s\n", std::string{name}.c_str());
     }
 }
 

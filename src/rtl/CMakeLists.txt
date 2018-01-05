@@ -59,16 +59,16 @@ string(REPLACE " " ";" compiler_rt_sources "${compiler_rt_sources}")
 #message(STATUS "${compiler_rt_sources}")
 
 file(GLOB libcxx_sources "../../repos/emscripten/system/lib/libcxx/*.cpp")
-
 set(libcxxabi_sources 
     abort_message.cpp cxa_aux_runtime.cpp cxa_default_handlers.cpp cxa_demangle.cpp cxa_exception_storage.cpp 
-    cxa_guard.cpp cxa_handlers.cpp cxa_new_delete.cpp exception.cpp private_typeinfo.cpp stdexcept.cpp typeinfo.cpp 
+    cxa_guard.cpp cxa_handlers.cpp cxa_new_delete.cpp exception.cpp private_typeinfo.cpp typeinfo.cpp 
     )
 string(REGEX REPLACE "([^;]+)" "../../repos/emscripten/system/lib/libcxxabi/src/\\1" libcxxabi_sources "${libcxxabi_sources}")
 string(REPLACE " " ";" libcxxabi_sources "${libcxxabi_sources}")
 #message(STATUS "${libcxxabi_sources}")
 
-set(CMAKE_CXX_LINK_EXECUTABLE "${LLVM_INSTALL}/bin/wasm-ld --allow-undefined --no-entry --import-memory --strip-all --relocatable <OBJECTS> -o <TARGET>")
+#set(CMAKE_CXX_LINK_EXECUTABLE "${LLVM_INSTALL}/bin/wasm-ld --allow-undefined --no-entry --import-memory --strip-all --relocatable <OBJECTS> -o <TARGET>")
+set(CMAKE_CXX_LINK_EXECUTABLE "../../build/tools/cib-link <OBJECTS>")
 
 add_executable(rtl ../runtime.cpp)
 
