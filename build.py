@@ -3,7 +3,7 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-#useTag = 'cib-003'      # --clone and --checkout retrieve this tag
+#useTag = 'cib-004'      # --clone and --checkout retrieve this tag
 useTag = None          # --clone and --checkout retrieve branches
 
 useFastcomp = False
@@ -15,7 +15,7 @@ fastcompBuildType = 'RelWithDebInfo'
 binaryenBuildType = 'RelWithDebInfo'
 optimizerBuildType = 'RelWithDebInfo'
 browserClangFormatBuildType = 'Release'
-browserClangBuildType = 'Debug'
+browserClangBuildType = 'Release'
 browserRuntimeBuildType = 'Debug'
 
 root = os.path.dirname(os.path.abspath(__file__)) + '/'
@@ -36,6 +36,8 @@ rtlBuildDir = root + 'build/rtl/'
 browserClangFormatBuild = root + 'build/clang-format-browser-' + browserClangFormatBuildType + '/'
 browserClangBuild = root + 'build/clang-browser-' + browserClangBuildType + '/'
 browserRuntimeBuild = root + 'build/runtime-browser-' + browserRuntimeBuildType + '/'
+
+gitProtocol = 'git@github.com:'
 
 llvmBrowserTargets = [
     'clangAnalysis',
@@ -126,17 +128,17 @@ def download(url):
         run('cd download && wget ' + url)
 
 repos = [
-    ('repos/llvm', 'git@github.com:tbfleming/cib-llvm.git', 'git@github.com:llvm-mirror/llvm.git', True, 'master', 'cib'),
-    ('repos/llvm/tools/clang', 'git@github.com:tbfleming/cib-clang.git', 'git@github.com:llvm-mirror/clang.git', True, 'master', 'cib'),
-    ('repos/llvm/tools/lld', 'git@github.com:tbfleming/cib-lld.git', 'git@github.com:llvm-mirror/lld.git', True, 'master', 'master'),
-    ('repos/llvm/projects/compiler-rt', 'git@github.com:tbfleming/cib-compiler-rt.git', 'git@github.com:llvm-mirror/compiler-rt.git', True, 'master', 'master'),
-    ('repos/llvm/projects/libcxx', 'git@github.com:tbfleming/cib-libcxx.git', 'git@github.com:llvm-mirror/libcxx.git', True, 'master', 'master'),
-    ('repos/llvm/projects/libcxxabi', 'git@github.com:tbfleming/cib-libcxxabi.git', 'git@github.com:llvm-mirror/libcxxabi.git', True, 'master', 'master'),
-    # ('repos/fastcomp', 'git@github.com:tbfleming/cib-emscripten-fastcomp.git', 'git@github.com:kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
-    # ('repos/fastcomp/tools/clang', 'git@github.com:tbfleming/cib-emscripten-fastcomp-clang.git', 'git@github.com:kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),
-    ('repos/emscripten', 'git@github.com:tbfleming/cib-emscripten.git', 'git@github.com:kripken/emscripten.git', True, 'incoming', 'cib'),
-    ('repos/wabt', 'git@github.com:WebAssembly/wabt.git', 'git@github.com:WebAssembly/wabt.git', False, 'master', 'master'),
-    ('repos/binaryen', 'git@github.com:tbfleming/cib-binaryen.git', 'git@github.com:WebAssembly/binaryen.git', True, 'master', 'cib'),
+    ('repos/llvm', 'tbfleming/cib-llvm.git', 'llvm-mirror/llvm.git', True, 'master', 'cib'),
+    ('repos/llvm/tools/clang', 'tbfleming/cib-clang.git', 'llvm-mirror/clang.git', True, 'master', 'cib'),
+    ('repos/llvm/tools/lld', 'tbfleming/cib-lld.git', 'llvm-mirror/lld.git', True, 'master', 'master'),
+    ('repos/llvm/projects/compiler-rt', 'tbfleming/cib-compiler-rt.git', 'llvm-mirror/compiler-rt.git', True, 'master', 'master'),
+    ('repos/llvm/projects/libcxx', 'tbfleming/cib-libcxx.git', 'llvm-mirror/libcxx.git', True, 'master', 'master'),
+    ('repos/llvm/projects/libcxxabi', 'tbfleming/cib-libcxxabi.git', 'llvm-mirror/libcxxabi.git', True, 'master', 'master'),
+    # ('repos/fastcomp', 'tbfleming/cib-emscripten-fastcomp.git', 'kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
+    # ('repos/fastcomp/tools/clang', 'tbfleming/cib-emscripten-fastcomp-clang.git', 'kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),
+    ('repos/emscripten', 'tbfleming/cib-emscripten.git', 'kripken/emscripten.git', True, 'incoming', 'cib'),
+    ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'master', 'master'),
+    ('repos/binaryen', 'tbfleming/cib-binaryen.git', 'WebAssembly/binaryen.git', True, 'master', 'cib'),
 ]
 
 def bash():
@@ -155,8 +157,8 @@ def clone():
         dir = os.path.dirname(path)
         base = os.path.basename(path)
         run('mkdir -p ' + dir)
-        run('cd ' + dir + ' && git clone ' + url + ' ' + base)
-        run('cd ' + path + ' && git remote add upstream ' + upstream)
+        run('cd ' + dir + ' && git clone ' + gitProtocol + url + ' ' + base)
+        run('cd ' + path + ' && git remote add upstream ' + gitProtocol + upstream)
         run('cd ' + path + ' && git checkout ' + branch)
 
 def status():
@@ -390,7 +392,8 @@ def appClang():
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
     app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
-    run('cd ' + browserClangBuild + ' && ../tools/combine-data clang.wasm clang-combined.wasm')
+    run('cd ' + browserClangBuild + ' && wasm-opt -Os clang.wasm -o clang-opt.wasm')
+    run('cd ' + browserClangBuild + ' && ../tools/combine-data clang-opt.wasm clang-combined.wasm')
     run('cp -au ' + browserClangBuild + 'clang.js ' + browserClangBuild + 'clang.data dist')
     run('cp -au ' + browserClangBuild + 'clang-combined.wasm dist/clang.wasm')
 
@@ -436,6 +439,7 @@ def http():
         pass
 
 commands = [
+    ('G', 'git-https',      None,           'store_true',   False,  "Use https for git clone"),
     ('B', 'bash',           bash,           'store_true',   False,  "Run bash with environment set up"),
     ('f', 'format',         format,         'store_true',   False,  "Format sources"),
     ('c', 'clone',          clone,          'store_true',   True,   "Clone repos. Doesn't touch ones which already exist."),
@@ -477,7 +481,10 @@ args = parser.parse_args()
 haveCommand = False
 for (flag, command, function, action, inAll, help) in commands:
     if getattr(args, command) or inAll and args.all:
-        haveCommand = True
-        function()
+        if function:
+            haveCommand = True
+            function()
+        elif command == 'git-https':
+            gitProtocol = 'https://github.com/'
 if not haveCommand:
     print('build.py: Tell me what to do. -a does almost everything. -h shows options.')
