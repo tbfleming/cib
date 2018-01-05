@@ -366,7 +366,7 @@ def rtl():
     run('cd ' + rtlBuildDir + ' && ninja')
     #run('cd ' + rtlBuildDir + ' && ninja -v -j1 2>&1 | tee ../../x.txt')
 
-def app(name, buildType, buildDir, prepBuildDir=None):
+def app(name, buildType, buildDir, prepBuildDir=None, env=''):
     if not os.path.isdir(buildDir):
         run('mkdir -p ' + buildDir)
         run('cd ' + buildDir + ' &&' +
@@ -377,7 +377,7 @@ def app(name, buildType, buildDir, prepBuildDir=None):
             ' ../../src')
     if prepBuildDir:
         prepBuildDir()
-    run('cd ' + buildDir + ' && time -p ninja ' + name)
+    run('cd ' + buildDir + ' && ' + env + ' time -p ninja ' + name)
     if not os.path.isdir('dist'):
         run('mkdir -p dist')
 
@@ -413,7 +413,7 @@ def appClangNative():
     #run('cd build/apps-native && gdb -q -ex run --args ./clang')
 
 def appRuntime():
-    app('runtime', browserRuntimeBuildType, browserRuntimeBuild)
+    app('runtime', browserRuntimeBuildType, browserRuntimeBuild, env='EMCC_FORCE_STDLIBS=1')
     run('cp -au ' + browserRuntimeBuild + 'runtime.js ' + browserRuntimeBuild + 'runtime.wasm dist')
 
 def http():

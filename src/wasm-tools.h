@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string>
 #include <string_view>
+#include <tuple>
 #include <vector>
 
 namespace WasmTools {
@@ -160,13 +161,6 @@ struct Section {
     size_t end{};
 };
 
-struct CustomSection {
-    bool valid{};
-    std::string_view name{};
-    size_t begin{};
-    size_t end{};
-};
-
 struct Import {
     std::string_view name{};
     uint8_t kind{};
@@ -251,11 +245,15 @@ struct Module {
     std::vector<Reloc> relocs{};
     std::map<std::string_view, Symbol> symbols{};
     uint32_t data_size{};
+    uint32_t memory_offset{};
+    uint32_t global_offset{};
+    uint32_t function_offset{};
 };
 
 struct LinkedSymbol {
     std::vector<Symbol*> symbols{};
     Symbol* definition{};
+    std::optional<uint32_t> final_index;
     bool is_stack_ptr{};
     bool is_global{};
     bool is_function{};
@@ -263,7 +261,10 @@ struct LinkedSymbol {
 
 struct Linked {
     std::vector<std::unique_ptr<Module>> modules{};
-    std::map<std::string_view, LinkedSymbol> linked_symbols{};
+    std::map<std::tuple<Module*, std::string_view>, LinkedSymbol>
+        linked_symbols{};
+    std::vector<LinkedSymbol*> unresolved_functions;
+    std::vector<LinkedSymbol*> unresolved_globals;
 };
 
 inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
@@ -747,9 +748,10 @@ inline void link_symbols(Linked& linked) {
             if (!symbol.import_global_index && !symbol.export_global_index &&
                 !symbol.import_function_index && !symbol.export_function_index)
                 continue;
-            if (symbol.flags & sym_binding_local)
-                continue; // !!!
-            auto& linked_symbol = linked.linked_symbols[name];
+            auto key = std::tuple{&*module, name};
+            if (!(symbol.flags & sym_binding_local))
+                std::get<0>(key) = nullptr;
+            auto& linked_symbol = linked.linked_symbols[key];
             symbol.linked_symbol = &linked_symbol;
             linked_symbol.symbols.push_back(&symbol);
             if (symbol.is_stack_ptr)
@@ -760,7 +762,8 @@ inline void link_symbols(Linked& linked) {
                 linked_symbol.is_function = true;
         }
     }
-    for (auto& [name, linked_symbol] : linked.linked_symbols) {
+    for (auto& [key, linked_symbol] : linked.linked_symbols) {
+        auto& [module, name] = key;
         if (linked_symbol.is_global && linked_symbol.is_function)
             check(false, "symbol " + std::string{name} +
                              " types differ between modules");
@@ -787,8 +790,72 @@ inline void link_symbols(Linked& linked) {
                 }
             }
         }
-        if (!linked_symbol.definition)
-            printf("unresolved import: %s\n", std::string{name}.c_str());
+        if (!linked_symbol.definition) {
+            // printf("unresolved import: %s\n", std::string{name}.c_str());
+            if (module)
+                check(false, "local symbol " + std::string{name} +
+                                 " has no definition in " + module->filename);
+            if (linked_symbol.is_function)
+                linked.unresolved_functions.push_back(&linked_symbol);
+            if (linked_symbol.is_global)
+                linked.unresolved_globals.push_back(&linked_symbol);
+        }
+    }
+} // link_symbols
+
+inline void allocate_memory(Linked& linked, uint32_t memory_offset) {
+    for (auto& module : linked.modules) {
+        module->memory_offset = memory_offset;
+        memory_offset = (memory_offset + module->data_size + 15) & -16;
+    }
+}
+
+inline void allocate_globals(Linked& linked) {
+    auto global_offset = uint32_t{0};
+    for (auto symbol : linked.unresolved_globals)
+        symbol->final_index = global_offset++;
+    for (auto& module : linked.modules) {
+        module->global_offset = global_offset;
+        global_offset += module->globals.size() - module->num_imported_globals;
+    }
+    for (auto& [key, linked_symbol] : linked.linked_symbols) {
+        auto& [module, name] = key;
+        if (module)
+            break;
+        auto definition = linked_symbol.definition;
+        if (!linked_symbol.is_global || !definition)
+            continue;
+        check(*definition->export_global_index >=
+                  definition->module->num_imported_globals,
+              "global export malfunction");
+        linked_symbol.final_index = *definition->export_global_index -
+                                    definition->module->num_imported_globals +
+                                    definition->module->global_offset;
+    }
+}
+
+inline void allocate_functions(Linked& linked) {
+    auto function_offset = uint32_t{0};
+    for (auto symbol : linked.unresolved_functions)
+        symbol->final_index = function_offset++;
+    for (auto& module : linked.modules) {
+        module->function_offset = function_offset;
+        function_offset +=
+            module->functions.size() - module->num_imported_functions;
+    }
+    for (auto& [key, linked_symbol] : linked.linked_symbols) {
+        auto& [module, name] = key;
+        if (module)
+            break;
+        auto definition = linked_symbol.definition;
+        if (!linked_symbol.is_function || !definition)
+            continue;
+        check(*definition->export_function_index >=
+                  definition->module->num_imported_functions,
+              "function export malfunction");
+        linked_symbol.final_index = *definition->export_function_index -
+                                    definition->module->num_imported_functions +
+                                    definition->module->function_offset;
     }
 }
 
