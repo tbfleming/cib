@@ -19,10 +19,12 @@ int main(int argc, const char* argv[]) {
             }
             linked.modules.push_back(move(module));
         }
+        map_function_types(linked);
         link_symbols(linked);
         allocate_memory(linked, 2048);
         allocate_globals(linked);
         allocate_functions(linked);
+        allocate_elements(linked);
         relocate(linked);
     } catch (exception& e) {
         printf("error: %s\n", e.what());

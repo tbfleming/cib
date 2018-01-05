@@ -198,6 +198,11 @@ struct FunctionType {
     std::vector<uint8_t> return_types{};
 };
 
+inline bool operator<(const FunctionType& a, const FunctionType& b) {
+    return std::tie(a.arg_types, a.return_types) <
+           std::tie(b.arg_types, b.return_types);
+}
+
 struct Function {
     uint32_t type{};
     struct Symbol* import_symbol{};
@@ -224,7 +229,7 @@ struct Export {
 
 struct Element {
     bool valid{};
-    uint32_t fIndex{};
+    uint32_t function_index{};
 };
 
 struct DataSegment {
@@ -276,9 +281,11 @@ struct Module {
     uint32_t memory_offset{};
     uint32_t global_offset{};
     uint32_t function_offset{};
+    std::vector<uint32_t> replacement_function_types{};
     std::vector<uint32_t> replacement_globals{};
     std::vector<std::optional<uint32_t>> replacement_addresses{};
     std::vector<uint32_t> replacement_functions{};
+    std::vector<uint32_t> replacement_elements{};
 };
 
 struct LinkedSymbol {
@@ -292,10 +299,14 @@ struct LinkedSymbol {
 
 struct Linked {
     std::vector<std::unique_ptr<Module>> modules{};
+    std::vector<FunctionType> function_types;
+    std::map<FunctionType, uint32_t> function_type_map;
     std::map<std::tuple<Module*, std::string_view>, LinkedSymbol>
         linked_symbols{};
     std::vector<LinkedSymbol*> unresolved_functions;
     std::vector<LinkedSymbol*> unresolved_globals;
+    std::vector<uint32_t> elements{};
+    std::map<uint32_t, uint32_t> function_element_map;
 };
 
 inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
@@ -524,14 +535,14 @@ inline void read_sec_elem(Module& module, size_t& pos, size_t s_end) {
         auto num = read_leb(module.binary, pos);
         for (uint32_t j = 0; j < num; ++j) {
             auto eIndex = offset + j;
-            auto fIndex = read_leb(module.binary, pos);
-            check(fIndex < module.functions.size(),
+            auto function_index = read_leb(module.binary, pos);
+            check(function_index < module.functions.size(),
                   "elem has invalid function index");
             if (debug_read)
-                printf("    [%03u] = [%03u] func\n", eIndex, fIndex);
+                printf("    [%03u] = [%03u] func\n", eIndex, function_index);
             if (eIndex >= module.elements.size())
                 module.elements.resize(eIndex + 1);
-            module.elements[eIndex] = {Element{true, fIndex}};
+            module.elements[eIndex] = {Element{true, function_index}};
         }
     }
     for (size_t i = 0; i < module.elements.size(); ++i)
@@ -776,6 +787,20 @@ void read_module(Module& module) {
     prepare_symbols(module);
 } // read_module
 
+inline void map_function_types(Linked& linked) {
+    for (auto& module : linked.modules) {
+        module->replacement_function_types.reserve(
+            module->function_types.size());
+        for (auto& function_type : module->function_types) {
+            auto [it, inserted] = linked.function_type_map.insert(
+                {function_type, linked.function_types.size()});
+            if (inserted)
+                linked.function_types.push_back(function_type);
+            module->replacement_function_types.push_back(it->second);
+        }
+    }
+}
+
 inline void link_symbols(Linked& linked) {
     for (auto& module : linked.modules) {
         for (auto& [name, symbol] : module->symbols) {
@@ -930,6 +955,21 @@ inline void allocate_functions(Linked& linked) {
     }
 } // allocate_functions
 
+inline void allocate_elements(Linked& linked) {
+    for (auto& module : linked.modules) {
+        module->replacement_elements.reserve(module->elements.size());
+        for (auto& element : module->elements) {
+            auto function_index =
+                module->replacement_functions[element.function_index];
+            auto [it, inserted] = linked.function_element_map.insert(
+                {function_index, linked.elements.size()});
+            if (inserted)
+                linked.elements.push_back(function_index);
+            module->replacement_elements.push_back(it->second);
+        }
+    }
+}
+
 inline void relocate(Module& module) {
     for (auto& reloc : module.relocs) {
         check(reloc.section_id == sec_code || reloc.section_id == sec_data,
@@ -954,8 +994,16 @@ inline void relocate(Module& module) {
             break;
         }
         case reloc_table_index_sleb:
+            check(reloc.index < module.elements.size(),
+                  "reloc invalid element index");
+            write_sleb5(module.binary, section.begin + reloc.offset,
+                        module.replacement_elements[reloc.index]);
             break;
         case reloc_table_index_i32:
+            check(reloc.index < module.elements.size(),
+                  "reloc invalid element index");
+            write_i32(module.binary, section.begin + reloc.offset,
+                      module.replacement_elements[reloc.index]);
             break;
         case reloc_memory_addr_leb:
             reloc_memory([&](auto new_address) {
@@ -976,6 +1024,10 @@ inline void relocate(Module& module) {
             });
             break;
         case reloc_type_index_leb:
+            check(reloc.index < module.function_types.size(),
+                  "reloc invalid type index");
+            write_leb5(module.binary, section.begin + reloc.offset,
+                       module.replacement_function_types[reloc.index]);
             break;
         case reloc_global_index_leb: {
             check(reloc.index < module.globals.size(),
@@ -987,8 +1039,8 @@ inline void relocate(Module& module) {
         default:
             check(false, "unhandled reloc type " + std::to_string(reloc.type));
         } // switch(type)
-    }
-}
+    }     // for(reloc)
+} // relocate
 
 inline void relocate(Linked& linked) {
     for (auto& module : linked.modules)
