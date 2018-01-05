@@ -23,6 +23,7 @@ int main(int argc, const char* argv[]) {
         allocate_memory(linked, 2048);
         allocate_globals(linked);
         allocate_functions(linked);
+        relocate(linked);
     } catch (exception& e) {
         printf("error: %s\n", e.what());
         return 1;

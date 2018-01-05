@@ -115,6 +115,14 @@ struct File {
     }
 };
 
+inline void write_i32(std::vector<uint8_t>& binary, size_t pos,
+                      uint32_t value) {
+    binary[pos++] = value >> 0;
+    binary[pos++] = value >> 8;
+    binary[pos++] = value >> 16;
+    binary[pos++] = value >> 24;
+}
+
 inline auto read_leb(const std::vector<uint8_t>& binary, size_t& pos) {
     auto result = uint32_t{0};
     auto shift = 0;
@@ -125,6 +133,24 @@ inline auto read_leb(const std::vector<uint8_t>& binary, size_t& pos) {
         if (!(b & 0x80))
             return result;
     }
+}
+
+inline void write_leb5(std::vector<uint8_t>& binary, size_t pos,
+                       uint32_t value) {
+    binary[pos++] = ((value >> 0) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 7) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 14) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 21) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 28) & 0x1f) | 0;
+}
+
+inline void write_sleb5(std::vector<uint8_t>& binary, size_t pos,
+                        int32_t value) {
+    binary[pos++] = ((value >> 0) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 7) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 14) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 21) & 0x7f) | 0x80;
+    binary[pos++] = ((value >> 28) & 0x7f) | 0;
 }
 
 inline void push_leb5(std::vector<uint8_t>& binary, uint32_t value) {
@@ -174,6 +200,7 @@ struct FunctionType {
 
 struct Function {
     uint32_t type{};
+    struct Symbol* import_symbol{};
 };
 
 struct ResizableLimits {
@@ -185,6 +212,7 @@ struct ResizableLimits {
 
 struct Global {
     uint32_t init_u32{};
+    struct Symbol* import_symbol{};
     bool has_symbols{};
 };
 
@@ -248,6 +276,9 @@ struct Module {
     uint32_t memory_offset{};
     uint32_t global_offset{};
     uint32_t function_offset{};
+    std::vector<uint32_t> replacement_globals{};
+    std::vector<std::optional<uint32_t>> replacement_addresses{};
+    std::vector<uint32_t> replacement_functions{};
 };
 
 struct LinkedSymbol {
@@ -396,7 +427,7 @@ inline void read_sec_function(Module& module, size_t& pos, size_t s_end) {
               "function type doesn't exist");
         if (debug_read)
             printf("    [%03zu] func type=%d\n", module.functions.size(), type);
-        module.functions.push_back({type});
+        module.functions.push_back(Function{type});
     }
     check(pos == s_end, "function section malformed");
 } // read_sec_function
@@ -652,10 +683,13 @@ inline void prepare_symbols(Module& module) {
         if (symbol.import_index) {
             auto& import = module.imports[*symbol.import_index];
             if (import.kind == external_global) {
+                module.globals[import.index].import_symbol = &symbol;
                 module.globals[import.index].has_symbols = true;
                 symbol.import_global_index = import.index;
-            } else if (import.kind == external_function)
+            } else if (import.kind == external_function) {
+                module.functions[import.index].import_symbol = &symbol;
                 symbol.import_function_index = import.index;
+            }
         }
         if (symbol.export_index) {
             auto& exp = module.exports[*symbol.export_index];
@@ -819,9 +853,6 @@ inline void allocate_globals(Linked& linked) {
         global_offset += module->globals.size() - module->num_imported_globals;
     }
     for (auto& [key, linked_symbol] : linked.linked_symbols) {
-        auto& [module, name] = key;
-        if (module)
-            break;
         auto definition = linked_symbol.definition;
         if (!linked_symbol.is_global || !definition)
             continue;
@@ -832,7 +863,34 @@ inline void allocate_globals(Linked& linked) {
                                     definition->module->num_imported_globals +
                                     definition->module->global_offset;
     }
-}
+    for (auto& module : linked.modules) {
+        module->replacement_addresses.resize(module->globals.size());
+        module->replacement_globals.resize(module->globals.size());
+        uint32_t i = 0;
+        for (; i < module->num_imported_globals; ++i) {
+            auto& global = module->globals[i];
+            check(global.import_symbol, "missing global.import_symbol");
+            check(global.import_symbol->linked_symbol,
+                  "missing global.import_symbol->linked_symbol");
+            auto linked_symbol = global.import_symbol->linked_symbol;
+            auto definition = linked_symbol->definition;
+            if (definition) {
+                auto orig_address =
+                    definition->module
+                        ->globals[*definition->export_global_index]
+                        .init_u32;
+                module->replacement_addresses[i] =
+                    orig_address + definition->module->memory_offset;
+            }
+            module->replacement_globals[i] = *linked_symbol->final_index;
+        }
+        for (; i < module->globals.size(); ++i) {
+            module->replacement_addresses[i] =
+                module->globals[i].init_u32 + module->memory_offset;
+            module->replacement_globals[i] = module->global_offset + i;
+        }
+    }
+} // allocate_globals
 
 inline void allocate_functions(Linked& linked) {
     auto function_offset = uint32_t{0};
@@ -844,9 +902,6 @@ inline void allocate_functions(Linked& linked) {
             module->functions.size() - module->num_imported_functions;
     }
     for (auto& [key, linked_symbol] : linked.linked_symbols) {
-        auto& [module, name] = key;
-        if (module)
-            break;
         auto definition = linked_symbol.definition;
         if (!linked_symbol.is_function || !definition)
             continue;
@@ -857,6 +912,87 @@ inline void allocate_functions(Linked& linked) {
                                     definition->module->num_imported_functions +
                                     definition->module->function_offset;
     }
+    for (auto& module : linked.modules) {
+        module->replacement_functions.resize(module->functions.size());
+        uint32_t i = 0;
+        for (; i < module->num_imported_functions; ++i) {
+            auto& function = module->functions[i];
+            check(function.import_symbol, "missing function.import_symbol");
+            check(function.import_symbol->linked_symbol,
+                  "missing function.import_symbol->linked_symbol");
+            check(!!function.import_symbol->linked_symbol->final_index,
+                  "missing function.import_symbol->linked_symbol->final_index");
+            module->replacement_functions[i] =
+                *function.import_symbol->linked_symbol->final_index;
+        }
+        for (; i < module->functions.size(); ++i)
+            module->replacement_functions[i] = module->function_offset + i;
+    }
+} // allocate_functions
+
+inline void relocate(Module& module) {
+    for (auto& reloc : module.relocs) {
+        check(reloc.section_id == sec_code || reloc.section_id == sec_data,
+              "unsupported reloc section id");
+        auto& section = module.sections[reloc.section_id];
+        check(section.valid, "reloc missing section");
+
+        auto reloc_memory = [&](auto f) {
+            check(reloc.index < module.globals.size(),
+                  "reloc invalid global index");
+            auto replacement = module.replacement_addresses[reloc.index];
+            if (replacement)
+                f(*replacement + reloc.addend);
+        };
+
+        switch (reloc.type) {
+        case reloc_function_index_leb: {
+            check(reloc.index < module.functions.size(),
+                  "reloc invalid function index");
+            write_leb5(module.binary, section.begin + reloc.offset,
+                       module.replacement_functions[reloc.index]);
+            break;
+        }
+        case reloc_table_index_sleb:
+            break;
+        case reloc_table_index_i32:
+            break;
+        case reloc_memory_addr_leb:
+            reloc_memory([&](auto new_address) {
+                write_leb5(module.binary, section.begin + reloc.offset,
+                           new_address);
+            });
+            break;
+        case reloc_memory_addr_sleb:
+            reloc_memory([&](auto new_address) {
+                write_sleb5(module.binary, section.begin + reloc.offset,
+                            new_address);
+            });
+            break;
+        case reloc_memory_addr_i32:
+            reloc_memory([&](auto new_address) {
+                write_i32(module.binary, section.begin + reloc.offset,
+                          new_address);
+            });
+            break;
+        case reloc_type_index_leb:
+            break;
+        case reloc_global_index_leb: {
+            check(reloc.index < module.globals.size(),
+                  "reloc invalid global index");
+            write_leb5(module.binary, section.begin + reloc.offset,
+                       module.replacement_globals[reloc.index]);
+            break;
+        }
+        default:
+            check(false, "unhandled reloc type " + std::to_string(reloc.type));
+        } // switch(type)
+    }
+}
+
+inline void relocate(Linked& linked) {
+    for (auto& module : linked.modules)
+        relocate(*module);
 }
 
 } // namespace WasmTools
