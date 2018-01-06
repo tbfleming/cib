@@ -291,10 +291,9 @@ struct Module {
     std::map<std::string_view, Symbol> symbols{};
     uint32_t data_size{};
     uint32_t memory_offset{};
-    uint32_t global_offset{};
     uint32_t function_offset{};
     std::vector<uint32_t> replacement_function_types{};
-    std::vector<uint32_t> replacement_globals{};
+    std::vector<std::optional<uint32_t>> replacement_globals{};
     std::vector<std::optional<uint32_t>> replacement_addresses{};
     std::vector<uint32_t> replacement_functions{};
     std::vector<uint32_t> replacement_elements{};
@@ -318,6 +317,8 @@ struct Linked {
         linked_symbols{};
     std::vector<LinkedSymbol*> unresolved_functions{};
     std::vector<LinkedSymbol*> unresolved_globals{};
+    std::vector<LinkedSymbol*> export_functions{};
+    std::vector<LinkedSymbol*> export_globals{};
     std::vector<uint32_t> elements{};
     std::map<uint32_t, uint32_t> function_element_map{};
 };
@@ -817,6 +818,15 @@ inline void map_function_types(Linked& linked) {
     }
 }
 
+template <typename F> void for_each_public_linked_symbol(Linked& linked, F f) {
+    for (auto& [key, linked_symbol] : linked.linked_symbols) {
+        auto& [module, name] = key;
+        if (module)
+            break;
+        f(module, name, linked_symbol);
+    }
+}
+
 inline void link_symbols(Linked& linked) {
     for (auto& module : linked.modules) {
         for (auto& [name, symbol] : module->symbols) {
@@ -886,24 +896,20 @@ inline void allocate_memory(Linked& linked, uint32_t memory_offset) {
 }
 
 inline void allocate_globals(Linked& linked) {
-    auto global_offset = uint32_t{0};
+    auto next_index = uint32_t{0};
     for (auto symbol : linked.unresolved_globals)
-        symbol->final_index = global_offset++;
-    for (auto& module : linked.modules) {
-        module->global_offset = global_offset;
-        global_offset += module->globals.size() - module->num_imported_globals;
-    }
-    for (auto& [key, linked_symbol] : linked.linked_symbols) {
-        auto definition = linked_symbol.definition;
-        if (!linked_symbol.is_global || !definition)
-            continue;
-        check(*definition->export_global_index >=
-                  definition->module->num_imported_globals,
-              "global export malfunction");
-        linked_symbol.final_index = *definition->export_global_index -
-                                    definition->module->num_imported_globals +
-                                    definition->module->global_offset;
-    }
+        symbol->final_index = next_index++;
+    for_each_public_linked_symbol(
+        linked, [&](auto module, auto name, auto& linked_symbol) {
+            auto definition = linked_symbol.definition;
+            if (!linked_symbol.is_global || !definition)
+                return;
+            check(*definition->export_global_index >=
+                      definition->module->num_imported_globals,
+                  "global export malfunction");
+            linked_symbol.final_index = next_index++;
+            linked.export_globals.push_back(&linked_symbol);
+        });
     for (auto& module : linked.modules) {
         module->replacement_addresses.resize(module->globals.size());
         module->replacement_globals.resize(module->globals.size());
@@ -925,11 +931,9 @@ inline void allocate_globals(Linked& linked) {
             }
             module->replacement_globals[i] = *linked_symbol->final_index;
         }
-        for (; i < module->globals.size(); ++i) {
+        for (; i < module->globals.size(); ++i)
             module->replacement_addresses[i] =
                 module->globals[i].init_u32 + module->memory_offset;
-            module->replacement_globals[i] = module->global_offset + i;
-        }
     }
 } // allocate_globals
 
@@ -943,6 +947,7 @@ inline void allocate_functions(Linked& linked) {
             module->functions.size() - module->num_imported_functions;
     }
     for (auto& [key, linked_symbol] : linked.linked_symbols) {
+        auto& [module, name] = key;
         auto definition = linked_symbol.definition;
         if (!linked_symbol.is_function || !definition)
             continue;
@@ -952,6 +957,8 @@ inline void allocate_functions(Linked& linked) {
         linked_symbol.final_index = *definition->export_function_index -
                                     definition->module->num_imported_functions +
                                     definition->module->function_offset;
+        if (!module)
+            linked.export_functions.push_back(&linked_symbol);
     }
     for (auto& module : linked.modules) {
         module->replacement_functions.resize(module->functions.size());
@@ -1046,10 +1053,11 @@ inline void relocate(Module& module) {
                        module.replacement_function_types[reloc.index]);
             break;
         case reloc_global_index_leb: {
-            check(reloc.index < module.globals.size(),
+            check(reloc.index < module.globals.size() &&
+                      module.replacement_globals[reloc.index],
                   "reloc invalid global index");
             write_leb5(module.binary, section.begin + reloc.offset,
-                       module.replacement_globals[reloc.index]);
+                       *module.replacement_globals[reloc.index]);
             break;
         }
         default:
@@ -1159,6 +1167,49 @@ inline void push_sec_function(Linked& linked) {
     });
 }
 
+inline void push_sec_global(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_global);
+    push_sized_counted(binary, [&] {
+        uint32_t count{};
+        for (auto linked_symbol : linked.export_globals) {
+            auto definition = linked_symbol->definition;
+            binary.push_back(type_i32);
+            binary.push_back(
+                definition->module->globals[*definition->export_global_index]
+                    .mutability);
+            push_init_expr32(
+                binary,
+                *definition->module
+                     ->replacement_addresses[*definition->export_global_index]);
+            ++count;
+        }
+        return count;
+    });
+}
+
+inline void push_sec_export(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_export);
+    push_sized_counted(binary, [&] {
+        uint32_t count{};
+        auto push_exports = [&](auto& linked_symbols, auto type) {
+            for (auto linked_symbol : linked_symbols) {
+                auto definition = linked_symbol->definition;
+                auto& exp =
+                    definition->module->exports[*definition->export_index];
+                push_str(binary, exp.name);
+                binary.push_back(type);
+                push_leb5(binary, *linked_symbol->final_index);
+                ++count;
+            }
+        };
+        push_exports(linked.export_functions, external_function);
+        push_exports(linked.export_globals, external_global);
+        return count;
+    });
+}
+
 inline void link(Linked& linked) {
     map_function_types(linked);
     link_symbols(linked);
@@ -1170,8 +1221,8 @@ inline void link(Linked& linked) {
     push_sec_type(linked);
     push_sec_import(linked);
     push_sec_function(linked);
-    // push_sec_global(linked);
-    // push_sec_export(linked);
+    push_sec_global(linked);
+    push_sec_export(linked);
     // push_sec_elem(linked);
     // push_sec_code(linked);
     // push_sec_data(linked);
