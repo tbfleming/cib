@@ -169,6 +169,11 @@ inline std::string_view read_str(const std::vector<uint8_t>& binary,
     return str;
 }
 
+inline void push_str(std::vector<uint8_t>& binary, std::string_view str) {
+    push_leb5(binary, str.size());
+    binary.insert(binary.end(), str.begin(), str.end());
+}
+
 template <typename T> void check(bool cond, const T& msg) {
     if (!cond)
         throw std::runtime_error(msg);
@@ -179,6 +184,12 @@ inline auto get_init_expr32(const std::vector<uint8_t>& binary, size_t& pos) {
     auto offset = read_leb(binary, pos);
     check(binary[pos++] == 0x0b, "init_expr missing end");
     return offset;
+}
+
+inline void push_init_expr32(std::vector<uint8_t>& binary, uint32_t value) {
+    binary.push_back(0x41); // i32.const
+    push_leb5(binary, value);
+    binary.push_back(0x0b); // end
 }
 
 struct Section {
@@ -216,6 +227,7 @@ struct ResizableLimits {
 };
 
 struct Global {
+    uint8_t mutability{};
     uint32_t init_u32{};
     struct Symbol* import_symbol{};
     bool has_symbols{};
@@ -291,7 +303,7 @@ struct Module {
 struct LinkedSymbol {
     std::vector<Symbol*> symbols{};
     Symbol* definition{};
-    std::optional<uint32_t> final_index;
+    std::optional<uint32_t> final_index{};
     bool is_stack_ptr{};
     bool is_global{};
     bool is_function{};
@@ -299,14 +311,15 @@ struct LinkedSymbol {
 
 struct Linked {
     std::vector<std::unique_ptr<Module>> modules{};
-    std::vector<FunctionType> function_types;
-    std::map<FunctionType, uint32_t> function_type_map;
+    std::vector<uint8_t> binary{};
+    std::vector<FunctionType> function_types{};
+    std::map<FunctionType, uint32_t> function_type_map{};
     std::map<std::tuple<Module*, std::string_view>, LinkedSymbol>
         linked_symbols{};
-    std::vector<LinkedSymbol*> unresolved_functions;
-    std::vector<LinkedSymbol*> unresolved_globals;
+    std::vector<LinkedSymbol*> unresolved_functions{};
+    std::vector<LinkedSymbol*> unresolved_globals{};
     std::vector<uint32_t> elements{};
-    std::map<uint32_t, uint32_t> function_element_map;
+    std::map<uint32_t, uint32_t> function_element_map{};
 };
 
 inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
@@ -418,7 +431,7 @@ inline void read_sec_import(Module& module, size_t& pos, size_t s_end) {
                        std::string{field_name}.c_str(),
                        mutability ? "mut" : "");
             ++module.num_imported_globals;
-            add(field_name, kind, module.globals, Global{});
+            add(field_name, kind, module.globals, Global{mutability});
             break;
         }
         default:
@@ -475,7 +488,7 @@ inline void read_sec_global(Module& module, size_t& pos, size_t s_end) {
         if (debug_read)
             printf("    [%03zu] global %s = %u\n", module.globals.size(),
                    mutability ? "mut" : "", init_u32);
-        module.globals.push_back(Global{init_u32});
+        module.globals.push_back(Global{mutability, init_u32});
     }
     check(pos == s_end, "global section malformed");
 }
@@ -723,10 +736,13 @@ inline void prepare_symbols(Module& module) {
                              " does not have a symbol");
 } // prepare_symbols
 
-void read_module(Module& module) {
+void read_module(Linked& linked, Module& module) {
     check(module.binary.size() >= 8 &&
               *(uint32_t*)(&module.binary[0]) == 0x6d736100,
           "not a wasm file");
+    if (linked.binary.empty())
+        linked.binary.insert(linked.binary.end(), module.binary.begin(),
+                             module.binary.begin() + 8);
     auto pos = size_t{8};
     auto end = module.binary.size();
     while (pos != end) {
@@ -1045,6 +1061,120 @@ inline void relocate(Module& module) {
 inline void relocate(Linked& linked) {
     for (auto& module : linked.modules)
         relocate(*module);
+}
+
+template <typename F> void push_sized(std::vector<uint8_t>& binary, F f) {
+    auto size_pos = binary.size();
+    binary.insert(binary.end(), 5, 0);
+    auto content_pos = binary.size();
+    f();
+    write_leb5(binary, size_pos, binary.size() - content_pos);
+}
+
+template <typename F> void push_counted(std::vector<uint8_t>& binary, F f) {
+    auto count_pos = binary.size();
+    binary.insert(binary.end(), 5, 0);
+    write_leb5(binary, count_pos, f());
+}
+
+template <typename F>
+void push_sized_counted(std::vector<uint8_t>& binary, F f) {
+    push_sized(binary, [&] { push_counted(binary, f); });
+}
+
+inline void push_sec_type(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_type);
+    push_sized(binary, [&] {
+        push_leb5(binary, linked.function_types.size());
+        for (auto& function_type : linked.function_types) {
+            binary.push_back(type_func);
+            push_leb5(binary, function_type.arg_types.size());
+            for (auto type : function_type.arg_types)
+                binary.push_back(type);
+            push_leb5(binary, function_type.return_types.size());
+            for (auto type : function_type.return_types)
+                binary.push_back(type);
+        }
+    });
+}
+
+inline void push_sec_import(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_import);
+    push_sized_counted(binary, [&] {
+        uint32_t count{};
+        auto push_import = [&](std::string_view name, uint8_t kind) {
+            ++count;
+            push_str(binary, "env");
+            push_str(binary, name);
+            binary.push_back(kind);
+        };
+        // !!! external_table
+        // !!! external_memory
+        for (auto& linked_symbol : linked.unresolved_functions) {
+            auto symbol = linked_symbol->symbols[0];
+            check(!!symbol->import_index, "missing symbol->import_index");
+            check(!!symbol->import_function_index,
+                  "missing symbol->import_function_index");
+            auto& import = symbol->module->imports[*symbol->import_index];
+            auto& function =
+                symbol->module->functions[*symbol->import_function_index];
+            auto type =
+                symbol->module->replacement_function_types[function.type];
+            push_import(import.name, external_function);
+            push_leb5(binary, type);
+        }
+        for (auto& linked_symbol : linked.unresolved_globals) {
+            auto symbol = linked_symbol->symbols[0];
+            check(!!symbol->import_index, "missing symbol->import_index");
+            check(!!symbol->import_global_index,
+                  "missing symbol->import_global_index");
+            auto& import = symbol->module->imports[*symbol->import_index];
+            auto& global =
+                symbol->module->globals[*symbol->import_global_index];
+            push_import(import.name, external_global);
+            binary.push_back(type_i32);
+            binary.push_back(global.mutability);
+        }
+        return count;
+    }); // push_sized_counted
+} // push_sec_import
+
+inline void push_sec_function(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_function);
+    push_sized_counted(binary, [&] {
+        uint32_t count{};
+        for (auto& module : linked.modules) {
+            for (auto i = module->num_imported_functions;
+                 i < module->functions.size(); ++i) {
+                auto& function = module->functions[i];
+                push_leb5(binary,
+                          module->replacement_function_types[function.type]);
+                ++count;
+            }
+        }
+        return count;
+    });
+}
+
+inline void link(Linked& linked) {
+    map_function_types(linked);
+    link_symbols(linked);
+    allocate_memory(linked, 2048);
+    allocate_globals(linked);
+    allocate_functions(linked);
+    allocate_elements(linked);
+    relocate(linked);
+    push_sec_type(linked);
+    push_sec_import(linked);
+    push_sec_function(linked);
+    // push_sec_global(linked);
+    // push_sec_export(linked);
+    // push_sec_elem(linked);
+    // push_sec_code(linked);
+    // push_sec_data(linked);
 }
 
 } // namespace WasmTools
