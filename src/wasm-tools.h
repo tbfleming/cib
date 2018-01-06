@@ -15,6 +15,11 @@ using std::operator""s;
 
 inline const bool debug_read = false;
 
+inline const uint32_t page_size = 64 * 1024;
+inline const uint32_t memory_alignment = 16;
+inline const char* const stack_pointer_name = "__stack_pointer";
+inline const char* const memory_name = "__linear_memory";
+
 inline const uint8_t sec_custom = 0;
 inline const uint8_t sec_type = 1;
 inline const uint8_t sec_import = 2;
@@ -247,7 +252,7 @@ struct Element {
 struct DataSegment {
     uint32_t offset;
     uint32_t size;
-    uint32_t dataBegin;
+    uint32_t data_begin;
 };
 
 struct Reloc {
@@ -319,6 +324,7 @@ struct Linked {
     std::vector<LinkedSymbol*> unresolved_globals{};
     std::vector<LinkedSymbol*> export_functions{};
     std::vector<LinkedSymbol*> export_globals{};
+    uint32_t memory_size{};
     std::vector<uint32_t> elements{};
     std::map<uint32_t, uint32_t> function_element_map{};
 };
@@ -331,6 +337,15 @@ inline ResizableLimits read_resizable_limits(const std::vector<uint8_t>& binary,
     if (max_present)
         maximum = read_leb(binary, pos);
     return {true, max_present, initial, maximum};
+}
+
+inline void push_resizable_limits(std::vector<uint8_t>& binary,
+                                  bool max_present, uint32_t initial,
+                                  uint32_t maximum) {
+    binary.push_back(max_present);
+    push_leb5(binary, initial);
+    if (max_present)
+        push_leb5(binary, maximum);
 }
 
 inline void read_sec_type(Module& module, size_t& pos, size_t s_end) {
@@ -584,11 +599,6 @@ inline void read_sec_data(Module& module, size_t& pos, size_t s_end) {
             DataSegment{offset, size, uint32_t(pos)});
         pos += size;
     }
-    auto last_used = uint32_t{0};
-    for (auto& seg : module.data_segments) {
-        check(seg.offset >= last_used, "segments not ordered");
-        last_used += seg.size;
-    }
     check(pos == s_end, "data section malformed");
 }
 
@@ -694,7 +704,7 @@ inline void read_linking(Module& module, size_t& pos, size_t s_end) {
 } // read_linking
 
 inline void prepare_symbols(Module& module) {
-    auto& sp = module.symbols["__stack_pointer"];
+    auto& sp = module.symbols[stack_pointer_name];
     sp.is_stack_ptr = true;
     sp.module = &module;
     for (auto& [name, symbol] : module.symbols) {
@@ -891,8 +901,11 @@ inline void link_symbols(Linked& linked) {
 inline void allocate_memory(Linked& linked, uint32_t memory_offset) {
     for (auto& module : linked.modules) {
         module->memory_offset = memory_offset;
-        memory_offset = (memory_offset + module->data_size + 15) & -16;
+        memory_offset =
+            (memory_offset + module->data_size + memory_alignment - 1) &
+            -memory_alignment;
     }
+    linked.memory_size = memory_offset;
 }
 
 inline void allocate_globals(Linked& linked) {
@@ -974,7 +987,8 @@ inline void allocate_functions(Linked& linked) {
                 *function.import_symbol->linked_symbol->final_index;
         }
         for (; i < module->functions.size(); ++i)
-            module->replacement_functions[i] = module->function_offset + i;
+            module->replacement_functions[i] =
+                module->function_offset + i - module->num_imported_functions;
     }
 } // allocate_functions
 
@@ -1107,7 +1121,7 @@ inline void push_sec_type(Linked& linked) {
     });
 }
 
-inline void push_sec_import(Linked& linked) {
+inline void push_sec_import(Linked& linked, bool allow_mutable_imports) {
     auto& binary = linked.binary;
     binary.push_back(sec_import);
     push_sized_counted(binary, [&] {
@@ -1119,7 +1133,9 @@ inline void push_sec_import(Linked& linked) {
             binary.push_back(kind);
         };
         // !!! external_table
-        // !!! external_memory
+        push_import(memory_name, external_memory);
+        push_resizable_limits(
+            binary, false, (linked.memory_size + page_size - 1) / page_size, 0);
         for (auto& linked_symbol : linked.unresolved_functions) {
             auto symbol = linked_symbol->symbols[0];
             check(!!symbol->import_index, "missing symbol->import_index");
@@ -1143,7 +1159,7 @@ inline void push_sec_import(Linked& linked) {
                 symbol->module->globals[*symbol->import_global_index];
             push_import(import.name, external_global);
             binary.push_back(type_i32);
-            binary.push_back(global.mutability);
+            binary.push_back(global.mutability && allow_mutable_imports);
         }
         return count;
     }); // push_sized_counted
@@ -1210,6 +1226,45 @@ inline void push_sec_export(Linked& linked) {
     });
 }
 
+inline void push_sec_code(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_code);
+    push_sized_counted(binary, [&] {
+        uint32_t count{};
+        for (auto& module : linked.modules) {
+            auto& sec = module->sections[sec_code];
+            auto pos = sec.begin;
+            auto c = read_leb(module->binary, pos);
+            binary.insert(binary.end(), module->binary.begin() + pos,
+                          module->binary.begin() + sec.end);
+            count += c;
+        }
+        return count;
+    });
+}
+
+inline void push_sec_data(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_data);
+    push_sized_counted(binary, [&] {
+        uint32_t count{};
+        for (auto& module : linked.modules) {
+            for (auto& data_segment : module->data_segments) {
+                binary.push_back(0); // index
+                push_init_expr32(binary,
+                                 data_segment.offset + module->memory_offset);
+                push_leb5(binary, data_segment.size);
+                binary.insert(binary.end(),
+                              module->binary.begin() + data_segment.data_begin,
+                              module->binary.begin() + data_segment.data_begin +
+                                  data_segment.size);
+                ++count;
+            }
+        }
+        return count;
+    });
+}
+
 inline void link(Linked& linked) {
     map_function_types(linked);
     link_symbols(linked);
@@ -1219,13 +1274,13 @@ inline void link(Linked& linked) {
     allocate_elements(linked);
     relocate(linked);
     push_sec_type(linked);
-    push_sec_import(linked);
+    push_sec_import(linked, true);
     push_sec_function(linked);
     push_sec_global(linked);
     push_sec_export(linked);
     // push_sec_elem(linked);
-    // push_sec_code(linked);
-    // push_sec_data(linked);
+    push_sec_code(linked);
+    push_sec_data(linked);
 }
 
 } // namespace WasmTools
