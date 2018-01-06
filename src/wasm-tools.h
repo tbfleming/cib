@@ -19,6 +19,13 @@ inline const uint32_t page_size = 64 * 1024;
 inline const uint32_t memory_alignment = 16;
 inline const char* const stack_pointer_name = "__stack_pointer";
 inline const char* const memory_name = "__linear_memory";
+inline const char* const table_name = "__indirect_function_table";
+
+// emscripten's SP lives at 1024
+inline const uint32_t default_memory_offset = 1028;
+
+// leave a little space for null
+inline const uint32_t default_element_offset = 10;
 
 inline const uint8_t sec_custom = 0;
 inline const uint8_t sec_type = 1;
@@ -325,6 +332,7 @@ struct Linked {
     std::vector<LinkedSymbol*> export_functions{};
     std::vector<LinkedSymbol*> export_globals{};
     uint32_t memory_size{};
+    uint32_t element_offset{};
     std::vector<uint32_t> elements{};
     std::map<uint32_t, uint32_t> function_element_map{};
 };
@@ -992,14 +1000,15 @@ inline void allocate_functions(Linked& linked) {
     }
 } // allocate_functions
 
-inline void allocate_elements(Linked& linked) {
+inline void allocate_elements(Linked& linked, uint32_t element_offset) {
+    linked.element_offset = element_offset;
     for (auto& module : linked.modules) {
         module->replacement_elements.reserve(module->elements.size());
         for (auto& element : module->elements) {
             auto function_index =
                 module->replacement_functions[element.function_index];
             auto [it, inserted] = linked.function_element_map.insert(
-                {function_index, linked.elements.size()});
+                {function_index, linked.elements.size() + element_offset});
             if (inserted)
                 linked.elements.push_back(function_index);
             module->replacement_elements.push_back(it->second);
@@ -1132,7 +1141,12 @@ inline void push_sec_import(Linked& linked, bool allow_mutable_imports) {
             push_str(binary, name);
             binary.push_back(kind);
         };
-        // !!! external_table
+
+        push_import(table_name, external_table);
+        binary.push_back(type_anyfunc);
+        push_resizable_limits(
+            binary, false, linked.element_offset + linked.elements.size(), 0);
+
         push_import(memory_name, external_memory);
         push_resizable_limits(
             binary, false, (linked.memory_size + page_size - 1) / page_size, 0);
@@ -1226,6 +1240,19 @@ inline void push_sec_export(Linked& linked) {
     });
 }
 
+inline void push_sec_elem(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_elem);
+    push_sized(binary, [&] {
+        binary.push_back(1); // count
+        binary.push_back(0); // index
+        push_init_expr32(binary, linked.element_offset);
+        push_leb5(binary, linked.elements.size());
+        for (auto function_index : linked.elements)
+            push_leb5(binary, function_index);
+    });
+}
+
 inline void push_sec_code(Linked& linked) {
     auto& binary = linked.binary;
     binary.push_back(sec_code);
@@ -1265,20 +1292,21 @@ inline void push_sec_data(Linked& linked) {
     });
 }
 
-inline void link(Linked& linked) {
+inline void link(Linked& linked, uint32_t memory_offset = default_memory_offset,
+                 uint32_t element_offset = default_element_offset) {
     map_function_types(linked);
     link_symbols(linked);
-    allocate_memory(linked, 2048);
+    allocate_memory(linked, memory_offset);
     allocate_globals(linked);
     allocate_functions(linked);
-    allocate_elements(linked);
+    allocate_elements(linked, element_offset);
     relocate(linked);
     push_sec_type(linked);
     push_sec_import(linked, true);
     push_sec_function(linked);
     push_sec_global(linked);
     push_sec_export(linked);
-    // push_sec_elem(linked);
+    push_sec_elem(linked);
     push_sec_code(linked);
     push_sec_data(linked);
 }
