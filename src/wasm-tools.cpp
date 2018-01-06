@@ -79,6 +79,14 @@ void push_str(std::vector<uint8_t>& binary, std::string_view str) {
     binary.insert(binary.end(), str.begin(), str.end());
 }
 
+uint32_t get_count_size(const std::vector<uint8_t>& binary,
+                        const Section& section) {
+    auto count_pos = section.begin;
+    auto count_end = count_pos;
+    read_leb(binary, count_end);
+    return count_end - count_pos;
+}
+
 uint32_t get_init_expr32(const std::vector<uint8_t>& binary, size_t& pos) {
     check(binary[pos++] == 0x41, "init_expr is not i32.const");
     auto offset = read_leb(binary, pos);
@@ -670,6 +678,17 @@ void allocate_memory(Linked& linked, uint32_t memory_offset) {
     linked.memory_size = memory_offset;
 }
 
+void allocate_code(Linked& linked) {
+    uint32_t code_offset = 0;
+    for (auto& module : linked.modules) {
+        module->code_offset = code_offset;
+        auto& code = module->sections[sec_code];
+        auto pos = code.begin;
+        read_leb(module->binary, pos);
+        code_offset += code.end - pos;
+    }
+}
+
 void allocate_globals(Linked& linked) {
     auto next_index = uint32_t{0};
     for (auto symbol : linked.unresolved_globals)
@@ -770,7 +789,8 @@ void allocate_elements(Linked& linked, uint32_t element_offset) {
     }
 }
 
-void relocate(Module& module) {
+void relocate(Linked& linked, Module& module) {
+
     for (auto& reloc : module.relocs) {
         check(reloc.section_id == sec_code || reloc.section_id == sec_data,
               "unsupported reloc section id");
@@ -783,6 +803,21 @@ void relocate(Module& module) {
             auto replacement = module.replacement_addresses[reloc.index];
             if (replacement)
                 f(*replacement + reloc.addend);
+            else {
+                check(reloc.section_id == sec_code,
+                      "unresolved memory reloc not in code");
+                // push_counted always uses 5 bytes
+                auto new_code_base = 5 + module.code_offset;
+                auto& import_symbol = module.globals[reloc.index].import_symbol;
+                auto final_index = *import_symbol->linked_symbol->final_index;
+                auto count_size =
+                    get_count_size(module.binary, module.sections[sec_code]);
+                auto new_reloc = reloc;
+                new_reloc.offset =
+                    new_code_base + new_reloc.offset - count_size;
+                new_reloc.index = final_index;
+                linked.code_relocs.push_back(new_reloc);
+            }
         };
 
         switch (reloc.type) {
@@ -845,7 +880,7 @@ void relocate(Module& module) {
 
 void relocate(Linked& linked) {
     for (auto& module : linked.modules)
-        relocate(*module);
+        relocate(linked, *module);
 }
 
 template <typename F> void push_sized(std::vector<uint8_t>& binary, F f) {
@@ -856,6 +891,7 @@ template <typename F> void push_sized(std::vector<uint8_t>& binary, F f) {
     write_leb5(binary, size_pos, binary.size() - content_pos);
 }
 
+// relocate() relies on this being 5 bytes when filling Linked::relocs
 template <typename F> void push_counted(std::vector<uint8_t>& binary, F f) {
     auto count_pos = binary.size();
     binary.insert(binary.end(), 5, 0);
@@ -1024,6 +1060,27 @@ void push_sec_code(Linked& linked) {
     });
 }
 
+void push_sec_code_reloc(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_custom);
+    push_sized(binary, [&] {
+        push_str(binary, "reloc.CODE");
+        binary.push_back(sec_code);
+        push_counted(binary, [&] {
+            for (auto& reloc : linked.code_relocs) {
+                push_leb5(binary, reloc.type);
+                push_leb5(binary, reloc.offset);
+                push_leb5(binary, reloc.index);
+                if (reloc.type == reloc_memory_addr_leb ||
+                    reloc.type == reloc_memory_addr_sleb ||
+                    reloc.type == reloc_memory_addr_i32)
+                    push_leb5(binary, reloc.addend);
+            }
+            return linked.code_relocs.size();
+        });
+    });
+}
+
 void push_sec_data(Linked& linked) {
     auto& binary = linked.binary;
     binary.push_back(sec_data);
@@ -1050,6 +1107,7 @@ void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
     map_function_types(linked);
     link_symbols(linked);
     allocate_memory(linked, memory_offset);
+    allocate_code(linked);
     allocate_globals(linked);
     allocate_functions(linked);
     allocate_elements(linked, element_offset);
@@ -1061,6 +1119,7 @@ void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
     push_sec_export(linked);
     push_sec_elem(linked);
     push_sec_code(linked);
+    push_sec_code_reloc(linked);
     push_sec_data(linked);
 }
 

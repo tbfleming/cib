@@ -221,6 +221,7 @@ struct Module {
     std::map<std::string_view, Symbol> symbols{};
     uint32_t data_size{};
     uint32_t memory_offset{};
+    uint32_t code_offset{};
     uint32_t function_offset{};
     std::vector<uint32_t> replacement_function_types{};
     std::vector<std::optional<uint32_t>> replacement_globals{};
@@ -253,6 +254,7 @@ struct Linked {
     uint32_t element_offset{};
     std::vector<uint32_t> elements{};
     std::map<uint32_t, uint32_t> function_element_map{};
+    std::vector<Reloc> code_relocs{};
 };
 
 void read_module(Linked& linked, Module& module);
