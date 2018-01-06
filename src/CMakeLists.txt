@@ -75,8 +75,8 @@ ENDIF(EMSCRIPTEN)
 
 add_compile_options(-std=c++2a -fcolor-diagnostics -Wall -Wextra -Wpedantic -Wno-unused-parameter)
 
-add_executable (cib-link cib-link.cpp)
-add_executable (combine-data combine-data.cpp)
+add_executable (cib-link cib-link.cpp wasm-tools.cpp)
+add_executable (combine-data combine-data.cpp wasm-tools.cpp)
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp)
 add_executable (runtime runtime.cpp cxa_new_delete.cpp)
