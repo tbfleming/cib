@@ -188,6 +188,11 @@ struct Reloc {
     uint32_t addend{};
 };
 
+struct InitFunction {
+    uint32_t priority{};
+    uint32_t index{};
+};
+
 struct Symbol {
     struct Module* module{};
     uint32_t flags{};
@@ -223,6 +228,7 @@ struct Module {
     uint32_t memory_offset{};
     uint32_t code_offset{};
     uint32_t function_offset{};
+    std::vector<InitFunction> init_functions{};
     std::vector<uint32_t> replacement_function_types{};
     std::vector<std::optional<uint32_t>> replacement_globals{};
     std::vector<std::optional<uint32_t>> replacement_addresses{};

@@ -462,8 +462,7 @@ void read_linking(Module& module, size_t& pos, size_t s_end) {
                 if (index >= module.functions.size())
                     check(false, "init function " + std::to_string(index) +
                                      " out of range");
-                printf("    init    [%03d] func priority=%d\n", index,
-                       priority);
+                module.init_functions.push_back(InitFunction{priority, index});
             }
         } else {
             check(false,
@@ -1103,6 +1102,46 @@ void push_sec_data(Linked& linked) {
     });
 }
 
+// Here's where I cheat. This linker's output isn't
+// relocatable, but it has a linking section, contrary to
+// https://github.com/WebAssembly/tool-conventions/blob/master/Linking.md
+//
+// Why does it need it? The loader needs to know:
+//  * The data size
+//  * The init functions
+//
+// Why is this linker's output not relocatable?
+//  * I want to reduce the loader's burden by not having a large number
+//    of relocs.
+//  * It needs some relocs to pull in things from the js runtime.
+//  * I don't export local symbols since several tools stop when they
+//    see the duplicate names.
+void push_sec_linking(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_custom);
+    push_sized(binary, [&] {
+        push_str(binary, "linking");
+        binary.push_back(link_data_size);
+        push_sized(binary, [&] { push_leb5(binary, linked.memory_size); });
+        binary.push_back(link_init_funcs);
+        push_sized(binary, [&] {
+            push_counted(binary, [&] {
+                auto count = uint32_t{};
+                for (auto& module : linked.modules) {
+                    for (auto& init_fuction : module->init_functions) {
+                        push_leb5(binary, init_fuction.priority);
+                        push_leb5(
+                            binary,
+                            module->replacement_functions[init_fuction.index]);
+                        ++count;
+                    }
+                }
+                return count;
+            });
+        });
+    });
+}
+
 void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
     map_function_types(linked);
     link_symbols(linked);
@@ -1121,6 +1160,7 @@ void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
     push_sec_code(linked);
     push_sec_code_reloc(linked);
     push_sec_data(linked);
+    push_sec_linking(linked);
 }
 
 } // namespace WasmTools
