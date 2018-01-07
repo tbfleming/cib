@@ -3,7 +3,7 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-#useTag = 'cib-004'      # --clone and --checkout retrieve this tag
+useTag = 'cib-005'      # --clone and --checkout retrieve this tag
 useTag = None          # --clone and --checkout retrieve branches
 
 useFastcomp = False
