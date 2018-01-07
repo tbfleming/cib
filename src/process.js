@@ -134,7 +134,6 @@ let emModule = {
     },
 
     postRun() {
-        emModule.FS.quit = null; // Stop FS shutdown after main()
         emModule.callMain();
         postMessage({ function: 'workerReady' });
     },

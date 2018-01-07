@@ -2,7 +2,7 @@
 
 import argparse, os, subprocess, sys
 
-useTag = 'cib-004'      # --clone and --checkout retrieve this tag
+useTag = 'cib-005'      # --clone and --checkout retrieve this tag
 #useTag = None          # --clone and --checkout retrieve branches
 
 useFastcomp = False
