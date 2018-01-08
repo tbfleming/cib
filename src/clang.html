@@ -133,6 +133,10 @@
 #include <vector>
 using namespace std;
 
+struct S {
+    S() {puts("Constructed before main()");}
+} s;
+
 int main() {
     auto strs = vector{"3"s, "2"s, "1"s, "4"s, "but this demo is real."s, "The 🍰 is a lie,"s};
     sort(begin(strs), end(strs));
@@ -254,6 +258,7 @@ int main() {
         runtime.process.workerDebugReplaceBinary = args => {
             clang.ioElem.textContent += 'new size:  ' + args.newBinary.length + '\n';
             clangOutput = args.newBinary;
+            updateUI();
         };
 
         clangFormat.process.start();

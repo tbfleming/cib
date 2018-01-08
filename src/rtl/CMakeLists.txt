@@ -50,9 +50,9 @@ set(compiler_rt_sources
     addtf3.c ashlti3.c ashrti3.c atomic.c comparetf2.c divtf3.c divti3.c udivmodti4.c extenddftf2.c extendsftf2.c
     fixdfti.c fixsfti.c fixtfdi.c fixtfsi.c fixtfti.c fixunsdfti.c fixunssfti.c fixunstfdi.c fixunstfsi.c
     fixunstfti.c floatditf.c floatsitf.c floattidf.c floattisf.c floatunditf.c floatunsitf.c floatuntidf.c
-    floatuntisf.c lshrti3.c modti3.c multf3.c multi3.c subtf3.c udivti3.c umodti3.c ashrdi3.c ashldi3.c fixdfdi.c
+    floatuntisf.c lshrti3.c modti3.c muldc3.c mulsc3 multf3.c multi3.c subtf3.c udivti3.c umodti3.c ashrdi3.c ashldi3.c fixdfdi.c
     floatdidf.c lshrdi3.c moddi3.c trunctfdf2.c trunctfsf2.c umoddi3.c fixunsdfdi.c muldi3.c divdi3.c divmoddi4.c
-    udivdi3.c udivmoddi4.c
+    udivdi3.c udivmoddi4.c ../../../../../../llvm/projects/compiler-rt/lib/builtins/clzti2.c
     )
 string(REGEX REPLACE "([^;]+)" "../../repos/emscripten/system/lib/compiler-rt/lib/builtins/\\1" compiler_rt_sources "${compiler_rt_sources}")
 string(REPLACE " " ";" compiler_rt_sources "${compiler_rt_sources}")
@@ -85,7 +85,7 @@ function(addSources sources flags)
 endfunction(addSources)
 
 addSources("${musl_sources}" "-Wno-return-type -Wno-parentheses -Wno-ignored-attributes -Wno-shift-count-overflow -Wno-shift-negative-value -Wno-dangling-else -Wno-unknown-pragmas -Wno-shift-op-parentheses -Wno-string-plus-int -Wno-logical-op-parentheses -Wno-bitwise-op-parentheses -Wno-visibility -Wno-pointer-sign -Wno-absolute-value -Wno-empty-body")
-addSources("${compiler_rt_sources}" "")
+addSources("${compiler_rt_sources}" "-isystem ../../repos/projects/compiler-rt/lib/")
 addSources("${libcxx_sources}" "-std=c++11 -DLIBCXX_BUILDING_LIBCXXABI=1 -D_LIBCPP_BUILDING_LIBRARY")
 addSources("${libcxxabi_sources}" "-std=c++11")
 addSource(../../repos/emscripten/system/lib/dlmalloc.c "-Wno-tautological-constant-compare")

@@ -473,9 +473,6 @@ void read_linking(Module& module, size_t& pos, size_t s_end) {
 } // read_linking
 
 void prepare_symbols(Module& module) {
-    auto& sp = module.symbols[stack_pointer_name];
-    sp.is_stack_ptr = true;
-    sp.module = &module;
     for (auto& [name, symbol] : module.symbols) {
         if (!symbol.in_linking && symbol.export_index &&
             (symbol.import_global_index || symbol.export_global_index))
@@ -618,8 +615,6 @@ void link_symbols(Linked& linked) {
             auto& linked_symbol = linked.linked_symbols[key];
             symbol.linked_symbol = &linked_symbol;
             linked_symbol.symbols.push_back(&symbol);
-            if (symbol.is_stack_ptr)
-                linked_symbol.is_stack_ptr = true;
             if (symbol.import_global_index || symbol.export_global_index)
                 linked_symbol.is_global = true;
             if (symbol.import_function_index || symbol.export_function_index)
@@ -789,7 +784,6 @@ void allocate_elements(Linked& linked, uint32_t element_offset) {
 }
 
 void relocate(Linked& linked, Module& module) {
-
     for (auto& reloc : module.relocs) {
         check(reloc.section_id == sec_code || reloc.section_id == sec_data,
               "unsupported reloc section id");
@@ -805,6 +799,12 @@ void relocate(Linked& linked, Module& module) {
             else {
                 check(reloc.section_id == sec_code,
                       "unresolved memory reloc not in code");
+                // I thought I'd need to forward some memory relocs
+                // to the loader, but didn't. The code below and
+                // push_sec_code_reloc() are untested, so may corrupt
+                // binaries.
+                check(false, "unresolved memory reloc in code; this is "
+                             "currently disabled");
                 // push_counted always uses 5 bytes
                 auto new_code_base = 5 + module.code_offset;
                 auto& import_symbol = module.globals[reloc.index].import_symbol;
@@ -1113,7 +1113,6 @@ void push_sec_data(Linked& linked) {
 // Why is this linker's output not relocatable?
 //  * I want to reduce the loader's burden by not having a large number
 //    of relocs.
-//  * It needs some relocs to pull in things from the js runtime.
 //  * I don't export local symbols since several tools stop when they
 //    see the duplicate names.
 void push_sec_linking(Linked& linked) {

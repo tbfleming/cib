@@ -21,7 +21,7 @@ inline const char* const memory_name = "__linear_memory";
 inline const char* const table_name = "__indirect_function_table";
 
 // emscripten's SP lives at 1024
-inline const uint32_t default_memory_offset = 1028;
+inline const uint32_t default_memory_offset = 1024 + 16;
 
 // leave a little space for null
 inline const uint32_t default_element_offset = 10;
@@ -203,7 +203,6 @@ struct Symbol {
     std::optional<uint32_t> import_function_index{};
     std::optional<uint32_t> export_function_index{};
     struct LinkedSymbol* linked_symbol{};
-    bool is_stack_ptr{};
     bool in_linking{};
 };
 
@@ -240,7 +239,6 @@ struct LinkedSymbol {
     std::vector<Symbol*> symbols{};
     Symbol* definition{};
     std::optional<uint32_t> final_index{};
-    bool is_stack_ptr{};
     bool is_global{};
     bool is_function{};
 };

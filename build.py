@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 useTag = 'cib-005'      # --clone and --checkout retrieve this tag
 useTag = None          # --clone and --checkout retrieve branches
 
+reoptClang = True
 useFastcomp = False
 
 llvmBuildType = 'Release'
@@ -392,7 +393,10 @@ def appClang():
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
     app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
-    run('cd ' + browserClangBuild + ' && wasm-opt -Os clang.wasm -o clang-opt.wasm')
+    if(reoptClang):
+        run('cd ' + browserClangBuild + ' && wasm-opt -Os clang.wasm -o clang-opt.wasm')
+    else:
+        run('cd ' + browserClangBuild + ' && cp clang.wasm clang-opt.wasm')
     run('cd ' + browserClangBuild + ' && ../tools/combine-data clang-opt.wasm clang-combined.wasm')
     run('cp -au ' + browserClangBuild + 'clang.js ' + browserClangBuild + 'clang.data dist')
     run('cp -au ' + browserClangBuild + 'clang-combined.wasm dist/clang.wasm')
@@ -414,6 +418,7 @@ def appClangNative():
 
 def appRuntime():
     app('runtime', browserRuntimeBuildType, browserRuntimeBuild, env='EMCC_FORCE_STDLIBS=1')
+    run('cp build/rtl/rtl ' + browserRuntimeBuild + 'runtime.wasm')
     run('cp -au ' + browserRuntimeBuild + 'runtime.js ' + browserRuntimeBuild + 'runtime.wasm dist')
 
 def http():
@@ -459,7 +464,7 @@ commands = [
     ('t', 'tools',          tools,          'store_true',   True,   "Build tools if not already built"),
     ('b', 'llvm-browser',   llvmBrowser,    'store_true',   True,   "Build llvm in-browser components"),
     ('d', 'dist',           dist,           'store_true',   True,   "Fill dist/"),
-    ('r', 'rtl',            rtl,            'store_true',   False,   "Build RTL"),
+    ('r', 'rtl',            rtl,            'store_true',   True,   "Build RTL"),
     ('1', 'app-1',          appClangFormat, 'store_true',   True,   "Build app 1: clang-format"),
     ('2', 'app-2',          appClang,       'store_true',   True,   "Build app 2: clang"),
     ('n', 'app-n',          appClangNative, 'store_true',   False,  "Build app 2: clang, native"),

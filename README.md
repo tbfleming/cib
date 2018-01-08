@@ -10,8 +10,12 @@ Current status:
 * ```clang```: working for simple cases
 * Running generated wasm: working for simple cases
 
+Recently fixed:
+* The runtime now consumes much less memory with each press of the Run button
+* Global constructors
+
 Currently missing:
-* Global constructors and destructors
+* Global destructors
 * Standard library globals (e.g. ```cin```, ```cout```)
 * RTTI, exception handling
 
