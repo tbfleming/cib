@@ -26,12 +26,18 @@ commands.run = async function ({ wasmBinary }) {
         let tableBase = table.length;
         relocate(binary, standardSections, relocs, memoryBase, tableBase);
         generateNewBodies(binary, bodies, spGlobalIndex, newSpIndex);
-        let newBinary = replaceSections(binary, standardSections, bodies, dataSegments, globals, memoryBase, tableBase);
+        let replacementSections = {
+            [WASM_SEC_GLOBAL]: generateGlobal(globals),
+            [WASM_SEC_ELEM]: generateElem(getElems(binary, standardSections), tableBase),
+            [WASM_SEC_CODE]: generateCode(bodies),
+            [WASM_SEC_DATA]: generateData(binary, memoryBase, dataSegments),
+        };
+        let newBinary = generateBinary(binary, standardSections, replacementSections);
         //postMessage({ function: 'workerDebugReplaceBinary', newBinary });
 
         let adjustedImports = {};
-        for(let name in emModule.asmLibraryArg)
-            if(name.substr(0,3) === '___')
+        for (let name in emModule.asmLibraryArg)
+            if (name.substr(0, 3) === '___')
                 adjustedImports[name.substr(1)] = emModule.asmLibraryArg[name];
         let imports = {
             env: {
