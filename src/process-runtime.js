@@ -11,21 +11,15 @@ commands.run = async function ({ wasmBinary }) {
         let mainExports = emModule.wasmInstance.exports;
         let memory = emModule.wasmMemory;
         let table = emModule.wasmTable;
-        let stackSize = 8 * 1024 * 1024;
-        let stackBegin = mainExports.malloc(stackSize);
-        let stackEnd = stackBegin + stackSize;
-
         let { standardSections, relocs, linking } = getSegments(binary);
         let { numGlobalImports, spGlobalIndex } = fixSPImport(binary, standardSections);
         let globals = getGlobals(binary, standardSections);
-        let newSpIndex = numGlobalImports + globals.length;
-        globals.push({ type: 0x7f, mutability: 1, initExpr: createInitExpr32(stackEnd) });
         let bodies = getCode(binary, standardSections);
         let { dataSegments, endDataOffset } = getData(binary, standardSections);
         let memoryBase = mainExports.malloc(endDataOffset);
         let tableBase = table.length;
         relocate(binary, standardSections, relocs, memoryBase, tableBase);
-        generateNewBodies(binary, bodies, spGlobalIndex, newSpIndex);
+        generateNewBodies(binary, bodies, spGlobalIndex);
         let replacementSections = {
             [WASM_SEC_GLOBAL]: generateGlobal(globals),
             [WASM_SEC_ELEM]: generateElem(getElems(binary, standardSections), tableBase),
@@ -50,8 +44,6 @@ commands.run = async function ({ wasmBinary }) {
 
                 // __info_*: not used by runtime, but available to user code.
                 //           functions instead of constants to work around a codegen issue.
-                __info_stack_begin: () => stackBegin,
-                __info_stack_end: () => stackEnd,
                 __info_data_begin: () => memoryBase,
                 __info_data_end: () => memoryBase + endDataOffset,
             },

@@ -46,6 +46,27 @@ const WASM_DATA_SIZE = 0x3;
 const WASM_DATA_ALIGNMENT = 0x4;
 const WASM_SEGMENT_INFO = 0x5;
 
+const EXTERNAL_FUNCTION = 0;
+const EXTERNAL_TABLE = 1;
+const EXTERNAL_MEMORY = 2;
+const EXTERNAL_GLOBAL = 3;
+
+const TYPE_I32 = 0x7f;
+const TYPE_I64 = 0x7e;
+const TYPE_F32 = 0x7d;
+const TYPE_F64 = 0x7c;
+const TYPE_ANYFUNC = 0x70;
+const TYPE_FUNC = 0x60;
+const TYPE_BLOCK = 0x40;
+
+const GET_LOCAL = 0x20;
+const SET_LOCAL = 0x21;
+const INSTR_GET_GLOBAL = 0x23;
+const INSTR_SET_GLOBAL = 0x24;
+const I32_LOAD = 0x28;
+const I32_STORE = 0x36;
+const I32_CONST = 0x41;
+
 function check(bool, msg) {
     if (!bool)
         throw msg;
@@ -446,7 +467,7 @@ function skipResizableLimits(binary, pos) {
 
 function fixSPImport(binary, standardSections) {
     let numGlobalImports = 0;
-    let spGlobalIndex;
+    let spGlobalIndex = -1;
     let importSection = standardSections[WASM_SEC_IMPORT];
     if (importSection) {
         let pos = { byte: importSection.byte };
@@ -455,14 +476,14 @@ function fixSPImport(binary, standardSections) {
             let moduleStr = getStr(binary, pos);
             let fieldStr = getStr(binary, pos);
             let kind = binary[pos.byte++];
-            if (kind === 0) { // function
+            if (kind === EXTERNAL_FUNCTION) {
                 let type = readLeb(binary, pos);
-            } else if (kind === 1) { // table
+            } else if (kind === EXTERNAL_TABLE) {
                 let type = readLeb(binary, pos);
                 skipResizableLimits(binary, pos);
-            } else if (kind === 2) { // memory
+            } else if (kind === EXTERNAL_MEMORY) {
                 skipResizableLimits(binary, pos);
-            } else if (kind === 3) { // global
+            } else if (kind === EXTERNAL_GLOBAL) {
                 let type = readLeb(binary, pos);
                 if (fieldStr === '__stack_pointer') {
                     spGlobalIndex = numGlobalImports;
@@ -660,20 +681,42 @@ function relocate(binary, standardSections, relocs, memoryBase, tableBase) {
     } // for(reloc)
 } // relocate()
 
-function generateNewBodies(binary, bodies, oldSpIndex, newSpIndex) {
+function generateNewBodies(binary, bodies, spGlobalIndex) {
     for (let body of bodies) {
         let newCode = [];
         let pos = { byte: body.codeBegin };
+        let tempLocal = 0;
+        for (let local of body.locals)
+            tempLocal += local.count;
+        body.locals.push({ count: 1, type: TYPE_I32 });
         while (pos.byte < body.codeEnd) {
             let instrBegin = pos.byte;
             let opcode = binary[pos.byte++];
             let replaced = false;
-            if (opcode === 0x23 || opcode === 0x24) { // get_global, set_global
+            if (opcode === INSTR_GET_GLOBAL || opcode === INSTR_SET_GLOBAL) {
                 let index = readSleb(binary, pos);
-                if (index === oldSpIndex) {
+                // Replace SP in global variable with SP at address 1024.
+                // This allows multiple loaded binaries to share a single
+                // stack until wasm's thread extensions are deployed.
+                if (index === spGlobalIndex) {
                     replaced = true;
-                    newCode.push(opcode);
-                    pushLeb5(newCode, newSpIndex);
+                    if (opcode === INSTR_GET_GLOBAL) {
+                        newCode.push(I32_CONST);
+                        pushLeb5(newCode, 1024);
+                        newCode.push(I32_LOAD);
+                        newCode.push(2);
+                        newCode.push(0);
+                    } else {
+                        newCode.push(SET_LOCAL);
+                        pushLeb5(newCode, tempLocal);
+                        newCode.push(I32_CONST);
+                        pushLeb5(newCode, 1024);
+                        newCode.push(GET_LOCAL);
+                        pushLeb5(newCode, tempLocal);
+                        newCode.push(I32_STORE);
+                        newCode.push(2);
+                        newCode.push(0);
+                    }
                 }
             } else {
                 skipInstr(binary, opcode, pos);
