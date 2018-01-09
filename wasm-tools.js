@@ -17,6 +17,7 @@ const WASM_SEC_START = 8;
 const WASM_SEC_ELEM = 9;
 const WASM_SEC_CODE = 10;
 const WASM_SEC_DATA = 11;
+const WASM_SEC_END = 12;
 
 // include/llvm/BinaryFormat/WasmRelocs/WebAssembly.def
 const R_WEBASSEMBLY_FUNCTION_INDEX_LEB = 0;
@@ -42,12 +43,35 @@ const relocTypes = {
 // include/llvm/BinaryFormat/Wasm.h
 const WASM_SYMBOL_INFO = 0x2;
 const WASM_DATA_SIZE = 0x3;
-const WASM_DATA_ALIGNMENT = 0x4;
 const WASM_SEGMENT_INFO = 0x5;
+const WASM_INIT_FUNCS = 0x6;
+
+const EXTERNAL_FUNCTION = 0;
+const EXTERNAL_TABLE = 1;
+const EXTERNAL_MEMORY = 2;
+const EXTERNAL_GLOBAL = 3;
+
+const TYPE_I32 = 0x7f;
+const TYPE_I64 = 0x7e;
+const TYPE_F32 = 0x7d;
+const TYPE_F64 = 0x7c;
+const TYPE_ANYFUNC = 0x70;
+const TYPE_FUNC = 0x60;
+const TYPE_BLOCK = 0x40;
+
+const INSTR_END = 0x0b;
+const INSTR_CALL = 0x10;
+const INSTR_GET_LOCAL = 0x20;
+const INSTR_SET_LOCAL = 0x21;
+const INSTR_GET_GLOBAL = 0x23;
+const INSTR_SET_GLOBAL = 0x24;
+const INSTR_I32_LOAD = 0x28;
+const INSTR_I32_STORE = 0x36;
+const INSTR_I32_CONST = 0x41;
 
 function check(bool, msg) {
     if (!bool)
-        throw msg;
+        throw new Error(msg);
 }
 
 function readI32(binary, pos) {
@@ -161,6 +185,13 @@ function getStr(binary, pos) {
     let str = (new TextDecoder).decode(binary.subarray(pos.byte, pos.byte + len));
     pos.byte += len;
     return str;
+}
+
+function pushStr(binary, str) {
+    let s = (new TextEncoder).encode(str);
+    pushLeb5(binary, s.length);
+    for (let i = 0; i < s.length; ++i)
+        binary.push(s[i]);
 }
 
 function skipInstr(binary, opcode, pos) {
@@ -367,7 +398,7 @@ function skipInstr(binary, opcode, pos) {
 function skipInitExpr(binary, pos) {
     while (true) {
         let opcode = binary[pos.byte++];
-        if (opcode === 0x0b) // end
+        if (opcode === INSTR_END)
             return;
         skipInstr(binary, opcode, pos);
     }
@@ -375,18 +406,24 @@ function skipInitExpr(binary, pos) {
 
 function getInitExpr32(binary, pos, sectionName) {
     let opcode = binary[pos.byte++];
-    check(opcode === 0x41, sectionName + ' init_expr is not i32.const');
+    check(opcode === INSTR_I32_CONST, sectionName + ' init_expr is not i32.const');
     let offset = readLeb(binary, pos);
     opcode = binary[pos.byte++];
-    check(opcode === 0x0b, sectionName + ' init_expr missing end');
+    check(opcode === INSTR_END, sectionName + ' init_expr missing end');
     return offset;
 }
 
 function createInitExpr32(value) {
-    let result = [0x41]; // i32.const
+    let result = [INSTR_I32_CONST];
     pushLeb5(result, value);
-    result.push(0x0b); // end
+    result.push(INSTR_END);
     return result;
+}
+
+function pushInitExpr32(binary, value) {
+    binary.push(INSTR_I32_CONST);
+    pushLeb5(binary, value);
+    binary.push(INSTR_END);
 }
 
 function getSegments(binary) {
@@ -437,9 +474,33 @@ function skipResizableLimits(binary, pos) {
         readLeb(binary, pos);
 }
 
+function getTypes(binary, standardSections) {
+    let types = [];
+    let section = standardSections[WASM_SEC_TYPE];
+    if (section) {
+        let pos = { byte: section.byte };
+        let count = readLeb(binary, pos);
+        for (let i = 0; i < count; ++i) {
+            let type = { argTypes: [], returnTypes: [] };
+            check(binary[pos.byte++] == TYPE_FUNC, "invalid form in type");
+            let paramCount = readLeb(binary, pos);
+            for (let j = 0; j < paramCount; ++j)
+                type.argTypes.push(binary[pos.byte++]);
+            let returnCount = readLeb(binary, pos);
+            for (let j = 0; j < returnCount; ++j)
+                type.returnTypes.push(binary[pos.byte++]);
+            check(type.returnTypes.length <= 1, "multiple return types");
+            types.push(type)
+        }
+        check(pos.byte === section.end, 'WASM_SEC_TYPE section corrupt');
+    }
+    return types;
+}
+
 function fixSPImport(binary, standardSections) {
-    let numGlobalImports = 0;
-    let spGlobalIndex;
+    let globalImports = [];
+    let numFunctionImports = 0;
+    let spGlobalIndex = -1;
     let importSection = standardSections[WASM_SEC_IMPORT];
     if (importSection) {
         let pos = { byte: importSection.byte };
@@ -448,21 +509,22 @@ function fixSPImport(binary, standardSections) {
             let moduleStr = getStr(binary, pos);
             let fieldStr = getStr(binary, pos);
             let kind = binary[pos.byte++];
-            if (kind === 0) { // function
+            if (kind === EXTERNAL_FUNCTION) {
                 let type = readLeb(binary, pos);
-            } else if (kind === 1) { // table
+                ++numFunctionImports;
+            } else if (kind === EXTERNAL_TABLE) {
                 let type = readLeb(binary, pos);
                 skipResizableLimits(binary, pos);
-            } else if (kind === 2) { // memory
+            } else if (kind === EXTERNAL_MEMORY) {
                 skipResizableLimits(binary, pos);
-            } else if (kind === 3) { // global
+            } else if (kind === EXTERNAL_GLOBAL) {
                 let type = readLeb(binary, pos);
                 if (fieldStr === '__stack_pointer') {
-                    spGlobalIndex = numGlobalImports;
+                    spGlobalIndex = globalImports.length;
                     if (binary[pos.byte] === 1) // mutable
                         binary[pos.byte] = 0; // immutable
                 }
-                ++numGlobalImports;
+                globalImports.push(fieldStr);
                 ++pos.byte;
             }
             else
@@ -470,8 +532,24 @@ function fixSPImport(binary, standardSections) {
         }
         check(pos.byte === importSection.end, 'WASM_SEC_IMPORT section corrupt');
     }
-    return { numGlobalImports, spGlobalIndex };
+    return { globalImports, numFunctionImports, spGlobalIndex };
 } // fixSPImport
+
+function getFunctions(binary, standardSections, types) {
+    let functions = [];
+    let section = standardSections[WASM_SEC_FUNCTION];
+    if (section) {
+        let pos = { byte: section.byte };
+        let count = readLeb(binary, pos);
+        for (let i = 0; i < count; ++i) {
+            let type = readLeb(binary, pos);
+            check(type < types.length, "function type doesn't exist");
+            functions.push(type);
+        }
+        check(pos.byte === section.end, 'WASM_SEC_FUNCTION section corrupt');
+    }
+    return functions;
+}
 
 function getGlobals(binary, standardSections) {
     let globals = [];
@@ -492,9 +570,27 @@ function getGlobals(binary, standardSections) {
     return globals;
 } // getGlobals
 
+function getExports(binary, standardSections) {
+    let exp = {};
+    let section = standardSections[WASM_SEC_EXPORT];
+    if (section) {
+        let pos = { byte: section.byte };
+        let count = readLeb(binary, pos);
+        for (let i = 0; i < count; ++i) {
+            let name = getStr(binary, pos);
+            let kind = binary[pos.byte++];
+            let index = readLeb(binary, pos);
+            exp[name] = { kind, index };
+        }
+        check(pos.byte === section.end, 'WASM_SEC_EXPORT section corrupt');
+    }
+    return exp;
+}
+
 function getElems(binary, standardSections) {
     let elems = [];
     let elemSection = standardSections[WASM_SEC_ELEM];
+    let tableSize = 0;
     if (elemSection) {
         let pos = { byte: elemSection.byte };
         let count = readLeb(binary, pos);
@@ -507,10 +603,11 @@ function getElems(binary, standardSections) {
             for (let j = 0; j < numFunctions; ++j)
                 functions.push(readLeb(binary, pos));
             elems.push({ offset, functions });
+            tableSize = Math.max(tableSize, offset + numFunctions);
         }
         check(pos.byte === elemSection.end, 'WASM_SEC_ELEM section corrupt');
     }
-    return elems;
+    return { tableSize, elems };
 } // getElems
 
 function getCode(binary, standardSections) {
@@ -523,14 +620,16 @@ function getCode(binary, standardSections) {
             let bodySize = readLeb(binary, pos);
             let bodyBegin = pos.byte;
             let localCount = readLeb(binary, pos);
-            for (let j = 0; j < localCount; ++j) {
-                readLeb(binary, pos);
-                readLeb(binary, pos);
-            }
+            let locals = [];
+            for (let j = 0; j < localCount; ++j)
+                locals.push({
+                    count: readLeb(binary, pos),
+                    type: readLeb(binary, pos),
+                });
             let codeBegin = pos.byte;
             let codeEnd = pos.byte = bodyBegin + bodySize;
-            check(binary[codeEnd - 1] === 0x0b, 'WASM_SEC_CODE body missing end');
-            bodies.push({ bodyBegin, localCount, codeBegin, codeEnd })
+            check(binary[codeEnd - 1] === INSTR_END, 'WASM_SEC_CODE body missing end');
+            bodies.push({ locals, codeBegin, codeEnd })
         }
         check(pos.byte === codeSection.end, 'WASM_SEC_CODE section corrupt');
     }
@@ -563,6 +662,7 @@ function getLinkingInfo(binary, linking) {
     let pos = { byte: linking.byte };
     let end = linking.end;
     let dataSize = 0;
+    let initFunctions = [];
     while (pos.byte < end) {
         let type = binary[pos.byte++];
         let pLen = readLeb(binary, pos);
@@ -590,14 +690,21 @@ function getLinkingInfo(binary, linking) {
                     console.log('getLinkingInfo: segment', name, alignment, flags);
                 }
             }
+        } else if (type == WASM_INIT_FUNCS) {
+            let count = readLeb(binary, pos);
+            for (let i = 0; i < count; ++i) {
+                let priority = readLeb(binary, pos);
+                let index = readLeb(binary, pos);
+                initFunctions.push({ priority, index });
+            }
         }
         pos.byte = pEnd;
     }
     check(pos.byte === end, 'Linking section corrupt');
-    return { dataSize };
+    return { dataSize, initFunctions };
 } // getLinkingInfo
 
-function relocate(binary, standardSections, relocs, memoryBase, tableBase) {
+function relocate(binary, standardSections, relocs, outsideExports, globalImports, memoryBase, tableBase) {
     for (let reloc of relocs) {
         if (logReloc)
             console.log('relocate:', reloc.name);
@@ -631,14 +738,31 @@ function relocate(binary, standardSections, relocs, memoryBase, tableBase) {
                     updateI32(binary, section.byte + offset, tableBase);
                     break;
                 case R_WEBASSEMBLY_MEMORY_ADDR_LEB:
-                    updateLeb5(binary, section.byte + offset, memoryBase);
-                    break;
                 case R_WEBASSEMBLY_MEMORY_ADDR_SLEB:
-                    updateSleb5(binary, section.byte + offset, memoryBase);
+                case R_WEBASSEMBLY_MEMORY_ADDR_I32: {
+                    let found = false;
+                    if (index < globalImports.length) {
+                        let exp = outsideExports[globalImports[index]];
+                        if (Number.isInteger(exp)) {
+                            found = true;
+                            if (type === R_WEBASSEMBLY_MEMORY_ADDR_LEB)
+                                writeLeb5(binary, { byte: section.byte + offset }, exp + addend);
+                            else if (type === R_WEBASSEMBLY_MEMORY_ADDR_SLEB)
+                                writeSleb5(binary, { byte: section.byte + offset }, exp + addend);
+                            else
+                                writeI32(binary, { byte: section.byte + offset }, exp + addend);
+                        }
+                    }
+                    if (!found) {
+                        if (type === R_WEBASSEMBLY_MEMORY_ADDR_LEB)
+                            updateLeb5(binary, section.byte + offset, memoryBase);
+                        else if (type === R_WEBASSEMBLY_MEMORY_ADDR_SLEB)
+                            updateSleb5(binary, section.byte + offset, memoryBase);
+                        else
+                            updateI32(binary, section.byte + offset, memoryBase);
+                    }
                     break;
-                case R_WEBASSEMBLY_MEMORY_ADDR_I32:
-                    updateI32(binary, section.byte + offset, memoryBase);
-                    break;
+                }
                 case R_WEBASSEMBLY_TYPE_INDEX_LEB:
                     break;
                 case R_WEBASSEMBLY_GLOBAL_INDEX_LEB:
@@ -651,20 +775,45 @@ function relocate(binary, standardSections, relocs, memoryBase, tableBase) {
     } // for(reloc)
 } // relocate()
 
-function generateNewBodies(binary, bodies, oldSpIndex, newSpIndex) {
-    for (let body of bodies) {
+function generateNewBodies(binary, types, functions, bodies, spGlobalIndex) {
+    for (let i = 0; i < functions.length; ++i) {
         let newCode = [];
+        let functionType = types[functions[i]];
+        let body = bodies[i];
         let pos = { byte: body.codeBegin };
+        let tempLocal = 0;
+        tempLocal += functionType.argTypes.length;
+        for (let local of body.locals)
+            tempLocal += local.count;
+        body.locals.push({ count: 1, type: TYPE_I32 });
         while (pos.byte < body.codeEnd) {
             let instrBegin = pos.byte;
             let opcode = binary[pos.byte++];
             let replaced = false;
-            if (opcode === 0x23 || opcode === 0x24) { // get_global, set_global
+            if (opcode === INSTR_GET_GLOBAL || opcode === INSTR_SET_GLOBAL) {
                 let index = readSleb(binary, pos);
-                if (index === oldSpIndex) {
+                // Replace SP in global variable with SP at address 1024.
+                // This allows multiple loaded binaries to share a single
+                // stack until wasm's thread extensions are deployed.
+                if (index === spGlobalIndex) {
                     replaced = true;
-                    newCode.push(opcode);
-                    pushLeb5(newCode, newSpIndex);
+                    if (opcode === INSTR_GET_GLOBAL) {
+                        newCode.push(INSTR_I32_CONST);
+                        pushLeb5(newCode, 1024);
+                        newCode.push(INSTR_I32_LOAD);
+                        newCode.push(2);
+                        newCode.push(0);
+                    } else {
+                        newCode.push(INSTR_SET_LOCAL);
+                        pushLeb5(newCode, tempLocal);
+                        newCode.push(INSTR_I32_CONST);
+                        pushLeb5(newCode, 1024);
+                        newCode.push(INSTR_GET_LOCAL);
+                        pushLeb5(newCode, tempLocal);
+                        newCode.push(INSTR_I32_STORE);
+                        newCode.push(2);
+                        newCode.push(0);
+                    }
                 }
             } else {
                 skipInstr(binary, opcode, pos);
@@ -678,141 +827,140 @@ function generateNewBodies(binary, bodies, oldSpIndex, newSpIndex) {
     } // for (let body of bodies)
 } // generateNewBodies()
 
-function replaceSections(oldBinary, standardSections, bodies, dataSegments, globals, memoryBase, tableBase) {
-    let elems = getElems(oldBinary, standardSections);
-    let elemSection = standardSections[WASM_SEC_ELEM];
-    let oldElemSize = elemSection ? elemSection.totalSize : 0;
-    let newElemSize = 11;
-    for (let elem of elems)
-        newElemSize += 13 + elem.functions.length * 5;
-    if (!elemSection)
-        newElemSize = 0;
+function generateInit(name, types, numFunctionImports, functions, exports, bodies, initFunctions) {
+    exports[name] = { kind: EXTERNAL_FUNCTION, index: numFunctionImports + functions.length };
+    functions.push(types.length);
+    types.push({ argTypes: [], returnTypes: [] });
+    let newCode = [];
+    initFunctions.sort((a, b) => a.priority - b.priority);
+    for (let f of initFunctions) {
+        newCode.push(INSTR_CALL);
+        pushLeb5(newCode, f.index);
+    }
+    newCode.push(INSTR_END);
+    bodies.push({ locals: [], newCode });
+}
 
-    let codeSection = standardSections[WASM_SEC_CODE];
-    let oldCodeSize = codeSection ? codeSection.totalSize : 0;
-    let newCodeSize = 11;
-    for (let body of bodies)
-        newCodeSize += 10 + body.localCount * 6 + body.newCode.length;
-    if (!codeSection)
-        newCodeSize = 0;
+function generateType(types) {
+    let result = [];
+    pushLeb5(result, types.length);
+    for (let type of types) {
+        result.push(TYPE_FUNC);
+        pushLeb5(result, type.argTypes.length);
+        for (let t of type.argTypes)
+            result.push(t);
+        pushLeb5(result, type.returnTypes.length);
+        for (let t of type.returnTypes)
+            result.push(t);
+    }
+    return result;
+}
 
-    let dataSection = standardSections[WASM_SEC_DATA];
-    let oldDataSize = dataSection ? dataSection.totalSize : 0;
-    let newDataSize = 11;
-    for (let dataSegment of dataSegments)
-        newDataSize += 13 + dataSegment.numBytes;
-    if (!dataSection)
-        newDataSize = 0;
+function generateFunction(functions) {
+    let result = [];
+    pushLeb5(result, functions.length);
+    for (let functionType of functions)
+        result.push(functionType);
+    return result;
+}
 
-    let globalSection = standardSections[WASM_SEC_GLOBAL];
-    let oldGlobalSize = globalSection ? globalSection.totalSize : 0;
-    let newGlobalSize = 11;
-    for (let global of globals)
-        newGlobalSize += 2 + global.initExpr.length;
+function generateGlobal(globals) {
+    let result = [];
+    pushLeb5(result, globals.length);
+    for (let global of globals) {
+        result.push(global.type);
+        result.push(global.mutability);
+        for (let b of global.initExpr)
+            result.push(b);
+    }
+    return result;
+}
 
-    let newBinarySize =
-        oldBinary.length +
-        newElemSize - oldElemSize +
-        newCodeSize - oldCodeSize +
-        newDataSize - oldDataSize +
-        newGlobalSize - oldGlobalSize;
+function generateExport(exports) {
+    let result = [];
+    let count = 0;
+    for (let name in exports)
+        ++count;
+    pushLeb5(result, count);
+    for (let name in exports) {
+        let { kind, index } = exports[name];
+        pushStr(result, name);
+        result.push(kind);
+        pushLeb5(result, index);
+    }
+    return result;
+}
+
+function generateElem(elems, tableBase) {
+    let result = [];
+    pushLeb5(result, elems.length);
+    for (let elem of elems) {
+        result.push(0);
+        pushInitExpr32(result, tableBase + elem.offset);
+        pushLeb5(result, elem.functions.length);
+        for (let f of elem.functions)
+            pushLeb5(result, f);
+    }
+    return result;
+}
+
+function generateCode(bodies) {
+    let result = [];
+    pushLeb5(result, bodies.length);
+    for (let body of bodies) {
+        let bodySize = 5 + body.locals.length * 6 + body.newCode.length;
+        pushLeb5(result, bodySize);
+        pushLeb5(result, body.locals.length);
+        for (let local of body.locals) {
+            pushLeb5(result, local.count);
+            result.push(local.type);
+        }
+        for (let b of body.newCode)
+            result.push(b);
+    }
+    return result;
+}
+
+function generateData(binary, memoryBase, dataSegments) {
+    let result = [];
+    pushLeb5(result, dataSegments.length);
+    for (let dataSegment of dataSegments) {
+        result.push(0);
+        pushInitExpr32(result, memoryBase + dataSegment.offset);
+        pushLeb5(result, dataSegment.numBytes);
+        for (let i = 0; i < dataSegment.numBytes; ++i)
+            result.push(binary[dataSegment.byte + i])
+    }
+    return result;
+}
+
+function generateBinary(oldBinary, standardSections, replacementSections) {
+    let newBinarySize = 8;
+    for (let id = 1; id < WASM_SEC_END; ++id) {
+        if (replacementSections[id])
+            newBinarySize += 6 + replacementSections[id].length;
+        else if (standardSections[id])
+            newBinarySize += 6 + standardSections[id].end - standardSections[id].byte;
+    }
     let newBinary = new Uint8Array(newBinarySize);
-
     for (let i = 0; i < 8; ++i)
         newBinary[i] = oldBinary[i];
-    let oldPos = { byte: 8 };
-    let newPos = { byte: 8 };
-    let oldEnd = oldBinary.length;
-
-    let wroteGlobal = false;
-    while (oldPos.byte < oldEnd) {
-        let oldBegin = oldPos.byte;
-        let id = oldBinary[oldPos.byte++];
-        let len = readLeb(oldBinary, oldPos);
-        let totalSize = oldPos.byte + len - oldBegin;
-        if (id === WASM_SEC_ELEM) {
-            oldPos.byte += len;
-            newBinary[newPos.byte++] = WASM_SEC_ELEM;
-            writeLeb5(newBinary, newPos, newElemSize - 6);
-            writeLeb5(newBinary, newPos, elems.length);
-            for (let elem of elems) {
-                newBinary[newPos.byte++] = 0;
-                newBinary[newPos.byte++] = 0x41;
-                writeLeb5(newBinary, newPos, tableBase + elem.offset);
-                newBinary[newPos.byte++] = 0x0b;
-                writeLeb5(newBinary, newPos, elem.functions.length);
-                for (let f of elem.functions)
-                    writeLeb5(newBinary, newPos, f);
-            }
-        } else if (id === WASM_SEC_CODE) {
-            newBinary[newPos.byte++] = WASM_SEC_CODE; // id
-            writeLeb5(newBinary, newPos, newCodeSize - 6); // payload_len
-
-            let count = readLeb(oldBinary, oldPos);
-            writeLeb5(newBinary, newPos, count);
-            check(count === bodies.length, 'count === bodies.length');
-
-            for (let body of bodies) {
-                let bodySize = readLeb(oldBinary, oldPos);
-                let localCount = readLeb(oldBinary, oldPos);
-                check(localCount === body.localCount, 'localCount === body.localCount');
-
-                bodySize = 5 + localCount * 6 + body.newCode.length;
-                writeLeb5(newBinary, newPos, bodySize);
-                let bodyEnd = newPos.byte + bodySize;
-                writeLeb5(newBinary, newPos, localCount);
-
-                for (let i = 0; i < localCount; ++i) {
-                    writeLeb5(newBinary, newPos, readLeb(oldBinary, oldPos)); // count
-                    newBinary[newPos.byte++] = oldBinary[oldPos.byte++]; // type
-                }
-
-                oldPos.byte = body.codeEnd;
-                for (let b of body.newCode)
-                    newBinary[newPos.byte++] = b;
-                check(newPos.byte === bodyEnd, 'newPos.byte === bodyEnd');
-            }
-        } else if (id === WASM_SEC_DATA) {
-            oldPos.byte += len;
-            newBinary[newPos.byte++] = WASM_SEC_DATA;
-            writeLeb5(newBinary, newPos, newDataSize - 6);
-            writeLeb5(newBinary, newPos, dataSegments.length);
-            for (let dataSegment of dataSegments) {
-                newBinary[newPos.byte++] = 0;
-                newBinary[newPos.byte++] = 0x41;
-                writeLeb5(newBinary, newPos, memoryBase + dataSegment.offset);
-                newBinary[newPos.byte++] = 0x0b;
-                writeLeb5(newBinary, newPos, dataSegment.numBytes);
-                for (let i = 0; i < dataSegment.numBytes; ++i)
-                    newBinary[newPos.byte++] = oldBinary[dataSegment.byte + i];
-            }
-        } else {
-            if (id >= WASM_SEC_GLOBAL && !wroteGlobal) {
-                wroteGlobal = true;
-                newBinary[newPos.byte++] = WASM_SEC_GLOBAL; // id
-                writeLeb5(newBinary, newPos, newGlobalSize - 6); // payload_len
-                writeLeb5(newBinary, newPos, globals.length); // count
-                for (let global of globals) {
-                    newBinary[newPos.byte++] = global.type;
-                    newBinary[newPos.byte++] = global.mutability;
-                    for (let b of global.initExpr)
-                        newBinary[newPos.byte++] = b;
-                }
-            }
-
-            if (id === WASM_SEC_GLOBAL)
-                oldPos.byte += len;
-            else {
-                oldPos.byte = oldBegin;
-                for (let i = 0; i < totalSize; ++i)
-                    newBinary[newPos.byte++] = oldBinary[oldPos.byte++];
-            }
+    let pos = { byte: 8 };
+    for (let id = 1; id < WASM_SEC_END; ++id) {
+        if (replacementSections[id]) {
+            let sec = replacementSections[id];
+            newBinary[pos.byte++] = id;
+            writeLeb5(newBinary, pos, sec.length);
+            for (let i = 0; i < sec.length; ++i)
+                newBinary[pos.byte++] = sec[i];
+        } else if (standardSections[id]) {
+            let sec = standardSections[id];
+            newBinary[pos.byte++] = id;
+            writeLeb5(newBinary, pos, sec.end - sec.byte);
+            for (let i = sec.byte; i < sec.end; ++i)
+                newBinary[pos.byte++] = oldBinary[i];
         }
-    } // while (oldPos.byte < oldEnd)
-
-    // console.log(oldPos.byte, oldEnd, oldBinary.length);
-    // console.log(newPos.byte, newBinary.length);
-    check(oldPos.byte === oldBinary.length, "replaceSections: didn't reach end of source");
-    check(newPos.byte === newBinary.length, "replaceSections: didn't reach end of dest");
+    }
+    check(pos.byte === newBinary.length, "generateBinary: didn't reach end");
     return newBinary;
-} // replaceSections
+}

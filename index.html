@@ -128,16 +128,20 @@
 // See https://github.com/tbfleming/cib for known issues.
 
 #include <algorithm>
-#include <stdio.h>
+#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
+
+struct S {
+    S() {cout << "Constructed before main()\\n";};
+} s;
 
 int main() {
     auto strs = vector{"3"s, "2"s, "1"s, "4"s, "but this demo is real."s, "The 🍰 is a lie,"s};
     sort(begin(strs), end(strs));
     for (auto s: strs)
-        puts(s.c_str());
+        cout << s << "\\n";
 }
 `
 
@@ -254,6 +258,7 @@ int main() {
         runtime.process.workerDebugReplaceBinary = args => {
             clang.ioElem.textContent += 'new size:  ' + args.newBinary.length + '\n';
             clangOutput = args.newBinary;
+            updateUI();
         };
 
         clangFormat.process.start();
