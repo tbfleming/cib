@@ -12,7 +12,7 @@ Current status:
 
 Recently fixed:
 * The runtime now consumes much less memory with each press of the Run button
-* Standard library globals (e.g. ```cin```, ```cout```)
+* Standard library globals (e.g. ```cout```)
 * Global constructors
 * Function pointers and virtual functions
 * RTTI
