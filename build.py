@@ -4,7 +4,7 @@ import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
 useTag = 'cib-006'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
@@ -397,9 +397,8 @@ def appClang():
         run('cd ' + browserClangBuild + ' && wasm-opt -Os clang.wasm -o clang-opt.wasm')
     else:
         run('cd ' + browserClangBuild + ' && cp clang.wasm clang-opt.wasm')
-    run('cd ' + browserClangBuild + ' && ../tools/combine-data clang-opt.wasm clang-combined.wasm')
     run('cp -au ' + browserClangBuild + 'clang.js ' + browserClangBuild + 'clang.data dist')
-    run('cp -au ' + browserClangBuild + 'clang-combined.wasm dist/clang.wasm')
+    run('cp -au ' + browserClangBuild + 'clang-opt.wasm dist/clang.wasm')
 
 def appClangNative():
     if not os.path.isdir('build/apps-native'):
@@ -434,7 +433,7 @@ def http():
         '../../src/process*.js ' +
         '../../src/wasm-tools.js ' +
         '.')
-    run('cd build/http && ln -sf ' + browserClangBuild + 'clang-combined.wasm clang.wasm')
+    run('cd build/http && ln -sf ' + browserClangBuild + 'clang-opt.wasm clang.wasm')
     try:
         if 'HTTP_SERVER' in os.environ:
             run('cd build/http && ' + os.environ['HTTP_SERVER'])
