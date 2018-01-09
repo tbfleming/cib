@@ -498,7 +498,7 @@ function getTypes(binary, standardSections) {
 }
 
 function fixSPImport(binary, standardSections) {
-    let numGlobalImports = 0;
+    let globalImports = [];
     let numFunctionImports = 0;
     let spGlobalIndex = -1;
     let importSection = standardSections[WASM_SEC_IMPORT];
@@ -520,11 +520,11 @@ function fixSPImport(binary, standardSections) {
             } else if (kind === EXTERNAL_GLOBAL) {
                 let type = readLeb(binary, pos);
                 if (fieldStr === '__stack_pointer') {
-                    spGlobalIndex = numGlobalImports;
+                    spGlobalIndex = globalImports.length;
                     if (binary[pos.byte] === 1) // mutable
                         binary[pos.byte] = 0; // immutable
                 }
-                ++numGlobalImports;
+                globalImports.push(fieldStr);
                 ++pos.byte;
             }
             else
@@ -532,7 +532,7 @@ function fixSPImport(binary, standardSections) {
         }
         check(pos.byte === importSection.end, 'WASM_SEC_IMPORT section corrupt');
     }
-    return { numGlobalImports, numFunctionImports, spGlobalIndex };
+    return { globalImports, numFunctionImports, spGlobalIndex };
 } // fixSPImport
 
 function getFunctions(binary, standardSections, types) {
@@ -590,6 +590,7 @@ function getExports(binary, standardSections) {
 function getElems(binary, standardSections) {
     let elems = [];
     let elemSection = standardSections[WASM_SEC_ELEM];
+    let tableSize = 0;
     if (elemSection) {
         let pos = { byte: elemSection.byte };
         let count = readLeb(binary, pos);
@@ -602,10 +603,11 @@ function getElems(binary, standardSections) {
             for (let j = 0; j < numFunctions; ++j)
                 functions.push(readLeb(binary, pos));
             elems.push({ offset, functions });
+            tableSize = Math.max(tableSize, offset + numFunctions);
         }
         check(pos.byte === elemSection.end, 'WASM_SEC_ELEM section corrupt');
     }
-    return elems;
+    return { tableSize, elems };
 } // getElems
 
 function getCode(binary, standardSections) {
@@ -702,7 +704,7 @@ function getLinkingInfo(binary, linking) {
     return { dataSize, initFunctions };
 } // getLinkingInfo
 
-function relocate(binary, standardSections, relocs, memoryBase, tableBase) {
+function relocate(binary, standardSections, relocs, outsideExports, globalImports, memoryBase, tableBase) {
     for (let reloc of relocs) {
         if (logReloc)
             console.log('relocate:', reloc.name);
@@ -736,14 +738,31 @@ function relocate(binary, standardSections, relocs, memoryBase, tableBase) {
                     updateI32(binary, section.byte + offset, tableBase);
                     break;
                 case R_WEBASSEMBLY_MEMORY_ADDR_LEB:
-                    updateLeb5(binary, section.byte + offset, memoryBase);
-                    break;
                 case R_WEBASSEMBLY_MEMORY_ADDR_SLEB:
-                    updateSleb5(binary, section.byte + offset, memoryBase);
+                case R_WEBASSEMBLY_MEMORY_ADDR_I32: {
+                    let found = false;
+                    if (index < globalImports.length) {
+                        let exp = outsideExports[globalImports[index]];
+                        if (Number.isInteger(exp)) {
+                            found = true;
+                            if (type === R_WEBASSEMBLY_MEMORY_ADDR_LEB)
+                                writeLeb5(binary, { byte: section.byte + offset }, exp + addend);
+                            else if (type === R_WEBASSEMBLY_MEMORY_ADDR_SLEB)
+                                writeSleb5(binary, { byte: section.byte + offset }, exp + addend);
+                            else
+                                writeI32(binary, { byte: section.byte + offset }, exp + addend);
+                        }
+                    }
+                    if (!found) {
+                        if (type === R_WEBASSEMBLY_MEMORY_ADDR_LEB)
+                            updateLeb5(binary, section.byte + offset, memoryBase);
+                        else if (type === R_WEBASSEMBLY_MEMORY_ADDR_SLEB)
+                            updateSleb5(binary, section.byte + offset, memoryBase);
+                        else
+                            updateI32(binary, section.byte + offset, memoryBase);
+                    }
                     break;
-                case R_WEBASSEMBLY_MEMORY_ADDR_I32:
-                    updateI32(binary, section.byte + offset, memoryBase);
-                    break;
+                }
                 case R_WEBASSEMBLY_TYPE_INDEX_LEB:
                     break;
                 case R_WEBASSEMBLY_GLOBAL_INDEX_LEB:

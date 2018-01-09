@@ -65,11 +65,6 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
     compiler->getPreprocessorOpts().addMacroDef("__unix");
     compiler->getPreprocessorOpts().addMacroDef("__unix__");
 
-    // Workaround: the runtime build fails to export these
-    // Danger; I didn't check if this creates duplicate static data
-    compiler->getPreprocessorOpts().addMacroDef(
-        "_LIBCPP_EXTERN_TEMPLATE(...)=");
-
     compiler->getCodeGenOpts().CodeModel = "default";
     compiler->getCodeGenOpts().RelocationModel = "static";
     compiler->getCodeGenOpts().ThreadModel = "single";
@@ -87,12 +82,10 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
     compiler->getLangOpts().Deprecated = true;
     compiler->getLangOpts().setValueVisibilityMode(HiddenVisibility);
     compiler->getLangOpts().setTypeVisibilityMode(HiddenVisibility);
-
-    // RTTI and exceptions use RTL globals
-    compiler->getLangOpts().RTTI = false;
-    compiler->getLangOpts().RTTIData = false;
-    compiler->getLangOpts().Exceptions = false;
-    compiler->getLangOpts().CXXExceptions = false;
+    compiler->getLangOpts().RTTI = true;
+    compiler->getLangOpts().RTTIData = true;
+    compiler->getLangOpts().Exceptions = true;
+    compiler->getLangOpts().CXXExceptions = true;
 
     compiler->getTargetOpts().Triple = triple;
     compiler->getTargetOpts().HostTriple = triple;

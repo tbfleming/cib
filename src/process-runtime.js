@@ -6,12 +6,12 @@ importScripts('wasm-tools.js');
 let foo;
 
 emModule.callGlobalInitializers = function () {
-    console.log("*****", emModule.initName)
     emModule.wasmInstance.exports[emModule.initName]();
 }
 
 emModule.instantiateWasmAsync = async function (imports, successCallback) {
     try {
+        this.jsExports = imports.env;
         this.instanciating = true;
         await setStatusAsync('init', 'Instanciating ' + this.moduleName + '.wasm');
         let env = {
@@ -37,12 +37,12 @@ commands.start = async function ({ moduleName, wasmBinary }) {
         let binary = new Uint8Array(wasmBinary);
         let { standardSections, relocs, linking } = getSegments(binary);
         let { dataSize, initFunctions } = getLinkingInfo(binary, linking)
+        let { globalImports, numFunctionImports, spGlobalIndex } = fixSPImport(binary, standardSections);
         let types = getTypes(binary, standardSections);
-        let { numGlobalImports, numFunctionImports, spGlobalIndex } = fixSPImport(binary, standardSections);
         let functions = getFunctions(binary, standardSections, types);
         let globals = getGlobals(binary, standardSections);
         let exports = getExports(binary, standardSections);
-        let elems = getElems(binary, standardSections);
+        let { tableSize, elems } = getElems(binary, standardSections);
         let bodies = getCode(binary, standardSections);
         let { dataSegments } = getData(binary, standardSections);
         generateNewBodies(binary, types, functions, bodies, spGlobalIndex);
@@ -74,20 +74,20 @@ commands.start = async function ({ moduleName, wasmBinary }) {
 commands.run = async function ({ wasmBinary }) {
     try {
         let binary = new Uint8Array(wasmBinary);
-        let mainExports = emModule.wasmInstance.exports;
+        let rtlExports = emModule.wasmInstance.exports;
         let memory = emModule.wasmMemory;
         let table = emModule.wasmTable;
         let { standardSections, relocs, linking } = getSegments(binary);
         let { dataSize, initFunctions } = getLinkingInfo(binary, linking)
-        let memoryBase = mainExports.malloc(dataSize);
+        let memoryBase = rtlExports.malloc(dataSize);
         let tableBase = table.length;
-        relocate(binary, standardSections, relocs, memoryBase, tableBase);
+        let { globalImports, numFunctionImports, spGlobalIndex } = fixSPImport(binary, standardSections);
+        relocate(binary, standardSections, relocs, rtlExports, globalImports, memoryBase, tableBase);
         let types = getTypes(binary, standardSections);
-        let { numGlobalImports, numFunctionImports, spGlobalIndex } = fixSPImport(binary, standardSections);
         let functions = getFunctions(binary, standardSections, types);
         let globals = getGlobals(binary, standardSections);
         let exports = getExports(binary, standardSections);
-        let elems = getElems(binary, standardSections);
+        let { tableSize, elems } = getElems(binary, standardSections);
         let bodies = getCode(binary, standardSections);
         let { dataSegments } = getData(binary, standardSections);
         generateNewBodies(binary, types, functions, bodies, spGlobalIndex);
@@ -105,14 +105,9 @@ commands.run = async function ({ wasmBinary }) {
         let newBinary = generateBinary(binary, standardSections, replacementSections);
         //postMessage({ function: 'workerDebugReplaceBinary', newBinary });
 
-        let adjustedImports = {};
-        for (let name in emModule.asmLibraryArg)
-            if (name.substr(0, 3) === '___')
-                adjustedImports[name.substr(1)] = emModule.asmLibraryArg[name];
         let env = {
-            ...adjustedImports,
-            ...emModule.asmLibraryArg,
-            ...mainExports,
+            ...emModule.jsExports,
+            ...rtlExports,
             __linear_memory: memory,
             __indirect_function_table: table,
             __stack_pointer: 0, // dummy value, not used
@@ -122,7 +117,7 @@ commands.run = async function ({ wasmBinary }) {
             __info_data_end: () => memoryBase + dataSize,
         };
         let module = await WebAssembly.compile(newBinary);
-        table.grow(elems.length);
+        table.grow(tableSize);
         let inst = await WebAssembly.instantiate(module, { env });
         inst.exports[initName]();
         inst.exports.main();

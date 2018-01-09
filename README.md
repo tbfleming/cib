@@ -12,12 +12,14 @@ Current status:
 
 Recently fixed:
 * The runtime now consumes much less memory with each press of the Run button
+* Standard library globals (e.g. ```cin```, ```cout```)
 * Global constructors
+* Function pointers and virtual functions
+* RTTI
 
 Currently missing:
 * Global destructors
-* Standard library globals (e.g. ```cin```, ```cout```)
-* RTTI, exception handling
+* Exception handling
 
 ## VM for building clang
 
