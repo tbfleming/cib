@@ -123,10 +123,12 @@ def getOutput(args):
     print(result.stdout.decode("utf-8"), end='')
     return result.stdout
 
-def download(url):
-    if not os.path.exists('download/' + os.path.basename(urlparse(url).path)):
+def download(url, basename=None):
+    if not basename:
+        basename = os.path.basename(urlparse(url).path)
+    if not os.path.exists('download/' + basename):
         run('mkdir -p download')
-        run('cd download && wget ' + url)
+        run('cd download && wget ' + url + ' -O ' + basename)
 
 repos = [
     ('repos/llvm', 'tbfleming/cib-llvm.git', 'llvm-mirror/llvm.git', True, 'master', 'cib'),
@@ -342,16 +344,16 @@ def dist():
     run('cp -au download/monaco-editor-0.10.1/package/README.md dist/monaco-editor')
     run('cp -au download/monaco-editor-0.10.1/package/ThirdPartyNotices.txt dist/monaco-editor')
     run('cp -auv download/monaco-editor-0.10.1/package/min dist/monaco-editor')
-    download('https://registry.npmjs.org/split.js/-/split.js-1.3.5.tgz')
-    if not os.path.exists('download/Split.js-1.3.5'):
-        run('mkdir -p download/Split.js-1.3.5')
-        run('cd download/Split.js-1.3.5 && tar -xf ../split.js-1.3.5.tgz')
-    run('mkdir -p dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/LICENSE.txt dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/AUTHORS.md dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/README.md dist/split.js')
-    run('cp -au download/Split.js-1.3.5/package/split.min.js dist/split.js')
-    run('cp -auv download/Split.js-1.3.5/package/grips dist/split.js')
+    download('http://code.jquery.com/jquery-1.11.1.min.js')
+    run('cp -au download/jquery-1.11.1.min.js dist/jquery-1.11.1.min.js')
+    download('https://github.com/WolframHempel/golden-layout/archive/v1.5.9.tar.gz', 'golden-layout-v1.5.9.tar.gz')
+    if not os.path.exists('download/golden-layout-1.5.9'):
+        run('cd download && tar -xf golden-layout-v1.5.9.tar.gz')
+    run('mkdir -p dist/golden-layout')
+    run('cp -au download/golden-layout-1.5.9/LICENSE dist/golden-layout')
+    run('cp -au download/golden-layout-1.5.9/src/css/goldenlayout-base.css dist/golden-layout')
+    run('cp -au download/golden-layout-1.5.9/src/css/goldenlayout-light-theme.css dist/golden-layout')
+    run('cp -au download/golden-layout-1.5.9/dist/goldenlayout.min.js dist/golden-layout')
     run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
@@ -429,7 +431,8 @@ def http():
         browserClangBuild + 'clang.js ' +
         browserRuntimeBuild + 'runtime.* ' +
         '../../dist/monaco-editor ' +
-        '../../dist/split.js ' +
+        '../../dist/golden-layout ' +
+        '../../dist/jquery-1.11.1.min.js ' +
         '../../src/clang.html ' +
         '../../src/process*.js ' +
         '../../src/wasm-tools.js ' +
