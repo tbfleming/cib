@@ -70,7 +70,7 @@ string(REPLACE " " ";" libcxxabi_sources "${libcxxabi_sources}")
 #set(CMAKE_CXX_LINK_EXECUTABLE "${LLVM_INSTALL}/bin/wasm-ld --allow-undefined --no-entry --import-memory --strip-all --relocatable <OBJECTS> -o <TARGET>")
 set(CMAKE_CXX_LINK_EXECUTABLE "../../build/tools/cib-link <TARGET> <OBJECTS>")
 
-add_executable(rtl ../runtime.cpp)
+add_executable(rtl ../runtime-replacement.cpp)
 
 function(addSource src flags)
     target_sources(rtl PRIVATE ${src})

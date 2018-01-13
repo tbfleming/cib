@@ -10,7 +10,7 @@
             display: none;
         }
 
-        .process {
+        .flex-col {
             overflow: hidden;
             width: 100%;
             height: 100%;
@@ -51,12 +51,16 @@
             height: 100%;
             overflow: hidden;
         }
+
+        #pane-gist-links {
+            margin: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="hidden">
-        <div id="pane-clang" class="process">
+        <div id="pane-clang" class="flex-col">
             <div class="controls">
                 <button id="clang-run" onclick="compile()">Compile</button>
                 <button id="clang-save" onclick="saveWasm()">Save</button>
@@ -65,7 +69,12 @@
             </div>
             <pre id="clang-io" class="io"></pre>
         </div>
-        <div id="pane-clang-format" class="process split split-horizontal">
+        <div id="pane-gist-links" class="flex-col">
+            <a href="#gist=b7fabe92dd2889ef33375a42701dc66c">Download and display a file</a>
+            <a href="#gist=afca8bfe32656b7c1ca7e1e87c781267">Call a function after a delay</a>
+            <a href="#gist=46d30fc0d68f058e706456ea970e7de6">Run a script</a>
+        </div>
+        <div id="pane-clang-format" class="flex-col">
             <div class="controls controls-border">
                 clang-format:
                 <span id="clang-format-status"></span>
@@ -73,7 +82,7 @@
             </div>
             <div id="clang-format-result"></div>
         </div>
-        <div id="pane-runtime" class="process split split-horizontal">
+        <div id="pane-runtime" class="flex-col">
             <div class="controls">
                 <button id="runtime-run" onclick="run()">Run</button>
                 <span id="runtime-status"></span>
@@ -137,11 +146,20 @@ int main() {
                 }, {
                     type: 'column',
                     content: [{
-                        type: 'component',
-                        title: 'clang-format',
-                        isClosable: false,
-                        componentName: 'component',
-                        componentState: { id: 'pane-clang-format' }
+                        type: 'stack',
+                        content: [{
+                            type: 'component',
+                            title: 'Examples',
+                            isClosable: true,
+                            componentName: 'component',
+                            componentState: { id: 'pane-gist-links' }
+                        }, {
+                            type: 'component',
+                            title: 'clang-format',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-clang-format' }
+                        }]
                     }, {
                         type: 'component',
                         title: 'Output',
@@ -326,7 +344,7 @@ int main() {
             if (gistID === currentGistID)
                 return;
             if (!editor) {
-                setTimeout(() => loadGist(gistID), 100);
+                setTimeout(() => loadGist(gistID), 200);
                 return;
             }
             currentGistID = gistID;
