@@ -321,6 +321,45 @@ int main() {
             });
         }
 
+        let currentGistID = '';
+        async function loadGist(gistID) {
+            if (gistID === currentGistID)
+                return;
+            if (!editor) {
+                setTimeout(() => loadGist(gistID), 100);
+                return;
+            }
+            currentGistID = gistID;
+            try {
+                let gistRequest = await fetch('https://api.github.com/gists/' + gistID);
+                let gistJson = await gistRequest.json();
+                if (gistRequest.status !== 200)
+                    if (gistJson && gistJson.message)
+                        throw new Error(gistJson.message);
+                    else
+                        throw new Error('an error occured')
+                if (!('main.cpp' in gistJson.files))
+                    throw new Error('main.cpp missing');
+                let codeRequest = await fetch(gistJson.files['main.cpp'].raw_url);
+                if (codeRequest.status !== 200)
+                    throw new Error('an error occured')
+                let text = await codeRequest.text();
+                editor.executeEdits('gist', [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                editor.executeEdits('gist', [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                editor.setSelection(new monaco.Range(0, 0, 0, 0));
+            } catch (e) {
+                clang.ioElem.textContent += '\ngist ' + gistID + ': ' + e.message + '\n';
+            }
+        }
+
+        function handleHash() {
+            for (let arg of window.location.hash.substr(1).split('&'))
+                if (arg.startsWith('gist='))
+                    loadGist(encodeURIComponent(arg.substr(5)));
+        }
+        handleHash();
+        window.addEventListener("hashchange", handleHash, false);
+
         function updateUI() {
             let clangReady = editor && clang.state === 'ready';
             clang.runButton.disabled = !clangReady;
