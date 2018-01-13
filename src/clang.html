@@ -349,19 +349,19 @@ int main() {
             }
             currentGistID = gistID;
             try {
-                let gistRequest = await fetch('https://api.github.com/gists/' + gistID);
-                let gistJson = await gistRequest.json();
-                if (gistRequest.status !== 200)
+                let gistResponse = await fetch('https://api.github.com/gists/' + gistID);
+                let gistJson = await gistResponse.json();
+                if (gistResponse.status !== 200)
                     if (gistJson && gistJson.message)
                         throw new Error(gistJson.message);
                     else
                         throw new Error('an error occured')
                 if (!('main.cpp' in gistJson.files))
                     throw new Error('main.cpp missing');
-                let codeRequest = await fetch(gistJson.files['main.cpp'].raw_url);
-                if (codeRequest.status !== 200)
+                let codeResponse = await fetch(gistJson.files['main.cpp'].raw_url);
+                if (codeResponse.status !== 200)
                     throw new Error('an error occured')
-                let text = await codeRequest.text();
+                let text = await codeResponse.text();
                 editor.executeEdits('gist', [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
                 editor.executeEdits('gist', [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
                 editor.setSelection(new monaco.Range(0, 0, 0, 0));

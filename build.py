@@ -317,10 +317,10 @@ def llvmBrowser():
             #' -s SAFE_HEAP=1' +
             '"' +
             ' -DLIBCXXABI_LIBCXX_INCLUDES=' + llvmInstall + 'include/c++/v1' +
-            #' -DLLVM_ENABLE_DUMP=ON' +
-            ' -DLLVM_ENABLE_ASSERTIONS=ON' +
-            #' -DLLVM_ENABLE_EXPENSIVE_CHECKS=ON' +
-            ' -DLLVM_ENABLE_BACKTRACES=ON' +
+            ' -DLLVM_ENABLE_DUMP=OFF' +
+            ' -DLLVM_ENABLE_ASSERTIONS=OFF' +
+            ' -DLLVM_ENABLE_EXPENSIVE_CHECKS=OFF' +
+            ' -DLLVM_ENABLE_BACKTRACES=OFF' +
             ' -DCMAKE_INSTALL_PREFIX=' + llvmBrowserInstall + '' +
             ' -DCMAKE_BUILD_TYPE=' + llvmBrowserBuildType +
             ' -DLLVM_TARGETS_TO_BUILD=' +
@@ -394,6 +394,10 @@ def appClang():
         run('cp -auv repos/emscripten/system/include ' + browserClangBuild + 'usr')
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
+        download('https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip')
+        if not os.path.isdir('download/boost_1_66_0'):
+            run('cd download && unzip boost_1_66_0.zip')
+        run('cp -auv download/boost_1_66_0/boost ' + browserClangBuild + 'usr/include')
     app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
     if(reoptClang):
         run('cd ' + browserClangBuild + ' && wasm-opt -Os clang.wasm -o clang-opt.wasm')
