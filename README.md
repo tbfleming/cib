@@ -6,11 +6,9 @@ I'm trying to see how far wasm can go. Is it possible to compile clang to wasm a
 
 Current status:
 * Works in Firefox 57 and Chrome 63
-* ```clang-format```: working
-* ```clang```: working for simple cases
-* Running generated wasm: working for simple cases
 
-Recently fixed:
+Recently fixed or added:
+* Load gists
 * The runtime now consumes much less memory with each press of the Run button
 * Standard library globals (e.g. ```cout```)
 * Global constructors
@@ -20,6 +18,7 @@ Recently fixed:
 Currently missing:
 * Global destructors
 * Exception handling
+* stdin / cin. Waiting on browsers to restore SharedArrayBuffer.
 
 ## VM for building clang
 
