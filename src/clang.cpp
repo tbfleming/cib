@@ -20,7 +20,8 @@ template <typename T, typename... A> IntrusiveRefCntPtr<T> make_intr(A&&... a) {
 static auto triple = "wasm32-unknown-unknown-wasm";
 
 #ifndef FAKE_COMPILE
-extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
+extern "C" bool compile(const char* inputFilename, const char* outputFilename,
+                        const char* sysDirs) {
     llvm::InitializeAllTargets();
     llvm::InitializeAllTargetMCs();
     llvm::InitializeAllAsmPrinters();
@@ -42,6 +43,19 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
     sOpts.UseBuiltinIncludes = false;
     sOpts.UseStandardSystemIncludes = false;
     sOpts.UseStandardCXXIncludes = false;
+
+    while (*sysDirs) {
+        auto end = sysDirs;
+        while (*end && *end != ':')
+            ++end;
+        if (sysDirs != end)
+            sOpts.AddPath(std::string{sysDirs, end}, frontend::System, false,
+                          true);
+        if (*end == ':')
+            ++end;
+        sysDirs = end;
+    }
+
     sOpts.AddPath(STRX(LIB_PREFIX) "include", frontend::System, false, true);
     sOpts.AddPath(STRX(LIB_PREFIX) "include/libcxx", frontend::System, false,
                   true);
@@ -119,7 +133,7 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
 
 int main(int argc, const char* argv[]) {
     if (argc == 3)
-        return !compile(argv[1], argv[2]);
+        return !compile(argv[1], argv[2], "");
     if (argc > 1) {
         fprintf(stderr, "Usage: input_file.cpp output_file.wasm\n");
         return 1;

@@ -8,6 +8,7 @@ useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
+includeBoost = False    # This increased filesystem load time too much
 
 llvmBuildType = 'Release'
 llvmNo86BuildType = 'Release'
@@ -142,6 +143,7 @@ repos = [
     ('repos/emscripten', 'tbfleming/cib-emscripten.git', 'kripken/emscripten.git', True, 'incoming', 'cib'),
     ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'master', 'master'),
     ('repos/binaryen', 'tbfleming/cib-binaryen.git', 'WebAssembly/binaryen.git', True, 'master', 'cib'),
+    ('repos/zip.js', 'gildas-lormeau/zip.js.git', 'gildas-lormeau/zip.js.git', False, '3e7920810f63d5057ef6028833243105521da369', '3e7920810f63d5057ef6028833243105521da369'),
 ]
 
 def bash():
@@ -354,6 +356,9 @@ def dist():
     run('cp -au download/golden-layout-1.5.9/src/css/goldenlayout-base.css dist/golden-layout')
     run('cp -au download/golden-layout-1.5.9/src/css/goldenlayout-light-theme.css dist/golden-layout')
     run('cp -au download/golden-layout-1.5.9/dist/goldenlayout.min.js dist/golden-layout')
+    run('mkdir -p dist/zip.js')
+    run('cp -au repos/zip.js/WebContent/inflate.js dist/zip.js')
+    run('cp -au repos/zip.js/WebContent/zip.js dist/zip.js')
     run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
@@ -394,10 +399,11 @@ def appClang():
         run('cp -auv repos/emscripten/system/include ' + browserClangBuild + 'usr')
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
-        download('https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip')
-        if not os.path.isdir('download/boost_1_66_0'):
-            run('cd download && unzip boost_1_66_0.zip')
-        run('cp -auv download/boost_1_66_0/boost ' + browserClangBuild + 'usr/include')
+        if includeBoost:
+            download('https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip')
+            if not os.path.isdir('download/boost_1_66_0'):
+                run('cd download && unzip boost_1_66_0.zip')
+            run('cp -auv download/boost_1_66_0/boost ' + browserClangBuild + 'usr/include')
     app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
     if(reoptClang):
         run('cd ' + browserClangBuild + ' && wasm-opt -Os clang.wasm -o clang-opt.wasm')
@@ -436,6 +442,7 @@ def http():
         '../../dist/monaco-editor ' +
         '../../dist/golden-layout ' +
         '../../dist/jquery-1.11.1.min.js ' +
+        '../../dist/zip.js ' +
         '../../src/clang.html ' +
         '../../src/process*.js ' +
         '../../src/wasm-tools.js ' +

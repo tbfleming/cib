@@ -9,6 +9,7 @@ Current status:
 
 Recently fixed or added:
 * Load gists
+* Load header libraries in .zip files
 * The runtime now consumes much less memory with each press of the Run button
 * Standard library globals (e.g. ```cout```)
 * Global constructors
@@ -31,7 +32,7 @@ Ubuntu 16.04:
 ```
 sudo apt update
 sudo apt upgrade
-sudo apt install build-essential cmake ninja-build python nodejs-legacy libncurses-dev
+sudo apt install build-essential cmake ninja-build python nodejs-legacy libncurses-dev unzip
 ```
 
 ## Building WASM binaries
