@@ -6,6 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Clang In Browser</title>
     <style>
+        body {
+            overflow: hidden;
+        }
+
         .hidden {
             display: none;
         }
@@ -16,6 +20,14 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+        }
+
+        #layout {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
         }
 
         #clang-format-result {
@@ -46,7 +58,7 @@
             float: right;
         }
 
-        #pane-source {
+        .source {
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -54,6 +66,18 @@
 
         #pane-gist-links {
             margin: 10px;
+        }
+
+        #runtime-iframe-container {
+            z-index: 10;
+            position: absolute;
+        }
+
+        #runtime-iframe-container iframe {
+            background: white;
+            width: 100%;
+            height: 100%;
+            border: 0px;
         }
     </style>
 </head>
@@ -96,6 +120,8 @@
             <pre id="runtime-io" class="io"></pre>
         </div>
     </div>
+    <div id="layout"></div>
+    <div id="runtime-iframe-container"></div>
 
     <link rel="stylesheet" type="text/css" href="golden-layout/goldenlayout-base.css" />
     <link rel="stylesheet" type="text/css" href="golden-layout/goldenlayout-light-theme.css" />
@@ -126,6 +152,13 @@ int main() {
 }
 `
 
+        let initScripts = `
+<script src="process.js"></xscript>
+<script src="wasm-tools.js"></xscript>
+<script src="runtime.js"></xscript>
+<script src="process-runtime.js"></xscript>
+        `.replace(/xscript/g, 'script');
+
         let layoutConfig = {
             settings: {
                 showPopoutIcon: false,
@@ -136,11 +169,20 @@ int main() {
                 content: [{
                     type: 'column',
                     content: [{
-                        type: 'component',
-                        title: 'Source',
-                        isClosable: false,
-                        componentName: 'component',
-                        componentState: { id: 'pane-source' }
+                        type: 'stack',
+                        content: [{
+                            type: 'component',
+                            title: 'Source',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-source', className: 'source' }
+                        }, {
+                            type: 'component',
+                            title: 'HTML',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-html-source', className: 'source' }
+                        }]
                     }, {
                         type: 'component',
                         title: 'clang',
@@ -176,7 +218,7 @@ int main() {
             }]
         };
 
-        let layout = new GoldenLayout(layoutConfig);
+        let layout = new GoldenLayout(layoutConfig, document.getElementById('layout'));
         layout.registerComponent('component', function (container, state) {
             let child = document.getElementById(state.id);
             if (!child) {
@@ -188,16 +230,47 @@ int main() {
         });
         layout.init();
 
+        function overlay(srcId, destId) {
+            let src = document.getElementById(srcId);
+            let dest = document.getElementById(destId);
+            function getBounds(e) {
+                if (e.closest(".lm_dragProxy"))
+                    return { left: 0, top: 0, width: 0, height: 0 };
+                else
+                    return e.getBoundingClientRect();
+            }
+            let lastR = getBounds(src);
+            function doit() {
+                let r = getBounds(src);
+                if (r.left != lastR.left || r.top != lastR.top || r.width != lastR.width || r.height != lastR.height) {
+                    lastR = r;
+                    dest.style.left = r.left + 'px';
+                    dest.style.top = r.top + 'px';
+                    dest.style.width = r.width + 'px';
+                    dest.style.height = r.height + 'px';
+                }
+                requestAnimationFrame(doit);
+            }
+            doit();
+        }
+        overlay('runtime-io', 'runtime-iframe-container');
+
         let editor;
+        let htmlEditor;
         let formatEditor;
         let editorContent = exampleCode;
         let prevEditorContent = '';
+        let htmlContent = '';
 
         require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function () {
             editor = monaco.editor.create(document.getElementById('pane-source'), {
                 value: exampleCode,
                 language: 'cpp',
+                automaticLayout: true,
+            });
+            htmlEditor = monaco.editor.create(document.getElementById('pane-html-source'), {
+                language: 'html',
                 automaticLayout: true,
             });
             formatEditor = monaco.editor.create(document.getElementById('clang-format-result'), {
@@ -218,6 +291,11 @@ int main() {
                 changeTimer = setTimeout(codeChanged, 100);
             });
 
+            htmlEditor.onDidChangeModelContent(e => {
+                htmlContent = htmlEditor.getValue().trim();
+                updateUI();
+            })
+
             updateUI();
         });
 
@@ -225,8 +303,10 @@ int main() {
             constructor(name) {
                 this.name = name;
                 this.runButton = document.getElementById(name + '-run');
+                this.rebootButton = document.getElementById(name + '-reboot');
                 this.statusElem = document.getElementById(name + '-status');
                 this.ioElem = document.getElementById(name + '-io');
+                this.iframeContainer = document.getElementById(name + '-iframe-container');
                 this.state = '';
                 this.wasReady = false;
 
@@ -276,6 +356,7 @@ int main() {
         let runtime = new ProcessUI('runtime');
         let saveButton = document.getElementById('clang-save');
         let clangOutput = null;
+        let iframe = null;
 
         clangFormat.process.workerFormatDone = args => {
             clangFormat.process.setStatus('ready', 'Ready');
@@ -298,6 +379,14 @@ int main() {
             clang.ioElem.textContent += 'new size:  ' + args.newBinary.length + '\n';
             clangOutput = args.newBinary;
             updateUI();
+        };
+        runtime.process.workerSendRun = function () {
+            runtime.ioElem.textContent = '';
+            runtime.process.setStatus('busy', 'Running');
+            runtime.process.postMessage({
+                function: 'run',
+                wasmBinary: clangOutput,
+            });
         };
 
         clangFormat.process.start();
@@ -336,12 +425,23 @@ int main() {
         }
 
         function run() {
-            runtime.ioElem.textContent = '';
-            runtime.process.setStatus('busy', 'Running');
-            runtime.process.worker.postMessage({
-                function: 'run',
-                wasmBinary: clangOutput,
-            });
+            if (htmlContent.length) {
+                if (iframe)
+                    runtime.iframeContainer.removeChild(iframe);
+                iframe = document.createElement('iframe');
+                iframe.sandbox = 'allow-forms allow-pointer-lock allow-scripts';
+                iframe.src = "about:blank";
+                iframe.srcdoc = htmlContent.replace('%init-scripts%', initScripts);
+                runtime.iframeContainer.appendChild(iframe);
+                runtime.process.start(iframe);
+            } else {
+                runtime.ioElem.textContent = '';
+                runtime.process.setStatus('busy', 'Running');
+                runtime.process.worker.postMessage({
+                    function: 'run',
+                    wasmBinary: clangOutput,
+                });
+            }
         }
 
         let currentGistID = '';
@@ -392,7 +492,24 @@ int main() {
                 clang.ioElem.textContent = 'Click the compile button\n\n';
             }
 
-            let runtimeReady = runtime.state === 'ready';
+            if (htmlContent.length) {
+                runtime.runButton.textContent = 'Reboot/Run';
+                runtime.rebootButton.disabled = true;
+            } else {
+                runtime.runButton.textContent = 'Run';
+                runtime.rebootButton.disabled = false;
+            }
+
+            if ((iframe || runtime.process.iframe) && !htmlContent.length) {
+                if (iframe)
+                    runtime.iframeContainer.removeChild(iframe);
+                iframe = null;
+                runtime.ioElem.textContent = '';
+                runtime.state = '';
+                runtime.process.start();
+            }
+
+            let runtimeReady = iframe || runtime.state === 'ready';
             runtime.runButton.disabled = !runtimeReady || !clangOutput;
             if (runtimeReady && !runtime.wasReady) {
                 runtime.wasReady = true;

@@ -1,7 +1,11 @@
 'use strict';
 
-importScripts('process.js');
-importScripts('wasm-tools.js');
+var inWorker = this.importScripts != undefined;
+
+if (inWorker) {
+    importScripts('process.js');
+    importScripts('wasm-tools.js');
+}
 
 let foo;
 
@@ -31,9 +35,17 @@ emModule.instantiateWasmAsync = async function (imports, successCallback) {
     }
 };
 
+if (!inWorker) {
+    emModule.postRun = function () {
+        emModule.callMain();
+        sendMessage({ function: 'workerSendRun' });
+    };
+}
+
 commands.start = async function ({ moduleName, wasmBinary }) {
     try {
-        importScripts(moduleName + '.js');
+        if (inWorker)
+            importScripts(moduleName + '.js');
         let binary = new Uint8Array(wasmBinary);
         let { standardSections, relocs, linking } = getSegments(binary);
         let { dataSize, initFunctions } = getLinkingInfo(binary, linking)
@@ -58,7 +70,7 @@ commands.start = async function ({ moduleName, wasmBinary }) {
             [WASM_SEC_DATA]: generateData(binary, 0, dataSegments),
         };
         let newBinary = generateBinary(binary, standardSections, replacementSections);
-        //postMessage({ function: 'workerDebugReplaceBinary', newBinary });
+        //sendMessage({ function: 'workerDebugReplaceBinary', newBinary });
         emModule.moduleName = moduleName;
         emModule.wasmBinary = newBinary;
         emModule.STATICTOP = dataSize;
@@ -103,7 +115,7 @@ commands.run = async function ({ wasmBinary }) {
             [WASM_SEC_DATA]: generateData(binary, memoryBase, dataSegments),
         };
         let newBinary = generateBinary(binary, standardSections, replacementSections);
-        //postMessage({ function: 'workerDebugReplaceBinary', newBinary });
+        //sendMessage({ function: 'workerDebugReplaceBinary', newBinary });
 
         let env = {
             ...emModule.jsExports,
@@ -126,5 +138,12 @@ commands.run = async function ({ wasmBinary }) {
         emModule.printErr(e.toString());
     }
 
-    postMessage({ function: 'workerRunDone' });
+    sendMessage({ function: 'workerRunDone' });
 };
+
+if (!inWorker) {
+    emModule.print = emModule.printErr = msg => {
+        console.log('print:', msg);
+    };
+    sendMessage({ 'function': 'workerSendStart' });
+}
