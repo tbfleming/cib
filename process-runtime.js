@@ -1,9 +1,13 @@
 'use strict';
 
-importScripts('process.js');
-importScripts('wasm-tools.js');
+var inWorker = this.importScripts != undefined;
+var wasmImports = {};
+var wasmExports = {};
 
-let foo;
+if (inWorker) {
+    importScripts('process.js');
+    importScripts('wasm-tools.js');
+}
 
 emModule.callGlobalInitializers = function () {
     emModule.wasmInstance.exports[emModule.initName]();
@@ -25,15 +29,24 @@ emModule.instantiateWasmAsync = async function (imports, successCallback) {
         await setStatusAsync('init', 'Initializing');
         successCallback(this.wasmInstance);
     } catch (e) {
-        console.log(e.message);
+        if (console.log)
+            console.log(e.message);
         await setStatusAsync('init', 'Error in startup');
         terminate();
     }
 };
 
+if (!inWorker) {
+    emModule.postRun = function () {
+        emModule.callMain();
+        sendMessage({ function: 'workerSendRun' });
+    };
+}
+
 commands.start = async function ({ moduleName, wasmBinary }) {
     try {
-        importScripts(moduleName + '.js');
+        if (inWorker)
+            importScripts(moduleName + '.js');
         let binary = new Uint8Array(wasmBinary);
         let { standardSections, relocs, linking } = getSegments(binary);
         let { dataSize, initFunctions } = getLinkingInfo(binary, linking)
@@ -58,14 +71,15 @@ commands.start = async function ({ moduleName, wasmBinary }) {
             [WASM_SEC_DATA]: generateData(binary, 0, dataSegments),
         };
         let newBinary = generateBinary(binary, standardSections, replacementSections);
-        //postMessage({ function: 'workerDebugReplaceBinary', newBinary });
+        //sendMessage({ function: 'workerDebugReplaceBinary', newBinary });
         emModule.moduleName = moduleName;
         emModule.wasmBinary = newBinary;
         emModule.STATICTOP = dataSize;
         await emModule.compileWasm();
         Module(emModule);
     } catch (e) {
-        console.log(e.message);
+        if (console.log)
+            console.log(e.message);
         await setStatusAsync('error', 'Error in startup');
         terminate();
     }
@@ -103,11 +117,12 @@ commands.run = async function ({ wasmBinary }) {
             [WASM_SEC_DATA]: generateData(binary, memoryBase, dataSegments),
         };
         let newBinary = generateBinary(binary, standardSections, replacementSections);
-        //postMessage({ function: 'workerDebugReplaceBinary', newBinary });
+        //sendMessage({ function: 'workerDebugReplaceBinary', newBinary });
 
         let env = {
             ...emModule.jsExports,
             ...rtlExports,
+            ...wasmImports,
             __linear_memory: memory,
             __indirect_function_table: table,
             __stack_pointer: 0, // dummy value, not used
@@ -119,12 +134,22 @@ commands.run = async function ({ wasmBinary }) {
         let module = await WebAssembly.compile(newBinary);
         table.grow(tableSize);
         let inst = await WebAssembly.instantiate(module, { env });
+        wasmExports = inst.exports;
         inst.exports[initName]();
         inst.exports.main();
     } catch (e) {
-        console.log(e);
+        if (console.log)
+            console.log(e);
         emModule.printErr(e.toString());
     }
 
-    postMessage({ function: 'workerRunDone' });
+    sendMessage({ function: 'workerRunDone' });
 };
+
+if (!inWorker) {
+    emModule.print = emModule.printErr = msg => {
+        if (console.log)
+            console.log('print:', msg);
+    };
+    sendMessage({ 'function': 'workerSendStart' });
+}

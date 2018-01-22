@@ -1,7 +1,16 @@
 'use strict';
 
+var inWorker = this.importScripts != undefined;
+
+function sendMessage(msg) {
+    if (inWorker)
+        postMessage(msg);
+    else
+        window.parent.postMessage(msg, '*');
+}
+
 function setStatus(state, status) {
-    postMessage({ function: 'workerSetStatus', state, status });
+    sendMessage({ function: 'workerSetStatus', state, status });
 }
 
 async function setStatusAsync(state, status) {
@@ -17,37 +26,41 @@ function checkCache(name, hash) {
             db: null,
             module: null,
         };
-        let request = indexedDB.open('module-cache', 1);
-        request.onupgradeneeded = _ => {
-            let db = request.result;
-            let store = db.createObjectStore('module-cache');
-        };
-        request.onsuccess = _ => {
-            result.db = request.result;
-            let store = result.db.transaction(['module-cache'], 'readonly').objectStore('module-cache');
-            let read = store.get(name);
-            read.onsuccess = _ => {
-                if (read.result) {
-                    let h1 = new Uint32Array(hash);
-                    let h2 = new Uint32Array(read.result.hash);
-                    if (h1.length === h2.length) {
-                        let matched = true;
-                        for (let i = 0; i < h1.length; ++i)
-                            if (h1[i] !== h2[i])
-                                matched = false;
-                        if (matched)
-                            result.module = read.result.module;
+        try {
+            let request = indexedDB.open('module-cache', 1);
+            request.onupgradeneeded = _ => {
+                let db = request.result;
+                let store = db.createObjectStore('module-cache');
+            };
+            request.onsuccess = _ => {
+                result.db = request.result;
+                let store = result.db.transaction(['module-cache'], 'readonly').objectStore('module-cache');
+                let read = store.get(name);
+                read.onsuccess = _ => {
+                    if (read.result) {
+                        let h1 = new Uint32Array(hash);
+                        let h2 = new Uint32Array(read.result.hash);
+                        if (h1.length === h2.length) {
+                            let matched = true;
+                            for (let i = 0; i < h1.length; ++i)
+                                if (h1[i] !== h2[i])
+                                    matched = false;
+                            if (matched)
+                                result.module = read.result.module;
+                        }
                     }
-                }
+                    resolve(result);
+                };
+                read.onerror = _ => {
+                    resolve(result);
+                };
+            };
+            request.onerror = _ => {
                 resolve(result);
             };
-            read.onerror = _ => {
-                resolve(result);
-            };
-        };
-        request.onerror = _ => {
+        } catch (e) {
             resolve(result);
-        };
+        }
     });
 } // checkCache
 
@@ -60,15 +73,11 @@ let emModule = {
     status: '',
 
     print(text) {
-        postMessage({ function: 'print', text });
+        sendMessage({ function: 'print', text });
     },
 
     printErr(text) {
-        if (text.substr(0, 15) === 'atexit() called')
-            return;
-        if (text.substr(0, 12) === 'Calling stub')
-            return;
-        postMessage({ function: 'printErr', text });
+        sendMessage({ function: 'printErr', text });
     },
 
     setStatus(text) {
@@ -91,11 +100,13 @@ let emModule = {
             hash = await crypto.subtle.digest('SHA-512', this.wasmBinary);
             cacheResult = await checkCache(this.moduleName, hash);
         } else {
-            console.log(this.moduleName, "crypto.subtle missing; can't put compiled module in object store");
+            if (console.log)
+                console.log(this.moduleName, "crypto.subtle missing; can't put compiled module in object store");
         }
         if (cacheResult && cacheResult.module) {
             this.wasmModule = cacheResult.module;
-            console.log(this.moduleName, 'Reusing module from cache');
+            if (console.log)
+                console.log(this.moduleName, 'Reusing module from cache');
             return;
         }
         await setStatusAsync('init', 'Compiling ' + this.moduleName + '.wasm');
@@ -105,7 +116,8 @@ let emModule = {
             try {
                 store.put({ hash, module: this.wasmModule }, this.moduleName);
             } catch (e) {
-                console.log(this.moduleName, "Can't put compiled module in object store");
+                if (console.log)
+                    console.log(this.moduleName, "Can't put compiled module in object store");
             }
         }
     }, // compileWasm()   
@@ -121,7 +133,8 @@ let emModule = {
             await setStatusAsync('init', 'Initializing');
             successCallback(this.wasmInstance);
         } catch (e) {
-            console.log(e.message);
+            if (console.log)
+                console.log(e.message);
             await setStatusAsync('init', 'Error in startup');
             terminate();
         }
@@ -135,7 +148,7 @@ let emModule = {
 
     postRun() {
         emModule.callMain();
-        postMessage({ function: 'workerReady' });
+        sendMessage({ function: 'workerReady' });
     },
 };
 
@@ -148,11 +161,19 @@ let commands = {
             await emModule.compileWasm();
             Module(emModule);
         } catch (e) {
-            console.log(e.message);
+            if (console.log)
+                console.log(e.message);
             await setStatusAsync('error', 'Error in startup');
             terminate();
         }
     },
 };
 
-onmessage = e => { commands[e.data.function](e.data); };
+if (inWorker) {
+    onmessage = e => { commands[e.data.function](e.data); };
+} else {
+    window.addEventListener('message', e => {
+        if (e.source == window.parent)
+            commands[e.data.function](e.data);
+    });
+}
