@@ -240,7 +240,7 @@ int main() {
             let src = document.getElementById(srcId);
             let dest = document.getElementById(destId);
             function getBounds(e) {
-                if (e.closest(".lm_dragProxy"))
+                if (e.closest(".lm_dragProxy") || !dest.childElementCount)
                     return { left: 0, top: 0, width: 0, height: 0 };
                 else
                     return e.getBoundingClientRect();
