@@ -153,12 +153,21 @@ int main() {
 }
 `
 
-        let initScripts = `
+        let devInitScripts = `
 <script src="process.js"></xscript>
 <script src="wasm-tools.js"></xscript>
 <script src="runtime.js"></xscript>
 <script src="process-runtime.js"></xscript>
         `.replace(/xscript/g, 'script');
+
+        let liveInitScripts = `
+<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/process.js"></xscript>
+<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/wasm-tools.js"></xscript>
+<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/runtime.js"></xscript>
+<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/process-runtime.js"></xscript>
+        `.replace(/xscript/g, 'script');
+
+        let initScripts = liveInitScripts;
 
         let layoutConfig = {
             settings: {
