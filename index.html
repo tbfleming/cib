@@ -153,21 +153,17 @@ int main() {
 }
 `
 
-        let devInitScripts = `
-<script src="process.js"></xscript>
-<script src="wasm-tools.js"></xscript>
-<script src="runtime.js"></xscript>
-<script src="process-runtime.js"></xscript>
-        `.replace(/xscript/g, 'script');
+        let scripts = [
+            'process.js',
+            'wasm-tools.js',
+            'runtime.js',
+            'process-runtime.js',
+        ];
 
-        let liveInitScripts = `
-<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/process.js"></xscript>
-<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/wasm-tools.js"></xscript>
-<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/runtime.js"></xscript>
-<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/process-runtime.js"></xscript>
-        `.replace(/xscript/g, 'script');
-
-        let initScripts = liveInitScripts;
+        //let scriptPrefix = '<script src="';
+        let scriptPrefix = '<script src="https://cdn.rawgit.com/tbfleming/cib/a4783034373df5bb2394f60130228896a13d67ca/';
+        let scriptSuffix = '"></' + 'script>';
+        let initScripts = scriptPrefix + scripts.join(scriptSuffix + scriptPrefix) + scriptSuffix;
 
         let layoutConfig = {
             settings: {
@@ -244,7 +240,7 @@ int main() {
             let src = document.getElementById(srcId);
             let dest = document.getElementById(destId);
             function getBounds(e) {
-                if (e.closest(".lm_dragProxy"))
+                if (e.closest(".lm_dragProxy") || !dest.childElementCount)
                     return { left: 0, top: 0, width: 0, height: 0 };
                 else
                     return e.getBoundingClientRect();
