@@ -129,6 +129,6 @@ IF(EMSCRIPTEN)
         #"-s DEMANGLE_SUPPORT=1"
         #"-s NO_EXIT_RUNTIME=1"
         "-s MAIN_MODULE=1"
-        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"FS\"]'"
+        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"FS\", \"UTF8ToString\", \"allocateUTF8\"]'"
     )
 ENDIF(EMSCRIPTEN)

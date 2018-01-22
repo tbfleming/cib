@@ -1,13 +1,13 @@
 'use strict';
 
 var inWorker = this.importScripts != undefined;
+var wasmImports = {};
+var wasmExports = {};
 
 if (inWorker) {
     importScripts('process.js');
     importScripts('wasm-tools.js');
 }
-
-let foo;
 
 emModule.callGlobalInitializers = function () {
     emModule.wasmInstance.exports[emModule.initName]();
@@ -29,7 +29,8 @@ emModule.instantiateWasmAsync = async function (imports, successCallback) {
         await setStatusAsync('init', 'Initializing');
         successCallback(this.wasmInstance);
     } catch (e) {
-        console.log(e.message);
+        if (console.log)
+            console.log(e.message);
         await setStatusAsync('init', 'Error in startup');
         terminate();
     }
@@ -77,7 +78,8 @@ commands.start = async function ({ moduleName, wasmBinary }) {
         await emModule.compileWasm();
         Module(emModule);
     } catch (e) {
-        console.log(e.message);
+        if (console.log)
+            console.log(e.message);
         await setStatusAsync('error', 'Error in startup');
         terminate();
     }
@@ -120,6 +122,7 @@ commands.run = async function ({ wasmBinary }) {
         let env = {
             ...emModule.jsExports,
             ...rtlExports,
+            ...wasmImports,
             __linear_memory: memory,
             __indirect_function_table: table,
             __stack_pointer: 0, // dummy value, not used
@@ -131,10 +134,12 @@ commands.run = async function ({ wasmBinary }) {
         let module = await WebAssembly.compile(newBinary);
         table.grow(tableSize);
         let inst = await WebAssembly.instantiate(module, { env });
+        wasmExports = inst.exports;
         inst.exports[initName]();
         inst.exports.main();
     } catch (e) {
-        console.log(e);
+        if (console.log)
+            console.log(e);
         emModule.printErr(e.toString());
     }
 
@@ -143,7 +148,8 @@ commands.run = async function ({ wasmBinary }) {
 
 if (!inWorker) {
     emModule.print = emModule.printErr = msg => {
-        console.log('print:', msg);
+        if (console.log)
+            console.log('print:', msg);
     };
     sendMessage({ 'function': 'workerSendStart' });
 }

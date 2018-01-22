@@ -22,14 +22,6 @@
             flex-direction: column;
         }
 
-        #layout {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-        }
-
         #clang-format-result {
             flex-grow: 5;
             overflow: hidden;
@@ -64,8 +56,11 @@
             overflow: hidden;
         }
 
-        #pane-gist-links {
-            margin: 10px;
+        #pane-gist-links>div {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
         }
 
         #runtime-iframe-container {
@@ -94,14 +89,21 @@
             <pre id="clang-io" class="io"></pre>
         </div>
         <div id="pane-gist-links" class="flex-col">
-            <h3>Emscripten API</h3>
-            <a href="#gist=b7fabe92dd2889ef33375a42701dc66c">Download and display a file</a>
-            <a href="#gist=afca8bfe32656b7c1ca7e1e87c781267">Call a function after a delay</a>
-            <a href="#gist=46d30fc0d68f058e706456ea970e7de6">Run a script</a>
+            <div>
+                <h3>Emscripten API</h3>
+                <a href="#gist=b7fabe92dd2889ef33375a42701dc66c">Download and display a file</a>
+                <a href="#gist=afca8bfe32656b7c1ca7e1e87c781267">Call a function after a delay</a>
+                <a href="#gist=46d30fc0d68f058e706456ea970e7de6">Run a script</a>
 
-            <h3>Header Libraries</h3>
-            <a href="#gist=8e8e50c560cc3aba165d5ddb4f2c2c16">Boost.Format</a>
-            <a href="#gist=756e6c6e0c4997176bd513cc2071271f">Range v3 comprehensions</a>
+                <h3>Header Libraries</h3>
+                <a href="#gist=8e8e50c560cc3aba165d5ddb4f2c2c16">Boost.Format</a>
+                <a href="#gist=756e6c6e0c4997176bd513cc2071271f">Range v3 comprehensions</a>
+
+                <h3>HTML Integration</h3>
+                <a href="#gist=2f7baf1120967895c2b07b09eddb576c">Custom console</a>
+                <a href="#gist=d9f362c23d17a9199d272f51acbcc32a">Counter: C++ and JS calling into each other</a>
+                <a href="#gist=e4c2cc66a6606aa92ff099c27ee2bd02">Canvas: bouncing lines</a>
+            </div>
         </div>
         <div id="pane-clang-format" class="flex-col">
             <div class="controls controls-border">
@@ -120,7 +122,6 @@
             <pre id="runtime-io" class="io"></pre>
         </div>
     </div>
-    <div id="layout"></div>
     <div id="runtime-iframe-container"></div>
 
     <link rel="stylesheet" type="text/css" href="golden-layout/goldenlayout-base.css" />
@@ -172,7 +173,7 @@ int main() {
                         type: 'stack',
                         content: [{
                             type: 'component',
-                            title: 'Source',
+                            title: 'C++',
                             isClosable: false,
                             componentName: 'component',
                             componentState: { id: 'pane-source', className: 'source' }
@@ -218,7 +219,7 @@ int main() {
             }]
         };
 
-        let layout = new GoldenLayout(layoutConfig, document.getElementById('layout'));
+        let layout = new GoldenLayout(layoutConfig);
         layout.registerComponent('component', function (container, state) {
             let child = document.getElementById(state.id);
             if (!child) {
@@ -467,9 +468,22 @@ int main() {
                 if (codeResponse.status !== 200)
                     throw new Error('an error occured')
                 let text = await codeResponse.text();
-                editor.executeEdits('gist', [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
-                editor.executeEdits('gist', [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                editor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                editor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
                 editor.setSelection(new monaco.Range(0, 0, 0, 0));
+
+                if ('main.html' in gistJson.files) {
+                    let codeResponse = await fetch(gistJson.files['main.html'].raw_url);
+                    if (codeResponse.status !== 200)
+                        throw new Error('an error occured')
+                    let text = await codeResponse.text();
+                    htmlEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    htmlEditor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                    htmlEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                } else {
+                    htmlEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    htmlEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                }
             } catch (e) {
                 clang.ioElem.textContent += '\ngist ' + gistID + ': ' + e.message + '\n';
             }

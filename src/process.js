@@ -104,11 +104,13 @@ let emModule = {
             hash = await crypto.subtle.digest('SHA-512', this.wasmBinary);
             cacheResult = await checkCache(this.moduleName, hash);
         } else {
-            console.log(this.moduleName, "crypto.subtle missing; can't put compiled module in object store");
+            if (console.log)
+                console.log(this.moduleName, "crypto.subtle missing; can't put compiled module in object store");
         }
         if (cacheResult && cacheResult.module) {
             this.wasmModule = cacheResult.module;
-            console.log(this.moduleName, 'Reusing module from cache');
+            if (console.log)
+                console.log(this.moduleName, 'Reusing module from cache');
             return;
         }
         await setStatusAsync('init', 'Compiling ' + this.moduleName + '.wasm');
@@ -118,7 +120,8 @@ let emModule = {
             try {
                 store.put({ hash, module: this.wasmModule }, this.moduleName);
             } catch (e) {
-                console.log(this.moduleName, "Can't put compiled module in object store");
+                if (console.log)
+                    console.log(this.moduleName, "Can't put compiled module in object store");
             }
         }
     }, // compileWasm()   
@@ -134,7 +137,8 @@ let emModule = {
             await setStatusAsync('init', 'Initializing');
             successCallback(this.wasmInstance);
         } catch (e) {
-            console.log(e.message);
+            if (console.log)
+                console.log(e.message);
             await setStatusAsync('init', 'Error in startup');
             terminate();
         }
@@ -161,7 +165,8 @@ let commands = {
             await emModule.compileWasm();
             Module(emModule);
         } catch (e) {
-            console.log(e.message);
+            if (console.log)
+                console.log(e.message);
             await setStatusAsync('error', 'Error in startup');
             terminate();
         }
