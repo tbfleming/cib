@@ -8,6 +8,7 @@ Current status:
 * Works in Firefox 57 and Chrome 63
 
 Recently fixed or added:
+* Integrate with user HTML
 * Load gists
 * Load header libraries in .zip files
 * The runtime now consumes much less memory with each press of the Run button

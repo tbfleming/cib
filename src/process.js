@@ -77,10 +77,6 @@ let emModule = {
     },
 
     printErr(text) {
-        if (text.substr(0, 15) === 'atexit() called')
-            return;
-        if (text.substr(0, 12) === 'Calling stub')
-            return;
         sendMessage({ function: 'printErr', text });
     },
 

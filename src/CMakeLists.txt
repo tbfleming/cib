@@ -68,6 +68,71 @@ set(LLVM_LIBRARIES
     LLVMSupport
 )
 
+set(RUNTIME_METHODS
+    addFunction
+    addOnExit
+    addOnInit
+    addOnPostRun
+    addOnPreMain
+    addOnPreRun
+    addRunDependency
+    alignFunctionTables
+    ALLOC_DYNAMIC
+    ALLOC_NONE
+    ALLOC_NORMAL
+    ALLOC_STACK
+    ALLOC_STATIC
+    allocate
+    allocateUTF8
+    AsciiToString
+    ccall
+    cwrap
+    dynamicAlloc
+    dynCall
+    FS
+    FS_createDataFile
+    FS_createDevice
+    FS_createFolder
+    FS_createLazyFile
+    FS_createLink
+    FS_createPath
+    FS_createPreloadedFile
+    FS_unlink
+    getFunctionTables
+    getFuncWrapper
+    getMemory
+    getValue
+    GL
+    intArrayFromString
+    intArrayToString
+    lengthBytesUTF16
+    lengthBytesUTF32
+    loadDynamicLibrary
+    loadWebAssemblyModule
+    makeBigInt
+    Pointer_stringify
+    registerFunctions
+    removeFunction
+    removeRunDependency
+    setValue
+    stackTrace
+    staticAlloc
+    stringToAscii
+    stringToUTF16
+    stringToUTF32
+    stringToUTF8
+    stringToUTF8Array
+    UTF16ToString
+    UTF32ToString
+    UTF8ArrayToString
+    UTF8ToString
+    warnOnce
+    writeArrayToMemory
+    writeAsciiToMemory
+    writeStringToMemory
+)
+string(REGEX REPLACE "([^;]+);*" "\"\\1\"," RUNTIME_METHODS "${RUNTIME_METHODS}")
+
 IF(EMSCRIPTEN)
     # https://gitlab.kitware.com/cmake/cmake/issues/15826
     # SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s SAFE_HEAP=1 -s DEMANGLE_SUPPORT=1")
@@ -128,7 +193,8 @@ IF(EMSCRIPTEN)
         "-s ALLOW_MEMORY_GROWTH=1"
         #"-s DEMANGLE_SUPPORT=1"
         #"-s NO_EXIT_RUNTIME=1"
+        "-s ASSERTIONS=0"
         "-s MAIN_MODULE=1"
-        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"FS\", \"UTF8ToString\", \"allocateUTF8\"]'"
+        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[${RUNTIME_METHODS}]'"
     )
 ENDIF(EMSCRIPTEN)
