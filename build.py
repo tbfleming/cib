@@ -55,6 +55,7 @@ binaryenInstall = root + 'install/binaryen-' + binaryenBuildType + '/'
 wabtInstall = root + 'repos/wabt/bin/'
 optimizerBuild = root + 'build/optimizer-' + optimizerBuildType + '/'
 rtlBuildDir = root + 'build/rtl/'
+rtlEosBuildDir = root + 'build/rtl-eos/'
 browserClangFormatBuild = root + 'build/clang-format-browser-' + browserClangFormatBuildType + '/'
 browserClangBuild = root + 'build/clang-browser-' + browserClangBuildType + '/'
 browserRuntimeBuild = root + 'build/runtime-browser-' + browserRuntimeBuildType + '/'
@@ -164,6 +165,10 @@ repos = [
     ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'master', 'master'),
     ('repos/binaryen', 'tbfleming/cib-binaryen.git', 'WebAssembly/binaryen.git', True, 'master', 'cib'),
     ('repos/zip.js', 'gildas-lormeau/zip.js.git', 'gildas-lormeau/zip.js.git', False, '3e7920810f63d5057ef6028833243105521da369', '3e7920810f63d5057ef6028833243105521da369'),
+    ('repos/eos', 'EOSIO/eos.git', 'EOSIO/eos.git', False, '623143cfb0faff9e6d629522e7c564c489bea4e9', '623143cfb0faff9e6d629522e7c564c489bea4e9'),
+    ('repos/eos-musl', 'EOSIO/musl.git', 'EOSIO/musl.git', False, '8a34536ac9764c90c86cc0b62d0cda07449fd5d8', '8a34536ac9764c90c86cc0b62d0cda07449fd5d8'),
+    ('repos/eos-libcxx', 'EOSIO/libcxx.git', 'EOSIO/libcxx.git', False, '2880ac42909d4bb29687ed079f8bb4405c3b0869', '2880ac42909d4bb29687ed079f8bb4405c3b0869'),
+    ('repos/magic-get', 'apolukhin/magic_get.git', 'apolukhin/magic_get.git', False, '8b575abe4359abd72bb9556f64ee33aa2a6f3583', '8b575abe4359abd72bb9556f64ee33aa2a6f3583'),
 ]
 
 def bash():
@@ -234,13 +239,13 @@ def push():
                 run('cd ' + path + ' && git push')
 
 def cmake():
-    download('https://cmake.org/files/v3.10/cmake-3.10.1.tar.gz')
-    if not os.path.exists('build/cmake-3.10.1'):
+    download('https://cmake.org/files/v3.11/cmake-3.11.0.tar.gz')
+    if not os.path.exists('build/cmake-3.11.0'):
         run('mkdir -p build')
-        run('cd build && tar xf ../download/cmake-3.10.1.tar.gz')
-        run('cd build/cmake-3.10.1 && ./bootstrap --prefix=' + cmakeInstall + ' --parallel=' + cores)
-        run('cd build/cmake-3.10.1 && make ' + parallel)
-        run('cd build/cmake-3.10.1 && make install ' + parallel)
+        run('cd build && tar xf ../download/cmake-3.11.0.tar.gz')
+        run('cd build/cmake-3.11.0 && ./bootstrap --prefix=' + cmakeInstall + ' --parallel=' + cores)
+        run('cd build/cmake-3.11.0 && make ' + parallel)
+        run('cd build/cmake-3.11.0 && make install ' + parallel)
 
 def llvm():
     if not os.path.isdir(llvmBuild):
@@ -382,6 +387,11 @@ def dist():
     run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
+def boost():
+    download('https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip')
+    if not os.path.isdir('download/boost_1_66_0'):
+        run('cd download && unzip boost_1_66_0.zip')
+
 def rtl():
     if not os.path.isdir(rtlBuildDir):
         run('mkdir -p ' + rtlBuildDir)
@@ -393,6 +403,19 @@ def rtl():
             ' ../../src/rtl')
     run('cd ' + rtlBuildDir + ' && ninja')
     #run('cd ' + rtlBuildDir + ' && ninja -v -j1 2>&1 | tee ../../x.txt')
+
+def rtlEos():
+    boost()
+    if not os.path.isdir(rtlEosBuildDir):
+        run('mkdir -p ' + rtlEosBuildDir)
+        run('cd ' + rtlEosBuildDir + ' &&' +
+            ' cmake -G "Ninja"' +
+            ' -DLLVM_INSTALL=' + llvmBuild +
+            ' -DCMAKE_C_COMPILER=' + llvmBuild + 'bin/clang' +
+            ' -DCMAKE_CXX_COMPILER=' + llvmBuild + 'bin/clang++' +
+            ' ../../src/rtl-eos')
+    run('cd ' + rtlEosBuildDir + ' && ninja')
+    #run('cd ' + rtlEosBuildDir + ' && ninja -v -j1 2>&1 | tee ../../x.txt')
 
 def app(name, buildType, buildDir, prepBuildDir=None, env=''):
     if not os.path.isdir(buildDir):
@@ -420,9 +443,7 @@ def appClang():
         run('cp -auv repos/emscripten/system/lib/libcxxabi/include ' + browserClangBuild + 'usr/lib/libcxxabi')
         run('cp -auv repos/emscripten/system/lib/libc/musl/arch/emscripten ' + browserClangBuild + 'usr/lib/libc/musl/arch')
         if includeBoost:
-            download('https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip')
-            if not os.path.isdir('download/boost_1_66_0'):
-                run('cd download && unzip boost_1_66_0.zip')
+            boost()
             run('cp -auv download/boost_1_66_0/boost ' + browserClangBuild + 'usr/include')
     app('clang', browserClangBuildType, browserClangBuild, prepBuildDir)
     if(reoptClang):
@@ -487,7 +508,7 @@ commands = [
     ('',  'merge',          merge,          'store_true',   False,  "git merge upstream"),
     ('',  'tag',            createTags,     'store',        False,  "create and push git tags"),
     ('',  'push',           push,           'store_true',   False,  "git push"),
-    ('',  'cmake',          cmake,          'store_true',   False,  "Build cmake if not already built"),
+    ('C', 'cmake',          cmake,          'store_true',   True,   "Build cmake if not already built"),
     ('l', 'llvm',           llvm,           'store_true',   True,   "Build llvm if not already built"),
     ('',  'no86',           llvmNo86,       'store_true',   False,  "Build llvm without X86 if not already built"),
     ('',  'fastcomp',       fastcomp,       'store_true',   useFastcomp, "Build fastcomp if not already built"),
@@ -498,6 +519,7 @@ commands = [
     ('b', 'llvm-browser',   llvmBrowser,    'store_true',   True,   "Build llvm in-browser components"),
     ('d', 'dist',           dist,           'store_true',   True,   "Fill dist/"),
     ('r', 'rtl',            rtl,            'store_true',   True,   "Build RTL"),
+    ('R', 'rtl-eos',        rtlEos,         'store_true',   False,  "Build RTL-EOS"),
     ('1', 'app-1',          appClangFormat, 'store_true',   True,   "Build app 1: clang-format"),
     ('2', 'app-2',          appClang,       'store_true',   True,   "Build app 2: clang"),
     ('n', 'app-n',          appClangNative, 'store_true',   False,  "Build app 2: clang, native"),
