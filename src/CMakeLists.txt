@@ -161,22 +161,28 @@ ENDIF(EMSCRIPTEN)
 add_compile_options(-std=c++2a -fcolor-diagnostics -Wall -Wextra -Wpedantic -Wno-unused-parameter)
 
 add_executable (cib-link cib-link.cpp wasm-tools.cpp)
+add_executable (cib-ar cib-ar.cpp wasm-tools.cpp)
 add_executable (combine-data combine-data.cpp wasm-tools.cpp)
 add_executable (clang-format clang-format.cpp)
-add_executable (clang clang.cpp)
+add_executable (clang clang.cpp wasm-tools.cpp)
 add_executable (runtime runtime.cpp cxa_new_delete.cpp)
 
 target_compile_options(cib-link PRIVATE -stdlib=libc++)
 target_link_libraries(cib-link PRIVATE -stdlib=libc++)
 
+target_compile_options(cib-ar PRIVATE -stdlib=libc++)
+target_link_libraries(cib-ar PRIVATE -stdlib=libc++)
+
 target_compile_options(combine-data PRIVATE -stdlib=libc++)
 target_link_libraries(combine-data PRIVATE -stdlib=libc++)
 
 target_include_directories(clang-format PRIVATE ${LLVM_INCLUDE})
-target_link_libraries(clang-format PRIVATE ${LLVM_LIBRARIES})
+target_compile_options(clang-format PRIVATE -stdlib=libc++)
+target_link_libraries(clang-format PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
 
 target_include_directories(clang PRIVATE ${LLVM_INCLUDE})
-target_link_libraries(clang PRIVATE ${LLVM_LIBRARIES})
+target_compile_options(clang PRIVATE -stdlib=libc++)
+target_link_libraries(clang PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
 
 IF(EMSCRIPTEN)
     target_link_libraries(clang-format PRIVATE

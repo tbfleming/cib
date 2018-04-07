@@ -96,7 +96,7 @@ string(REGEX REPLACE "([^;]+)" "../../repos/emscripten/system/lib/libcxxabi/src/
 string(REPLACE " " ";" libcxxabi_sources "${libcxxabi_sources}")
 #message(STATUS "${libcxxabi_sources}")
 
-set(CMAKE_CXX_LINK_EXECUTABLE "../../build/tools/cib-link <TARGET> <OBJECTS>")
+set(CMAKE_CXX_LINK_EXECUTABLE "../../build/tools/cib-ar <TARGET> <OBJECTS>")
 
 add_executable(rtl-eos)
 

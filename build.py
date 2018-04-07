@@ -281,7 +281,11 @@ def fastcomp():
 def llvmNo86():
     if not os.path.isdir(llvmNo86Build):
         run('mkdir -p ' + llvmNo86Build)
-        run('cd ' + llvmNo86Build + ' && time -p cmake -G "Ninja"' +
+        run('cd ' + llvmNo86Build + ' &&' +
+            ' CC=' + llvmInstall + 'bin/clang' +
+            ' CXX=' + llvmInstall + 'bin/clang++' +
+            ' CXXFLAGS="-stdlib=libc++" LDFLAGS="-stdlib=libc++"' +
+            ' time -p cmake -G "Ninja"' +
             ' -DCMAKE_INSTALL_PREFIX=' + llvmNo86Install +
             ' -DCMAKE_BUILD_TYPE=' + llvmNo86BuildType +
             ' -DLLVM_TARGETS_TO_BUILD=' +
@@ -331,7 +335,7 @@ def tools():
             ' cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=Debug' +
             ' ../../src')
-    run('cd build/tools && ninja cib-link combine-data')
+    run('cd build/tools && ninja cib-link cib-ar combine-data')
 
 def llvmBrowser():
     if not os.path.isdir(llvmBrowserBuild):
@@ -457,7 +461,7 @@ def appClangNative():
     if not os.path.isdir('build/apps-native'):
         run('mkdir -p build/apps-native')
         run('cd build/apps-native &&' +
-            ' CXX=' + root + 'install/llvm-Release/' + 'bin/clang++' +
+            ' CXX=' + llvmInstall + 'bin/clang++' +
             ' CXXFLAGS=-DLIB_PREFIX=' + root + 'repos/emscripten/system/' +
             ' cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=Debug' +
@@ -467,6 +471,19 @@ def appClangNative():
     run('cd build/apps-native && time -p ninja -v clang')
     #run('cd build/apps-native && ./clang')
     #run('cd build/apps-native && gdb -q -ex run --args ./clang')
+
+def appClangEosNative():
+    if not os.path.isdir('build/apps-eos-native'):
+        run('mkdir -p build/apps-eos-native')
+        run('cd build/apps-eos-native &&' +
+            ' CXX=' + llvmInstall + 'bin/clang++' +
+            ' CXXFLAGS=-DEOS_CLANG -DLIB_PREFIX=' + root +
+            ' cmake -G "Ninja"' +
+            ' -DCMAKE_BUILD_TYPE=Debug' +
+            ' -DLLVM_BUILD=' + llvmNo86Build +
+            ' -DCMAKE_CXX_STANDARD_LIBRARIES="-lpthread -lncurses -ltinfo -lz"' +
+            ' ../../src')
+    run('cd build/apps-eos-native && time -p ninja -v clang')
 
 def appRuntime():
     app('runtime', browserRuntimeBuildType, browserRuntimeBuild, env='EMCC_FORCE_STDLIBS=1')
@@ -523,6 +540,7 @@ commands = [
     ('1', 'app-1',          appClangFormat, 'store_true',   True,   "Build app 1: clang-format"),
     ('2', 'app-2',          appClang,       'store_true',   True,   "Build app 2: clang"),
     ('n', 'app-n',          appClangNative, 'store_true',   False,  "Build app 2: clang, native"),
+    ('N', 'app-N',          appClangEosNative, 'store_true',   False,  "Build app 2: clang-eos, native"),
     ('3', 'app-3',          appRuntime,     'store_true',   True,   "Build app 3: runtime"),
     ('H', 'http',           http,           'store_true',   False,  "http-server"),
 ]

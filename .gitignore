@@ -4,3 +4,5 @@ dist
 install
 repos
 download
+*.wat
+*.wasm

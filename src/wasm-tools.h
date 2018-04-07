@@ -253,6 +253,7 @@ struct Module {
     std::vector<std::optional<uint32_t>> replacement_addresses{};
     std::vector<uint32_t> replacement_functions{};
     std::vector<uint32_t> replacement_elements{};
+    bool is_marked{};
 };
 
 struct LinkedSymbol {
@@ -261,6 +262,9 @@ struct LinkedSymbol {
     std::optional<uint32_t> final_index{};
     bool is_global{};
     bool is_function{};
+    bool is_marked{};
+    bool is_marked_export{};
+    bool in_queue{};
 };
 
 struct Linked {
@@ -285,5 +289,7 @@ void read_module(Linked& linked, Module& module);
 
 void link(Linked& linked, uint32_t memory_offset = default_memory_offset,
           uint32_t element_offset = default_element_offset);
+
+void linkEos(Linked& linked);
 
 } // namespace WasmTools

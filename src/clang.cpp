@@ -27,8 +27,11 @@
 #include "clang/Lex/PreprocessorOptions.h"
 #include "llvm/Support/TargetSelect.h"
 
+#include "wasm-tools.h"
+
 using namespace llvm;
 using namespace clang;
+using namespace std::literals;
 
 #define STRX(s) STR(s)
 #define STR(s) #s
@@ -76,6 +79,33 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename,
         sysDirs = end;
     }
 
+#ifdef EOS_CLANG
+    sOpts.AddPath(STRX(LIB_PREFIX) "repos/eos-libcxx/include", frontend::System,
+                  false, true);
+    sOpts.AddPath(
+        STRX(LIB_PREFIX) "repos/emscripten/system/lib/libcxxabi/include",
+        frontend::System, false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "src/rtl-eos", frontend::System, false,
+                  true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "src/rtl-eos/libc", frontend::System, false,
+                  true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "repos/eos-libcxx/include/support/musl",
+                  frontend::System, false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "repos/eos-musl/include", frontend::System,
+                  false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "repos/eos-musl/arch/eos", frontend::System,
+                  false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "repos/eos-musl/src/internal",
+                  frontend::System, false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "download/boost_1_66_0", frontend::System,
+                  false, true);
+    sOpts.AddPath(STRX(LIB_PREFIX) "repos/magic-get/include", frontend::System,
+                  false, true);
+
+    compiler->getPreprocessorOpts().addMacroDef("__EMSCRIPTEN__");
+    compiler->getPreprocessorOpts().addMacroDef("_LIBCPP_ABI_VERSION=2");
+    compiler->getPreprocessorOpts().addMacroDef("_LIBCPP_HAS_NO_THREADS");
+#else
     sOpts.AddPath(STRX(LIB_PREFIX) "include", frontend::System, false, true);
     sOpts.AddPath(STRX(LIB_PREFIX) "include/libcxx", frontend::System, false,
                   true);
@@ -98,6 +128,7 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename,
     compiler->getPreprocessorOpts().addMacroDef("unix");
     compiler->getPreprocessorOpts().addMacroDef("__unix");
     compiler->getPreprocessorOpts().addMacroDef("__unix__");
+#endif
 
     compiler->getCodeGenOpts().CodeModel = "default";
     compiler->getCodeGenOpts().RelocationModel = "static";
@@ -116,10 +147,18 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename,
     compiler->getLangOpts().Deprecated = true;
     compiler->getLangOpts().setValueVisibilityMode(HiddenVisibility);
     compiler->getLangOpts().setTypeVisibilityMode(HiddenVisibility);
+
+#ifdef EOS_CLANG
+    compiler->getLangOpts().RTTI = false;
+    compiler->getLangOpts().RTTIData = false;
+    compiler->getLangOpts().Exceptions = false;
+    compiler->getLangOpts().CXXExceptions = false;
+#else
     compiler->getLangOpts().RTTI = true;
     compiler->getLangOpts().RTTIData = true;
     compiler->getLangOpts().Exceptions = true;
     compiler->getLangOpts().CXXExceptions = true;
+#endif
 
     compiler->getTargetOpts().Triple = triple;
     compiler->getTargetOpts().HostTriple = triple;
@@ -151,6 +190,64 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
 }
 #endif
 
+#ifdef EOS_CLANG
+int link(const char* prelinkedFile, const char* linkedFile) {
+    try {
+        WasmTools::Linked linked;
+        auto archive =
+            WasmTools::File{STRX(LIB_PREFIX) "build/rtl-eos/rtl-eos", "rb"}
+                .read();
+        size_t pos = 0;
+        while (pos < archive.size()) {
+            auto sv = WasmTools::read_str(archive, pos);
+            std::string name{begin(sv), end(sv)};
+            auto size = WasmTools::read_leb(archive, pos);
+            auto module = make_unique<WasmTools::Module>();
+            module->filename = name;
+            module->binary.insert(module->binary.end(), archive.begin() + pos,
+                                  archive.begin() + pos + size);
+            try {
+                read_module(linked, *module);
+            } catch (std::exception& e) {
+                throw std::runtime_error(name + ": "s + e.what());
+            }
+            linked.modules.push_back(move(module));
+            pos += size;
+        }
+
+        auto module = make_unique<WasmTools::Module>();
+        module->filename = prelinkedFile;
+        module->binary = WasmTools::File{prelinkedFile, "rb"}.read();
+        try {
+            read_module(linked, *module);
+        } catch (std::exception& e) {
+            throw std::runtime_error(prelinkedFile + ": "s + e.what());
+        }
+        linked.modules.push_back(move(module));
+
+        linkEos(linked);
+        WasmTools::File{linkedFile, "wb"}.write(linked.binary);
+        return 0;
+    } catch (std::exception& e) {
+        printf("error: %s\n", e.what());
+        return 1;
+    }
+}
+
+int main(int argc, const char* argv[]) {
+    if (argc == 4) {
+        if (!compile(argv[1], argv[2], ""))
+            return 1;
+        return link(argv[2], argv[3]);
+    }
+    if (argc > 1) {
+        fprintf(stderr, "Usage: input_file.cpp prelinked.wasm linked.wasm\n");
+        return 1;
+    }
+    return 0;
+}
+
+#else
 int main(int argc, const char* argv[]) {
     if (argc == 3)
         return !compile(argv[1], argv[2], "");
@@ -160,3 +257,4 @@ int main(int argc, const char* argv[]) {
     }
     return 0;
 }
+#endif

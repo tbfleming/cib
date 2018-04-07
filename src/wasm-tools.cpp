@@ -600,20 +600,6 @@ void read_module(Linked& linked, Module& module) {
     prepare_symbols(module);
 } // read_module
 
-void map_function_types(Linked& linked) {
-    for (auto& module : linked.modules) {
-        module->replacement_function_types.reserve(
-            module->function_types.size());
-        for (auto& function_type : module->function_types) {
-            auto [it, inserted] = linked.function_type_map.insert(
-                {function_type, linked.function_types.size()});
-            if (inserted)
-                linked.function_types.push_back(function_type);
-            module->replacement_function_types.push_back(it->second);
-        }
-    }
-}
-
 template <typename F> void for_each_public_linked_symbol(Linked& linked, F f) {
     for (auto& [key, linked_symbol] : linked.linked_symbols) {
         auto& [module, name] = key;
@@ -682,8 +668,97 @@ void link_symbols(Linked& linked) {
     }
 } // link_symbols
 
+void mark_all(Linked& linked) {
+    for (auto& module : linked.modules)
+        module->is_marked = true;
+    for (auto& [key, linked_symbol] : linked.linked_symbols) {
+        linked_symbol.is_marked = true;
+        linked_symbol.is_marked_export = true;
+    }
+}
+
+void add_symbol_to_queue(Linked& linked, LinkedSymbol* linked_symbol,
+                         std::vector<LinkedSymbol*>& queue) {
+    if (linked_symbol && !linked_symbol->in_queue) {
+        linked_symbol->in_queue = true;
+        queue.push_back(linked_symbol);
+    }
+}
+
+void add_export_to_queue(Linked& linked, std::string_view name,
+                         std::vector<LinkedSymbol*>& queue) {
+    for (auto& module : linked.modules) {
+        auto it = module->symbols.find(name);
+        if (it != module->symbols.end() && it->second.linked_symbol &&
+            it->second.linked_symbol->definition == &it->second) {
+            it->second.linked_symbol->is_marked_export = true;
+            add_symbol_to_queue(linked, it->second.linked_symbol, queue);
+        }
+    }
+}
+
+void mark_symbols_in_queue(Linked& linked, std::vector<LinkedSymbol*>& queue) {
+    while (!queue.empty()) {
+        auto* linked_symbol = queue.back();
+        queue.pop_back();
+        linked_symbol->is_marked = true;
+        if (linked_symbol->definition) {
+            auto* module = linked_symbol->definition->module;
+            if (!module->is_marked) {
+                // printf("mark: %s\n", std::string{module->filename}.c_str());
+                module->is_marked = true;
+                for (uint32_t i = 0; i < module->num_imported_globals; ++i)
+                    add_symbol_to_queue(
+                        linked, module->globals[i].import_symbol->linked_symbol,
+                        queue);
+                for (uint32_t i = 0; i < module->num_imported_functions; ++i)
+                    add_symbol_to_queue(
+                        linked,
+                        module->functions[i].import_symbol->linked_symbol,
+                        queue);
+            }
+        }
+    }
+}
+
+void map_function_types(Linked& linked) {
+    auto get_replacement = [&](auto& function_type) {
+        auto [it, inserted] = linked.function_type_map.insert(
+            {function_type, linked.function_types.size()});
+        if (inserted)
+            linked.function_types.push_back(function_type);
+        return it->second;
+    };
+
+    for (auto& module : linked.modules) {
+        if (module->is_marked) {
+            for (auto& function_type : module->function_types)
+                module->replacement_function_types.push_back(
+                    get_replacement(function_type));
+        } else {
+            module->replacement_function_types.insert(
+                module->replacement_function_types.end(),
+                module->function_types.size(), -1);
+        }
+    }
+
+    for (auto& linked_symbol : linked.unresolved_functions) {
+        auto* symbol = linked_symbol->symbols[0];
+        if (!linked_symbol->is_marked)
+            continue;
+        check(!!symbol->import_function_index,
+              "missing symbol->import_function_index");
+        auto* module = symbol->module;
+        auto& function = module->functions[*symbol->import_function_index];
+        module->replacement_function_types[function.type] =
+            get_replacement(module->function_types[function.type]);
+    }
+} // map_function_types
+
 void allocate_memory(Linked& linked, uint32_t memory_offset) {
     for (auto& module : linked.modules) {
+        if (!module->is_marked)
+            continue;
         module->memory_offset = memory_offset;
         memory_offset =
             (memory_offset + module->data_size + memory_alignment - 1) &
@@ -695,6 +770,8 @@ void allocate_memory(Linked& linked, uint32_t memory_offset) {
 void allocate_code(Linked& linked) {
     uint32_t code_offset = 0;
     for (auto& module : linked.modules) {
+        if (!module->is_marked)
+            continue;
         module->code_offset = code_offset;
         auto& code = module->sections[sec_code];
         auto pos = code.begin;
@@ -706,11 +783,13 @@ void allocate_code(Linked& linked) {
 void allocate_globals(Linked& linked) {
     auto next_index = uint32_t{0};
     for (auto symbol : linked.unresolved_globals)
-        symbol->final_index = next_index++;
+        if (symbol->is_marked)
+            symbol->final_index = next_index++;
     for_each_public_linked_symbol(
         linked, [&](auto module, auto name, auto& linked_symbol) {
             auto definition = linked_symbol.definition;
-            if (!linked_symbol.is_global || !definition)
+            if (!linked_symbol.is_global || !definition ||
+                !definition->module->is_marked)
                 return;
             check(*definition->export_global_index >=
                       definition->module->num_imported_globals,
@@ -719,6 +798,8 @@ void allocate_globals(Linked& linked) {
             linked.export_globals.push_back(&linked_symbol);
         });
     for (auto& module : linked.modules) {
+        if (!module->is_marked)
+            continue;
         module->replacement_addresses.resize(module->globals.size());
         module->replacement_globals.resize(module->globals.size());
         uint32_t i = 0;
@@ -748,8 +829,11 @@ void allocate_globals(Linked& linked) {
 void allocate_functions(Linked& linked) {
     auto function_offset = uint32_t{0};
     for (auto symbol : linked.unresolved_functions)
-        symbol->final_index = function_offset++;
+        if (symbol->is_marked)
+            symbol->final_index = function_offset++;
     for (auto& module : linked.modules) {
+        if (!module->is_marked)
+            continue;
         module->function_offset = function_offset;
         function_offset +=
             module->functions.size() - module->num_imported_functions;
@@ -757,7 +841,8 @@ void allocate_functions(Linked& linked) {
     for (auto& [key, linked_symbol] : linked.linked_symbols) {
         auto& [module, name] = key;
         auto definition = linked_symbol.definition;
-        if (!linked_symbol.is_function || !definition)
+        if (!linked_symbol.is_function || !definition ||
+            !definition->module->is_marked)
             continue;
         check(*definition->export_function_index >=
                   definition->module->num_imported_functions,
@@ -769,6 +854,8 @@ void allocate_functions(Linked& linked) {
             linked.export_functions.push_back(&linked_symbol);
     }
     for (auto& module : linked.modules) {
+        if (!module->is_marked)
+            continue;
         module->replacement_functions.resize(module->functions.size());
         uint32_t i = 0;
         for (; i < module->num_imported_functions; ++i) {
@@ -790,6 +877,8 @@ void allocate_functions(Linked& linked) {
 void allocate_elements(Linked& linked, uint32_t element_offset) {
     linked.element_offset = element_offset;
     for (auto& module : linked.modules) {
+        if (!module->is_marked)
+            continue;
         module->replacement_elements.reserve(module->elements.size());
         for (auto& element : module->elements) {
             auto function_index =
@@ -899,7 +988,8 @@ void relocate(Linked& linked, Module& module) {
 
 void relocate(Linked& linked) {
     for (auto& module : linked.modules)
-        relocate(linked, *module);
+        if (module->is_marked)
+            relocate(linked, *module);
 }
 
 template <typename F> void push_sized(std::vector<uint8_t>& binary, F f) {
@@ -960,6 +1050,8 @@ void push_sec_import(Linked& linked, bool allow_mutable_imports) {
         push_resizable_limits(
             binary, false, (linked.memory_size + page_size - 1) / page_size, 0);
         for (auto& linked_symbol : linked.unresolved_functions) {
+            if (!linked_symbol->is_marked)
+                continue;
             auto symbol = linked_symbol->symbols[0];
             check(!!symbol->import_index, "missing symbol->import_index");
             check(!!symbol->import_function_index,
@@ -973,6 +1065,8 @@ void push_sec_import(Linked& linked, bool allow_mutable_imports) {
             push_leb5(binary, type);
         }
         for (auto& linked_symbol : linked.unresolved_globals) {
+            if (!linked_symbol->is_marked)
+                continue;
             auto symbol = linked_symbol->symbols[0];
             check(!!symbol->import_index, "missing symbol->import_index");
             check(!!symbol->import_global_index,
@@ -994,6 +1088,8 @@ void push_sec_function(Linked& linked) {
     push_sized_counted(binary, [&] {
         uint32_t count{};
         for (auto& module : linked.modules) {
+            if (!module->is_marked)
+                continue;
             for (auto i = module->num_imported_functions;
                  i < module->functions.size(); ++i) {
                 auto& function = module->functions[i];
@@ -1034,6 +1130,8 @@ void push_sec_export(Linked& linked) {
         uint32_t count{};
         auto push_exports = [&](auto& linked_symbols, auto type) {
             for (auto linked_symbol : linked_symbols) {
+                if (!linked_symbol->is_marked_export)
+                    continue;
                 auto definition = linked_symbol->definition;
                 auto& exp =
                     definition->module->exports[*definition->export_index];
@@ -1068,6 +1166,8 @@ void push_sec_code(Linked& linked) {
     push_sized_counted(binary, [&] {
         uint32_t count{};
         for (auto& module : linked.modules) {
+            if (!module->is_marked)
+                continue;
             auto& sec = module->sections[sec_code];
             auto pos = sec.begin;
             auto c = read_leb(module->binary, pos);
@@ -1106,6 +1206,8 @@ void push_sec_data(Linked& linked) {
     push_sized_counted(binary, [&] {
         uint32_t count{};
         for (auto& module : linked.modules) {
+            if (!module->is_marked)
+                continue;
             for (auto& data_segment : module->data_segments) {
                 binary.push_back(0); // index
                 push_init_expr32(binary,
@@ -1162,8 +1264,9 @@ void push_sec_linking(Linked& linked) {
 }
 
 void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
-    map_function_types(linked);
     link_symbols(linked);
+    mark_all(linked);
+    map_function_types(linked);
     allocate_memory(linked, memory_offset);
     allocate_code(linked);
     allocate_globals(linked);
@@ -1180,6 +1283,31 @@ void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
     push_sec_code_reloc(linked);
     push_sec_data(linked);
     push_sec_linking(linked);
+}
+
+void linkEos(Linked& linked) {
+    link_symbols(linked);
+
+    std::vector<LinkedSymbol*> queue;
+    add_export_to_queue(linked, "init", queue);
+    add_export_to_queue(linked, "apply", queue);
+    mark_symbols_in_queue(linked, queue);
+
+    map_function_types(linked);
+    allocate_memory(linked, default_memory_offset);
+    allocate_code(linked);
+    allocate_globals(linked);
+    allocate_functions(linked);
+    allocate_elements(linked, default_element_offset);
+    relocate(linked);
+    push_sec_type(linked);
+    push_sec_import(linked, true);
+    push_sec_function(linked);
+    push_sec_global(linked);
+    push_sec_export(linked);
+    push_sec_elem(linked);
+    push_sec_code(linked);
+    push_sec_data(linked);
 }
 
 } // namespace WasmTools
