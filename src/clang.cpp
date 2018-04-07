@@ -191,7 +191,8 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
 #endif
 
 #ifdef EOS_CLANG
-int link(const char* prelinkedFile, const char* linkedFile) {
+int link(const char* prelinkedFile, const char* linkedFile,
+         uint32_t stackSize) {
     try {
         WasmTools::Linked linked;
         auto archive =
@@ -207,7 +208,7 @@ int link(const char* prelinkedFile, const char* linkedFile) {
             module->binary.insert(module->binary.end(), archive.begin() + pos,
                                   archive.begin() + pos + size);
             try {
-                read_module(linked, *module);
+                read_module(*module);
             } catch (std::exception& e) {
                 throw std::runtime_error(name + ": "s + e.what());
             }
@@ -219,13 +220,13 @@ int link(const char* prelinkedFile, const char* linkedFile) {
         module->filename = prelinkedFile;
         module->binary = WasmTools::File{prelinkedFile, "rb"}.read();
         try {
-            read_module(linked, *module);
+            read_module(*module);
         } catch (std::exception& e) {
             throw std::runtime_error(prelinkedFile + ": "s + e.what());
         }
         linked.modules.push_back(move(module));
 
-        linkEos(linked);
+        linkEos(linked, stackSize);
         WasmTools::File{linkedFile, "wb"}.write(linked.binary);
         return 0;
     } catch (std::exception& e) {
@@ -238,7 +239,7 @@ int main(int argc, const char* argv[]) {
     if (argc == 4) {
         if (!compile(argv[1], argv[2], ""))
             return 1;
-        return link(argv[2], argv[3]);
+        return link(argv[2], argv[3], 16 * 1024);
     }
     if (argc > 1) {
         fprintf(stderr, "Usage: input_file.cpp prelinked.wasm linked.wasm\n");

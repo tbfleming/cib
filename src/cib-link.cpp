@@ -33,7 +33,7 @@ int main(int argc, const char* argv[]) {
             module->filename = argv[i];
             module->binary = File{argv[i], "rb"}.read();
             try {
-                read_module(linked, *module);
+                read_module(*module);
             } catch (exception& e) {
                 throw std::runtime_error(argv[i] + ": "s + e.what());
             }

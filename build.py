@@ -23,8 +23,8 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-useTag = 'cib-007'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-007'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
@@ -165,7 +165,7 @@ repos = [
     ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'master', 'master'),
     ('repos/binaryen', 'tbfleming/cib-binaryen.git', 'WebAssembly/binaryen.git', True, 'master', 'cib'),
     ('repos/zip.js', 'gildas-lormeau/zip.js.git', 'gildas-lormeau/zip.js.git', False, '3e7920810f63d5057ef6028833243105521da369', '3e7920810f63d5057ef6028833243105521da369'),
-    ('repos/eos', 'EOSIO/eos.git', 'EOSIO/eos.git', False, '623143cfb0faff9e6d629522e7c564c489bea4e9', '623143cfb0faff9e6d629522e7c564c489bea4e9'),
+    ('repos/eos', 'tbfleming/cib-eos.git', 'tbfleming/cib-eos.git', True, 'dawn-v3.0.0', 'cib'),
     ('repos/eos-musl', 'EOSIO/musl.git', 'EOSIO/musl.git', False, '8a34536ac9764c90c86cc0b62d0cda07449fd5d8', '8a34536ac9764c90c86cc0b62d0cda07449fd5d8'),
     ('repos/eos-libcxx', 'EOSIO/libcxx.git', 'EOSIO/libcxx.git', False, '2880ac42909d4bb29687ed079f8bb4405c3b0869', '2880ac42909d4bb29687ed079f8bb4405c3b0869'),
     ('repos/magic-get', 'apolukhin/magic_get.git', 'apolukhin/magic_get.git', False, '8b575abe4359abd72bb9556f64ee33aa2a6f3583', '8b575abe4359abd72bb9556f64ee33aa2a6f3583'),
@@ -477,7 +477,7 @@ def appClangEosNative():
         run('mkdir -p build/apps-eos-native')
         run('cd build/apps-eos-native &&' +
             ' CXX=' + llvmInstall + 'bin/clang++' +
-            ' CXXFLAGS=-DEOS_CLANG -DLIB_PREFIX=' + root +
+            ' CXXFLAGS="-DEOS_CLANG -DLIB_PREFIX=' + root + '"' +
             ' cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=Debug' +
             ' -DLLVM_BUILD=' + llvmNo86Build +
@@ -515,41 +515,44 @@ def http():
         pass
 
 commands = [
-    ('G', 'git-https',      None,           'store_true',   False,  "Use https for git clone"),
-    ('B', 'bash',           bash,           'store_true',   False,  "Run bash with environment set up"),
-    ('f', 'format',         format,         'store_true',   False,  "Format sources"),
-    ('c', 'clone',          clone,          'store_true',   True,   "Clone repos. Doesn't touch ones which already exist."),
-    ('s', 'status',         status,         'store_true',   False,  "git status"),
-    ('',  'pull',           pull,           'store_true',   False,  "git pull"),
-    ('',  'checkout',       checkout,       'store_true',   False,  "git checkout"),
-    ('',  'merge',          merge,          'store_true',   False,  "git merge upstream"),
-    ('',  'tag',            createTags,     'store',        False,  "create and push git tags"),
-    ('',  'push',           push,           'store_true',   False,  "git push"),
-    ('C', 'cmake',          cmake,          'store_true',   True,   "Build cmake if not already built"),
-    ('l', 'llvm',           llvm,           'store_true',   True,   "Build llvm if not already built"),
-    ('',  'no86',           llvmNo86,       'store_true',   False,  "Build llvm without X86 if not already built"),
-    ('',  'fastcomp',       fastcomp,       'store_true',   useFastcomp, "Build fastcomp if not already built"),
-    ('',  'wabt',           wabt,           'store_true',   False,  "Build wabt if not already built"),
-    ('y', 'binaryen',       binaryen,       'store_true',   True,   "Build binaryen if not already built"),
-    ('e', 'emscripten',     emscripten,     'store_true',   True,   "Prepare emscripten by compiling say-hello.cpp"),
-    ('t', 'tools',          tools,          'store_true',   True,   "Build tools if not already built"),
-    ('b', 'llvm-browser',   llvmBrowser,    'store_true',   True,   "Build llvm in-browser components"),
-    ('d', 'dist',           dist,           'store_true',   True,   "Fill dist/"),
-    ('r', 'rtl',            rtl,            'store_true',   True,   "Build RTL"),
-    ('R', 'rtl-eos',        rtlEos,         'store_true',   False,  "Build RTL-EOS"),
-    ('1', 'app-1',          appClangFormat, 'store_true',   True,   "Build app 1: clang-format"),
-    ('2', 'app-2',          appClang,       'store_true',   True,   "Build app 2: clang"),
-    ('n', 'app-n',          appClangNative, 'store_true',   False,  "Build app 2: clang, native"),
-    ('N', 'app-N',          appClangEosNative, 'store_true',   False,  "Build app 2: clang-eos, native"),
-    ('3', 'app-3',          appRuntime,     'store_true',   True,   "Build app 3: runtime"),
-    ('H', 'http',           http,           'store_true',   False,  "http-server"),
+    ('G', 'git-https',      None,               'store_true',   False,          False,          "Use https for git clone"),
+    ('B', 'bash',           bash,               'store_true',   False,          False,          "Run bash with environment set up"),
+    ('f', 'format',         format,             'store_true',   False,          False,          "Format sources"),
+    ('c', 'clone',          clone,              'store_true',   True,           True,           "Clone repositories. Doesn't touch repositories which already exist."),
+    ('s', 'status',         status,             'store_true',   False,          False,          "git status"),
+    ('',  'pull',           pull,               'store_true',   False,          False,          "git pull"),
+    ('',  'checkout',       checkout,           'store_true',   False,          False,          "git checkout"),
+    ('',  'merge',          merge,              'store_true',   False,          False,          "git merge upstream"),
+    ('',  'tag',            createTags,         'store',        False,          False,          "create and push git tags"),
+    ('',  'push',           push,               'store_true',   False,          False,          "git push"),
+    ('C', 'cmake',          cmake,              'store_true',   True,           True,           "Build cmake if not already built"),
+    ('l', 'llvm',           llvm,               'store_true',   True,           True,           "Build llvm if not already built"),
+    ('',  'no86',           llvmNo86,           'store_true',   False,          False,          "Build llvm without X86 if not already built"),
+    ('',  'fastcomp',       fastcomp,           'store_true',   useFastcomp,    useFastcomp,    "Build fastcomp if not already built"),
+    ('',  'wabt',           wabt,               'store_true',   False,          False,          "Build wabt if not already built"),
+    ('y', 'binaryen',       binaryen,           'store_true',   True,           True,           "Build binaryen if not already built"),
+    ('e', 'emscripten',     emscripten,         'store_true',   True,           True,           "Prepare emscripten by compiling say-hello.cpp"),
+    ('t', 'tools',          tools,              'store_true',   True,           True,           "Build tools if not already built"),
+    ('b', 'llvm-browser',   llvmBrowser,        'store_true',   True,           True,           "Build llvm in-browser components"),
+    ('d', 'dist',           dist,               'store_true',   True,           True,           "Fill dist/"),
+    ('r', 'rtl',            rtl,                'store_true',   True,           False,          "Build RTL"),
+    ('R', 'rtl-eos',        rtlEos,             'store_true',   False,          True,           "Build RTL-EOS"),
+    ('1', 'app-1',          appClangFormat,     'store_true',   True,           False,          "Build app 1: clang-format"),
+    ('2', 'app-2',          appClang,           'store_true',   True,           False,          "Build app 2: clang"),
+    ('n', 'app-n',          appClangNative,     'store_true',   False,          False,          "Build app 2: clang, native"),
+    ('N', 'app-N',          appClangEosNative,  'store_true',   False,          False,          "Build app 2: clang-eos, native"),
+    ('3', 'app-3',          appRuntime,         'store_true',   True,           False,          "Build app 3: runtime"),
+    ('H', 'http',           http,               'store_true',   False,          False,          "http-server"),
 ]
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*)")
-for (flag, command, function, action, inAll, help) in commands:
-    if inAll:
-        help = '(*) ' + help
+parser.add_argument('-a', '--all', action='store_true', help="Do everything marked with (*): cib")
+parser.add_argument('-E', '--eos', action='store_true', help="Do everything marked with (E): cib-eos")
+for (flag, command, function, action, inAll, inEos, help) in commands:
+    prefix = ''
+    if inAll: prefix += '*'
+    if inEos: prefix += 'E'
+    if prefix: help = '(' + prefix + ') ' + help
     if flag:
         parser.add_argument('-' + flag, '--' + command, action=action, help=help, dest=command)
     else:
@@ -557,12 +560,12 @@ for (flag, command, function, action, inAll, help) in commands:
 args = parser.parse_args()
 
 haveCommand = False
-for (flag, command, function, action, inAll, help) in commands:
-    if getattr(args, command) or inAll and args.all:
+for (flag, command, function, action, inAll, inEos, help) in commands:
+    if getattr(args, command) or inAll and args.all or inEos and args.eos:
         if function:
             haveCommand = True
             function()
         elif command == 'git-https':
             gitProtocol = 'https://github.com/'
 if not haveCommand:
-    print('build.py: Tell me what to do. -a does almost everything. -h shows options.')
+    print('build.py: Tell me what to do. -a builds cib. -E builds cib-eos. -h shows options.')

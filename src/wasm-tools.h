@@ -181,6 +181,7 @@ struct Global {
     uint32_t init_u32{};
     struct Symbol* import_symbol{};
     bool has_symbols{};
+    bool is_memory_address{true};
 };
 
 struct Export {
@@ -285,11 +286,11 @@ struct Linked {
     std::vector<Reloc> code_relocs{};
 };
 
-void read_module(Linked& linked, Module& module);
+void read_module(Module& module);
 
 void link(Linked& linked, uint32_t memory_offset = default_memory_offset,
           uint32_t element_offset = default_element_offset);
 
-void linkEos(Linked& linked);
+void linkEos(Linked& linked, uint32_t stack_size);
 
 } // namespace WasmTools

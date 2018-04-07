@@ -533,13 +533,10 @@ void prepare_symbols(Module& module) {
                              " does not have a symbol");
 } // prepare_symbols
 
-void read_module(Linked& linked, Module& module) {
+void read_module(Module& module) {
     check(module.binary.size() >= 8 &&
               *(uint32_t*)(&module.binary[0]) == 0x6d736100,
           "not a wasm file");
-    if (linked.binary.empty())
-        linked.binary.insert(linked.binary.end(), module.binary.begin(),
-                             module.binary.begin() + 8);
     auto pos = size_t{8};
     auto end = module.binary.size();
     while (pos != end) {
@@ -589,7 +586,7 @@ void read_module(Linked& linked, Module& module) {
             }
         } else {
             auto name = read_str(module.binary, pos);
-            if (name.starts_with("reloc."))
+            if (name.size() >= 6 && !strncmp(&name[0], "reloc.", 6))
                 read_reloc(module, name, pos, s_end);
             else if (name == "linking")
                 read_linking(module, pos, s_end);
@@ -599,6 +596,21 @@ void read_module(Linked& linked, Module& module) {
 
     prepare_symbols(module);
 } // read_module
+
+Symbol* create_sp_export(Linked& linked) {
+    linked.modules.push_back(std::make_unique<Module>());
+    auto& module = *linked.modules.back();
+    module.filename = "__stack_pointer__module";
+    module.globals.push_back(Global{1});
+    auto& global = module.globals[0];
+    global.is_memory_address = false;
+    module.exports.push_back(Export{stack_pointer_name, external_global, 0});
+    auto& symbol = module.symbols[stack_pointer_name];
+    symbol.module = &module;
+    symbol.export_index = 0;
+    symbol.export_global_index = 0;
+    return &symbol;
+}
 
 template <typename F> void for_each_public_linked_symbol(Linked& linked, F f) {
     for (auto& [key, linked_symbol] : linked.linked_symbols) {
@@ -770,7 +782,7 @@ void allocate_memory(Linked& linked, uint32_t memory_offset) {
 void allocate_code(Linked& linked) {
     uint32_t code_offset = 0;
     for (auto& module : linked.modules) {
-        if (!module->is_marked)
+        if (!module->is_marked || !module->sections[sec_code].valid)
             continue;
         module->code_offset = code_offset;
         auto& code = module->sections[sec_code];
@@ -1012,6 +1024,12 @@ void push_sized_counted(std::vector<uint8_t>& binary, F f) {
     push_sized(binary, [&] { push_counted(binary, f); });
 }
 
+void fill_header(Linked& linked) {
+    linked.binary.resize(8);
+    write_i32(linked.binary, 0, 0x6d736100);
+    write_i32(linked.binary, 4, 0x1);
+}
+
 void push_sec_type(Linked& linked) {
     auto& binary = linked.binary;
     binary.push_back(sec_type);
@@ -1029,7 +1047,8 @@ void push_sec_type(Linked& linked) {
     });
 }
 
-void push_sec_import(Linked& linked, bool allow_mutable_imports) {
+void push_sec_import(Linked& linked, bool allow_mutable_imports,
+                     bool import_table_memory) {
     auto& binary = linked.binary;
     binary.push_back(sec_import);
     push_sized_counted(binary, [&] {
@@ -1041,14 +1060,19 @@ void push_sec_import(Linked& linked, bool allow_mutable_imports) {
             binary.push_back(kind);
         };
 
-        push_import(table_name, external_table);
-        binary.push_back(type_anyfunc);
-        push_resizable_limits(
-            binary, false, linked.element_offset + linked.elements.size(), 0);
+        if (import_table_memory) {
+            push_import(table_name, external_table);
+            binary.push_back(type_anyfunc);
+            push_resizable_limits(
+                binary, false, linked.element_offset + linked.elements.size(),
+                0);
 
-        push_import(memory_name, external_memory);
-        push_resizable_limits(
-            binary, false, (linked.memory_size + page_size - 1) / page_size, 0);
+            push_import(memory_name, external_memory);
+            push_resizable_limits(
+                binary, false, (linked.memory_size + page_size - 1) / page_size,
+                0);
+        }
+
         for (auto& linked_symbol : linked.unresolved_functions) {
             if (!linked_symbol->is_marked)
                 continue;
@@ -1102,6 +1126,27 @@ void push_sec_function(Linked& linked) {
     });
 }
 
+void push_sec_table(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_table);
+    push_sized(binary, [&] {
+        binary.push_back(1); // count
+        binary.push_back(type_anyfunc);
+        push_resizable_limits(
+            binary, false, linked.element_offset + linked.elements.size(), 0);
+    });
+}
+
+void push_sec_memory(Linked& linked) {
+    auto& binary = linked.binary;
+    binary.push_back(sec_memory);
+    push_sized(binary, [&] {
+        binary.push_back(1); // count
+        push_resizable_limits(
+            binary, false, (linked.memory_size + page_size - 1) / page_size, 0);
+    });
+}
+
 void push_sec_global(Linked& linked) {
     auto& binary = linked.binary;
     binary.push_back(sec_global);
@@ -1109,14 +1154,16 @@ void push_sec_global(Linked& linked) {
         uint32_t count{};
         for (auto linked_symbol : linked.export_globals) {
             auto definition = linked_symbol->definition;
+            auto& global =
+                definition->module->globals[*definition->export_global_index];
             binary.push_back(type_i32);
-            binary.push_back(
-                definition->module->globals[*definition->export_global_index]
-                    .mutability);
-            push_init_expr32(
-                binary,
-                *definition->module
-                     ->replacement_addresses[*definition->export_global_index]);
+            binary.push_back(global.mutability);
+            if (global.is_memory_address)
+                push_init_expr32(binary,
+                                 *definition->module->replacement_addresses
+                                      [*definition->export_global_index]);
+            else
+                push_init_expr32(binary, global.init_u32);
             ++count;
         }
         return count;
@@ -1166,7 +1213,7 @@ void push_sec_code(Linked& linked) {
     push_sized_counted(binary, [&] {
         uint32_t count{};
         for (auto& module : linked.modules) {
-            if (!module->is_marked)
+            if (!module->is_marked || !module->sections[sec_code].valid)
                 continue;
             auto& sec = module->sections[sec_code];
             auto pos = sec.begin;
@@ -1273,8 +1320,9 @@ void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
     allocate_functions(linked);
     allocate_elements(linked, element_offset);
     relocate(linked);
+    fill_header(linked);
     push_sec_type(linked);
-    push_sec_import(linked, true);
+    push_sec_import(linked, true, true);
     push_sec_function(linked);
     push_sec_global(linked);
     push_sec_export(linked);
@@ -1285,7 +1333,8 @@ void link(Linked& linked, uint32_t memory_offset, uint32_t element_offset) {
     push_sec_linking(linked);
 }
 
-void linkEos(Linked& linked) {
+void linkEos(Linked& linked, uint32_t stack_size) {
+    auto* sp = create_sp_export(linked);
     link_symbols(linked);
 
     std::vector<LinkedSymbol*> queue;
@@ -1294,15 +1343,25 @@ void linkEos(Linked& linked) {
     mark_symbols_in_queue(linked, queue);
 
     map_function_types(linked);
-    allocate_memory(linked, default_memory_offset);
+    allocate_memory(linked, 16);
+
+    if (sp->linked_symbol->is_marked) {
+        linked.memory_size += stack_size;
+        sp->module->globals[*sp->export_global_index].init_u32 =
+            linked.memory_size;
+    }
+
     allocate_code(linked);
     allocate_globals(linked);
     allocate_functions(linked);
-    allocate_elements(linked, default_element_offset);
+    allocate_elements(linked, 1);
     relocate(linked);
+    fill_header(linked);
     push_sec_type(linked);
-    push_sec_import(linked, true);
+    push_sec_import(linked, true, false);
     push_sec_function(linked);
+    push_sec_table(linked);
+    push_sec_memory(linked);
     push_sec_global(linked);
     push_sec_export(linked);
     push_sec_elem(linked);
