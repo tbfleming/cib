@@ -49,7 +49,7 @@ set(musl_blacklist
     /aio/ /compat-emscripten/ /complex/ /conf/ /dirent/ /fcntl/ /fenv/ /ipc/ /ldso/ /legacy/
     /linux/ /mman/ /mq/ /network/ /passwd/ /prng/ /process/ /regex/ /sched/ /select/ /setjmp/
     /signal/ /stat/ /temp/ /termios/ /unistd/     
-    /procfdname.c /syscall.c /syscall_ret.c /vdso.c /version.c /__tz.c /fopencookie.c
+    /procfdname.c /syscall.c /syscall_ret.c /vdso.c /version.c /fopencookie.c
 )
 string(REPLACE ";" "|" musl_blacklist "${musl_blacklist}")
 string(REPLACE "." "\." musl_blacklist "${musl_blacklist}")
@@ -116,7 +116,6 @@ addSources("${musl_sources}" "-D_INTERNAL_SYSCALL_H -Wno-format -Wno-tautologica
 addSources("../../repos/emscripten/system/lib/libc/musl/src/stdlib/strtod.c" "")
 addSources("../../repos/emscripten/system/lib/libc/musl/src/stdlib/wcstod.c" "")
 addSources("${compiler_rt_sources}" "-Wno-shift-count-overflow")
-addSources("${CMAKE_CURRENT_SOURCE_DIR}/__tz.c" "-I ../../repos/eos-musl/src/time -Wno-shift-count-overflow")
 addSources("${libcxx_sources}" "-std=c++17 -D_LIBCPP_BUILDING_LIBRARY -Wno-tautological-constant-compare")
 addSources("${libcxxabi_sources}" "-std=c++17 -DLIBCXX_BUILDING_LIBCXXABI=1")
 addSources("../../repos/eos/contracts/eosiolib/eosiolib.cpp" "-std=c++17 -Wno-pointer-bool-conversion")
