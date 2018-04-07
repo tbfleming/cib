@@ -79,7 +79,7 @@ string(REPLACE " " ";" compiler_rt_sources "${compiler_rt_sources}")
 
 file(GLOB all_libcxx_sources "../../repos/eos-libcxx/src/*.cpp")
 foreach(file ${all_libcxx_sources})
-    if (${file} MATCHES thread|exception|mutex|random|system_error|ios\.cpp|iostream|strstream|locale)
+    if (${file} MATCHES thread|mutex|random|system_error|ios\.cpp|iostream|strstream|locale)
     else()
         #message(STATUS "${file}")
         set(libcxx_sources "${libcxx_sources};${file}")
@@ -88,6 +88,7 @@ endforeach()
 #message(STATUS "${libcxx_sources}")
 
 set(libcxxabi_sources 
+    abort_message.cpp
     cxa_demangle.cpp
     cxa_guard.cpp 
     cxa_virtual.cpp 
@@ -116,6 +117,7 @@ addSources("${musl_sources}" "-D_INTERNAL_SYSCALL_H -Wno-format -Wno-tautologica
 addSources("../../repos/emscripten/system/lib/libc/musl/src/stdlib/strtod.c" "")
 addSources("../../repos/emscripten/system/lib/libc/musl/src/stdlib/wcstod.c" "")
 addSources("${compiler_rt_sources}" "-Wno-shift-count-overflow")
-addSources("${libcxx_sources}" "-std=c++17 -D_LIBCPP_BUILDING_LIBRARY -Wno-tautological-constant-compare")
+addSources("${libcxx_sources}" "-std=c++17 -Wno-error -D_LIBCPP_BUILDING_LIBRARY -Wno-tautological-constant-compare")
 addSources("${libcxxabi_sources}" "-std=c++17 -DLIBCXX_BUILDING_LIBCXXABI=1")
+addSources("terminate.cpp" "-std=c++17")
 addSources("../../repos/eos/contracts/eosiolib/eosiolib.cpp" "-std=c++17 -Wno-pointer-bool-conversion")
