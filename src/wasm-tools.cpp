@@ -1040,7 +1040,9 @@ void push_sec_type(Linked& linked) {
             push_leb5(binary, function_type.arg_types.size());
             for (auto type : function_type.arg_types)
                 binary.push_back(type);
-            push_leb5(binary, function_type.return_types.size());
+            check(function_type.return_types.size() < 2,
+                  "too many return types");
+            binary.push_back(function_type.return_types.size());
             for (auto type : function_type.return_types)
                 binary.push_back(type);
         }
