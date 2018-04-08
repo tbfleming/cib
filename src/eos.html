@@ -96,18 +96,18 @@ DEALINGS IN THE SOFTWARE.
         <div id="pane-gist-links" class="flex-col">
             <div>
                 <h3>Example Contracts</h3>
+                ...
 
-                <h3>Libraries</h3>
+                <h3>Versions</h3>
                 eosiolib dawn-v3.0.0
-                <br/> C++14 subset (compiler is C++17)
+                <br/> C++17 language (clang 6-ish)
+                <br/> C++14 library subset
                 <br/> Boost 1.66.0 subset
-                <br/>
 
-                <h3>Not Implemented</h3>
-                RTTI, Exception handling
-                <br/> Global constructors
-                <br/> Some excess code gets compiled in
-                <br/>
+                <h3>Limitations</h3>
+                Generated code is large; not for production
+                <br/> Not implemented: RTTI, Exception handling
+                <br/> Not implemented: Global constructors
 
                 <h3>See also</h3>
                 <a display="inline" href="https://tbfleming.github.io/cib/">Non-EOS mode</a>
@@ -296,6 +296,7 @@ DEALINGS IN THE SOFTWARE.
             clang.process.worker.postMessage({
                 function: 'compile',
                 code: cppContent,
+                link: true,
             });
         }
 
@@ -304,7 +305,7 @@ DEALINGS IN THE SOFTWARE.
                 "type": "application/binary"
             });
             let a = document.createElement("a");
-            a.download = 'user.wasm';
+            a.download = 'contract.wasm';
             a.href = URL.createObjectURL(blob);
             document.body.appendChild(a);
             a.click();

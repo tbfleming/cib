@@ -6,3 +6,4 @@ repos
 download
 *.wat
 *.wasm
+*.wast

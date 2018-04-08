@@ -7,7 +7,8 @@ I'm trying to see how far wasm can go. Is it possible to compile clang to wasm a
 Current status:
 * Works in Firefox 57 and Chrome 63
 
-Recently added or fixed:
+Change log:
+* Build EOS contracts: https://tbfleming.github.io/cib/eos.html
 * Integrate with user HTML
 * Load gists
 * Load header libraries in .zip files

@@ -191,8 +191,8 @@ extern "C" bool compile(const char* inputFilename, const char* outputFilename) {
 #endif
 
 #ifdef EOS_CLANG
-extern "C" int link_wasm(const char* prelinkedFile, const char* linkedFile,
-                         uint32_t stackSize) {
+extern "C" bool link_wasm(const char* prelinkedFile, const char* linkedFile,
+                          uint32_t stackSize) {
     try {
         WasmTools::Linked linked;
         auto archive =
@@ -228,10 +228,10 @@ extern "C" int link_wasm(const char* prelinkedFile, const char* linkedFile,
 
         linkEos(linked, stackSize);
         WasmTools::File{linkedFile, "wb"}.write(linked.binary);
-        return 0;
+        return true;
     } catch (std::exception& e) {
         printf("error: %s\n", e.what());
-        return 1;
+        return false;
     }
 }
 
@@ -239,7 +239,8 @@ int main(int argc, const char* argv[]) {
     if (argc == 4) {
         if (!compile(argv[1], argv[2], ""))
             return 1;
-        return link_wasm(argv[2], argv[3], 16 * 1024);
+        if (!link_wasm(argv[2], argv[3], 16 * 1024))
+            return 1;
     }
     if (argc > 1) {
         fprintf(stderr, "Usage: input_file.cpp prelinked.wasm linked.wasm\n");

@@ -105,7 +105,7 @@ async function unzipFile(file) {
     return basePath;
 } // unzipFile
 
-commands.compile = async function ({ code }) {
+commands.compile = async function ({ code, link }) {
     try {
         let systemIncludes = '';
         let re = /^\s*\/\/\s*cib\s*:\s*(\{.*$)/gm;
@@ -131,6 +131,9 @@ commands.compile = async function ({ code }) {
         let ok = emModule.ccall(
             'compile', 'number', ['string', 'string', 'string'], ['source', 'result.wasm', systemIncludes]);
         let result = null;
+        if (ok && link)
+            ok = emModule.ccall(
+                'link_wasm', 'number', ['string', 'string', 'number'], ['result.wasm', 'result.wasm', 16 * 1024]);
         if (ok)
             result = emModule.FS.readFile('result.wasm');
         postMessage({ function: 'workerCompileDone', result });

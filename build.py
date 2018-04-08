@@ -478,9 +478,10 @@ def appClangEos():
         boost()
         run("cd " + browserClangEosBuild + " && rm -rf boost_staging usr/download/boost_1_66_0")
         run("mkdir -p " + browserClangEosBuild + "usr/download/boost_1_66_0")
+        run("mkdir -p " + browserClangEosBuild + "usr/build/rtl-eos")
         run("mkdir -p " + browserClangEosBuild + "boost_staging")
         def copy(src):
-            run("cd " + src + " && find . -type f -a '(' -name '*.h' -o -name '*.hpp' -o ! -name '*.*' ')' | cpio -updmL " + browserClangEosBuild + 'usr/' + src)
+            run("cd " + src + " && find -L . -type f -a '(' -name '*.h' -o -name '*.hpp' -o ! -name '*.*' ')' | cpio -updmL " + browserClangEosBuild + 'usr/' + src)
         copy('repos/eos-libcxx/include')
         copy('repos/emscripten/system/lib/libcxxabi/include')
         copy('src/rtl-eos/eosiolib')
@@ -492,6 +493,7 @@ def appClangEos():
         run("bcp --scan --boost=download/boost_1_66_0 `find repos/eos/contracts -name '*.hpp' -o -name '*.cpp'` " + browserClangEosBuild + 'boost_staging')
         run("cd " + browserClangEosBuild + " && mv boost_staging/boost usr/download/boost_1_66_0")
         copy('repos/magic-get/include')
+        run('cp build/rtl-eos/rtl-eos ' + browserClangEosBuild + 'usr/build/rtl-eos/rtl-eos')
     app('clang-eos', browserClangBuildType, browserClangEosBuild, prepBuildDir)
     if(reoptClang):
         run('cd ' + browserClangEosBuild + ' && wasm-opt -Os clang-eos.wasm -o clang-eos-opt.wasm')
