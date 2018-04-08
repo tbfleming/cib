@@ -1,0 +1,378 @@
+<!--
+Copyright 2017-2018 Todd Fleming
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+-->
+
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Clang In Browser: EOS Contracts</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .flex-col {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .io {
+            overflow: auto;
+            margin: 0;
+            flex-grow: 5;
+            background-color: black;
+            color: white;
+            font-family: 'Lucida Console', Monaco, monospace;
+            white-space: pre-wrap;
+        }
+
+        .controls {
+            margin: 4px;
+        }
+
+        .controls-border {
+            padding-bottom: 2px;
+            border-bottom: 1px solid black;
+        }
+
+        .right-button {
+            float: right;
+        }
+
+        .source {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #pane-gist-links>div {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hidden">
+        <div id="pane-clang" class="flex-col">
+            <div class="controls">
+                <button id="clang-run" onclick="compile()">Compile</button>
+                <button id="clang-save" onclick="saveWasm()">Save</button>
+                <span id="clang-status"></span>
+                <button id="clang-reboot" class="right-button" onclick="clang.reboot()">Reboot</button>
+            </div>
+            <pre id="clang-io" class="io"></pre>
+        </div>
+        <div id="pane-gist-links" class="flex-col">
+            <div>
+                <h3>Example Contracts</h3>
+
+                <h3>Libraries</h3>
+                eosiolib dawn-v3.0.0
+                <br/> C++14 subset (compiler is C++17)
+                <br/> Boost 1.66.0 subset
+                <br/>
+
+                <h3>Not Implemented</h3>
+                RTTI, Exception handling
+                <br/> Global constructors
+                <br/> Some excess code gets compiled in
+                <br/>
+
+                <h3>See also</h3>
+                <a display="inline" href="https://tbfleming.github.io/cib/">Non-EOS mode</a>
+                <a href="https://github.com/tbfleming/cib">Fork me on Github</a>
+                <br/>
+            </div>
+        </div>
+        <div id="pane-upload" class="flex-col">
+            ...
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="golden-layout/goldenlayout-base.css" />
+    <link rel="stylesheet" type="text/css" href="golden-layout/goldenlayout-light-theme.css" />
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="golden-layout/goldenlayout.min.js"></script>
+    <script src="monaco-editor/min/vs/loader.js"></script>
+    <script type='text/javascript' src='process-manager.js'></script>
+    <script type='text/javascript'>
+        let exampleCpp = ``;
+
+        let exampleAbi = ``;
+
+        let layoutConfig = {
+            settings: {
+                showPopoutIcon: false,
+                showCloseIcon: false,
+            },
+            content: [{
+                type: 'row',
+                content: [{
+                    type: 'column',
+                    content: [{
+                        type: 'stack',
+                        content: [{
+                            type: 'component',
+                            title: 'C++',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-source', className: 'source' }
+                        }, {
+                            type: 'component',
+                            title: 'abi',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-abi', className: 'source' }
+                        }]
+                    }, {
+                        type: 'component',
+                        title: 'clang',
+                        isClosable: false,
+                        componentName: 'component',
+                        componentState: { id: 'pane-clang' }
+                    }]
+                }, {
+                    type: 'column',
+                    content: [{
+                        type: 'component',
+                        title: 'Examples',
+                        isClosable: true,
+                        componentName: 'component',
+                        componentState: { id: 'pane-gist-links' }
+                    }, {
+                        type: 'component',
+                        title: 'Upload',
+                        isClosable: false,
+                        componentName: 'component',
+                        componentState: { id: 'pane-upload' }
+                    }]
+                }]
+            }]
+        };
+
+        let layout = new GoldenLayout(layoutConfig);
+        layout.registerComponent('component', function (container, state) {
+            let child = document.getElementById(state.id);
+            if (!child) {
+                child = document.createElement('div');
+                child.className = state.className;
+                child.id = state.id;
+            }
+            container.getElement().get(0).appendChild(child);
+        });
+        layout.init();
+
+        let cppEditor;
+        let abiEditor;
+        let cppContent = exampleCpp;
+        let abiContent = exampleAbi;
+
+        require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            cppEditor = monaco.editor.create(document.getElementById('pane-source'), {
+                value: exampleCpp,
+                language: 'cpp',
+                automaticLayout: true,
+            });
+            abiEditor = monaco.editor.create(document.getElementById('pane-abi'), {
+                value: exampleAbi,
+                language: 'json',
+                automaticLayout: true,
+            });
+
+            cppEditor.onDidChangeModelContent(e => {
+                cppContent = cppEditor.getValue().trim();
+                updateUI();
+            })
+            abiEditor.onDidChangeModelContent(e => {
+                abiContent = abiEditor.getValue().trim();
+                updateUI();
+            })
+
+            updateUI();
+        });
+
+        class ProcessUI {
+            constructor(name, moduleName) {
+                this.name = name;
+                this.runButton = document.getElementById(name + '-run');
+                this.rebootButton = document.getElementById(name + '-reboot');
+                this.statusElem = document.getElementById(name + '-status');
+                this.ioElem = document.getElementById(name + '-io');
+                this.state = '';
+                this.wasReady = false;
+
+                this.process = new ProcessManager(name, moduleName)
+                this.process.setStatus = this.setStatus.bind(this);
+                this.process.print = this.print.bind(this);
+                this.process.printErr = this.printErr.bind(this);
+            }
+
+            reboot() {
+                this.process.terminate();
+                if (this.ioElem)
+                    this.ioElem.textContent = '';
+                this.process.start();
+            }
+
+            setStatus(state, status) {
+                console.log(this.name, state + ':', status);
+                this.statusElem.textContent = status;
+                this.state = state;
+                if (state == 'ready')
+                    this.statusElem.style.color = 'green';
+                else if (state == 'error')
+                    this.statusElem.style.color = 'red';
+                else
+                    this.statusElem.style.color = 'blue';
+                updateUI();
+            };
+
+            print({ text }) {
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stdout:', text);
+            };
+
+            printErr({ text }) {
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stderr:', text);
+            };
+        } // class ProcessUI
+
+        let clang = new ProcessUI('clang', 'clang-eos');
+        let saveButton = document.getElementById('clang-save');
+        let clangOutput = null;
+
+        clang.process.print({ text: 'Preparing clang...\n\n' });
+        clang.process.workerCompileDone = args => {
+            if (args.result)
+                clang.ioElem.textContent += 'wasm size: ' + args.result.length + '\n';
+            clangOutput = args.result;
+            clang.process.setStatus('ready', 'Ready');
+        };
+        clang.process.start();
+
+        function compile() {
+            if (clang.state !== 'ready')
+                return;
+            clangOutput = null;
+            clang.process.setStatus('busy', 'Running');
+            clang.ioElem.textContent = '';
+            clang.process.worker.postMessage({
+                function: 'compile',
+                code: cppContent,
+            });
+        }
+
+        function saveWasm() {
+            let blob = new Blob([clangOutput], {
+                "type": "application/binary"
+            });
+            let a = document.createElement("a");
+            a.download = 'user.wasm';
+            a.href = URL.createObjectURL(blob);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        let currentGistID = '';
+        async function loadGist(gistID) {
+            if (gistID === currentGistID)
+                return;
+            if (!cppEditor) {
+                setTimeout(() => loadGist(gistID), 200);
+                return;
+            }
+            currentGistID = gistID;
+            try {
+                let gistResponse = await fetch('https://api.github.com/gists/' + gistID);
+                let gistJson = await gistResponse.json();
+                if (gistResponse.status !== 200)
+                    if (gistJson && gistJson.message)
+                        throw new Error(gistJson.message);
+                    else
+                        throw new Error('an error occured')
+                if (!('main.cpp' in gistJson.files))
+                    throw new Error('main.cpp missing');
+                let codeResponse = await fetch(gistJson.files['main.cpp'].raw_url);
+                if (codeResponse.status !== 200)
+                    throw new Error('an error occured')
+                let text = await codeResponse.text();
+                cppEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                cppEditor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                cppEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+
+                if ('main.abi' in gistJson.files) {
+                    let codeResponse = await fetch(gistJson.files['main.abi'].raw_url);
+                    if (codeResponse.status !== 200)
+                        throw new Error('an error occured')
+                    let text = await codeResponse.text();
+                    abiEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    abiEditor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                    abiEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                } else {
+                    abiEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    abiEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                }
+            } catch (e) {
+                clang.ioElem.textContent += '\ngist ' + gistID + ': ' + e.message + '\n';
+            }
+        }
+
+        function handleHash() {
+            for (let arg of window.location.hash.substr(1).split('&'))
+                if (arg.startsWith('gist='))
+                    loadGist(encodeURIComponent(arg.substr(5)));
+        }
+        handleHash();
+        window.addEventListener("hashchange", handleHash, false);
+
+        function updateUI() {
+            let clangReady = cppEditor && clang.state === 'ready';
+            clang.runButton.disabled = !clangReady;
+            saveButton.disabled = !clangOutput;
+            if (clangReady && !clang.wasReady) {
+                clang.wasReady = true;
+                clang.ioElem.textContent = 'Click the compile button\n\n';
+            }
+        }
+    </script>
+</body>
+
+</html>

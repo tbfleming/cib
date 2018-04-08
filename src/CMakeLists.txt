@@ -165,6 +165,7 @@ add_executable (cib-ar cib-ar.cpp wasm-tools.cpp)
 add_executable (combine-data combine-data.cpp wasm-tools.cpp)
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp wasm-tools.cpp)
+add_executable (clang-eos clang.cpp wasm-tools.cpp)
 add_executable (runtime runtime.cpp cxa_new_delete.cpp)
 
 target_compile_options(cib-link PRIVATE -stdlib=libc++)
@@ -183,6 +184,10 @@ target_link_libraries(clang-format PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
 target_include_directories(clang PRIVATE ${LLVM_INCLUDE})
 target_compile_options(clang PRIVATE -stdlib=libc++)
 target_link_libraries(clang PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
+
+target_include_directories(clang-eos PRIVATE ${LLVM_INCLUDE})
+target_compile_options(clang-eos PRIVATE -stdlib=libc++)
+target_link_libraries(clang-eos PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
 
 IF(EMSCRIPTEN)
     target_link_libraries(clang-format PRIVATE
@@ -208,6 +213,24 @@ IF(EMSCRIPTEN)
         #"-s DEMANGLE_SUPPORT=1"
         #"-s NO_EXIT_RUNTIME=1"
         "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\"]'"
+        "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
+        #"-s ASSERTIONS=2"
+        #"-s STACK_OVERFLOW_CHECK=2"
+        #"-s FS_LOG=1"
+    )
+
+    target_compile_options(clang-eos PRIVATE
+        -DLIB_PREFIX=/usr/
+        -DEOS_CLANG
+    )
+    target_link_libraries(clang-eos PRIVATE
+        "--preload-file usr"
+        "--no-heap-copy"
+        "-s MODULARIZE=1"
+        "-s ALLOW_MEMORY_GROWTH=1"
+        #"-s DEMANGLE_SUPPORT=1"
+        #"-s NO_EXIT_RUNTIME=1"
+        "-s EXPORTED_FUNCTIONS='[\"_main\", \"_compile\", \"_link_wasm\"]'"
         "-s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\", \"FS\"]'"
         #"-s ASSERTIONS=2"
         #"-s STACK_OVERFLOW_CHECK=2"

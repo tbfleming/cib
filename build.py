@@ -58,6 +58,7 @@ rtlBuildDir = root + 'build/rtl/'
 rtlEosBuildDir = root + 'build/rtl-eos/'
 browserClangFormatBuild = root + 'build/clang-format-browser-' + browserClangFormatBuildType + '/'
 browserClangBuild = root + 'build/clang-browser-' + browserClangBuildType + '/'
+browserClangEosBuild = root + 'build/clang-eos-browser-' + browserClangBuildType + '/'
 browserRuntimeBuild = root + 'build/runtime-browser-' + browserRuntimeBuildType + '/'
 
 gitProtocol = 'git@github.com:'
@@ -388,7 +389,7 @@ def dist():
     run('mkdir -p dist/zip.js')
     run('cp -au repos/zip.js/WebContent/inflate.js dist/zip.js')
     run('cp -au repos/zip.js/WebContent/zip.js dist/zip.js')
-    run('cp -au src/clang.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
+    run('cp -au src/clang.html src/eos.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
 def boost():
@@ -472,18 +473,45 @@ def appClangNative():
     #run('cd build/apps-native && ./clang')
     #run('cd build/apps-native && gdb -q -ex run --args ./clang')
 
+def appClangEos():
+    def prepBuildDir():
+        boost()
+        run("cd " + browserClangEosBuild + " && rm -rf boost_staging usr/download/boost_1_66_0")
+        run("mkdir -p " + browserClangEosBuild + "usr/download/boost_1_66_0")
+        run("mkdir -p " + browserClangEosBuild + "boost_staging")
+        def copy(src):
+            run("cd " + src + " && find . -type f -a '(' -name '*.h' -o -name '*.hpp' -o ! -name '*.*' ')' | cpio -updmL " + browserClangEosBuild + 'usr/' + src)
+        copy('repos/eos-libcxx/include')
+        copy('repos/emscripten/system/lib/libcxxabi/include')
+        copy('src/rtl-eos/eosiolib')
+        copy('src/rtl-eos/libc')
+        copy('repos/eos-libcxx/include/support/musl')
+        copy('repos/eos-musl/include')
+        copy('repos/eos-musl/arch/eos')
+        copy('repos/eos-musl/src/internal')
+        run("bcp --scan --boost=download/boost_1_66_0 `find repos/eos/contracts -name '*.hpp' -o -name '*.cpp'` " + browserClangEosBuild + 'boost_staging')
+        run("cd " + browserClangEosBuild + " && mv boost_staging/boost usr/download/boost_1_66_0")
+        copy('repos/magic-get/include')
+    app('clang-eos', browserClangBuildType, browserClangEosBuild, prepBuildDir)
+    if(reoptClang):
+        run('cd ' + browserClangEosBuild + ' && wasm-opt -Os clang-eos.wasm -o clang-eos-opt.wasm')
+    else:
+        run('cd ' + browserClangEosBuild + ' && cp clang-eos.wasm clang-eos-opt.wasm')
+    run('cp -au ' + browserClangEosBuild + 'clang-eos.js ' + browserClangEosBuild + 'clang-eos.data dist')
+    run('cp -au ' + browserClangEosBuild + 'clang-eos-opt.wasm dist/clang-eos.wasm')
+
 def appClangEosNative():
     if not os.path.isdir('build/apps-eos-native'):
         run('mkdir -p build/apps-eos-native')
         run('cd build/apps-eos-native &&' +
             ' CXX=' + llvmInstall + 'bin/clang++' +
-            ' CXXFLAGS="-DEOS_CLANG -DLIB_PREFIX=' + root + '"' +
+            ' CXXFLAGS="-DLIB_PREFIX=' + root + '"' +
             ' cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=Debug' +
             ' -DLLVM_BUILD=' + llvmNo86Build +
             ' -DCMAKE_CXX_STANDARD_LIBRARIES="-lpthread -lncurses -ltinfo -lz"' +
             ' ../../src')
-    run('cd build/apps-eos-native && time -p ninja -v clang')
+    run('cd build/apps-eos-native && time -p ninja -v clang-eos')
 
 def appRuntime():
     app('runtime', browserRuntimeBuildType, browserRuntimeBuild, env='EMCC_FORCE_STDLIBS=1')
@@ -496,16 +524,20 @@ def http():
         browserClangFormatBuild + 'clang-format.* ' +
         browserClangBuild + 'clang.data ' +
         browserClangBuild + 'clang.js ' +
+        browserClangEosBuild + 'clang-eos.data ' +
+        browserClangEosBuild + 'clang-eos.js ' +
         browserRuntimeBuild + 'runtime.* ' +
         '../../dist/monaco-editor ' +
         '../../dist/golden-layout ' +
         '../../dist/jquery-1.11.1.min.js ' +
         '../../dist/zip.js ' +
         '../../src/clang.html ' +
+        '../../src/eos.html ' +
         '../../src/process*.js ' +
         '../../src/wasm-tools.js ' +
         '.')
     run('cd build/http && ln -sf ' + browserClangBuild + 'clang-opt.wasm clang.wasm')
+    run('cd build/http && ln -sf ' + browserClangEosBuild + 'clang-eos-opt.wasm clang-eos.wasm')
     try:
         if 'HTTP_SERVER' in os.environ:
             run('cd build/http && ' + os.environ['HTTP_SERVER'])
@@ -540,8 +572,9 @@ commands = [
     ('1', 'app-1',          appClangFormat,     'store_true',   True,           False,          "Build app 1: clang-format"),
     ('2', 'app-2',          appClang,           'store_true',   True,           False,          "Build app 2: clang"),
     ('n', 'app-n',          appClangNative,     'store_true',   False,          False,          "Build app 2: clang, native"),
-    ('N', 'app-N',          appClangEosNative,  'store_true',   False,          False,          "Build app 2: clang-eos, native"),
     ('3', 'app-3',          appRuntime,         'store_true',   True,           False,          "Build app 3: runtime"),
+    ('4', 'app-4',          appClangEos,        'store_true',   False,          True,           "Build app 4: clang-eos"),
+    ('N', 'app-N',          appClangEosNative,  'store_true',   False,          False,          "Build app 4: clang-eos, native"),
     ('H', 'http',           http,               'store_true',   False,          False,          "http-server"),
 ]
 
