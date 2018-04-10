@@ -54,6 +54,12 @@ DEALINGS IN THE SOFTWARE.
             white-space: pre-wrap;
         }
 
+        #upload-messages {
+            margin: 4px;
+            flex-grow: 5;
+            white-space: pre-wrap;
+        }
+
         .controls {
             margin: 4px;
         }
@@ -73,12 +79,31 @@ DEALINGS IN THE SOFTWARE.
             overflow: hidden;
         }
 
-        #pane-upload>div,
         #pane-gist-links>div {
             overflow: auto;
             display: flex;
             flex-direction: column;
             padding: 10px;
+        }
+
+        #pane-upload {
+            width: 100%;
+            height: 100%;
+            margin: 5px;
+            overflow: auto;
+        }
+
+        #pane-upload table td:last-child {
+            width: 100%;
+            position: relative;
+        }
+
+        #pane-upload table {
+            width: 100%;
+        }
+
+        #pane-upload table td:last-child input {
+            width: 100%;
         }
     </style>
 </head>
@@ -117,11 +142,36 @@ DEALINGS IN THE SOFTWARE.
                 <br/>
             </div>
         </div>
-        <div id="pane-upload" class="flex-col">
-            <div>
-                <h3>Contract upload will go here.</h3>
-                <a target="_blank" style="display: inline" href="https://github.com/EOSIO/eosjs/issues/47">Waiting for eosjs/issues/47</a>
-            </div>
+        <div id="pane-upload">
+            <h3>Upload Contract</h3>
+            <table>
+                <tr>
+                    <td>Endpoint</td>
+                    <td>
+                        <input id="input-endpoint" value="https://">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Account</td>
+                    <td>
+                        <input id="input-account">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Private Key</td>
+                    <td>
+                        <input id="input-key">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button id="upload-compile" onclick="compile()">Compile</button>
+                        <button id="upload" onclick="upload()">Upload</button>
+                    </td>
+                </tr>
+            </table>
+            <pre id="upload-messages"></pre>
         </div>
     </div>
 
@@ -130,6 +180,7 @@ DEALINGS IN THE SOFTWARE.
     <script src="jquery-1.11.1.min.js"></script>
     <script src="golden-layout/goldenlayout.min.js"></script>
     <script src="monaco-editor/min/vs/loader.js"></script>
+    <script src="eosjs-bundle.js"></script>
     <script src='process-manager.js'></script>
     <script type='text/javascript'>
         let exampleCpp = `#include <eosiolib/eosio.hpp>
@@ -305,6 +356,12 @@ EOSIO_ABI(simple, (dosomething))
 
         let clang = new ProcessUI('clang', 'clang-eos');
         let saveButton = document.getElementById('clang-save');
+        let uploadCompileButton = document.getElementById('upload-compile');
+        let uploadButton = document.getElementById('upload');
+        let uploadMessages = document.getElementById('upload-messages');
+        let endpointInput = document.getElementById('input-endpoint');
+        let accountInput = document.getElementById('input-account');
+        let keyInput = document.getElementById('input-key');
         let clangOutput = null;
 
         clang.process.print({ text: 'Preparing clang...\n\n' });
@@ -339,6 +396,98 @@ EOSIO_ABI(simple, (dosomething))
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+        }
+
+        function getError(e) {
+            try {
+                let j = JSON.parse(e);
+                if (j.error.what) {
+                    let s = j.error.what + '\n';
+                    try {
+                        s += '\n' + j.error.details[0].message + '\n';
+                    } catch (e) {
+                    }
+                    return s;
+                }
+                if (j.code && j.message)
+                    return j.code + ' ' + j.message + '\n';
+            }
+            catch (e) { }
+            return e + '\n';
+        }
+
+        function showUploadError(e) {
+            uploadMessages.textContent += getError(e);
+            uploadMessages.textContent += `
+Fixes for common problems:
+* Using a non-secure endpoint (http)?
+    * see http://google.com/#q=allow+mixed+content
+* Add this to your node's config.ini:
+    * access-control-allow-origin = *
+* Check the console for more detailed errors
+`;
+        }
+
+        function upload() {
+            let endpoint = endpointInput.value.trim();
+            let account = accountInput.value.trim();
+            let key = keyInput.value.trim();
+
+            uploadMessages.textContent = '';
+            try {
+                if (!endpoint || !account || !key)
+                    throw Error('endpoint, account, or key is empty');
+
+                abi = {
+                    types: [],
+                    structs: [],
+                    actions: [],
+                    tables: [],
+                    clauses: [],
+                    ...JSON.parse(abiContent),
+                };
+
+                let eos = eosjs.Localnet({
+                    httpEndpoint: endpoint,
+                    keyProvider: [key],
+                    binaryen: 'no', // bypass a check
+                });
+
+                eos.transaction({
+                    actions: [
+                        {
+                            account: 'eosio',
+                            name: 'setcode',
+                            authorization: [{
+                                actor: account,
+                                permission: 'active',
+                            }],
+                            data: {
+                                account,
+                                vmtype: 0,
+                                vmversion: 0,
+                                code: clangOutput,
+                            }
+                        },
+                        {
+                            account: 'eosio',
+                            name: 'setabi',
+                            authorization: [{
+                                actor: account,
+                                permission: 'active',
+                            }],
+                            data: {
+                                account,
+                                abi,
+                            }
+                        },
+                    ]
+                }).then(() => {
+                    uploadMessages.textContent += '\nUpload Successful\n';
+                }).catch(showUploadError);
+            } catch (e) {
+                showUploadError(e);
+            }
         }
 
         let currentGistID = '';
@@ -396,7 +545,9 @@ EOSIO_ABI(simple, (dosomething))
         function updateUI() {
             let clangReady = cppEditor && clang.state === 'ready';
             clang.runButton.disabled = !clangReady;
+            uploadCompileButton.disabled = !clangReady;
             saveButton.disabled = !clangOutput;
+            uploadButton.disabled = !clangOutput;
             if (clangReady && !clang.wasReady) {
                 clang.wasReady = true;
                 clang.ioElem.textContent = 'Click the compile button\n\n';
