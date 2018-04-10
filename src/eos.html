@@ -429,12 +429,15 @@ Fixes for common problems:
         }
 
         function upload() {
-            let endpoint = endpointInput.value;
-            let account = accountInput.value;
-            let key = keyInput.value;
+            let endpoint = endpointInput.value.trim();
+            let account = accountInput.value.trim();
+            let key = keyInput.value.trim();
 
             uploadMessages.textContent = '';
             try {
+                if (!endpoint || !account || !key)
+                    throw Error('endpoint, account, or key is empty');
+
                 abi = {
                     types: [],
                     structs: [],
