@@ -23,8 +23,8 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-#useTag = 'cib-008'      # --clone and --checkout retrieve this tag
-useTag = None          # --clone and --checkout retrieve branches
+useTag = 'cib-009'      # --clone and --checkout retrieve this tag
+#useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
