@@ -1,0 +1,1 @@
+window.eosjs = require('eosjs')

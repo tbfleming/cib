@@ -23,8 +23,8 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-useTag = 'cib-008'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-008'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
@@ -120,6 +120,7 @@ cores = subprocess.check_output("grep 'processor' /proc/cpuinfo | wc -l", shell=
 parallel = '-j ' + cores
 
 os.environ["PATH"] = os.pathsep.join([
+    root + 'build/node/bin',
     root + 'repos/emscripten',
     cmakeInstall + 'bin',
     (fastcompInstall if useFastcomp else llvmInstall) + 'bin',
@@ -130,6 +131,9 @@ os.environ["PATH"] = os.pathsep.join([
 os.environ['BINARYEN'] = binaryenInstall
 os.environ['EMSCRIPTEN_NATIVE_OPTIMIZER'] = optimizerBuild + 'optimizer'
 os.environ['LD_LIBRARY_PATH'] = llvmInstall + 'lib'
+os.environ['npm_config_cache'] = root + "build/.npm"
+os.environ['npm_config_init_module'] = root + "build/.npm-init.js"
+os.environ['npm_config_userconfig'] = root + "build/.npmrc"
 
 def run(args):
     print('build.py:', args)
@@ -166,10 +170,14 @@ repos = [
     ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'master', 'master'),
     ('repos/binaryen', 'tbfleming/cib-binaryen.git', 'WebAssembly/binaryen.git', True, 'master', 'cib'),
     ('repos/zip.js', 'gildas-lormeau/zip.js.git', 'gildas-lormeau/zip.js.git', False, '3e7920810f63d5057ef6028833243105521da369', '3e7920810f63d5057ef6028833243105521da369'),
-    ('repos/eos', 'tbfleming/cib-eos.git', 'tbfleming/cib-eos.git', True, 'dawn-v3.0.0', 'cib'),
-    ('repos/eos-musl', 'tbfleming/cib-eos-musl.git', 'tbfleming/cib-eos-musl.git', True, 'eosio', 'cib'),
+    ('repos/eos', 'tbfleming/cib-eos.git', 'EOSIO/eos.git', True, 'dawn-v3.0.0', 'cib'),
+    ('repos/eos-musl', 'tbfleming/cib-eos-musl.git', 'EOSIO/eos-musl.git', True, 'eosio', 'cib'),
     ('repos/eos-libcxx', 'EOSIO/libcxx.git', 'EOSIO/libcxx.git', False, '2880ac42909d4bb29687ed079f8bb4405c3b0869', '2880ac42909d4bb29687ed079f8bb4405c3b0869'),
     ('repos/magic-get', 'apolukhin/magic_get.git', 'apolukhin/magic_get.git', False, '8b575abe4359abd72bb9556f64ee33aa2a6f3583', '8b575abe4359abd72bb9556f64ee33aa2a6f3583'),
+    ('repos/eosjs', 'tbfleming/cib-eosjs.git', 'EOSIO/eosjs.git', True, 'master', 'cib'),
+    ('repos/eosjs-api', 'tbfleming/cib-eosjs-api.git', 'EOSIO/eosjs-api.git', True, 'master', 'cib'),
+    ('repos/eosjs-fcbuffer', 'tbfleming/cib-eosjs-fcbuffer.git', 'EOSIO/eosjs-fcbuffer.git', True, 'master', 'cib'),
+    ('repos/eosjs-json', 'tbfleming/cib-eosjs-json.git', 'EOSIO/eosjs-json.git', True, 'master', 'cib'),
 ]
 
 def bash():
@@ -178,6 +186,7 @@ def bash():
 def format():
     run('clang-format -i src/*.h src/*.cpp')
     run('chmod a-x *.md .gitignore src/*.h src/*.cpp src/*.js src/*.html src/*.txt src/rtl/*')
+    run('chmod a-x src/eos/.gitignore src/eos/package.json src/eos/src/*')
 
 def clone():
     for (path, url, upstream, isPushable, upstreamBranch, branch) in repos:
@@ -366,7 +375,18 @@ def llvmBrowser():
             ' ' + root + 'repos/llvm')
     run('cd ' + llvmBrowserBuild + ' && time -p ninja ' + ' '.join(llvmBrowserTargets))
 
+def node():
+    download('https://nodejs.org/dist/v8.11.1/node-v8.11.1-linux-x64.tar.xz')
+    if not os.path.exists('build/node-v8.11.1-linux-x64'):
+        run('mkdir -p build')
+        run('cd build && tar -xf ../download/node-v8.11.1-linux-x64.tar.xz')
+        run('cd build && ln -sf node-v8.11.1-linux-x64 node')
+        run('npm i -g browserify')
+
 def dist():
+    run('mkdir -p dist')
+    node()
+
     download('https://registry.npmjs.org/monaco-editor/-/monaco-editor-0.10.1.tgz')
     if not os.path.exists('download/monaco-editor-0.10.1'):
         run('mkdir -p download/monaco-editor-0.10.1')
@@ -376,8 +396,10 @@ def dist():
     run('cp -au download/monaco-editor-0.10.1/package/README.md dist/monaco-editor')
     run('cp -au download/monaco-editor-0.10.1/package/ThirdPartyNotices.txt dist/monaco-editor')
     run('cp -auv download/monaco-editor-0.10.1/package/min dist/monaco-editor')
+
     download('http://code.jquery.com/jquery-1.11.1.min.js')
     run('cp -au download/jquery-1.11.1.min.js dist/jquery-1.11.1.min.js')
+
     download('https://github.com/WolframHempel/golden-layout/archive/v1.5.9.tar.gz', 'golden-layout-v1.5.9.tar.gz')
     if not os.path.exists('download/golden-layout-1.5.9'):
         run('cd download && tar -xf golden-layout-v1.5.9.tar.gz')
@@ -386,9 +408,22 @@ def dist():
     run('cp -au download/golden-layout-1.5.9/src/css/goldenlayout-base.css dist/golden-layout')
     run('cp -au download/golden-layout-1.5.9/src/css/goldenlayout-light-theme.css dist/golden-layout')
     run('cp -au download/golden-layout-1.5.9/dist/goldenlayout.min.js dist/golden-layout')
+
     run('mkdir -p dist/zip.js')
     run('cp -au repos/zip.js/WebContent/inflate.js dist/zip.js')
     run('cp -au repos/zip.js/WebContent/zip.js dist/zip.js')
+
+    if not os.path.exists('repos/eosjs-fcbuffer/node_modules'):
+        run('cd repos/eosjs-fcbuffer && sed -i -e \'s/"main": "lib/"main": "src/g\' package.json && npm i')
+    if not os.path.exists('repos/eosjs-api/node_modules'):
+        run('cd repos/eosjs-api && sed -i -e \'s/"main": "lib/"main": "src/g\' package.json && npm i')
+    if not os.path.exists('repos/eosjs/node_modules'):
+        run('cd repos/eosjs && sed -i -e \'s/"main": "lib/"main": "src/g\' package.json && npm i --save-dev ../eosjs-fcbuffer ../eosjs-api ../eosjs-json && npm i')
+
+    if not os.path.exists('src/eos/dist/eosjs-bundle.js'):
+        run('cd src/eos && npm i && npm run build')
+    run('cp src/eos/dist/eosjs-bundle.js dist')
+
     run('cp -au src/clang.html src/eos.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
 
@@ -532,6 +567,7 @@ def http():
         '../../dist/monaco-editor ' +
         '../../dist/golden-layout ' +
         '../../dist/jquery-1.11.1.min.js ' +
+        '../../dist/eosjs-bundle.js ' +
         '../../dist/zip.js ' +
         '../../src/clang.html ' +
         '../../src/eos.html ' +
