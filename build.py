@@ -23,8 +23,8 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-useTag = 'cib-009'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-009'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
@@ -412,6 +412,9 @@ def dist():
     run('mkdir -p dist/zip.js')
     run('cp -au repos/zip.js/WebContent/inflate.js dist/zip.js')
     run('cp -au repos/zip.js/WebContent/zip.js dist/zip.js')
+    run('cp -au repos/binaryen/bin/binaryen.js dist/binaryen.js')
+    run('cp -au repos/binaryen/bin/binaryen.wasm dist/binaryen.wasm')
+    run('cp -au repos/binaryen/LICENSE dist/binaryen-LICENSE')
 
     if not os.path.exists('repos/eosjs-fcbuffer/node_modules'):
         run('cd repos/eosjs-fcbuffer && sed -i -e \'s/"main": "lib/"main": "src/g\' package.json && npm i')
@@ -422,6 +425,8 @@ def dist():
 
     if not os.path.exists('src/eos/dist/eosjs-bundle.js'):
         run('cd src/eos && npm i && npm run build')
+    # run('cd src/eos && node_modules/webpack-cli/bin/webpack.js -o dist/eosjs-bundle.js --mode development --debug --devtool inline-source-map --output-pathinfo')
+
     run('cp src/eos/dist/eosjs-bundle.js dist')
 
     run('cp -au src/clang.html src/eos.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
@@ -569,6 +574,8 @@ def http():
         '../../dist/jquery-1.11.1.min.js ' +
         '../../dist/eosjs-bundle.js ' +
         '../../dist/zip.js ' +
+        '../../dist/binaryen.js ' +
+        '../../dist/binaryen.wasm ' +
         '../../src/clang.html ' +
         '../../src/eos.html ' +
         '../../src/process*.js ' +
