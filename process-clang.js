@@ -105,7 +105,12 @@ async function unzipFile(file) {
     return basePath;
 } // unzipFile
 
-commands.compile = async function ({ code, link }) {
+commands.loadBinaryen = function () {
+    importScripts('binaryen.js');
+    postMessage({ function: 'workerBinaryenLoaded' });
+}
+
+commands.compile = async function ({ code, link, optimize }) {
     try {
         let systemIncludes = '';
         let re = /^\s*\/\/\s*cib\s*:\s*(\{.*$)/gm;
@@ -128,14 +133,45 @@ commands.compile = async function ({ code, link }) {
         }
 
         emModule.FS.writeFile('source', code);
+        if (link || optimize)
+            emModule.print('Compile...');
         let ok = emModule.ccall(
             'compile', 'number', ['string', 'string', 'string'], ['source', 'result.wasm', systemIncludes]);
-        let result = null;
-        if (ok && link)
+
+        if (ok && link) {
+            emModule.print('Link...');
             ok = emModule.ccall(
                 'link_wasm', 'number', ['string', 'string', 'number'], ['result.wasm', 'result.wasm', 16 * 1024]);
+        }
+
+        let result = null;
         if (ok)
             result = emModule.FS.readFile('result.wasm');
+
+        if (optimize) {
+            emModule.print('wasm size: ' + result.length);
+            emModule.print('Optimize...');
+            console.log(result);
+            try {
+                let bytes = Binaryen._malloc(result.length);
+                if (!bytes)
+                    throw new Error('Binaryen: out of memory');
+                Binaryen.writeArrayToMemory(result, bytes);
+                let m = Binaryen._BinaryenModuleRead(bytes, result.length);
+                Binaryen._free(bytes);
+
+                Binaryen._BinaryenModuleOptimize(m);
+
+                let size = Binaryen._BinaryenModuleWrite2(m);
+                let pos = Binaryen._BinaryenModuleWrite2GetBuffer();
+                result = new Uint8Array(Binaryen.HEAP8.slice(pos, pos + size));
+                Binaryen._BinaryenModuleDispose(m);
+            } catch (e) {
+                emModule.print(e.toString());
+                result = null;
+            }
+        }
+
         postMessage({ function: 'workerCompileDone', result });
     } catch (e) {
         console.log(e);

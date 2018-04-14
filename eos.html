@@ -131,9 +131,11 @@ DEALINGS IN THE SOFTWARE.
                 <br/> C++14 library subset
                 <br/> Boost 1.66.0 subset
 
+                <h3>Recent Changes</h3>
+                Added Binaryen optimization
+
                 <h3>Limitations</h3>
-                Generated code is large; not for production
-                <br/> Not implemented: RTTI, Exception handling
+                Not implemented: RTTI, Exception handling
                 <br/> Not implemented: Global constructors
 
                 <h3>See also</h3>
@@ -365,6 +367,13 @@ EOSIO_ABI(simple, (dosomething))
         let clangOutput = null;
 
         clang.process.print({ text: 'Preparing clang...\n\n' });
+        clang.process.workerReady = function () {
+            clang.process.setStatus('init', 'Loading Binaryen');
+            clang.process.worker.postMessage({ function: 'loadBinaryen' });
+        }
+        clang.process.workerBinaryenLoaded = function () {
+            clang.process.setStatus('ready', 'Ready');
+        }
         clang.process.workerCompileDone = args => {
             if (args.result)
                 clang.ioElem.textContent += 'wasm size: ' + args.result.length + '\n';
@@ -383,6 +392,7 @@ EOSIO_ABI(simple, (dosomething))
                 function: 'compile',
                 code: cppContent,
                 link: true,
+                optimize: true,
             });
         }
 
