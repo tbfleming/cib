@@ -226,7 +226,7 @@ extern "C" bool link_wasm(const char* prelinkedFile, const char* linkedFile,
         }
         linked.modules.push_back(move(module));
 
-        linkEos(linked, stackSize);
+        linkEos(linked, *linked.modules.back(), stackSize);
         WasmTools::File{linkedFile, "wb"}.write(linked.binary);
         return true;
     } catch (std::exception& e) {
@@ -241,8 +241,7 @@ int main(int argc, const char* argv[]) {
             return 1;
         if (!link_wasm(argv[2], argv[3], 16 * 1024))
             return 1;
-    }
-    if (argc > 1) {
+    } else if (argc > 1) {
         fprintf(stderr, "Usage: input_file.cpp prelinked.wasm linked.wasm\n");
         return 1;
     }

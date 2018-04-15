@@ -547,7 +547,7 @@ def appClangEosNative():
         run('mkdir -p build/apps-eos-native')
         run('cd build/apps-eos-native &&' +
             ' CXX=' + llvmInstall + 'bin/clang++' +
-            ' CXXFLAGS="-DLIB_PREFIX=' + root + '"' +
+            ' CXXFLAGS="-DLIB_PREFIX=' + root + ' -DEOS_CLANG"' +
             ' cmake -G "Ninja"' +
             ' -DCMAKE_BUILD_TYPE=Debug' +
             ' -DLLVM_BUILD=' + llvmNo86Build +

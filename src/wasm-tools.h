@@ -37,6 +37,7 @@ static const bool debug_read = false;
 inline const uint32_t page_size = 64 * 1024;
 inline const uint32_t memory_alignment = 16;
 inline const char* const stack_pointer_name = "__stack_pointer";
+inline const char* const start_function_name = "__start_function";
 inline const char* const memory_name = "__linear_memory";
 inline const char* const table_name = "__indirect_function_table";
 
@@ -94,6 +95,10 @@ inline const uint8_t sym_visibility_hidden = 4;
 inline const uint8_t name_module = 0;
 inline const uint8_t name_function = 1;
 inline const uint8_t name_local = 2;
+
+inline const uint8_t instr_end = 0x0b;
+inline const uint8_t instr_call = 0x10;
+inline const uint8_t instr_i32_const = 0x41;
 
 const char* type_str(uint8_t type);
 
@@ -291,6 +296,6 @@ void read_module(Module& module);
 void link(Linked& linked, uint32_t memory_offset = default_memory_offset,
           uint32_t element_offset = default_element_offset);
 
-void linkEos(Linked& linked, uint32_t stack_size);
+void linkEos(Linked& linked, Module& main_module, uint32_t stack_size);
 
 } // namespace WasmTools
