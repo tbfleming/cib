@@ -148,7 +148,7 @@ commands.compile = async function ({ code, link, optimize }) {
         if (ok)
             result = emModule.FS.readFile('result.wasm');
 
-        if (optimize) {
+        if (optimize && ok) {
             emModule.print('wasm size: ' + result.length);
             emModule.print('Optimize...');
             console.log(result);
