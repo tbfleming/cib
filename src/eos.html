@@ -182,7 +182,7 @@ DEALINGS IN THE SOFTWARE.
     <script src="jquery-1.11.1.min.js"></script>
     <script src="golden-layout/goldenlayout.min.js"></script>
     <script src="monaco-editor/min/vs/loader.js"></script>
-    <script src="eosjs-bundle.js"></script>
+    <script src="eos-altjs-rel.js"></script>
     <script src='process-manager.js'></script>
     <script type='text/javascript'>
         let exampleCpp = `#include <eosiolib/eosio.hpp>
@@ -200,16 +200,16 @@ EOSIO_ABI(simple, (dosomething))
 `;
 
         let exampleAbi = `{
-  "structs": [{
-      "name": "dosomething",
-      "base": "",
-      "fields": [
+"structs": [{
+    "name": "dosomething",
+    "base": "",
+    "fields": [
         {"name":"user", "type":"account_name"}
-      ]
+    ]
     }],
-  "actions": [{
-      "name": "dosomething",
-      "type": "dosomething"
+"actions": [{
+    "name": "dosomething",
+    "type": "dosomething"
     }]
 }`;
 
@@ -408,37 +408,21 @@ EOSIO_ABI(simple, (dosomething))
             document.body.removeChild(a);
         }
 
-        function getError(e) {
-            try {
-                let j = JSON.parse(e);
-                if (j.error.what) {
-                    let s = j.error.what + '\n';
-                    try {
-                        s += '\n' + j.error.details[0].message + '\n';
-                    } catch (e) {
-                    }
-                    return s;
-                }
-                if (j.code && j.message)
-                    return j.code + ' ' + j.message + '\n';
-            }
-            catch (e) { }
-            return e + '\n';
-        }
-
         function showUploadError(e) {
-            uploadMessages.textContent += getError(e);
-            uploadMessages.textContent += `
-Fixes for common problems:
+            uploadMessages.textContent += e;
+            if (e.message.startsWith('NetworkError'))
+                uploadMessages.textContent += `
+
+NetworkError:
+* Check the console to see what really happened
 * Using a non-secure endpoint (http)?
     * see http://google.com/#q=allow+mixed+content
 * Add this to your node's config.ini:
     * access-control-allow-origin = *
-* Check the console for more detailed errors
 `;
         }
 
-        function upload() {
+        async function upload() {
             let endpoint = endpointInput.value.trim();
             let account = accountInput.value.trim();
             let key = keyInput.value.trim();
@@ -453,48 +437,43 @@ Fixes for common problems:
                     structs: [],
                     actions: [],
                     tables: [],
-                    clauses: [],
+                    clauses: [],            // Some nodeos builds expect this
+                    ricardian_clauses: [],  // Others expect this
                     ...JSON.parse(abiContent),
                 };
+                for (let action of abi.actions)
+                    if (!('ricardian_contract' in action))
+                        action.ricardian_contract = '';
 
-                let eos = eosjs.Localnet({
-                    httpEndpoint: endpoint,
-                    keyProvider: [key],
-                    binaryen: 'no', // bypass a check
-                });
-
-                eos.transaction({
+                let eos = window.eos_altjs;
+                let api = new eos.Api({ endpoint });
+                let result = await api.pushTransaction([key], {
+                    ...await api.easyTransactionHeader(3, 10),
                     actions: [
-                        {
-                            account: 'eosio',
-                            name: 'setcode',
-                            authorization: [{
+                        await api.easyCreateAction('eosio', 'setcode',
+                            [{
                                 actor: account,
                                 permission: 'active',
                             }],
-                            data: {
+                            {
                                 account,
                                 vmtype: 0,
                                 vmversion: 0,
                                 code: clangOutput,
-                            }
-                        },
-                        {
-                            account: 'eosio',
-                            name: 'setabi',
-                            authorization: [{
+                            }),
+                        await api.easyCreateAction('eosio', 'setabi',
+                            [{
                                 actor: account,
                                 permission: 'active',
                             }],
-                            data: {
+                            {
                                 account,
                                 abi,
-                            }
-                        },
-                    ]
-                }).then(() => {
-                    uploadMessages.textContent += '\nUpload Successful\n';
-                }).catch(showUploadError);
+                            }),
+                    ],
+                });
+
+                uploadMessages.textContent += '\nUpload Successful\n';
             } catch (e) {
                 showUploadError(e);
             }

@@ -23,8 +23,8 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-useTag = 'cib-010'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-010'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
@@ -174,10 +174,7 @@ repos = [
     ('repos/eos-musl', 'tbfleming/cib-eos-musl.git', 'EOSIO/eos-musl.git', True, 'eosio', 'cib'),
     ('repos/eos-libcxx', 'EOSIO/libcxx.git', 'EOSIO/libcxx.git', False, '2880ac42909d4bb29687ed079f8bb4405c3b0869', '2880ac42909d4bb29687ed079f8bb4405c3b0869'),
     ('repos/magic-get', 'apolukhin/magic_get.git', 'apolukhin/magic_get.git', False, '8b575abe4359abd72bb9556f64ee33aa2a6f3583', '8b575abe4359abd72bb9556f64ee33aa2a6f3583'),
-    ('repos/eosjs', 'tbfleming/cib-eosjs.git', 'EOSIO/eosjs.git', True, 'master', 'cib'),
-    ('repos/eosjs-api', 'tbfleming/cib-eosjs-api.git', 'EOSIO/eosjs-api.git', True, 'master', 'cib'),
-    ('repos/eosjs-fcbuffer', 'tbfleming/cib-eosjs-fcbuffer.git', 'EOSIO/eosjs-fcbuffer.git', True, 'master', 'cib'),
-    ('repos/eosjs-json', 'tbfleming/cib-eosjs-json.git', 'EOSIO/eosjs-json.git', True, 'master', 'cib'),
+    ('repos/eos-altjs', 'tbfleming/eos-altjs', 'tbfleming/eos-altjs', True, 'master', 'cib'),
 ]
 
 def bash():
@@ -416,18 +413,11 @@ def dist():
     run('cp -au repos/binaryen/bin/binaryen.wasm dist/binaryen.wasm')
     run('cp -au repos/binaryen/LICENSE dist/binaryen-LICENSE')
 
-    if not os.path.exists('repos/eosjs-fcbuffer/node_modules'):
-        run('cd repos/eosjs-fcbuffer && sed -i -e \'s/"main": "lib/"main": "src/g\' package.json && npm i')
-    if not os.path.exists('repos/eosjs-api/node_modules'):
-        run('cd repos/eosjs-api && sed -i -e \'s/"main": "lib/"main": "src/g\' package.json && npm i')
-    if not os.path.exists('repos/eosjs/node_modules'):
-        run('cd repos/eosjs && sed -i -e \'s/"main": "lib/"main": "src/g\' package.json && npm i --save-dev ../eosjs-fcbuffer ../eosjs-api ../eosjs-json && npm i')
+    if not os.path.exists('repos/eos-altjs/node_modules'):
+        run('cd repos/eos-altjs && npm i && npm run build')
+    run('cp -au repos/eos-altjs/dist/eos-altjs-rel.js dist')
+    # run('cp -au repos/eos-altjs/dist/eos-altjs-debug.js dist/eos-altjs-rel.js')
 
-    if not os.path.exists('src/eos/dist/eosjs-bundle.js'):
-        run('cd src/eos && npm i && npm run build')
-    # run('cd src/eos && node_modules/webpack-cli/bin/webpack.js -o dist/eosjs-bundle.js --mode development --debug --devtool inline-source-map --output-pathinfo')
-
-    run('cp src/eos/dist/eosjs-bundle.js dist')
 
     run('cp -au src/clang.html src/eos.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
@@ -572,10 +562,10 @@ def http():
         '../../dist/monaco-editor ' +
         '../../dist/golden-layout ' +
         '../../dist/jquery-1.11.1.min.js ' +
-        '../../dist/eosjs-bundle.js ' +
         '../../dist/zip.js ' +
         '../../dist/binaryen.js ' +
         '../../dist/binaryen.wasm ' +
+        '../../dist/eos-altjs-rel.js ' +
         '../../src/clang.html ' +
         '../../src/eos.html ' +
         '../../src/process*.js ' +
