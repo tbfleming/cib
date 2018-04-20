@@ -54,12 +54,6 @@ DEALINGS IN THE SOFTWARE.
             white-space: pre-wrap;
         }
 
-        #upload-messages {
-            margin: 4px;
-            flex-grow: 5;
-            white-space: pre-wrap;
-        }
-
         .controls {
             margin: 4px;
         }
@@ -86,24 +80,44 @@ DEALINGS IN THE SOFTWARE.
             padding: 10px;
         }
 
-        #pane-upload {
+        #pane-transaction>h3,
+        #pane-upload>h3 {
+            margin: 10px;
+        }
+
+        .transaction {
+            margin: 5px;
+            flex: 1 0;
+            display: grid;
+            overflow: hidden;
+        }
+
+        #pane-transaction .transaction {
+            grid-template-columns: max-content auto;
+            grid-template-rows: max-content max-content 1fr max-content 1fr;
+        }
+
+        #pane-upload .transaction {
+            grid-template-columns: max-content auto;
+            grid-template-rows: max-content max-content max-content max-content auto;
+        }
+
+        .transaction>* {
+            margin: 4px;
+        }
+
+        .transaction>.editor {
+            overflow: hidden;
+        }
+
+        .transaction>.editor>div {
             width: 100%;
             height: 100%;
-            margin: 5px;
+        }
+
+        .transaction>pre {
+            background-color: white;
             overflow: auto;
-        }
-
-        #pane-upload table td:last-child {
-            width: 100%;
-            position: relative;
-        }
-
-        #pane-upload table {
-            width: 100%;
-        }
-
-        #pane-upload table td:last-child input {
-            width: 100%;
         }
     </style>
 </head>
@@ -144,36 +158,42 @@ DEALINGS IN THE SOFTWARE.
                 <br/>
             </div>
         </div>
-        <div id="pane-upload">
+        <div id="pane-upload" class="flex-col">
             <h3>Upload Contract</h3>
-            <table>
-                <tr>
-                    <td>Endpoint</td>
-                    <td>
-                        <input id="input-endpoint" value="https://">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Account</td>
-                    <td>
-                        <input id="input-account">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Private Key</td>
-                    <td>
-                        <input id="input-key">
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button id="upload-compile" onclick="compile()">Compile</button>
-                        <button id="upload" onclick="upload()">Upload</button>
-                    </td>
-                </tr>
-            </table>
-            <pre id="upload-messages"></pre>
+            <div class="transaction">
+                <div>Endpoint</div>
+                <input id="input-endpoint" value="https://">
+                <div>Account</div>
+                <input id="input-account">
+                <div>Private Key</div>
+                <input id="input-key">
+                <div></div>
+                <div>
+                    <button id="upload-compile" onclick="compile()">Compile</button>
+                    <button id="upload" onclick="upload()">Upload</button>
+                </div>
+                <div>Result</div>
+                <pre id="upload-messages"></pre>
+            </div>
+        </div>
+        <div id="pane-transaction" class="flex-col">
+            <h3>Push Transaction</h3>
+            <div class="transaction">
+                <div>Endpoint</div>
+                <input id="transaction-endpoint" value="https://">
+                <div>Private Key</div>
+                <input id="transaction-key">
+                <div>Transaction</div>
+                <div class="editor">
+                    <div id="transaction-source"></div>
+                </div>
+                <div></div>
+                <div>
+                    <button onclick="postTransaction()">Post Transaction</button>
+                </div>
+                <div>Result</div>
+                <pre id="transaction-messages"></pre>
+            </div>
         </div>
     </div>
 
@@ -182,7 +202,7 @@ DEALINGS IN THE SOFTWARE.
     <script src="jquery-1.11.1.min.js"></script>
     <script src="golden-layout/goldenlayout.min.js"></script>
     <script src="monaco-editor/min/vs/loader.js"></script>
-    <script src="eosjs-bundle.js"></script>
+    <script src="eos-altjs-rel.js"></script>
     <script src='process-manager.js'></script>
     <script type='text/javascript'>
         let exampleCpp = `#include <eosiolib/eosio.hpp>
@@ -192,7 +212,8 @@ struct simple : eosio::contract {
 
     void dosomething(account_name user) {
         require_auth(user);
-        eosio::print("There I did something");
+        eosio::print("User ", eosio::name{user}, " is authorized.\\n");
+        eosio::print("There I did something.");
     }
 };
 
@@ -200,16 +221,30 @@ EOSIO_ABI(simple, (dosomething))
 `;
 
         let exampleAbi = `{
-  "structs": [{
-      "name": "dosomething",
-      "base": "",
-      "fields": [
-        {"name":"user", "type":"account_name"}
-      ]
-    }],
-  "actions": [{
-      "name": "dosomething",
-      "type": "dosomething"
+    "structs": [{
+        "name": "dosomething",
+        "base": "",
+        "fields": [
+            {"name":"user", "type":"account_name"}
+        ]
+        }],
+    "actions": [{
+        "name": "dosomething",
+        "type": "dosomething"
+        }]
+}`;
+
+        let exampleTransaction = `{
+    "actions": [{
+        "account": "test",
+        "name": "dosomething",
+        "authorization": [{
+            "actor": "test",
+            "permission": "active"
+        }],
+        "data": {
+            "user": "test"
+        }
     }]
 }`;
 
@@ -247,11 +282,20 @@ EOSIO_ABI(simple, (dosomething))
                 }, {
                     type: 'column',
                     content: [{
-                        type: 'component',
-                        title: 'Examples',
-                        isClosable: true,
-                        componentName: 'component',
-                        componentState: { id: 'pane-gist-links' }
+                        type: 'stack',
+                        content: [{
+                            type: 'component',
+                            title: 'Transaction',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-transaction' }
+                        }, {
+                            type: 'component',
+                            title: 'Examples',
+                            isClosable: true,
+                            componentName: 'component',
+                            componentState: { id: 'pane-gist-links' }
+                        }]
                     }, {
                         type: 'component',
                         title: 'Upload',
@@ -277,8 +321,10 @@ EOSIO_ABI(simple, (dosomething))
 
         let cppEditor;
         let abiEditor;
+        let transactionEditor;
         let cppContent = exampleCpp;
         let abiContent = exampleAbi;
+        let transactionContent = exampleTransaction;
 
         require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function () {
@@ -292,6 +338,11 @@ EOSIO_ABI(simple, (dosomething))
                 language: 'json',
                 automaticLayout: true,
             });
+            transactionEditor = monaco.editor.create(document.getElementById('transaction-source'), {
+                value: exampleTransaction,
+                language: 'json',
+                automaticLayout: true,
+            });
 
             cppEditor.onDidChangeModelContent(e => {
                 cppContent = cppEditor.getValue().trim();
@@ -299,6 +350,10 @@ EOSIO_ABI(simple, (dosomething))
             })
             abiEditor.onDidChangeModelContent(e => {
                 abiContent = abiEditor.getValue().trim();
+                updateUI();
+            })
+            transactionEditor.onDidChangeModelContent(e => {
+                transactionContent = transactionEditor.getValue().trim();
                 updateUI();
             })
 
@@ -364,6 +419,9 @@ EOSIO_ABI(simple, (dosomething))
         let endpointInput = document.getElementById('input-endpoint');
         let accountInput = document.getElementById('input-account');
         let keyInput = document.getElementById('input-key');
+        let transactionEndpointInput = document.getElementById('transaction-endpoint');
+        let transactionKeyInput = document.getElementById('transaction-key');
+        let transactionMessages = document.getElementById('transaction-messages');
         let clangOutput = null;
 
         clang.process.print({ text: 'Preparing clang...\n\n' });
@@ -408,37 +466,21 @@ EOSIO_ABI(simple, (dosomething))
             document.body.removeChild(a);
         }
 
-        function getError(e) {
-            try {
-                let j = JSON.parse(e);
-                if (j.error.what) {
-                    let s = j.error.what + '\n';
-                    try {
-                        s += '\n' + j.error.details[0].message + '\n';
-                    } catch (e) {
-                    }
-                    return s;
-                }
-                if (j.code && j.message)
-                    return j.code + ' ' + j.message + '\n';
-            }
-            catch (e) { }
-            return e + '\n';
-        }
+        function showError(e, messages) {
+            messages.textContent += e;
+            if (e.message.startsWith('NetworkError'))
+                messages.textContent += `
 
-        function showUploadError(e) {
-            uploadMessages.textContent += getError(e);
-            uploadMessages.textContent += `
-Fixes for common problems:
+NetworkError:
+* Check the console to see what really happened
 * Using a non-secure endpoint (http)?
     * see http://google.com/#q=allow+mixed+content
 * Add this to your node's config.ini:
     * access-control-allow-origin = *
-* Check the console for more detailed errors
 `;
         }
 
-        function upload() {
+        async function upload() {
             let endpoint = endpointInput.value.trim();
             let account = accountInput.value.trim();
             let key = keyInput.value.trim();
@@ -453,52 +495,90 @@ Fixes for common problems:
                     structs: [],
                     actions: [],
                     tables: [],
-                    clauses: [],
+                    clauses: [],            // Some nodeos builds expect this
+                    ricardian_clauses: [],  // Others expect this
                     ...JSON.parse(abiContent),
                 };
+                for (let action of abi.actions)
+                    if (!('ricardian_contract' in action))
+                        action.ricardian_contract = '';
 
-                let eos = eosjs.Localnet({
-                    httpEndpoint: endpoint,
-                    keyProvider: [key],
-                    binaryen: 'no', // bypass a check
-                });
-
-                eos.transaction({
+                let eos = window.eos_altjs;
+                let api = new eos.Api({ endpoint });
+                let result = await api.pushTransaction([key], {
+                    ...await api.easyTransactionHeader(3, 10),
                     actions: [
-                        {
-                            account: 'eosio',
-                            name: 'setcode',
-                            authorization: [{
+                        await api.easyCreateAction('eosio', 'setcode',
+                            [{
                                 actor: account,
                                 permission: 'active',
                             }],
-                            data: {
+                            {
                                 account,
                                 vmtype: 0,
                                 vmversion: 0,
                                 code: clangOutput,
-                            }
-                        },
-                        {
-                            account: 'eosio',
-                            name: 'setabi',
-                            authorization: [{
+                            }),
+                        await api.easyCreateAction('eosio', 'setabi',
+                            [{
                                 actor: account,
                                 permission: 'active',
                             }],
-                            data: {
+                            {
                                 account,
                                 abi,
-                            }
-                        },
-                    ]
-                }).then(() => {
-                    uploadMessages.textContent += '\nUpload Successful\n';
-                }).catch(showUploadError);
+                            }),
+                    ],
+                });
+
+                uploadMessages.textContent += 'Code Posted\n';
             } catch (e) {
-                showUploadError(e);
+                showError(e, uploadMessages);
             }
-        }
+        } // upload()
+
+        async function postTransaction() {
+            let endpoint = transactionEndpointInput.value.trim();
+            let key = transactionKeyInput.value.trim();
+
+            transactionMessages.textContent = '';
+            try {
+                if (!endpoint || !key || !transactionContent)
+                    throw Error('endpoint, key, or transaction is empty');
+
+                let transaction = JSON.parse(transactionContent);
+                let eos = window.eos_altjs;
+                let api = new eos.Api({ endpoint });
+
+                let actions = [];
+                for (let action of transaction.actions)
+                    actions.push(await api.easyCreateAction(
+                        action.account,
+                        action.name,
+                        action.authorization,
+                        action.data));
+
+                let result = await api.pushTransaction([key], {
+                    ...await api.easyTransactionHeader(3, 10),
+                    ...transaction,
+                    actions
+                });
+
+                transactionMessages.textContent += 'Transaction Posted\n\n';
+
+                for (let trace of result.processed.action_traces) {
+                    transactionMessages.textContent +=
+                        '<<<<< receiver:' + trace.receiver +
+                        ' account:' + trace.act.account +
+                        ' action:' + trace.act.name + '\n' +
+                        trace.console + '\n>>>>>\n\n';
+                }
+
+                transactionMessages.textContent += JSON.stringify(result, null, 4);
+            } catch (e) {
+                showError(e, transactionMessages);
+            }
+        } // postTransaction()
 
         let currentGistID = '';
         async function loadGist(gistID) {
@@ -538,6 +618,19 @@ Fixes for common problems:
                 } else {
                     abiEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
                     abiEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                }
+
+                if ('transaction' in gistJson.files) {
+                    let codeResponse = await fetch(gistJson.files['transaction'].raw_url);
+                    if (codeResponse.status !== 200)
+                        throw new Error('an error occured')
+                    let text = await codeResponse.text();
+                    transactionEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    transactionEditor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                    transactionEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                } else {
+                    transactionEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    transactionEditor.setSelection(new monaco.Range(0, 0, 0, 0));
                 }
             } catch (e) {
                 clang.ioElem.textContent += '\ngist ' + gistID + ': ' + e.message + '\n';

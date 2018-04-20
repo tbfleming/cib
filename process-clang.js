@@ -151,7 +151,6 @@ commands.compile = async function ({ code, link, optimize }) {
         if (optimize && ok) {
             emModule.print('wasm size: ' + result.length);
             emModule.print('Optimize...');
-            console.log(result);
             try {
                 let bytes = Binaryen._malloc(result.length);
                 if (!bytes)
