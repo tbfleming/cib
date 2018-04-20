@@ -466,12 +466,13 @@ EOSIO_ABI(simple, (dosomething))
             document.body.removeChild(a);
         }
 
+        let eos = window.eos_altjs;
+
         function showError(e, messages) {
             messages.textContent += e;
-            if (e.message.startsWith('NetworkError'))
+            if (!(e instanceof eos.EosError))
                 messages.textContent += `
 
-NetworkError:
 * Check the console to see what really happened
 * Using a non-secure endpoint (http)?
     * see http://google.com/#q=allow+mixed+content
@@ -503,7 +504,6 @@ NetworkError:
                     if (!('ricardian_contract' in action))
                         action.ricardian_contract = '';
 
-                let eos = window.eos_altjs;
                 let api = new eos.Api({ endpoint });
                 let result = await api.pushTransaction([key], {
                     ...await api.easyTransactionHeader(3, 10),
@@ -547,7 +547,6 @@ NetworkError:
                     throw Error('endpoint, key, or transaction is empty');
 
                 let transaction = JSON.parse(transactionContent);
-                let eos = window.eos_altjs;
                 let api = new eos.Api({ endpoint });
 
                 let actions = [];
