@@ -23,8 +23,8 @@
 import argparse, os, subprocess, sys
 from urllib.parse import urlparse
 
-useTag = 'cib-012'      # --clone and --checkout retrieve this tag
-#useTag = None          # --clone and --checkout retrieve branches
+#useTag = 'cib-012'      # --clone and --checkout retrieve this tag
+useTag = None          # --clone and --checkout retrieve branches
 
 reoptClang = True
 useFastcomp = False
@@ -415,8 +415,8 @@ def dist():
 
     if not os.path.exists('repos/eos-altjs/node_modules'):
         run('cd repos/eos-altjs && npm i && npm run build')
-    run('cp -au repos/eos-altjs/dist/eos-altjs-rel.js dist')
-    # run('cp -au repos/eos-altjs/dist/eos-altjs-debug.js dist/eos-altjs-rel.js')
+    # run('cp -au repos/eos-altjs/dist/eos-altjs-rel.js dist')
+    run('cp -au repos/eos-altjs/dist/eos-altjs-debug.js dist/eos-altjs-rel.js')
 
 
     run('cp -au src/clang.html src/eos.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')

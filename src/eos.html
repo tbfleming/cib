@@ -471,7 +471,9 @@ EOSIO_ABI(simple, (dosomething))
 
         function showError(e, messages) {
             messages.textContent += e;
-            if (!(e instanceof eos.EosError))
+            if (e instanceof eos.EosError)
+                messages.textContent += '\n\n' + JSON.stringify(e.json, null, 4);
+            if (e.isFetchError)
                 messages.textContent += `
 
 * Check the console to see what really happened
