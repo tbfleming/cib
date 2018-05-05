@@ -204,7 +204,7 @@ DEALINGS IN THE SOFTWARE.
     <script src="jquery-1.11.1.min.js"></script>
     <script src="golden-layout/goldenlayout.min.js"></script>
     <script src="monaco-editor/min/vs/loader.js"></script>
-    <script src="eos-altjs-rel.js"></script>
+    <script src="eos-altjs-debug-slim.js"></script>
     <script src='process-manager.js'></script>
     <script type='text/javascript'>
         let exampleCpp = `#include <eosiolib/eosio.hpp>
@@ -413,7 +413,7 @@ EOSIO_ABI(simple, (dosomething))
             };
         } // class ProcessUI
 
-        let clang = new ProcessUI('clang', 'clang-eos');
+        let clang = new ProcessUI('clang', 'clang-eos-slim');
         let saveButton = document.getElementById('clang-save');
         let uploadCompileButton = document.getElementById('upload-compile');
         let uploadButton = document.getElementById('upload');

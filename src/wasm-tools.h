@@ -23,6 +23,7 @@
 #include <optional>
 #include <stdexcept>
 #include <stdint.h>
+#include <stdio.h>
 #include <string>
 #include <string_view>
 #include <tuple>
@@ -143,8 +144,10 @@ uint32_t get_init_expr32(const std::vector<uint8_t>& binary, size_t& pos);
 void push_init_expr32(std::vector<uint8_t>& binary, uint32_t value);
 
 template <typename T> void check(bool cond, const T& msg) {
-    if (!cond)
+    if (!cond) {
+        printf("%s\n", std::string{msg}.c_str());
         throw std::runtime_error(msg);
+    }
 }
 
 struct Section {

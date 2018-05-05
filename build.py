@@ -170,10 +170,10 @@ repos = [
     ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'master', 'master'),
     ('repos/binaryen', 'tbfleming/cib-binaryen.git', 'WebAssembly/binaryen.git', True, 'master', 'cib'),
     ('repos/zip.js', 'gildas-lormeau/zip.js.git', 'gildas-lormeau/zip.js.git', False, '3e7920810f63d5057ef6028833243105521da369', '3e7920810f63d5057ef6028833243105521da369'),
-    ('repos/eos', 'tbfleming/cib-eos.git', 'EOSIO/eos.git', True, 'dawn-v3.0.0', 'cib'),
+    ('repos/eos', 'tbfleming/cib-eos.git', 'EOSIO/eos.git', True, 'dawn-v3.0.0', 'cib-slim'),
     ('repos/eos-musl', 'tbfleming/cib-eos-musl.git', 'EOSIO/eos-musl.git', True, 'eosio', 'cib'),
     ('repos/eos-libcxx', 'EOSIO/libcxx.git', 'EOSIO/libcxx.git', False, '2880ac42909d4bb29687ed079f8bb4405c3b0869', '2880ac42909d4bb29687ed079f8bb4405c3b0869'),
-    ('repos/magic-get', 'apolukhin/magic_get.git', 'apolukhin/magic_get.git', False, '8b575abe4359abd72bb9556f64ee33aa2a6f3583', '8b575abe4359abd72bb9556f64ee33aa2a6f3583'),
+    ('repos/magic-get', 'EOSIO/magic_get.git', 'EOSIO/magic_get.git', False, '89fda1da702e6c76a22bfb6233e9e3d0641708ec', '89fda1da702e6c76a22bfb6233e9e3d0641708ec'),
     ('repos/eos-altjs', 'tbfleming/eos-altjs', 'tbfleming/eos-altjs', True, 'master', 'slim'),
 ]
 
@@ -416,11 +416,12 @@ def dist():
     if not os.path.exists('repos/eos-altjs/node_modules'):
         run('cd repos/eos-altjs && npm i && npm run build')
     # run('cp -au repos/eos-altjs/dist/eos-altjs-rel.js dist')
-    run('cp -au repos/eos-altjs/dist/eos-altjs-debug.js dist/eos-altjs-rel.js')
+    run('cp -au repos/eos-altjs/dist/eos-altjs-debug.js dist/eos-altjs-debug-slim.js')
 
-
-    run('cp -au src/clang.html src/eos.html src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
+    run('cp -au src/process.js src/process-manager.js src/process-clang-format.js src/wasm-tools.js dist')
     run('cp -au src/process-clang.js src/process-runtime.js dist')
+    run('cp -au src/eos.html dist/eos-slim.html')
+    run('cp -au src/clang.html dist/index.html')
 
 def boost():
     download('https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.zip')
@@ -524,13 +525,13 @@ def appClangEos():
         run("cd " + browserClangEosBuild + " && mv boost_staging/boost usr/download/boost_1_66_0")
         copy('repos/magic-get/include')
         run('cp build/rtl-eos/rtl-eos ' + browserClangEosBuild + 'usr/build/rtl-eos/rtl-eos')
-    app('clang-eos', browserClangBuildType, browserClangEosBuild, prepBuildDir)
+    app('clang-eos-slim', browserClangBuildType, browserClangEosBuild, prepBuildDir)
     if(reoptClang):
-        run('cd ' + browserClangEosBuild + ' && wasm-opt -Os clang-eos.wasm -o clang-eos-opt.wasm')
+        run('cd ' + browserClangEosBuild + ' && wasm-opt -Os clang-eos-slim.wasm -o clang-eos-slim-opt.wasm')
     else:
-        run('cd ' + browserClangEosBuild + ' && cp clang-eos.wasm clang-eos-opt.wasm')
-    run('cp -au ' + browserClangEosBuild + 'clang-eos.js ' + browserClangEosBuild + 'clang-eos.data dist')
-    run('cp -au ' + browserClangEosBuild + 'clang-eos-opt.wasm dist/clang-eos.wasm')
+        run('cd ' + browserClangEosBuild + ' && cp clang-eos-slim.wasm clang-eos-slim-opt.wasm')
+    run('cp -au ' + browserClangEosBuild + 'clang-eos-slim.js ' + browserClangEosBuild + 'clang-eos-slim.data dist')
+    run('cp -au ' + browserClangEosBuild + 'clang-eos-slim-opt.wasm dist/clang-eos-slim.wasm')
 
 def appClangEosNative():
     if not os.path.isdir('build/apps-eos-native'):
@@ -543,7 +544,7 @@ def appClangEosNative():
             ' -DLLVM_BUILD=' + llvmNo86Build +
             ' -DCMAKE_CXX_STANDARD_LIBRARIES="-lpthread -lncurses -ltinfo -lz"' +
             ' ../../src')
-    run('cd build/apps-eos-native && time -p ninja -v clang-eos')
+    run('cd build/apps-eos-native && time -p ninja -v clang-eos-slim')
 
 def appRuntime():
     app('runtime', browserRuntimeBuildType, browserRuntimeBuild, env='EMCC_FORCE_STDLIBS=1')
@@ -556,8 +557,8 @@ def http():
         browserClangFormatBuild + 'clang-format.* ' +
         browserClangBuild + 'clang.data ' +
         browserClangBuild + 'clang.js ' +
-        browserClangEosBuild + 'clang-eos.data ' +
-        browserClangEosBuild + 'clang-eos.js ' +
+        browserClangEosBuild + 'clang-eos-slim.data ' +
+        browserClangEosBuild + 'clang-eos-slim.js ' +
         browserRuntimeBuild + 'runtime.* ' +
         '../../dist/monaco-editor ' +
         '../../dist/golden-layout ' +
@@ -565,14 +566,14 @@ def http():
         '../../dist/zip.js ' +
         '../../dist/binaryen.js ' +
         '../../dist/binaryen.wasm ' +
-        '../../dist/eos-altjs-rel.js ' +
+        '../../dist/eos-altjs-debug-slim.js ' +
         '../../src/clang.html ' +
-        '../../src/eos.html ' +
+        '../../src/eos-slim.html ' +
         '../../src/process*.js ' +
         '../../src/wasm-tools.js ' +
         '.')
     run('cd build/http && ln -sf ' + browserClangBuild + 'clang-opt.wasm clang.wasm')
-    run('cd build/http && ln -sf ' + browserClangEosBuild + 'clang-eos-opt.wasm clang-eos.wasm')
+    run('cd build/http && ln -sf ' + browserClangEosBuild + 'clang-eos-slim-opt.wasm clang-eos-slim.wasm')
     try:
         if 'HTTP_SERVER' in os.environ:
             run('cd build/http && ' + os.environ['HTTP_SERVER'])
