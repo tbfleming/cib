@@ -592,13 +592,17 @@ EOSIO_ABI(simple, (dosomething))
 
                 transactionMessages.textContent += 'Transaction Posted\n\n';
 
-                for (let trace of result.processed.action_traces) {
-                    transactionMessages.textContent +=
-                        '<<<<< receiver:' + trace.receipt.receiver +
-                        ' account:' + trace.act.account +
-                        ' action:' + trace.act.name + '\n' +
-                        trace.console + '\n>>>>>\n\n';
+                function displayTraces(traces) {
+                    for (let trace of traces) {
+                        transactionMessages.textContent +=
+                            '<<<<< receiver:' + trace.receipt.receiver +
+                            ' account:' + trace.act.account +
+                            ' action:' + trace.act.name + '\n' +
+                            trace.console + '\n>>>>>\n\n';
+                        displayTraces(trace.inline_traces);
+                    }
                 }
+                displayTraces(result.processed.action_traces);
 
                 transactionMessages.textContent += JSON.stringify(result, null, 4);
             } catch (e) {
