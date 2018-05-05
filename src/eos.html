@@ -472,8 +472,31 @@ EOSIO_ABI(simple, (dosomething))
 
         function showError(e, messages) {
             messages.textContent += e;
-            if (e instanceof eos.EosError)
+            if (e instanceof eos.EosError) {
+                if (e.json.processed && e.json.processed.except && e.json.processed.except.stack) {
+                    messages.textContent += '\n';
+                    for (let frame of e.json.processed.except.stack) {
+                        if (frame.format && frame.data)
+                            messages.textContent += '\n' +
+                                frame.format.replace(/\$\{(\w+)\}/g, (match, name) => {
+                                    let v = frame.data[name];
+                                    if (typeof v === 'string')
+                                        return v;
+                                    return JSON.stringify(v);
+                                });
+                        if (frame.context)
+                            messages.textContent += '\n' + `    ${frame.context.file}:${frame.context.line} ${frame.context.method}`;
+                    }
+                } else if (e.json.error && e.json.error.details) {
+                    messages.textContent += '\n';
+                    for (let frame of e.json.error.details) {
+                        if (frame.message)
+                            messages.textContent += '\n' + frame.message;
+                        messages.textContent += '\n' + `    ${frame.file}:${frame.line_number} ${frame.method}`;
+                    }
+                }
                 messages.textContent += '\n\n' + JSON.stringify(e.json, null, 4);
+            }
             if (e.isFetchError)
                 messages.textContent += `
 
@@ -535,7 +558,7 @@ EOSIO_ABI(simple, (dosomething))
                     ],
                 });
 
-                uploadMessages.textContent += 'Code Posted\n';
+                uploadMessages.textContent += 'Code Posted\n\n' + JSON.stringify(result, null, 4);
             } catch (e) {
                 showError(e, uploadMessages);
             }
