@@ -594,7 +594,7 @@ EOSIO_ABI(simple, (dosomething))
 
                 for (let trace of result.processed.action_traces) {
                     transactionMessages.textContent +=
-                        '<<<<< receiver:' + trace.receiver +
+                        '<<<<< receiver:' + trace.receipt.receiver +
                         ' account:' + trace.act.account +
                         ' action:' + trace.act.name + '\n' +
                         trace.console + '\n>>>>>\n\n';

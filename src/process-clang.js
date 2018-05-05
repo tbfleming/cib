@@ -107,6 +107,7 @@ async function unzipFile(file) {
 
 commands.loadBinaryen = function () {
     importScripts('binaryen.js');
+    importScripts('wasm-tools.js');
     postMessage({ function: 'workerBinaryenLoaded' });
 }
 
@@ -165,6 +166,13 @@ commands.compile = async function ({ code, link, optimize }) {
                 let pos = Binaryen._BinaryenModuleWrite2GetBuffer();
                 result = new Uint8Array(Binaryen.HEAP8.slice(pos, pos + size));
                 Binaryen._BinaryenModuleDispose(m);
+
+                if (result) {
+                    // Binaryen creates a name table that conflicts with names
+                    // that eos's copy of Binaryen produces. This strips it out.
+                    let { standardSections } = getSegments(result);
+                    result = generateBinary(result, standardSections, {});
+                }
             } catch (e) {
                 emModule.print(e.toString());
                 result = null;
