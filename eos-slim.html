@@ -1,0 +1,692 @@
+<!--
+Copyright 2017-2018 Todd Fleming
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+-->
+
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Clang In Browser: EOS Contracts</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .flex-col {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .io {
+            overflow: auto;
+            margin: 0;
+            flex-grow: 5;
+            background-color: black;
+            color: white;
+            font-family: 'Lucida Console', Monaco, monospace;
+            white-space: pre-wrap;
+        }
+
+        .controls {
+            margin: 4px;
+        }
+
+        .controls-border {
+            padding-bottom: 2px;
+            border-bottom: 1px solid black;
+        }
+
+        .right-button {
+            float: right;
+        }
+
+        .source {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #pane-gist-links>div {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        #pane-transaction>h3,
+        #pane-upload>h3 {
+            margin: 10px;
+        }
+
+        .transaction {
+            margin: 5px;
+            flex: 1 0;
+            display: grid;
+            overflow: hidden;
+        }
+
+        #pane-transaction .transaction {
+            grid-template-columns: max-content auto;
+            grid-template-rows: max-content max-content 1fr max-content 1fr;
+        }
+
+        #pane-upload .transaction {
+            grid-template-columns: max-content auto;
+            grid-template-rows: max-content max-content max-content max-content auto;
+        }
+
+        .transaction>* {
+            margin: 4px;
+        }
+
+        .transaction>.editor {
+            overflow: hidden;
+        }
+
+        .transaction>.editor>div {
+            width: 100%;
+            height: 100%;
+        }
+
+        .transaction>pre {
+            background-color: white;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hidden">
+        <div id="pane-clang" class="flex-col">
+            <div class="controls">
+                <button id="clang-run" onclick="compile()">Compile</button>
+                <button id="clang-save" onclick="saveWasm()">Save</button>
+                <span id="clang-status"></span>
+                <button id="clang-reboot" class="right-button" onclick="clang.reboot()">Reboot</button>
+            </div>
+            <pre id="clang-io" class="io"></pre>
+        </div>
+        <div id="pane-gist-links" class="flex-col">
+            <div>
+                <h3>Example Contracts</h3>
+                <a href="#gist=71255dafab45996b5966d70d876346c6">Currency</a>
+                <a href="#gist=805cd85eb21970633c4a617c56d22159">Conway's Game of Life</a>
+                <a href="#gist=253e84d14e13e713917aac68e737d48f">Self-destruct</a>
+                <a href="#gist=d230f3ab2998e8858d3e51af7e4d9aeb">Track incoming funds</a>
+
+                <h3>Versions</h3>
+                eosiolib slim (dawn-v4 prerelease)
+                <br/> C++17 language (clang 6-ish)
+                <br/> C++14 library subset
+                <br/> Boost 1.66.0 subset
+
+                <h3>Recent Changes</h3>
+                Added global constructors
+                <br/> Added Binaryen optimization
+
+                <h3>Limitations</h3>
+                Not implemented: RTTI, Exception handling
+
+                <h3>See also</h3>
+                <a target="_blank" href="https://tbfleming.github.io/cib/">Non-EOS mode</a>
+                <a target="_blank" href="https://github.com/tbfleming/cib">Fork me on Github</a>
+                <br/>
+            </div>
+        </div>
+        <div id="pane-upload" class="flex-col">
+            <h3>Upload Contract</h3>
+            <div class="transaction">
+                <div>Endpoint</div>
+                <input id="input-endpoint" value="https://">
+                <div>Account</div>
+                <input id="input-account">
+                <div>Private Key</div>
+                <input id="input-key">
+                <div></div>
+                <div>
+                    <button id="upload-compile" onclick="compile()">Compile</button>
+                    <button id="upload" onclick="upload()">Upload</button>
+                </div>
+                <div>Result</div>
+                <pre id="upload-messages"></pre>
+            </div>
+        </div>
+        <div id="pane-transaction" class="flex-col">
+            <h3>Push Transaction</h3>
+            <div class="transaction">
+                <div>Endpoint</div>
+                <input id="transaction-endpoint" value="https://">
+                <div>Private Key</div>
+                <input id="transaction-key">
+                <div>Transaction</div>
+                <div class="editor">
+                    <div id="transaction-source"></div>
+                </div>
+                <div></div>
+                <div>
+                    <button onclick="postTransaction()">Post Transaction</button>
+                </div>
+                <div>Result</div>
+                <pre id="transaction-messages"></pre>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="golden-layout/goldenlayout-base.css" />
+    <link rel="stylesheet" type="text/css" href="golden-layout/goldenlayout-light-theme.css" />
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="golden-layout/goldenlayout.min.js"></script>
+    <script src="monaco-editor/min/vs/loader.js"></script>
+    <script src="eos-altjs-debug-slim.js"></script>
+    <script src='process-manager.js'></script>
+    <script type='text/javascript'>
+        let exampleCpp = `#include <eosiolib/eosio.hpp>
+
+struct simple : eosio::contract {
+    simple(account_name self) : contract{self} {}
+
+    void dosomething(account_name user) {
+        require_auth(user);
+        eosio::print("User ", eosio::name{user}, " is authorized.\\n");
+        eosio::print("There I did something.");
+    }
+};
+
+EOSIO_ABI(simple, (dosomething))
+`;
+
+        let exampleAbi = `{
+    "structs": [{
+        "name": "dosomething",
+        "base": "",
+        "fields": [
+            {"name":"user", "type":"account_name"}
+        ]
+        }],
+    "actions": [{
+        "name": "dosomething",
+        "type": "dosomething"
+        }]
+}`;
+
+        let exampleTransaction = `{
+    "actions": [{
+        "account": "test",
+        "name": "dosomething",
+        "authorization": [{
+            "actor": "test",
+            "permission": "active"
+        }],
+        "data": {
+            "user": "test"
+        }
+    }]
+}`;
+
+        let layoutConfig = {
+            settings: {
+                showPopoutIcon: false,
+                showCloseIcon: false,
+            },
+            content: [{
+                type: 'row',
+                content: [{
+                    type: 'column',
+                    content: [{
+                        type: 'stack',
+                        content: [{
+                            type: 'component',
+                            title: 'C++',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-source', className: 'source' }
+                        }, {
+                            type: 'component',
+                            title: 'abi',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-abi', className: 'source' }
+                        }]
+                    }, {
+                        type: 'component',
+                        title: 'clang',
+                        isClosable: false,
+                        componentName: 'component',
+                        componentState: { id: 'pane-clang' }
+                    }]
+                }, {
+                    type: 'column',
+                    content: [{
+                        type: 'stack',
+                        content: [{
+                            type: 'component',
+                            title: 'Transaction',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-transaction' }
+                        }, {
+                            type: 'component',
+                            title: 'Examples',
+                            isClosable: true,
+                            componentName: 'component',
+                            componentState: { id: 'pane-gist-links' }
+                        }]
+                    }, {
+                        type: 'component',
+                        title: 'Upload',
+                        isClosable: false,
+                        componentName: 'component',
+                        componentState: { id: 'pane-upload' }
+                    }]
+                }]
+            }]
+        };
+
+        let layout = new GoldenLayout(layoutConfig);
+        layout.registerComponent('component', function (container, state) {
+            let child = document.getElementById(state.id);
+            if (!child) {
+                child = document.createElement('div');
+                child.className = state.className;
+                child.id = state.id;
+            }
+            container.getElement().get(0).appendChild(child);
+        });
+        layout.init();
+
+        let cppEditor;
+        let abiEditor;
+        let transactionEditor;
+        let cppContent = exampleCpp;
+        let abiContent = exampleAbi;
+        let transactionContent = exampleTransaction;
+
+        require.config({ paths: { 'vs': 'monaco-editor/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            cppEditor = monaco.editor.create(document.getElementById('pane-source'), {
+                value: exampleCpp,
+                language: 'cpp',
+                automaticLayout: true,
+            });
+            abiEditor = monaco.editor.create(document.getElementById('pane-abi'), {
+                value: exampleAbi,
+                language: 'json',
+                automaticLayout: true,
+            });
+            transactionEditor = monaco.editor.create(document.getElementById('transaction-source'), {
+                value: exampleTransaction,
+                language: 'json',
+                automaticLayout: true,
+            });
+
+            cppEditor.onDidChangeModelContent(e => {
+                cppContent = cppEditor.getValue().trim();
+                updateUI();
+            })
+            abiEditor.onDidChangeModelContent(e => {
+                abiContent = abiEditor.getValue().trim();
+                updateUI();
+            })
+            transactionEditor.onDidChangeModelContent(e => {
+                transactionContent = transactionEditor.getValue().trim();
+                updateUI();
+            })
+
+            updateUI();
+        });
+
+        class ProcessUI {
+            constructor(name, moduleName) {
+                this.name = name;
+                this.runButton = document.getElementById(name + '-run');
+                this.rebootButton = document.getElementById(name + '-reboot');
+                this.statusElem = document.getElementById(name + '-status');
+                this.ioElem = document.getElementById(name + '-io');
+                this.state = '';
+                this.wasReady = false;
+
+                this.process = new ProcessManager(name, moduleName)
+                this.process.setStatus = this.setStatus.bind(this);
+                this.process.print = this.print.bind(this);
+                this.process.printErr = this.printErr.bind(this);
+            }
+
+            reboot() {
+                this.process.terminate();
+                if (this.ioElem)
+                    this.ioElem.textContent = '';
+                this.process.start();
+            }
+
+            setStatus(state, status) {
+                console.log(this.name, state + ':', status);
+                this.statusElem.textContent = status;
+                this.state = state;
+                if (state == 'ready')
+                    this.statusElem.style.color = 'green';
+                else if (state == 'error')
+                    this.statusElem.style.color = 'red';
+                else
+                    this.statusElem.style.color = 'blue';
+                updateUI();
+            };
+
+            print({ text }) {
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stdout:', text);
+            };
+
+            printErr({ text }) {
+                if (this.ioElem)
+                    this.ioElem.textContent += text + '\n';
+                else
+                    console.log(this.name, 'stderr:', text);
+            };
+        } // class ProcessUI
+
+        let clang = new ProcessUI('clang', 'clang-eos-slim');
+        let saveButton = document.getElementById('clang-save');
+        let uploadCompileButton = document.getElementById('upload-compile');
+        let uploadButton = document.getElementById('upload');
+        let uploadMessages = document.getElementById('upload-messages');
+        let endpointInput = document.getElementById('input-endpoint');
+        let accountInput = document.getElementById('input-account');
+        let keyInput = document.getElementById('input-key');
+        let transactionEndpointInput = document.getElementById('transaction-endpoint');
+        let transactionKeyInput = document.getElementById('transaction-key');
+        let transactionMessages = document.getElementById('transaction-messages');
+        let clangOutput = null;
+
+        clang.process.print({ text: 'Preparing clang...\n\n' });
+        clang.process.workerReady = function () {
+            clang.process.setStatus('init', 'Loading Binaryen');
+            clang.process.worker.postMessage({ function: 'loadBinaryen' });
+        }
+        clang.process.workerBinaryenLoaded = function () {
+            clang.process.setStatus('ready', 'Ready');
+        }
+        clang.process.workerCompileDone = args => {
+            if (args.result)
+                clang.ioElem.textContent += 'wasm size: ' + args.result.length + '\n';
+            clangOutput = args.result;
+            clang.process.setStatus('ready', 'Ready');
+        };
+        clang.process.start();
+
+        function compile() {
+            if (clang.state !== 'ready')
+                return;
+            clangOutput = null;
+            clang.process.setStatus('busy', 'Running');
+            clang.ioElem.textContent = '';
+            clang.process.worker.postMessage({
+                function: 'compile',
+                code: cppContent,
+                link: true,
+                optimize: true,
+            });
+        }
+
+        function saveWasm() {
+            let blob = new Blob([clangOutput], {
+                "type": "application/binary"
+            });
+            let a = document.createElement("a");
+            a.download = 'contract.wasm';
+            a.href = URL.createObjectURL(blob);
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        let eos = window.eos_altjs;
+
+        function showError(e, messages) {
+            messages.textContent += e;
+            if (e instanceof eos.EosError) {
+                if (e.json.processed && e.json.processed.except && e.json.processed.except.stack) {
+                    messages.textContent += '\n';
+                    for (let frame of e.json.processed.except.stack) {
+                        if (frame.format && frame.data)
+                            messages.textContent += '\n' +
+                                frame.format.replace(/\$\{(\w+)\}/g, (match, name) => {
+                                    let v = frame.data[name];
+                                    if (typeof v === 'string')
+                                        return v;
+                                    return JSON.stringify(v);
+                                });
+                        if (frame.context)
+                            messages.textContent += '\n' + `    ${frame.context.file}:${frame.context.line} ${frame.context.method}`;
+                    }
+                } else if (e.json.error && e.json.error.details) {
+                    messages.textContent += '\n';
+                    for (let frame of e.json.error.details) {
+                        if (frame.message)
+                            messages.textContent += '\n' + frame.message;
+                        messages.textContent += '\n' + `    ${frame.file}:${frame.line_number} ${frame.method}`;
+                    }
+                }
+                messages.textContent += '\n\n' + JSON.stringify(e.json, null, 4);
+            }
+            if (e.isFetchError)
+                messages.textContent += `
+
+* Check the console to see what really happened
+* Using a non-secure endpoint (http)?
+    * see http://google.com/#q=allow+mixed+content
+* Add this to your node's config.ini:
+    * access-control-allow-origin = *
+`;
+        }
+
+        async function upload() {
+            let endpoint = endpointInput.value.trim();
+            let account = accountInput.value.trim();
+            let key = keyInput.value.trim();
+
+            uploadMessages.textContent = '';
+            try {
+                if (!endpoint || !account || !key)
+                    throw Error('endpoint, account, or key is empty');
+
+                abi = {
+                    types: [],
+                    structs: [],
+                    actions: [],
+                    tables: [],
+                    clauses: [],            // Some nodeos builds expect this
+                    ricardian_clauses: [],  // Others expect this
+                    ...JSON.parse(abiContent),
+                };
+                for (let action of abi.actions)
+                    if (!('ricardian_contract' in action))
+                        action.ricardian_contract = '';
+
+                let api = new eos.Api({ endpoint });
+                let result = await api.pushTransaction([key], {
+                    ...await api.easyTransactionHeader(3, 10),
+                    actions: [
+                        await api.easyCreateAction('eosio', 'setcode',
+                            [{
+                                actor: account,
+                                permission: 'active',
+                            }],
+                            {
+                                account,
+                                vmtype: 0,
+                                vmversion: 0,
+                                code: clangOutput,
+                            }),
+                        await api.easyCreateAction('eosio', 'setabi',
+                            [{
+                                actor: account,
+                                permission: 'active',
+                            }],
+                            {
+                                account,
+                                abi,
+                            }),
+                    ],
+                });
+
+                uploadMessages.textContent += 'Code Posted\n\n' + JSON.stringify(result, null, 4);
+            } catch (e) {
+                showError(e, uploadMessages);
+            }
+        } // upload()
+
+        async function postTransaction() {
+            let endpoint = transactionEndpointInput.value.trim();
+            let key = transactionKeyInput.value.trim();
+
+            transactionMessages.textContent = '';
+            try {
+                if (!endpoint || !key || !transactionContent)
+                    throw Error('endpoint, key, or transaction is empty');
+
+                let transaction = JSON.parse(transactionContent);
+                let api = new eos.Api({ endpoint });
+
+                let actions = [];
+                for (let action of transaction.actions)
+                    actions.push(await api.easyCreateAction(
+                        action.account,
+                        action.name,
+                        action.authorization,
+                        action.data));
+
+                let result = await api.pushTransaction([key], {
+                    ...await api.easyTransactionHeader(3, 10),
+                    ...transaction,
+                    actions
+                });
+
+                transactionMessages.textContent += 'Transaction Posted\n\n';
+
+                function displayTraces(traces) {
+                    for (let trace of traces) {
+                        transactionMessages.textContent +=
+                            '<<<<< receiver:' + trace.receipt.receiver +
+                            ' account:' + trace.act.account +
+                            ' action:' + trace.act.name + '\n' +
+                            trace.console + '\n>>>>>\n\n';
+                        displayTraces(trace.inline_traces);
+                    }
+                }
+                displayTraces(result.processed.action_traces);
+
+                transactionMessages.textContent += JSON.stringify(result, null, 4);
+            } catch (e) {
+                showError(e, transactionMessages);
+            }
+        } // postTransaction()
+
+        let currentGistID = '';
+        async function loadGist(gistID) {
+            if (gistID === currentGistID)
+                return;
+            if (!cppEditor) {
+                setTimeout(() => loadGist(gistID), 200);
+                return;
+            }
+            currentGistID = gistID;
+            try {
+                let gistResponse = await fetch('https://api.github.com/gists/' + gistID);
+                let gistJson = await gistResponse.json();
+                if (gistResponse.status !== 200)
+                    if (gistJson && gistJson.message)
+                        throw new Error(gistJson.message);
+                    else
+                        throw new Error('an error occured')
+                if (!('main.cpp' in gistJson.files))
+                    throw new Error('main.cpp missing');
+                let codeResponse = await fetch(gistJson.files['main.cpp'].raw_url);
+                if (codeResponse.status !== 200)
+                    throw new Error('an error occured')
+                let text = await codeResponse.text();
+                cppEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                cppEditor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                cppEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+
+                if ('main.abi' in gistJson.files) {
+                    let codeResponse = await fetch(gistJson.files['main.abi'].raw_url);
+                    if (codeResponse.status !== 200)
+                        throw new Error('an error occured')
+                    let text = await codeResponse.text();
+                    abiEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    abiEditor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                    abiEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                } else {
+                    abiEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    abiEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                }
+
+                if ('transaction' in gistJson.files) {
+                    let codeResponse = await fetch(gistJson.files['transaction'].raw_url);
+                    if (codeResponse.status !== 200)
+                        throw new Error('an error occured')
+                    let text = await codeResponse.text();
+                    transactionEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    transactionEditor.executeEdits(gistID, [{ identifier: 'insert', range: new monaco.Range(1, 1, 1, 1), text, forceMoveMarkers: true }]);
+                    transactionEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                } else {
+                    transactionEditor.executeEdits(gistID, [{ identifier: 'delete', range: new monaco.Range(1, 1, 10000, 1), text: '', forceMoveMarkers: true }]);
+                    transactionEditor.setSelection(new monaco.Range(0, 0, 0, 0));
+                }
+            } catch (e) {
+                clang.ioElem.textContent += '\ngist ' + gistID + ': ' + e.message + '\n';
+            }
+        }
+
+        function handleHash() {
+            for (let arg of window.location.hash.substr(1).split('&'))
+                if (arg.startsWith('gist='))
+                    loadGist(encodeURIComponent(arg.substr(5)));
+        }
+        handleHash();
+        window.addEventListener("hashchange", handleHash, false);
+
+        function updateUI() {
+            let clangReady = cppEditor && clang.state === 'ready';
+            clang.runButton.disabled = !clangReady;
+            uploadCompileButton.disabled = !clangReady;
+            saveButton.disabled = !clangOutput;
+            uploadButton.disabled = !clangOutput;
+            if (clangReady && !clang.wasReady) {
+                clang.wasReady = true;
+                clang.ioElem.textContent = 'Click the compile button\n\n';
+            }
+        }
+    </script>
+</body>
+
+</html>
