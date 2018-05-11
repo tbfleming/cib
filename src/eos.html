@@ -136,20 +136,15 @@ DEALINGS IN THE SOFTWARE.
         <div id="pane-gist-links" class="flex-col">
             <div>
                 <h3>Example Contracts</h3>
-                <a href="#gist=71255dafab45996b5966d70d876346c6">Currency</a>
                 <a href="#gist=805cd85eb21970633c4a617c56d22159">Conway's Game of Life</a>
                 <a href="#gist=253e84d14e13e713917aac68e737d48f">Self-destruct</a>
                 <a href="#gist=d230f3ab2998e8858d3e51af7e4d9aeb">Track incoming funds</a>
 
                 <h3>Versions</h3>
-                eosiolib slim (dawn-v4 prerelease)
+                eosiolib dawn-v4
                 <br/> C++17 language (clang 6-ish)
                 <br/> C++14 library subset
                 <br/> Boost 1.66.0 subset
-
-                <h3>Recent Changes</h3>
-                Added global constructors
-                <br/> Added Binaryen optimization
 
                 <h3>Limitations</h3>
                 Not implemented: RTTI, Exception handling
@@ -204,7 +199,7 @@ DEALINGS IN THE SOFTWARE.
     <script src="jquery-1.11.1.min.js"></script>
     <script src="golden-layout/goldenlayout.min.js"></script>
     <script src="monaco-editor/min/vs/loader.js"></script>
-    <script src="eos-altjs-debug-slim.js"></script>
+    <script src="eos-altjs-debug-dawn4.js"></script>
     <script src='process-manager.js'></script>
     <script type='text/javascript'>
         let exampleCpp = `#include <eosiolib/eosio.hpp>
@@ -413,7 +408,7 @@ EOSIO_ABI(simple, (dosomething))
             };
         } // class ProcessUI
 
-        let clang = new ProcessUI('clang', 'clang-eos-slim');
+        let clang = new ProcessUI('clang', 'clang-eos-dawn4');
         let saveButton = document.getElementById('clang-save');
         let uploadCompileButton = document.getElementById('upload-compile');
         let uploadButton = document.getElementById('upload');

@@ -165,7 +165,7 @@ add_executable (cib-ar cib-ar.cpp wasm-tools.cpp)
 add_executable (combine-data combine-data.cpp wasm-tools.cpp)
 add_executable (clang-format clang-format.cpp)
 add_executable (clang clang.cpp wasm-tools.cpp)
-add_executable (clang-eos-slim clang.cpp wasm-tools.cpp)
+add_executable (clang-eos-dawn4 clang.cpp wasm-tools.cpp)
 add_executable (runtime runtime.cpp cxa_new_delete.cpp)
 
 target_compile_options(cib-link PRIVATE -stdlib=libc++)
@@ -185,9 +185,9 @@ target_include_directories(clang PRIVATE ${LLVM_INCLUDE})
 target_compile_options(clang PRIVATE -stdlib=libc++)
 target_link_libraries(clang PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
 
-target_include_directories(clang-eos-slim PRIVATE ${LLVM_INCLUDE})
-target_compile_options(clang-eos-slim PRIVATE -stdlib=libc++)
-target_link_libraries(clang-eos-slim PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
+target_include_directories(clang-eos-dawn4 PRIVATE ${LLVM_INCLUDE})
+target_compile_options(clang-eos-dawn4 PRIVATE -stdlib=libc++)
+target_link_libraries(clang-eos-dawn4 PRIVATE ${LLVM_LIBRARIES} -stdlib=libc++)
 
 IF(EMSCRIPTEN)
     target_link_libraries(clang-format PRIVATE
@@ -219,11 +219,11 @@ IF(EMSCRIPTEN)
         #"-s FS_LOG=1"
     )
 
-    target_compile_options(clang-eos-slim PRIVATE
+    target_compile_options(clang-eos-dawn4 PRIVATE
         -DLIB_PREFIX=/usr/
         -DEOS_CLANG
     )
-    target_link_libraries(clang-eos-slim PRIVATE
+    target_link_libraries(clang-eos-dawn4 PRIVATE
         "--preload-file usr"
         "--no-heap-copy"
         "-s MODULARIZE=1"
