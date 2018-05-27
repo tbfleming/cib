@@ -25,6 +25,10 @@ var wasmImports = {};
 var wasmExports = {};
 
 if (inWorker) {
+    if(typeof TextDecoder === 'undefined') {
+        importScripts('encoding-indexes.js');
+        importScripts('encoding.js');
+    }
     importScripts('process.js');
     importScripts('wasm-tools.js');
 }
