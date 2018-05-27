@@ -39,11 +39,11 @@ emModule.instantiateWasmAsync = async function (imports, successCallback) {
         this.instanciating = true;
         await setStatusAsync('init', 'Instanciating ' + this.moduleName + '.wasm');
         let env = {
-            ...imports.env,
             __indirect_function_table: imports.env.table,
             __linear_memory: imports.env.memory,
             __stack_pointer: 0, // dummy value, not used
         };
+        env = Object.assign(env, imports.env);
         this.wasmInstance = await WebAssembly.instantiate(this.wasmModule, { env });
         this.instanciating = false;
         await setStatusAsync('init', 'Initializing');
@@ -140,9 +140,6 @@ commands.run = async function ({ wasmBinary }) {
         //sendMessage({ function: 'workerDebugReplaceBinary', newBinary });
 
         let env = {
-            ...emModule.jsExports,
-            ...rtlExports,
-            ...wasmImports,
             __linear_memory: memory,
             __indirect_function_table: table,
             __stack_pointer: 0, // dummy value, not used
@@ -151,6 +148,7 @@ commands.run = async function ({ wasmBinary }) {
             __info_data_begin: () => memoryBase,
             __info_data_end: () => memoryBase + dataSize,
         };
+        env = Object.assign(env, emModule.jsExports, rtlExports, wasmImports);
         let module = await WebAssembly.compile(newBinary);
         table.grow(tableSize);
         let inst = await WebAssembly.instantiate(module, { env });
