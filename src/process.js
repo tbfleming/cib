@@ -116,7 +116,7 @@ let emModule = {
 
     async compileWasm() {
         let hash, cacheResult;
-        if (crypto.subtle) {
+        if (typeof crypto !== "undefined" && crypto.subtle) {
             hash = await crypto.subtle.digest('SHA-512', this.wasmBinary);
             cacheResult = await checkCache(this.moduleName, hash);
         } else {
