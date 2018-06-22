@@ -24,11 +24,10 @@ var inWorker = this.importScripts != undefined;
 var wasmImports = {};
 var wasmExports = {};
 
+var inputText = "";
+var i = 0;
+
 if (inWorker) {
-    if(typeof TextDecoder === 'undefined') {
-        importScripts('encoding-indexes.js');
-        importScripts('encoding.js');
-    }
     importScripts('process.js');
     importScripts('wasm-tools.js');
 }
@@ -43,11 +42,11 @@ emModule.instantiateWasmAsync = async function (imports, successCallback) {
         this.instanciating = true;
         await setStatusAsync('init', 'Instanciating ' + this.moduleName + '.wasm');
         let env = {
+            ...imports.env,
             __indirect_function_table: imports.env.table,
             __linear_memory: imports.env.memory,
             __stack_pointer: 0, // dummy value, not used
         };
-        env = Object.assign(env, imports.env);
         this.wasmInstance = await WebAssembly.instantiate(this.wasmModule, { env });
         this.instanciating = false;
         await setStatusAsync('init', 'Initializing');
@@ -71,6 +70,14 @@ commands.start = async function ({ moduleName, wasmBinary }) {
     try {
         if (inWorker)
             importScripts(moduleName + '.js');
+        emModule.stdin = function () {
+                // Return ASCII code of character, or null if no input remains
+                    if (i < inputText.length) {
+                        let c = inputText.charCodeAt(i++);
+                        return c;
+                    } else 
+                        return null;
+        };
         let binary = new Uint8Array(wasmBinary);
         let { standardSections, relocs, linking } = getSegments(binary);
         let { dataSize, initFunctions } = getLinkingInfo(binary, linking)
@@ -109,8 +116,9 @@ commands.start = async function ({ moduleName, wasmBinary }) {
     }
 };
 
-commands.run = async function ({ wasmBinary }) {
+commands.run = async function ({ wasmBinary, userInput }) {
     try {
+        inputText = userInput;
         let binary = new Uint8Array(wasmBinary);
         let rtlExports = emModule.wasmInstance.exports;
         let memory = emModule.wasmMemory;
@@ -144,6 +152,9 @@ commands.run = async function ({ wasmBinary }) {
         //sendMessage({ function: 'workerDebugReplaceBinary', newBinary });
 
         let env = {
+            ...emModule.jsExports,
+            ...rtlExports,
+            ...wasmImports,
             __linear_memory: memory,
             __indirect_function_table: table,
             __stack_pointer: 0, // dummy value, not used
@@ -152,7 +163,6 @@ commands.run = async function ({ wasmBinary }) {
             __info_data_begin: () => memoryBase,
             __info_data_end: () => memoryBase + dataSize,
         };
-        env = Object.assign(env, emModule.jsExports, rtlExports, wasmImports);
         let module = await WebAssembly.compile(newBinary);
         table.grow(tableSize);
         let inst = await WebAssembly.instantiate(module, { env });
@@ -163,7 +173,7 @@ commands.run = async function ({ wasmBinary }) {
         if (console.log)
             console.log(e);
         emModule.printErr(e.toString());
-    }
+}
 
     sendMessage({ function: 'workerRunDone' });
 };
