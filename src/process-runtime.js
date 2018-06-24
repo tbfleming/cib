@@ -173,7 +173,7 @@ commands.run = async function ({ wasmBinary, userInput }) {
         if (console.log)
             console.log(e);
         emModule.printErr(e.toString());
-}
+    }
 
     sendMessage({ function: 'workerRunDone' });
 };
