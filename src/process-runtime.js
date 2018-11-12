@@ -24,6 +24,9 @@ var inWorker = this.importScripts != undefined;
 var wasmImports = {};
 var wasmExports = {};
 
+var inputText = "";
+var i = 0;
+
 if (inWorker) {
     importScripts('process.js');
     importScripts('wasm-tools.js');
@@ -67,6 +70,14 @@ commands.start = async function ({ moduleName, wasmBinary }) {
     try {
         if (inWorker)
             importScripts(moduleName + '.js');
+        emModule.stdin = function () {
+                // Return ASCII code of character, or null if no input remains
+                    if (i < inputText.length) {
+                        let c = inputText.charCodeAt(i++);
+                        return c;
+                    } else 
+                        return null;
+        };
         let binary = new Uint8Array(wasmBinary);
         let { standardSections, relocs, linking } = getSegments(binary);
         let { dataSize, initFunctions } = getLinkingInfo(binary, linking)
@@ -105,8 +116,9 @@ commands.start = async function ({ moduleName, wasmBinary }) {
     }
 };
 
-commands.run = async function ({ wasmBinary }) {
+commands.run = async function ({ wasmBinary, userInput }) {
     try {
+        inputText = userInput;
         let binary = new Uint8Array(wasmBinary);
         let rtlExports = emModule.wasmInstance.exports;
         let memory = emModule.wasmMemory;

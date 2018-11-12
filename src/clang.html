@@ -84,6 +84,13 @@ DEALINGS IN THE SOFTWARE.
             flex-direction: column;
             padding: 10px;
         }
+        
+        #pane-input>div {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
 
         #runtime-iframe-container {
             z-index: 41;
@@ -109,6 +116,12 @@ DEALINGS IN THE SOFTWARE.
                 <button id="clang-reboot" class="right-button" onclick="clang.reboot()">Reboot</button>
             </div>
             <pre id="clang-io" class="io"></pre>
+        </div>
+        <div id="pane-input" class="flex-col">
+            <div>Program Input:</div>
+            <div>
+                <textarea id="inputText" wrap="off"></textarea>
+            </div>
         </div>
         <div id="pane-gist-links" class="flex-col">
             <div>
@@ -212,6 +225,12 @@ int main() {
                             isClosable: false,
                             componentName: 'component',
                             componentState: { id: 'pane-html-source', className: 'source' }
+                        }, {
+                            type: 'component',
+                            title: 'input',
+                            isClosable: false,
+                            componentName: 'component',
+                            componentState: { id: 'pane-input' }
                         }]
                     }, {
                         type: 'component',
@@ -416,6 +435,7 @@ int main() {
             runtime.process.postMessage({
                 function: 'run',
                 wasmBinary: clangOutput,
+                userInput: document.getElementById("inputText").value,
             });
         };
 
@@ -470,6 +490,7 @@ int main() {
                 runtime.process.worker.postMessage({
                     function: 'run',
                     wasmBinary: clangOutput,
+                    userInput: document.getElementById("inputText").value,
                 });
             }
         }
