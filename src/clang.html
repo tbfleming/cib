@@ -435,7 +435,7 @@ int main() {
             runtime.process.postMessage({
                 function: 'run',
                 wasmBinary: clangOutput,
-                inputText: document.getElementById("inputText").value,
+                userInput: document.getElementById("inputText").value,
             });
         };
 
@@ -490,7 +490,7 @@ int main() {
                 runtime.process.worker.postMessage({
                     function: 'run',
                     wasmBinary: clangOutput,
-                    inputText: document.getElementById("inputText").value,
+                    userInput: document.getElementById("inputText").value,
                 });
             }
         }
