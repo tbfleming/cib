@@ -167,7 +167,7 @@ repos = [
     # ('repos/fastcomp', 'tbfleming/cib-emscripten-fastcomp.git', 'kripken/emscripten-fastcomp.git', True, 'incoming', 'incoming'),
     # ('repos/fastcomp/tools/clang', 'tbfleming/cib-emscripten-fastcomp-clang.git', 'kripken/emscripten-fastcomp-clang.git', True, 'incoming', 'incoming'),
     ('repos/emscripten', 'tbfleming/cib-emscripten.git', 'kripken/emscripten.git', True, 'incoming', 'cib'),
-    ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'master', 'master'),
+    ('repos/wabt', 'WebAssembly/wabt.git', 'WebAssembly/wabt.git', False, 'main', 'main'),
     ('repos/binaryen', 'tbfleming/cib-binaryen.git', 'WebAssembly/binaryen.git', True, 'master', 'cib'),
     ('repos/zip.js', 'gildas-lormeau/zip.js.git', 'gildas-lormeau/zip.js.git', False, '3e7920810f63d5057ef6028833243105521da369', '3e7920810f63d5057ef6028833243105521da369'),
     ('repos/eos', 'tbfleming/cib-eos.git', 'EOSIO/eos.git', True, 'dawn-v3.0.0', 'cib'),
